@@ -165,7 +165,13 @@ return {
 			s('ud ', { t('$\\displaystyle'), i(0), t('$') }),
 			s(rtrig('v(%l)([i%d]?)'), f(vec)),
 			s(rtrig('lim(%l)(%w+)'), fmta('\\lim_{<var>\\to<to>}', {
-				var = l(l.CAPTURE1), to = f(numinf, {}, { user_args={ 2, true } } )
+				var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
+			})),
+			s(rtrig('sum(%l)1(%w+)'),fmta('\\sum_{<var>=1}^<to>', {
+				var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
+			})),
+			s(rtrig('sum(%l)0(%w+)'),fmta('\\sum_{<var>=0}^<to>', {
+				var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
 			})),
             s(rtrig('(i?n?)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\in' } })),
             s(rtrig('(su)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\subseteq' } })),
