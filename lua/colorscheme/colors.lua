@@ -1,7 +1,9 @@
 --[[
-black -> white
-    fn = lambda x:int(241*(atan(x-4)+atan(4))/(2*atan(4)))
-    [print('#' + f'{fn(i):02x}' * 3) for i in range(9)]
+black to white => (0, 0x00) to (8, 0xf1) => (0,0) to (8,241)
+    ```python
+        fn = lambda x:int(241/64*x*x)
+        [print('#' + f'{fn(i):02x}' * 3) for i in range(9)]
+    ```
 colors
     leek = #39c5bb = hsl(175.7,55.1%,49.8%)
     sky = #66ccff = hsl(200,100%,70%)
@@ -19,16 +21,14 @@ colors
     cyan = sky.rotate(-30)
 ]]--
 return {
-    -- f = lambda x:int(241*(atan(x-4)+atan(4))/(2*atan(4)))
-    -- [print('#' + f'{f(i):02x}' * 3) for i in range(9)]
-    black = '#000000', -- ''
-    darkest = '#060606',
-    darker = '#131313',
-    dark = '#313131',
-    gray = '#787878',
-    light = '#bfbfbf',
-    lighter = '#dddddd',
-    lightest = '#eaeaea',
+    black = '#000000',
+    darkest = '#030303',
+    darker = '#0f0f0f',
+    dark = '#212121',
+    gray = '#3c3c3c',
+    light = '#5e5e5e',
+    lighter = '#878787',
+    lightest = '#b8b8b8',
     white = '#f1f1f1',
 
     red = '#c53943',
