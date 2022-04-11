@@ -16,7 +16,7 @@ local leader = '\\'
 local trig = function(t) return u.trig(leader .. t .. ' ') end
 local rtrig = function(t) return u.rtrig(leader .. t .. ' ') end
 local details = [[
-<details class="{class}" open><summary>
+<details class="{class}"><summary>
 </summary>
 {}
 </details>
@@ -66,6 +66,8 @@ local auto = {
 		di = { '\\mathrm{dim}', '()' },
 		ra = { '\\mathrm{rank}', '()' },
 		atan = { '\\mathrm{atan}', '()' },
+		ob = { '\\overbrace', '{}' },
+		ub = { '\\underbrace', '{}' },
 
         inv = '^{-1}',
         T = '^T',
