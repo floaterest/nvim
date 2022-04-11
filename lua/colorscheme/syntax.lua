@@ -15,9 +15,9 @@ return {
         Visual = '. gray .',
     },
     syntax = {
-        Comment = 'gray . i',
+        Comment = 'lighter . i',
         Constant = 'purple . .',
-        Delimiter = 'gray . .',
+        Delimiter = 'lighter . .',
         Directory = 'yellow . .',
         Function = 'lime . .',
         Identifier = 'orange - -',
