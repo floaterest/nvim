@@ -84,7 +84,7 @@ local auto = {
 		cc = '\\color{\\colo}',
 		tcc = '\\textcolor{\\colo}',
 
-        t = { '\\text', '{}' },
+        t = { '\\textsf', '{}' },
 		f = { '\\frac', '{}' },
 		rm = { '\\mathrm', '{}' },
         tc = { '\\textcolor', '{}' },
