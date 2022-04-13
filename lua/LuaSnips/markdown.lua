@@ -35,7 +35,7 @@ local snip = {
     symbols = {
         tf = '∴', bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', neg = '¬',
         uni = '∀', exi = '∃', nexi = '∄', Rarr = '⇒', rarr = '→',
-		inf = '∞', ne = '≠', nin = '∉',
+		inf = '∞', ne = '≠', nin = '∉', sqrt = '√',
     },
 	pairs = { '()', '[]', '||' },
 }
