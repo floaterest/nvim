@@ -175,8 +175,8 @@ return {
 			s(rtrig('sum(%l)0(%w+)'),fmta('\\sum_{<var>=0}^<to>', {
 				var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
 			})),
-            s(rtrig('(i?n?)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\in' } })),
-            s(rtrig('(su)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\subseteq' } })),
+            s(rtrig('(in)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\in' } })),
+            s(rtrig('(su)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\sube' } })),
             s(rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
 			s(rtrig('int(%w)(%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
 				a = f(numinf, {}, { user_args = { 1 } }),
