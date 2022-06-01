@@ -94,7 +94,6 @@ local function field(_, snip, cmd)
 end
 
 local function mat(_, snip) -- 'mat([av]?)(%d) (.+)'
-	-- from preamble
 	-- a for augmented
 	-- v for vertical bars (determinant)
 	local cnt = tonumber(snip.captures[2])
@@ -173,12 +172,6 @@ return {
 		u.map(auto.details, function(k, v) return s(trig(k), fmt(details, {
 			class = v,
 			i(1)
-			-- d(1, function(_, parent)
-			-- 	local raw = u.map(parent.env.SELECT_RAW, function(_, line)
-			-- 		return tostring(line:gsub('^%s+', tab))
-			-- 	end)
-			-- 	return sn(nil, #raw > 0 and t(raw) or { t(tab), i(1) })
-			-- end),
 		})) end),
 		u.map(auto.envs, function(k, v) return s(trig(k), fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
 		    env = v, d(1, function(_, parent)
