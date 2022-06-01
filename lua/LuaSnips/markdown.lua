@@ -41,21 +41,6 @@ local snip = {
 }
 
 local auto = {
-	--[[
-    words = {
-		k = 'knowledge', K = 'Knowledge',
-        t = 'the', f = 'for', b = 'but', n = 'and', w = 'with', o = 'not',
-		r = 'are', u  = 'use', c = 'can',
-
-        fr = 'from', bf = 'before', tt = 'that', ab = 'about', bt = 'between', 
-        wt = 'what', tr = 'there', wo = 'without', wc = 'which', wr = 'where', 
-        ch = 'change', mo = 'more', su = 'such', mu = 'much', ts = 'this',
-		ov = 'over', wn = 'when', ot = 'other', anot = 'another', bo = 'both',
-		hv = 'have', mv = 'move', wi = 'within', sm = 'same', 
-		md = 'made', mk = 'make', rm = 'remove', ud = 'under',
-    },
-    suffixes = { M = 'ment', I = 'ing', T = 'tion', S = 'sion', L = 'less' },
-	]]--
     subs = {
 		sp = { '\\mathrm{span}', '\\{\\}' },
 		co = { '\\mathrm{col}', '()' },
