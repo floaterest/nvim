@@ -22,6 +22,6 @@ local function numinf(_, snip, ncap, space)
 end
 
 return {
-    autosnippets = {
-    }
+    autosnippets = {},
+    snippets = {},
 }

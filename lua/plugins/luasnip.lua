@@ -9,9 +9,6 @@ end
 
 function _G.clear_snippets()
 	for _, snip in ipairs({ 'snippets', 'autosnippets'}) do
-		for ftype, _ in pairs(luasnip[snip]) do
-			package.loaded[dir .. ftype] = nil
-		end
 		luasnip[snip] = setmetatable({}, {
 			__index = function(t, k)
 				local ok, m = pcall(require, dir .. k)
