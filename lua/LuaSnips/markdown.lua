@@ -77,8 +77,6 @@ local auto = {
 		eps = '\\varepsilon',
         tf = '\\therefore',
         bc = '\\because',
-		rarr = '\\rightarrow',
-		Rarr = '\\Rightarrow',
         qed = '\\quad\\blacksquare',
 
 		cc = '\\color{\\colo}',
@@ -87,11 +85,6 @@ local auto = {
         t = { '\\textsf', '{}' },
 		f = { '\\frac', '{}' },
 		rm = { '\\mathrm', '{}' },
-        tc = { '\\textcolor', '{}' },
-        bf = { '\\textbf', '{}', },
-        sec = { '\\section', '{}', },
-        ssec = { '\\subsection', '{}', },
-        sssec = { '\\subsubsection', '{}' },
     },
 	details = {
     	def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
