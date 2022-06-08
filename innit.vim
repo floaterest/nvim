@@ -1,6 +1,7 @@
 syn on
 
 " au InsertLeave,FocusLost *.* w
+au! BufNewFile,BufFilePre,BufRead *.md syn on
 
 " highlight the output of `:hi`
 " usage:
