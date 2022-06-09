@@ -6,20 +6,17 @@ end
 
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    use 'kyazdani42/nvim-web-devicons'
-    use 'nvim-lua/plenary.nvim'
 
-    use 'windwp/nvim-autopairs'
-    use 'ur4ltz/surround.nvim'
-
+    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
+    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use 'lukas-reineke/indent-blankline.nvim'
     use 'nvim-treesitter/nvim-treesitter'
     use 'kyazdani42/nvim-tree.lua'
-    use 'nvim-lualine/lualine.nvim'
 	use 'akinsho/bufferline.nvim'
-	use 'folke/which-key.nvim'
-    use 'nvim-telescope/telescope.nvim'
     use 'numToStr/Comment.nvim'
-    use 'lukas-reineke/indent-blankline.nvim'
+    use 'windwp/nvim-autopairs'
+    use 'ur4ltz/surround.nvim'
+	use 'folke/which-key.nvim'
     use 'L3MON4D3/LuaSnip'
 
     if packer_bootstrap then require('packer').sync() end
