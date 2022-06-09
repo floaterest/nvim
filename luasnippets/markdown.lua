@@ -1,18 +1,13 @@
-local tab = '    '
+local tab = '  '
 local leader = '\\'
 local lead_trig = function(t) return trig(leader .. t .. ' ') end
 local lead_rtrig = function(t) return rtrig(leader .. t .. ' ') end
-local details = [[
-<details class="{class}"><summary>
-</summary>
-{}
-</details>
-]]
+local details = '<details class="{class}"><summary>\n</summary>\n{}\n</details>'
 
 local snip = {
     symbols = {
-        tf = '∴', bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', ne = '≠',
-        uni = '∀', exi = '∃', nexi = '∄', sqrt = '√', nin = '∉', inf = '∞',
+        bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', exi = '∃', inf = '∞',
+        ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
     },
     pairs = { '()', '[]', '||' },
 }
@@ -20,37 +15,33 @@ local snip = {
 local auto = {
     subs = {
         sp = { '\\mathrm{sp}', '\\{\\}' },
-        co = { '\\mathrm{col}', '()' },
-        ro = { '\\mathrm{row}', '()' },
         nu = '\\mathrm{null}\\,',
         ti = '\\tilde T',
         im = '\\mathrm{im}\\,',
-        ra = '\\mathrm{rank}\\,',
-        atan = { '\\mathrm{atan}', '()' },
-        ob = { '\\overbrace', '{}' },
-        ub = { '\\underbrace', '{}' },
+
         Lvw = '\\mathcal L(V,W)',
         Lv = '\\mathcal L(V)',
         Ln = '\\mathcal L(V^n)',
         M = '\\mathcal M(T)',
         C = '\\mathbb C',
-
-        inv = '^{-1}',
-        T = '^T',
-
+        
         phi = '\\varphi',
         lam = '\\lambda',
         eps = '\\varepsilon',
         tf = '\\therefore&\\,',
         bc = '\\because&\\,',
-        qed = '\\quad\\blacksquare',
-        st = '\\textsf{ st }',
         ge = '\\geqslant',
         le = '\\leqslant',
-
+        qed = '\\quad\\blacksquare',
+        
+        st = '\\textsf{ st }',
         t = { '\\textsf', '{}' },
+		g = { '\\tag', '{}' },
         f = { '\\frac', '{}' },
         rm = { '\\mathrm', '{}' },
+        atan = { '\\mathrm{atan}', '()' },
+        ob = { '\\overbrace', '{}' },
+        ub = { '\\underbrace', '{}' },
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
@@ -62,14 +53,12 @@ local auto = {
 }
 
 local function field(_, snip, cmd)
-    local res = snip.captures[2]
-    res = res:match('[CNQRZ]') and ('\\%s'):format(res) or ' ' .. res
-    if(snip.captures[4] ~= '') then
-        res = ('%s^{%s\\times %s}'):format(res, snip.captures[3], snip.captures[4])
-    elseif(snip.captures[3] ~= '') then
+    local res = snip.captures[1]
+    res = res:match('[NQRZ]') and ('\\%s'):format(res) or ' ' .. res
+    if(snip.captures[2] ~= '') then
         res = ('%s^%s'):format(res, snip.captures[3])
     end
-    return snip.captures[1] == '' and res:gsub('^%s+', '') or cmd .. res
+    return cmd .. res
 end
 
 local function mat(_, snip) -- 'mat([av]?)(%d) (.+)'
@@ -107,7 +96,10 @@ return pack({
     },
     map(snip.symbols, function(k,v) return s(k, t(v)) end),
     map(snip.pairs, function(_,v)
-        return s(trig(v), fmta('\\left<l><>\\right<r>', { l = v:sub(1,#v/2), r = v:sub(#v/2+1,#v), i(0) }))
+        return s(trig(v), fmta('\\left<l><>\\right<r>', { 
+            l = v:sub(1,#v/2),
+            r = v:sub(#v/2+1,#v), i(0) 
+        }))
     end),
 }), pack({
     {
@@ -117,14 +109,12 @@ return pack({
         s(lead_rtrig('lim(%l)(%w+)'), fmta('\\lim_{<var>\\to<to>}', {
             var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
         })),
-        s(lead_rtrig('sum(%l)1(%w+)'),fmta('\\sum_{<var>=1}^<to>', {
-            var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
+        s(lead_rtrig('sum(%l)(%d)(%w+)'),fmta('\\sum_{<var>=<a>}^<b>', {
+            var = l(l.CAPTURE1),
+            a = l(l.CAPTURE2),
+            b = f(numinf, {}, { user_args = { 3, true } })
         })),
-        s(lead_rtrig('sum(%l)0(%w+)'),fmta('\\sum_{<var>=0}^<to>', {
-            var = l(l.CAPTURE1), to = f(numinf, {}, { user_args = { 2, true } })
-        })),
-        s(lead_rtrig('(in)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\in' } })),
-        s(lead_rtrig('(su)(%u)(%w?)(%w?)'), f(field, {}, { user_args = { '\\sube' } })),
+        s(lead_rtrig('su(%u)(%w?)'), f(field, {}, { user_args = { '\\sube' } })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
         s(lead_rtrig('int(%w)(%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
             a = f(numinf, {}, { user_args = { 1 } }),
@@ -135,27 +125,33 @@ return pack({
             b = i(1), e = rep(1), i(0)
         })),
     },
-    map(auto.pow, function(_, v) return s(rtrig(v .. ' '), {
-        l(l.CAPTURE1), t('^'), l(l.CAPTURE2)
-    }) end),
-    map(auto.details, function(k, v) return s(lead_trig(k), fmt(details, {
-        class = v,
-        i(1)
-    })) end),
-    map(auto.envs, function(k, v) return s(lead_trig(k), fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
-        env = v, d(1, function(_, parent)
-            local sr = map(parent.env.SELECT_RAW, function(_,line)
-                return tostring(line:gsub('^%s+', tab))
+    map(auto.pow, function(_, v) 
+        return s(rtrig(v .. ' '), { l(l.CAPTURE1), t('^'), l(l.CAPTURE2) })
+    end),
+    map(auto.details, function(k, v)
+        return s(lead_trig(k), fmt(details, { class = v, i(1) }))
+    end),
+    map(auto.envs, function(k, v)
+        return s(lead_trig(k), fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
+            env = v, d(1, function(_, parent)
+                local sr = map(parent.env.SELECT_RAW, function(_,line)
+                    return tostring(line:gsub('^%s+', tab))
+                end)
+                return sn(nil, #sr > 0 and t(sr) or { t(tab), i(1) })
+            end),
+        }))
+    end),
+    map(auto.subs, function(k, v) 
+        return s(lead_trig(k), type(v) == 'string' and t(v) or {
+            t(v[1]),
+            d(1, function(_, parent) 
+                return sn(nil, {
+                    t(v[2]:sub(1,#v[2]/2)),
+                    (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
+                    t(v[2]:sub(#v[2]/2+1,#v[2]))
+                })
             end)
-            return sn(nil, #sr > 0 and t(sr) or { t(tab), i(1) })
-        end),
-    })) end),
-    map(auto.subs, function(k, v) return s(lead_trig(k), type(v) == 'string' and t(v) or {
-        t(v[1]), d(1, function(_, parent) return sn(nil, {
-            t(v[2]:sub(1,#v[2]/2)),
-            (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
-            t(v[2]:sub(#v[2]/2+1,#v[2]))
-        }) end)})
+        })
     end),
 })
 
