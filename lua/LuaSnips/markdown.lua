@@ -42,10 +42,11 @@ local snip = {
 
 local auto = {
     subs = {
-		sp = { '\\mathrm{span}', '\\{\\}' },
+		sp = { '\\mathrm{sp}', '\\{\\}' },
 		co = { '\\mathrm{col}', '()' },
 		ro = { '\\mathrm{row}', '()' },
 		nu = '\\mathrm{null}\\,',
+		ti = '\\tilde T',
 		im = '\\mathrm{im}\\,',
 		ra = '\\mathrm{rank}\\,',
 		atan = { '\\mathrm{atan}', '()' },
@@ -63,9 +64,10 @@ local auto = {
         phi = '\\varphi',
 		lam = '\\lambda',
 		eps = '\\varepsilon',
-        tf = '\\therefore',
-        bc = '\\because',
+        tf = '\\therefore&\\,',
+        bc = '\\because&\\,',
         qed = '\\quad\\blacksquare',
+		st = '\\textsf{ st }',
 		ge = '\\geqslant',
 		le = '\\leqslant',
 
