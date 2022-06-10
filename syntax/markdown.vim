@@ -1,3 +1,3 @@
 setl wrap
-syn on
 setl sw=2
+setl syntax=markdown.pandoc

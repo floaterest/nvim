@@ -9,6 +9,7 @@ require('packer').startup(function(use)
 
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use 'vim-pandoc/vim-pandoc-syntax'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'nvim-treesitter/nvim-treesitter'
     use 'kyazdani42/nvim-tree.lua'
