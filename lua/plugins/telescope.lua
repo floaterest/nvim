@@ -3,6 +3,7 @@ require('telescope').setup({
         file_ignore_patterns = {
             '%.git[\\/]', 
             'node_modules[/\\]',
+            'target[/\\]',
             '%.idea[/\\]',
         },
         multi_icon = '',
