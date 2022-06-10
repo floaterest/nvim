@@ -23,6 +23,7 @@ local auto = {
         Lv = '\\mathcal L(V)',
         Ln = '\\mathcal L(V^n)',
         M = '\\mathcal M(T)',
+		O = { '\\mathcal O', '()' },
         C = '\\mathbb C',
         
         phi = '\\varphi',
