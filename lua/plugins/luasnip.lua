@@ -1,8 +1,5 @@
 local luasnip = require('luasnip')
 
-local dir = 'LuaSnips/'
-local absdir = '$XDG_CONFIG_HOME/nvim/lua/' .. dir
-
 local function term(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -11,7 +8,7 @@ function _G.complete()
     if luasnip and luasnip.expand_or_jumpable() then
         return term('<Plug>luasnip-expand-or-jump')
     else
-        return '    '
+        return term('<Tab>')
     end
 end
 
@@ -64,15 +61,12 @@ luasnip.config.set_config({
 })
 
 vim.cmd([[
-    augroup snippets_clear
-    au!
-    au BufWritePost ]] .. absdir .. [[*.lua :execute 'lua require("luasnip").snippets[string.match("'.expand("<afile>").'", "/([^/]*)%.lua$")] = nil
-    augroup END
+    au BufWritePost */nvim/luasnippets/*.lua :lua require("luasnip.loaders.from_lua").load()
 ]])
 
 map = vim.api.nvim_set_keymap
 require("luasnip.loaders.from_lua").lazy_load()
-vim.cmd [[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]
+vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
 
 -- more mappings at mappings.lua
 vim.cmd([[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]])
