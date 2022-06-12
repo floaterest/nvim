@@ -35,6 +35,7 @@ local auto = {
         qed = '\\quad\\blacksquare',
         
         st = '\\textsf{ st }',
+		i = '^{-1}',
         t = { '\\textsf', '{}' },
 		g = { '\\tag', '{}' },
         f = { '\\frac', '{}' },
