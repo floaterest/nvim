@@ -35,7 +35,7 @@ local cb = require('nvim-tree.config').nvim_tree_callback
 require('nvim-tree').setup({
     update_cwd = true,
 	update_focused_file = { enable = true },
-	git = { enabled = false, ignore = false },
+	-- git = { enabled = false, ignore = true },
     view = {
         auto_resize = true,
         mappings = {
