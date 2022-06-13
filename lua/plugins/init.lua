@@ -7,6 +7,10 @@ end
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
+    use 'beeender/Comrade'
+    -- use { 'neoclide/coc.nvim', branch = 'release' }
+
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use 'vim-pandoc/vim-pandoc-syntax'
@@ -35,4 +39,5 @@ require('plugins.nvimtree')
 require('plugins.comment')
 require('plugins.luasnip')
 require('plugins.surround')
+require('plugins.pandoc')
 

@@ -47,6 +47,7 @@ local auto = {
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
+		arg = 'argument',
     },
     envs = {
         al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array',
