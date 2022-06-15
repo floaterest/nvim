@@ -2,35 +2,42 @@ local tab = '  '
 local leader = '\\'
 local lead_trig = function(t) return trig(leader .. t .. ' ') end
 local lead_rtrig = function(t) return rtrig(leader .. t .. ' ') end
-local details = '<details class="{class}"><summary>\n</summary>\n{}\n</details>'
+local details = '<details class="{class}"><summary>{}</summary>\n</details>'
 
 local snip = {
     symbols = {
         bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', exi = '∃', inf = '∞',
         ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
+		['０'] = '⓪', ['１'] = '①', ['２'] = '②', ['３'] = '③', ['４'] = '④',
+		['５'] = '⑤', ['６'] = '⑥', ['７'] = '⑦', ['８'] = '⑧', ['９'] = '⑨',
+
     },
     pairs = { '()', '[]', '||' },
 }
 
 local auto = {
     subs = {
-        sp = { '\\mathrm{sp}', '\\{\\}' },
-        nu = '\\mathrm{null}\\,',
-        ti = '\\tilde T',
-        im = '\\mathrm{im}\\,',
-
-        Lvw = '\\mathcal L(V,W)',
-        Lv = '\\mathcal L(V)',
-        Ln = '\\mathcal L(V^n)',
-        M = '\\mathcal M(T)',
+		no = '\\varnothing',
+		Ac = 'A^c',
+		Bc = 'B^c',
+		['and'] = '\\cap ',
+		['or'] = '\\cup ',
 		O = { '\\mathcal O', '()' },
-        C = '\\mathbb C',
+		E = '\\mathcal E',
+		vr = { '\\mathrm{vr}', '()' },
+		op = { '\\mathrm{op}', '()' },
+		inR = '\\in\\R',
+		inR2 = '\\in\\R^2',
+		inR3 = '\\in\\R^3',
+		inRn = '\\in\\R^n',
+		sp = { '\\text{sp}', '{}' }, 
         
         phi = '\\varphi',
-        lam = '\\lambda',
         eps = '\\varepsilon',
-        tf = '\\therefore&\\,',
-        bc = '\\because&\\,',
+        tf = '\\therefore',
+        bc = '\\because',
+        tff = '\\therefore&\\,',
+        bcc = '\\because&\\,',
         ge = '\\geqslant',
         le = '\\leqslant',
         qed = '\\quad\\blacksquare',
@@ -47,7 +54,6 @@ local auto = {
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
-		arg = 'argument',
     },
     envs = {
         al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array',
@@ -96,6 +102,11 @@ end
 return pack({
     {
         s(lead_rtrig('mat([ad]?)(%d) (.+)'), f(mat)),
+        -- s('ru', fmt('<ruby>{}<rt>{}</rt></ruby>', { l(l.CAPTURE1), i(0) })),
+		s('ru', f(function(_, snip) 
+			-- return 'ok'
+			return '<ruby> <rt>' .. snip.env.SELECT_RAW[1] .. '</rt></ruby>'
+		end, {}))
     },
     map(snip.symbols, function(k,v) return s(k, t(v)) end),
     map(snip.pairs, function(_,v)
@@ -138,7 +149,7 @@ return pack({
         return s(lead_trig(k), fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
             env = v, d(1, function(_, parent)
                 local sr = map(parent.env.SELECT_RAW, function(_,line)
-                    return tostring(line:gsub('^%s+', tab))
+					return tostring(line:gsub('^[%s%$]*', tab):gsub('[%s%$]*$', ''))
                 end)
                 return sn(nil, #sr > 0 and t(sr) or { t(tab), i(1) })
             end),
