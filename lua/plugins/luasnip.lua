@@ -20,11 +20,11 @@ luasnip.config.set_config({
     ext_prio_increase = 1,
     store_selection_keys = '<Tab>',
     snip_env = {
-        s = require("luasnip.nodes.snippet").S,
-        sn = require("luasnip.nodes.snippet").SN,
-        t = require("luasnip.nodes.textNode").T,
+        s = luasnip.s,
+        sn = luasnip.sn,
+        t = luasnip.t,
+        i = luasnip.i,
         f = require("luasnip.nodes.functionNode").F,
-        i = require("luasnip.nodes.insertNode").I,
         d = require("luasnip.nodes.dynamicNode").D,
         l = require("luasnip.extras").lambda,
         rep = require("luasnip.extras").rep,
@@ -61,14 +61,14 @@ luasnip.config.set_config({
 })
 
 vim.cmd([[
-    au BufWritePost */nvim/luasnippets/*.lua :lua require("luasnip.loaders.from_lua").load()
+    au BufWritePost */luasnippets/*.lua :lua require("luasnip.loaders.from_lua").lazy_load()
 ]])
 
-map = vim.api.nvim_set_keymap
 require("luasnip.loaders.from_lua").lazy_load()
 vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
 
 -- more mappings at mappings.lua
 vim.cmd([[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]])
+-- map = vim.api.nvim_set_keymap
 -- map('i','<tab>','v:lua.complete()', { expr = true })
 -- map('s','<tab>','v:lua.complete()', { expr = true })
