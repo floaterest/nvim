@@ -16,3 +16,4 @@ local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 map('n', '<leader>=', ':lua incfont(1)<cr>' , opt)
 map('n', '<leader>-', ':lua incfont(-1)<cr>', opt)
+map('i', '<c-/>', '<esc>', opt)
