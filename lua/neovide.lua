@@ -12,8 +12,48 @@ function _G.incfont(amount)
     vim.o.gfn = font:sub(0, a + 1) .. size + amount .. font:sub(b + 1)
 end
 
-local map = vim.api.nvim_set_keymap
-local opt = { noremap = true, silent = true }
-map('n', '<leader>=', ':lua incfont(1)<cr>' , opt)
-map('n', '<leader>-', ':lua incfont(-1)<cr>', opt)
-map('i', '<c-/>', '<esc>', opt)
+-- map('n', '<leader>=', ':lua incfont(1)<cr>' , opt)
+-- map('n', '<leader>-', ':lua incfont(-1)<cr>', opt)
+
+-- dvorak -> querty
+local d2q = {
+    ["'"] = 'q',
+    [','] = 'w',
+    ['.'] = 'e',
+    p = 'r',
+    y = 't',
+    f = 'y',
+    g = 'u',
+    c = 'i',
+    r = 'o',
+    l = 'p',
+    ['/'] = '[',
+    ['='] = ']',
+
+    o = 's',
+    e = 'd',
+    u = 'f',
+    i = 'g',
+    d = 'h',
+    h = 'j',
+    t = 'k',
+    n = 'l',
+    s = ';',
+    ['-'] = "'",
+
+    [';'] = 'z',
+    q = 'x',
+    j = 'c',
+    k = 'v',
+    x = 'b',
+    b = 'n',
+    w = ',',
+    v = '.',
+    z = '/',
+}
+
+local opt = { noremap = true }
+for d, q in pairs(d2q) do
+    vim.api.nvim_set_keymap('i', '<c-' .. d .. '>', '<c-' .. q .. '>', opt)
+    vim.api.nvim_set_keymap('', '<c-' .. d .. '>', '<c-' .. q .. '>', opt)
+end
