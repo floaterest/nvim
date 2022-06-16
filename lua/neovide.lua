@@ -52,8 +52,13 @@ local d2q = {
     z = '/',
 }
 
-local opt = { noremap = true }
 for d, q in pairs(d2q) do
-    vim.api.nvim_set_keymap('i', '<c-' .. d .. '>', '<c-' .. q .. '>', opt)
-    vim.api.nvim_set_keymap('', '<c-' .. d .. '>', '<c-' .. q .. '>', opt)
+    for _, mode in ipairs({'n', 'i', 'v', 'c'}) do
+        vim.api.nvim_set_keymap(
+            mode,
+            '<c-' .. d .. '>',
+            '<c-' .. q .. '>',
+            { noremap = true }
+        )
+    end
 end
