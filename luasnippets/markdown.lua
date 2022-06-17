@@ -38,8 +38,6 @@ local auto = {
         bc = '\\because',
         tff = '\\therefore&\\,',
         bcc = '\\because&\\,',
-        ge = '\\geqslant',
-        le = '\\leqslant',
         qed = '\\quad\\blacksquare',
         
         st = '\\textsf{ st }',
