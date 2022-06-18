@@ -7,8 +7,8 @@ end
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
-    use 'beeender/Comrade'
+    -- use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
+    -- use 'beeender/Comrade'
     -- use { 'neoclide/coc.nvim', branch = 'release' }
 
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
@@ -16,7 +16,7 @@ require('packer').startup(function(use)
     use 'vim-pandoc/vim-pandoc-syntax'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'nvim-treesitter/nvim-treesitter'
-    use 'kyazdani42/nvim-tree.lua'
+    -- use 'kyazdani42/nvim-tree.lua'
 	use 'akinsho/bufferline.nvim'
     use 'numToStr/Comment.nvim'
     use 'windwp/nvim-autopairs'
@@ -35,7 +35,7 @@ require('plugins.lualine')
 require('plugins.whichkey')
 require('plugins.bufferline')
 require('plugins.telescope')
-require('plugins.nvimtree')
+-- require('plugins.nvimtree')
 require('plugins.comment')
 require('plugins.luasnip')
 require('plugins.surround')
