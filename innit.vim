@@ -1,9 +1,7 @@
 syn on
 
-au BufNewFile,BufRead *.tex,*.md setlocal wrap | syn on
-au BufNewFile,BufRead *.c set syn=cpp
-
 " au InsertLeave,FocusLost *.* w
+au! BufNewFile,BufFilePre,BufRead *.md syn on
 
 " highlight the output of `:hi`
 " usage:
