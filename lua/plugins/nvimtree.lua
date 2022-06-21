@@ -1,4 +1,3 @@
-vim.g.nvim_tree_indent_markers = 1
 -- vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_show_icons = {
@@ -34,10 +33,9 @@ vim.g.nvim_tree_icons = {
 local cb = require('nvim-tree.config').nvim_tree_callback
 
 require('nvim-tree').setup({
-    auto_close = true,
     update_cwd = true,
 	update_focused_file = { enable = true },
-	git = { enabled = false, ignore = false },
+	-- git = { enabled = false, ignore = true },
     view = {
         auto_resize = true,
         mappings = {
@@ -45,7 +43,11 @@ require('nvim-tree').setup({
                 { key = 'O', cb = cb('cd') }
             }
         }
+    },
+    renderer = {
+        indent_markers = { enable = true }
     }
 })
 
 vim.api.nvim_set_keymap('n', '<c-n>', ':NvimTreeToggle<cr>', { noremap = true })
+vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")

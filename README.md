@@ -1,3 +1,3 @@
 # nvim
 
-My Neovim config (uses nvui)
+My Neovim config (uses neovide)

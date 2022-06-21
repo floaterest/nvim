@@ -18,6 +18,8 @@ vim.g.maplocalleader = ' '
 
 -- delete word
 map('i', '<c-bs>', '<c-w>')
+-- delete all chars before cursor, but put them in register
+map('i', '<c-u>', '<esc>v^d')
 -- yank until end of line
 map('n', 'Y', 'v$hy')
 -- no ex-cammand
