@@ -55,6 +55,7 @@ local auto = {
     },
     envs = {
         al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array',
+        pm = 'pmatrix', bm = 'bmatrix', vm = 'vmatrix',
     },
     pow = { '([%)|])(%d)', '(%A%a)(%d)' },
 }
