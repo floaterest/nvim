@@ -2,7 +2,7 @@ local tab = '  '
 local leader = '\\'
 local lead_trig = function(t) return trig(leader .. t .. ' ') end
 local lead_rtrig = function(t) return rtrig(leader .. t .. ' ') end
-local details = '<details class="{class}"><summary>{}</summary>\n</details>'
+local details = '<details class="{class}" open><summary>{}</summary>\n</details>'
 
 local snip = {
     symbols = {
