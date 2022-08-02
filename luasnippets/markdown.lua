@@ -60,20 +60,17 @@ local auto = {
     pow = { '([%)|])(%d)', '(%A%a)(%d)' },
 }
 
-local function mat(_, snip) -- 'mat([av]?)(%d) (.+)'
-    -- a for augmented
+local function mat(_, snip)
     -- v for vertical bars (determinant)
     local cnt = tonumber(snip.captures[2])
-    local env = snip.captures[1] == 'v' and 'vmatrix' or 'bmatrix'
+    local env = snip.captures[1] == 'v' and 'vmatrix' or 'pmatrix'
     -- snip.captures[1] == 'a' and ('c'):rep(cnt - 1) .. '|c' or ('c'):rep(cnt)
-    local content = {
-        '\\begin{' .. env .. '}'
-    }
+    local content = { '\\begin{' .. env .. '}' }
 
     local i, line = 1, ''
     for s in snip.captures[3]:gmatch('%S+') do
         if i % cnt == 0 then
-            content[#content + 1] = tab .. line .. s .. '\\\\'
+            content[#content + 1] = line .. s .. '\\\\'
             line = ''
         else
             line = line .. s .. '&'
@@ -81,7 +78,7 @@ local function mat(_, snip) -- 'mat([av]?)(%d) (.+)'
         i = i + 1
     end
     content[#content + 1] = '\\end{' .. env .. '}'
-    return content
+    return table.concat(content, '')
 end
 
 local function numinf(_, snip, ncap, space)
@@ -91,7 +88,7 @@ end
 
 return pack({
     {
-        s(lead_rtrig('mat([ad]?)(%d) (.+)'), f(mat)),
+        s(lead_rtrig('(v?)mat(%d) (.+)'), f(mat)),
         -- s('ru', fmt('<ruby>{}<rt>{}</rt></ruby>', { l(l.CAPTURE1), i(0) })),
 		s('ru', f(function(_, snip) 
 			-- return 'ok'
