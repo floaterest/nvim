@@ -60,15 +60,6 @@ local auto = {
     pow = { '([%)|])(%d)', '(%A%a)(%d)' },
 }
 
-local function field(_, snip, cmd)
-    local res = snip.captures[1]
-    res = res:match('[NQRZ]') and ('\\%s'):format(res) or ' ' .. res
-    if(snip.captures[2] ~= '') then
-        res = ('%s^%s'):format(res, snip.captures[3])
-    end
-    return cmd .. res
-end
-
 local function mat(_, snip) -- 'mat([av]?)(%d) (.+)'
     -- a for augmented
     -- v for vertical bars (determinant)
@@ -127,7 +118,6 @@ return pack({
             a = l(l.CAPTURE2),
             b = f(numinf, {}, { user_args = { 3, true } })
         })),
-        s(lead_rtrig('su(%u)(%w?)'), f(field, {}, { user_args = { '\\sube' } })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
         s(lead_rtrig('int(%w)(%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
             a = f(numinf, {}, { user_args = { 1 } }),
