@@ -81,9 +81,12 @@ local function mat(_, snip)
     return table.concat(content, '')
 end
 
-local function numinf(_, snip, ncap, space)
-    local cap = snip.captures[ncap]:gsub('^f$', '\\infty')
-    return (cap:match('^%a') and space) and (' ' .. cap) or cap
+local function numinf(_, snip, cap, space)
+    local s = snip.captures[cap]:gsub('f$', '\\infty')
+    if s:sub(1, 1) == '-' then
+        s = '{' .. s .. '}'
+    end
+    return (s:match('^%a') and space) and (' ' .. s) or s
 end
 
 return pack({
@@ -116,7 +119,7 @@ return pack({
             b = f(numinf, {}, { user_args = { 3, true } })
         })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
-        s(lead_rtrig('int(%w)(%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
+        s(lead_rtrig('int(-?%w)(-?%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
             a = f(numinf, {}, { user_args = { 1 } }),
             b = f(numinf, {}, { user_args = { 2 } }),
             var = l(l.CAPTURE3), i(1)
