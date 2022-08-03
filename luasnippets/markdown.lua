@@ -89,6 +89,18 @@ local function numinf(_, snip, cap, space)
     return (s:match('^%a') and space) and (' ' .. s) or s
 end
 
+local function partial(_, snip, cap)
+    local s = snip.captures[cap]
+    local t = snip.captures[cap + 1]
+    -- if numerator
+    if t then
+        local len = t:len()
+        return (len == 1 and '\\partial ' or '\\partial^' .. len) .. s
+    else
+        return s:gsub('(%d)', '^%1'):gsub('(%l)', '\\partial %1')
+    end
+end
+
 return pack({
     {
         s(lead_rtrig('(v?)mat(%d) (.+)'), f(mat)),
@@ -117,6 +129,11 @@ return pack({
             var = l(l.CAPTURE1),
             a = l(l.CAPTURE2),
             b = f(numinf, {}, { user_args = { 3, true } })
+        })),
+        s(lead_rtrig('(d?)par([^t])(%w+)'), fmta('\\<>frac{<>}{<>}', {
+            l(l.CAPTURE1),
+            f(partial, {}, { user_args = { 2 } }),
+            f(partial, {}, { user_args = { 3 } }),
         })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
         s(lead_rtrig('int(-?%w)(-?%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
