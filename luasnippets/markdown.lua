@@ -104,11 +104,6 @@ end
 return pack({
     {
         s(lead_rtrig('(v?)mat(%d) (.+)'), f(mat)),
-        -- s('ru', fmt('<ruby>{}<rt>{}</rt></ruby>', { l(l.CAPTURE1), i(0) })),
-		s('ru', f(function(_, snip) 
-			-- return 'ok'
-			return '<ruby> <rt>' .. snip.env.SELECT_RAW[1] .. '</rt></ruby>'
-		end, {}))
     },
     map(snip.symbols, function(k,v) return s(k, t(v)) end),
     map(snip.pairs, function(_,v)
