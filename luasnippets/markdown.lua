@@ -139,6 +139,7 @@ return pack({
             f(partial, {}, { user_args = { 2 } }),
             f(partial, {}, { user_args = { 3 } }),
         })),
+        s(lead_rtrig('der(%l)(%l)'), fmta('\\frac{d<>}{d<>}', { l(l.CAPTURE1), l(l.CAPTURE2) })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
         s(lead_rtrig('int(-?%w)(-?%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
             a = f(numinf, {}, { user_args = { 1 } }),
