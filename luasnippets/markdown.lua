@@ -132,6 +132,8 @@ return pack({
             a = l(l.CAPTURE2),
             b = f(numinf, {}, { user_args = { 3, true } })
         })),
+        s(lead_rtrig('cal(%l+)'), fmta('\\mathcal <>',{ l(l.CAPTURE1:upper()) })),
+        s(lead_rtrig('bb(%l+)'), fmta('\\mathbb <>',{ l(l.CAPTURE1:upper()) })),
         s(lead_rtrig('(d?)par([^t])(%w+)'), fmta('\\<>frac{<>}{<>}', {
             l(l.CAPTURE1),
             f(partial, {}, { user_args = { 2 } }),
