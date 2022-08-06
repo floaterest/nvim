@@ -169,13 +169,11 @@ return pack({
     map(auto.subs, function(k, v) 
         return s(lead_trig(k), type(v) == 'string' and t(v) or {
             t(v[1]),
-            d(1, function(_, parent) 
-                return sn(nil, {
-                    t(v[2]:sub(1,#v[2]/2)),
-                    (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
-                    t(v[2]:sub(#v[2]/2+1,#v[2]))
-                })
-            end)
+            d(1, function(_, parent) return sn(nil, {
+                t(v[2]),
+                (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
+                t(v[3])
+            }) end)
         })
     end),
 })
