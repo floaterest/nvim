@@ -83,7 +83,7 @@ end
 
 local function numinf(_, snip, cap, space)
     local s = snip.captures[cap]:gsub('f$', '\\infty')
-    if s:sub(1, 1) == '-' then
+    if s:len() > 1 then
         s = '{' .. s .. '}'
     end
     return (s:match('^%a') and space) and (' ' .. s) or s
@@ -104,6 +104,11 @@ end
 return pack({
     {
         s(lead_rtrig('(v?)mat(%d) (.+)'), f(mat)),
+        s(lead_rtrig('int (.+) (.+) (.+)'), fmta('\\int_<a>^<b><>\\,d<var>', {
+            a = f(numinf, {}, { user_args = { 1 } }),
+            b = f(numinf, {}, { user_args = { 2 } }),
+            var = l(l.CAPTURE3), i(1)
+        })),
     },
     map(snip.symbols, function(k,v) return s(k, t(v)) end),
     map(snip.pairs, function(_,v)
@@ -141,11 +146,6 @@ return pack({
         })),
         s(lead_rtrig('der(%l)(%l)'), fmta('\\frac{d<>}{d<>}', { l(l.CAPTURE1), l(l.CAPTURE2) })),
         s(lead_rtrig('int(%l)'), fmta('\\int <>\\,d<var>', { var = l(l.CAPTURE1), i(1) })),
-        s(lead_rtrig('int(-?%w)(-?%w)(%l)'), fmta('\\int_<a>^<b><>\\,d<var>', {
-            a = f(numinf, {}, { user_args = { 1 } }),
-            b = f(numinf, {}, { user_args = { 2 } }),
-            var = l(l.CAPTURE3), i(1)
-        })),
         s(lead_trig('beg'), fmta(('\\begin{<b>}\n%s<>\n\\end{<e>}'):format(tab), {
             b = i(1), e = rep(1), i(0)
         })),
