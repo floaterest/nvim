@@ -3,8 +3,8 @@ local colors = require('colorscheme.colors')
 local theme = {
     normal = {
         a = { fg = colors.black, bg = colors.leek, gui = 'bold' },
-        b = { fg = colors.lightest, bg = colors.dark },
-        c = { fg = colors.lighter, bg = colors.darkest },
+        b = { fg = colors.lightest, bg = colors.darkest },
+        c = { fg = colors.lighter, bg = colors.black },
 	},
     insert = {
         a = { fg = colors.black, bg = colors.sky, gui = 'bold' },
