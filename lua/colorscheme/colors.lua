@@ -1,8 +1,8 @@
 --[[
-black to white => (0, 0x00) to (8, 0xf1) => (0,0) to (8,241)
+black to white => 0x000000 to 0xf1f1f1f1 => 0 to 241
     ```python
-        fn = lambda x:int(241/64*x*x)
-        [print('#' + f'{fn(i):02x}' * 3) for i in range(9)]
+    from scipy.stats import beta
+    [f'{int(241 * beta(1,1).cdf(i/8)):02x}' for i in range(9)]
     ```
 colors
     leek = #39c5bb = hsl(175.7,55.1%,49.8%)
@@ -22,13 +22,13 @@ colors
 ]]--
 return {
     black = '#000000',
-    darkest = '#030303',
-    darker = '#0f0f0f',
-    dark = '#212121',
-    gray = '#3c3c3c',
-    light = '#5e5e5e',
-    lighter = '#878787',
-    lightest = '#b8b8b8',
+    darkest = '#1e1e1e',
+    darker = '#3c3c3c',
+    dark = '#5a5a5a',
+    gray = '#787878',
+    light = '#969696',
+    lighter = '#b4b4b4',
+    lightest = '#d2d2d2',
     white = '#f1f1f1',
 
     red = '#c53943',
