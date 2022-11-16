@@ -2,7 +2,7 @@ local tab = '  '
 local leader = '\\'
 local lead_trig = function(t) return trig(leader .. t .. ' ') end
 local lead_rtrig = function(t) return rtrig(leader .. t .. ' ') end
-local details = '<details class="{class}" open><summary>{}</summary>\n</details>'
+local details = '<details class="{class}" open>\n<summary>{}</summary>\n</details>'
 
 local snip = {
     symbols = {
@@ -19,11 +19,12 @@ local snip = {
 local auto = {
     subs = {
 		no = '\\varnothing',
-        ss = '\\Sigma^\\ast',
+        Sa = '\\Sigma^\\ast',
+        Ga = '\\Gamma^\\ast',
+        ha = '\\htmlClass{accent}',
         a = '^\\ast',
-        s = '\\Sigma',
-
-        c = '\\mathrm{Cov}',
+        S = '\\Sigma',
+        G = '\\Gamma',
 
         p = '\\varphi',
         d = '\\delta',
