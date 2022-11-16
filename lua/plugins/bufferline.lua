@@ -1,7 +1,7 @@
 require('bufferline').setup({
     highlights = {
         buffer_selected = {
-            gui = 'bold'
+            bold = true
         }
     },
     options = {
@@ -12,7 +12,6 @@ require('bufferline').setup({
             highlight = "Directory",
             text_align = "left"
         }},
-        indicator_icon = '🡙',
         buffer_close_icon = '✕',
         modified_icon = '●',
         close_icon = '✖',
