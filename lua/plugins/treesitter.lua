@@ -1,4 +1,16 @@
+-- basically all the languages I know/use
+-- run :TSInstallInfo to see list
+
+-- markdown_inline?
+-- not found: sass mdx
+local languages = {
+    'astro', 'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'jsonc', 'lua', 
+    'markdown', 'python', 'regex', 'rust', 'svelte', 'toml', 'typescript', 
+    'vim', 'yaml'
+}
+
 require('nvim-treesitter.configs').setup({
+    ensure_installed = languages,
     highlight = {
         enable = true,
 		disable = { 'tex', 'org' },
