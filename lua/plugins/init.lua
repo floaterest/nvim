@@ -18,7 +18,7 @@ require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'
     use 'ur4ltz/surround.nvim'
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-    use 'nvim-treesitter/nvim-treesitter'
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'folke/which-key.nvim'
 
     if packer_bootstrap then require('packer').sync() end
