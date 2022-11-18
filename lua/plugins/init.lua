@@ -10,6 +10,19 @@ end
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
+    use 'neovim/nvim-lspconfig'
+
+    use "hrsh7th/nvim-cmp"
+    use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-calc"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-path"
+
     use 'windwp/nvim-autopairs'
 	use 'akinsho/bufferline.nvim'
     use 'numToStr/Comment.nvim'
@@ -35,3 +48,5 @@ require('plugins.surround')
 require('plugins.telescope')
 require('plugins.treesitter')
 require('plugins.whichkey')
+require('plugins.external.mason')
+require('plugins.cmp')
