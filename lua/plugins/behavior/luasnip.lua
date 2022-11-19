@@ -67,7 +67,6 @@ vim.cmd([[
 require("luasnip.loaders.from_lua").lazy_load()
 vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
 
--- more mappings at mappings.lua
 vim.cmd([[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]])
 -- map = vim.api.nvim_set_keymap
 -- map('i','<tab>','v:lua.complete()', { expr = true })
