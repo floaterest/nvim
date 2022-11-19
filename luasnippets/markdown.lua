@@ -6,12 +6,9 @@ local details = '<details class="{class}" open>\n<summary>{}</summary>\n</detail
 
 local snip = {
     symbols = {
-        bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', exi = '∃', inf = '∞',
+        bc = '∵', conj = '∧', disj = '∨', exi = '∃', inf = '∞',
         ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
         un = '⋃', it = '⋂', eps = 'ε', neg = '¬', ['in'] = '∈',
-		['０'] = '⓪', ['１'] = '①', ['２'] = '②', ['３'] = '③', ['４'] = '④',
-		['５'] = '⑤', ['６'] = '⑥', ['７'] = '⑦', ['８'] = '⑧', ['９'] = '⑨',
-
     },
     pairs = { '()', '[]', '||' },
 }
