@@ -2,7 +2,7 @@
 
 local M = {}
 
-local function map(mode, lhs, rhs, opts)
+local function noremap(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
         options = vim.tbl_extend('force', options, opts)
@@ -11,17 +11,23 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- keymaps that don't depend on plugins
+
+function M.map(t)
+    vim.tbl_map(function(v) noremap(unpack(v)) end, t)
+end
+
+
 function M.vanilla()
-    vim.g.mapleader = ' '
-    vim.g.maplocalleader = ' '
-    -- delete word
-    map('i', '<c-bs>', '<c-w>')
-    -- delete all chars before cursor, but put them in register
-    map('i', '<c-u>', '<esc>v^d')
-    -- yank until end of line
-    map('n', 'Y', 'v$hy')
-    -- no ex-cammand
-    map('n', 'Q', '')
+    M.map({
+        -- delete word
+        { 'i', '<c-bs>', '<c-w>' },
+        -- delete all chars before cursor, but put them in register
+        { 'i', '<c-u>', '<esc>v^d' },
+        -- yank until end of line
+        { 'n', 'Y', 'v$hy' },
+        -- no ex-cammand
+        { 'n', 'Q', '' },
+    })
 end
 
 -- which-key
@@ -65,5 +71,7 @@ M.which = {
         },
     },
 }
+
+
 
 return M
