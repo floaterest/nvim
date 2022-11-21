@@ -42,14 +42,14 @@ require('lualine').setup({
         lualine_b = { 'branch', 'diff' },
         lualine_c = { filename },
         lualine_x = {
-            'encoding', 
-            { 
+            'encoding',
+            {
                 'fileformat',
                 symbols = {
-                    unix = 'LF', 
-                    dos = 'CRLF', 
+                    unix = 'LF',
+                    dos = 'CRLF',
                     mac = 'CR'
-                } 
+                }
             },
             'bo:filetype'
         },
