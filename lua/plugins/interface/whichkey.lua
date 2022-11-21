@@ -1,7 +1,7 @@
-local wk = require('which-key')
-local keymaps = require('core.keymaps').which
+local which = require('which-key')
+local keymaps = require('core.keymaps').which()
 
-wk.setup({
+which.setup({
     key_labels = {
         ['<space>'] = 'spc'
     },
@@ -12,4 +12,4 @@ wk.setup({
     hidden = { 'b%d$' }
 })
 
-wk.register(keymaps)
+which.register(keymaps)
