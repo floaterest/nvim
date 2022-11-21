@@ -42,7 +42,7 @@ function M.which()
         ['<leader>'] = {
             b = {
                 name = '+buffer',
-    
+
                 ['1'] = { '<cmd>b1<cr>', 'which_key_ignore'},
                 ['2'] = { '<cmd>b2<cr>', 'which_key_ignore'},
                 ['3'] = { '<cmd>b3<cr>', 'which_key_ignore'},
@@ -52,7 +52,7 @@ function M.which()
                 ['7'] = { '<cmd>b7<cr>', 'which_key_ignore'},
                 ['8'] = { '<cmd>b8<cr>', 'which_key_ignore'},
                 ['9'] = { '<cmd>b9<cr>', 'which_key_ignore'},
-    
+
                 n = { '<cmd>bn<cr>', 'Go to next' },
                 p = { '<cmd>bp<cr>' ,'Go to previous' },
                 d = { '<cmd>bd<cr>', 'Delete' }
@@ -77,7 +77,7 @@ function M.which()
                 ['='] = { '<c-w>=', 'Make equal size' },
             },
         },
-    } 
+    }
 end
 
 -- nvim-cmp

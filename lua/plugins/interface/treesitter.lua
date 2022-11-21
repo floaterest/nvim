@@ -4,8 +4,8 @@
 -- markdown_inline?
 -- not found: sass mdx
 local languages = {
-    'astro', 'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'jsonc', 'lua', 
-    'markdown', 'python', 'regex', 'rust', 'svelte', 'toml', 'typescript', 
+    'astro', 'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'jsonc', 'lua',
+    'markdown', 'python', 'regex', 'rust', 'svelte', 'toml', 'typescript',
     'vim', 'yaml'
 }
 
