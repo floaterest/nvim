@@ -2,21 +2,22 @@
 
 local M = {}
 
-local function noremap(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 local function has_words_before()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-function M.map(t)
-    vim.tbl_map(function(v) noremap(unpack(v)) end, t)
+-- silent noremap
+-- (not snore map)
+local function snoremap(t)
+    vim.tbl_map(function(v)
+        local mode, lhs, rhs, opts = unpack(v)
+        local options = { silent = true, noremap = true }
+        if opts then
+            options = vim.tbl_extend('force', options, opts)
+        end
+        vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+    end, t)
 end
 
 --#region keymaps, alphabetical order
@@ -63,7 +64,7 @@ end
 
 -- keymaps that don't depend on plugins
 function M.vanilla()
-    M.map({
+    snoremap({
         -- delete word
         { 'i', '<c-bs>', '<c-w>' },
         -- delete all chars before cursor, but put them in register
