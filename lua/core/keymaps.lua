@@ -84,7 +84,11 @@ end
 function M.cmp(cmp, luasnip)
     local function tab(fallback)
         if cmp.visible() then
-            cmp.select_next_item()
+            if not cmp.get_selected_entry() then
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+                cmp.confirm()
+            end
         elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
         elseif has_words_before() then
@@ -106,7 +110,7 @@ function M.cmp(cmp, luasnip)
 
     return {
         -- tab to luasnip expand or cmp complete
-        ['<tab>'] = cmp.mapping(tab, { 'i', 's' }),
+        ['<tab>'] = cmp.mapping(tab, { 'i', 's', 'c' }),
         ['<s-tab>'] = cmp.mapping(stab, { 'i', 's' }),
         ['<c-b>'] = cmp.mapping.scroll_docs(-4),
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
