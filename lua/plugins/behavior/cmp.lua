@@ -20,9 +20,9 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert(keymaps),
     sources = cmp.config.sources({
+        { name = 'nvim_lua' }, -- one day I will develop my nvim config in nvim
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-    }, {
         { name = 'buffer' },
     })
 })
