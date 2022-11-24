@@ -66,12 +66,8 @@ end
 -- LSP on_attach
 function M.on_attach(_, n)
     -- Enable completion triggered by <c-x><c-o>
-    -- vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    local function list_workspaces()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end
-    
     snoremap({
         { 'n', 'gD', vim.lsp.buf.declaration },
         { 'n', 'gd', vim.lsp.buf.definition },
@@ -81,11 +77,8 @@ function M.on_attach(_, n)
         { 'n', '<c-k>', vim.lsp.buf.signature_help },
         { 'n', '<leader>ca', vim.lsp.buf.code_action },
         { 'n', '<leader>D', vim.lsp.buf.type_definition },
-        { 'n', '<leader>f', vim.lsp.buf.formatting },
-        { 'n', '<leader>rn', vim.lsp.buf.rename },
-        { 'n', '<leader>wa', vim.lsp.buf.add_workspace_folder },
-        { 'n', '<leader>wr', vim.lsp.buf.remove_workspace_folder },
-        { 'n', '<leader>wl', list_workspaces },
+        { 'n', '<leader>m=', vim.lsp.buf.formatting },
+        { 'n', '<leader>mrr', vim.lsp.buf.rename },
     }, { buffer = n })
 end
 
@@ -110,6 +103,8 @@ end
 
 -- which-key
 function M.which()
+    -- prefix for LSP bindings
+    local lsp = '[LSP] '
     return {
         ['<leader>'] = {
             b = {
@@ -129,12 +124,28 @@ function M.which()
                 p = { '<cmd>bp<cr>' ,'Go to previous' },
                 d = { '<cmd>bd<cr>', 'Delete' }
             },
+            c = {
+                name = '+code',
+
+                a = lsp .. 'Code action',
+            },
+            D = lsp .. 'Type definition',
             f = {
                 name = '+file',
                 b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
                 f = { '<cmd>Telescope find_files<cr>', 'Find file' },
                 s = { '<cmd>w<cr>', 'Save file' },
                 S = { '<cmd>wa<cr>', 'Save all files' },
+            },
+            m = {
+                name = '+major',
+                
+                ['='] = lsp .. 'Format file',
+                r = {
+                    -- i = lsp .. 'Organise imports',
+                    -- f = lsp .. 'Rename file',
+                    r = lsp .. 'Rename symbol',
+                }
             },
             w = {
                 name = '+window',
@@ -149,6 +160,14 @@ function M.which()
                 ['='] = { '<c-w>=', 'Make equal size' },
             },
         },
+        g = {
+            d = lsp .. 'Definition',
+            D = lsp .. 'Declaration',
+            i = lsp .. 'Implementation',
+            r = lsp .. 'References',
+        },
+        K = lsp .. 'Hover', -- it is possible to see first-level mappings
+        ['<c-k>'] = lsp .. 'Signature help'
     }
 end
 
