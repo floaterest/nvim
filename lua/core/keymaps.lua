@@ -11,13 +11,13 @@ end
 
 -- silent noremap
 -- (not snore map because it's silent)
-local function snoremap(t)
+local function snoremap(t, opts)
+    if opts then
+        opts = vim.tbl_extend('force', options, opts)
+    end
     vim.tbl_map(function(v)
-        local mode, key, action, opts = unpack(v)
-        if opts then
-            options = vim.tbl_extend('force', options, opts)
-        end
-        vim.keymap.set(mode, key, action, options)
+        local mode, key, action = unpack(v)
+        vim.keymap.set(mode, key, action, opts)
     end, t)
 end
 
@@ -61,6 +61,32 @@ function M.cmp(cmp, luasnip)
         ['<c-e>'] = cmp.mapping.abort(),
         ['<cr>'] = cmp.mapping.confirm({ select = true }),
     }
+end
+
+-- LSP on_attach
+function M.on_attach(_, n)
+    -- Enable completion triggered by <c-x><c-o>
+    -- vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local function list_workspaces()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end
+    
+    snoremap({
+        { 'n', 'gD', vim.lsp.buf.declaration },
+        { 'n', 'gd', vim.lsp.buf.definition },
+        { 'n', 'K', vim.lsp.buf.hover },
+        { 'n', 'gi', vim.lsp.buf.implementation },
+        { 'n', 'gr', vim.lsp.buf.references },
+        { 'n', '<c-k>', vim.lsp.buf.signature_help },
+        { 'n', '<leader>ca', vim.lsp.buf.code_action },
+        { 'n', '<leader>D', vim.lsp.buf.type_definition },
+        { 'n', '<leader>f', vim.lsp.buf.formatting },
+        { 'n', '<leader>rn', vim.lsp.buf.rename },
+        { 'n', '<leader>wa', vim.lsp.buf.add_workspace_folder },
+        { 'n', '<leader>wr', vim.lsp.buf.remove_workspace_folder },
+        { 'n', '<leader>wl', list_workspaces },
+    }, { buffer = n })
 end
 
 -- keymaps that don't depend on plugins
