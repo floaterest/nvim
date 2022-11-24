@@ -2,7 +2,7 @@ local colors = require('colorscheme.colors')
 
 local theme = {
     normal = {
-        a = { fg = colors.black, bg = colors.leek, gui = 'bold' },
+        a = { fg = colors.black, bg = colors.teal, gui = 'bold' },
         b = { fg = colors.lightest, bg = colors.darkest },
         c = { fg = colors.lighter, bg = colors.black },
 	},
@@ -41,16 +41,13 @@ require('lualine').setup({
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff' },
         lualine_c = { filename },
-        lualine_x = {
-            'encoding',
-            {
-                'fileformat',
-                symbols = {
-                    unix = 'LF',
-                    dos = 'CRLF',
-                    mac = 'CR'
-                }
-            },
+        lualine_x = { 'encoding', {
+            'fileformat',
+            symbols = {
+                unix = 'LF',
+                dos = 'CRLF',
+                mac = 'CR'
+            }},
             'bo:filetype'
         },
         lualine_y = { 'filesize' },
@@ -64,13 +61,13 @@ require('lualine').setup({
         lualine_y = {},
         lualine_z = {}
     },
-    tabline = {
+    -- tabline = {
         -- lualine_a = {'buffers'},
         -- lualine_b = {},
         -- lualine_c = {},
         -- lualine_x = {},
         -- lualine_y = {},
         -- lualine_z = {'tabs'}
-    },
+    -- },
     extensions = { 'nvim-tree' }
 })

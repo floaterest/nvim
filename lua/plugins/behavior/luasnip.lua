@@ -45,7 +45,7 @@ luasnip.config.set_config({
             return t
         end,
         map = function(tt, f)
-            t = {}
+            local t = {}
             for k, v in pairs(tt) do
                 table.insert(t, f(k, v))
             end
@@ -66,8 +66,3 @@ vim.cmd([[
 
 require("luasnip.loaders.from_lua").lazy_load()
 vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
-
-vim.cmd([[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]])
--- map = vim.api.nvim_set_keymap
--- map('i','<tab>','v:lua.complete()', { expr = true })
--- map('s','<tab>','v:lua.complete()', { expr = true })
