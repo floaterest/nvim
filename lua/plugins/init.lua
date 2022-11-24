@@ -1,9 +1,9 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = fn.empty(fn.glob(install_path)) > 0 and fn.system({
-        'git', 'clone', '--depth', '1',
-        'https://github.com/wbthomason/packer.nvim', install_path
-    }) or false
+    'git', 'clone', '--depth', '1',
+    'https://github.com/wbthomason/packer.nvim', install_path
+}) or false
 
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
@@ -32,18 +32,18 @@ require('packer').startup(function(use)
     if packer_bootstrap then require('packer').sync() end
 end)
 
--- plugin setups
-require('plugins/external/mason')
+-- plugin setups, sorted alphabetically
+require('plugins.external.mason')
 
-require('plugins/behavior/autopairs')
-require('plugins/behavior/comment')
-require('plugins/behavior/luasnip')
-require('plugins/behavior/surround')
-require('plugins/behavior/telescope')
-require('plugins/behavior/cmp')
+require('plugins.behavior.autopairs')
+require('plugins.behavior.cmp')
+require('plugins.behavior.comment')
+require('plugins.behavior.luasnip')
+require('plugins.behavior.surround')
+require('plugins.behavior.telescope')
 
-require('plugins/interface/bufferline')
-require('plugins/interface/indentline')
-require('plugins/interface/lualine')
-require('plugins/interface/treesitter')
-require('plugins/interface/whichkey')
+require('plugins.interface.bufferline')
+require('plugins.interface.indentline')
+require('plugins.interface.lualine')
+require('plugins.interface.treesitter')
+require('plugins.interface.whichkey')

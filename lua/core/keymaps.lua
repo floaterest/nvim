@@ -21,7 +21,7 @@ local function snoremap(t, opts)
     end, t)
 end
 
---#region keymaps, alphabetical order
+--#region keymaps sorted alphabetically
 
 -- nvim-cmp
 function M.cmp(cmp, luasnip)
@@ -60,6 +60,16 @@ function M.cmp(cmp, luasnip)
         ['<c-space>'] = cmp.mapping.complete(),
         ['<c-e>'] = cmp.mapping.abort(),
         ['<cr>'] = cmp.mapping.confirm({ select = true }),
+    }
+end
+
+-- comment
+function M.comment()
+    return {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
     }
 end
 
@@ -171,6 +181,6 @@ function M.which()
     }
 end
 
---#endregion keymaps, alphabetical order
+--#endregion keymaps 
 
 return M
