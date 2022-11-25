@@ -1,27 +1,20 @@
+local lsconfig = require('lspconfig')
 local on_attach = require('core.keymaps').on_attach
 
 local servers = {
     'tsserver', 'pyright'
 }
 
-
-local lsp_flags = {
--- This is the default in Nvim 0.7+
-debounce_text_changes = 150,
-}
-
-
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+)
 
 require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = servers
-})
+require("mason-lspconfig").setup({ ensure_installed = servers })
 
-local lsconfig = require('lspconfig')
-lsconfig['tsserver'].setup({
-    on_attach = on_attach,
-})
-lsconfig['pyright'].setup({
-    on_attach = on_attach,
-    flags = lsp_flags,
-})
+vim.tbl_map(function(server)
+    lsconfig[server].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
+end, servers)
