@@ -16,7 +16,6 @@ require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
     use 'L3MON4D3/LuaSnip'
-    use 'vim-pandoc/vim-pandoc-syntax'
     use 'ur4ltz/surround.nvim'
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use 'nvim-treesitter/nvim-treesitter'
@@ -32,7 +31,6 @@ require('plugins.comment')
 require('plugins.indentline')
 require('plugins.lualine')
 require('plugins.luasnip')
-require('plugins.pandoc')
 require('plugins.surround')
 require('plugins.telescope')
 require('plugins.treesitter')
