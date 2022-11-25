@@ -6,8 +6,8 @@ which.setup({
         ['<space>'] = 'spc'
     },
     icons = {
-        breadcrumb = "›",
-        separator = "→",
+        breadcrumb = '›',
+        separator = '→',
     },
     hidden = { 'b%d$' }
 })

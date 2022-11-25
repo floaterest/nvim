@@ -21,7 +21,7 @@ o.rnu = true
 -- keep visual indent on wrap
 o.bri = true
 -- complete option
-o.cot = "menuone,noinsert,noselect"
+o.cot = 'menuone,noinsert,noselect'
 -- allow multiple unsaved buffers
 o.hid = true
 -- no highlight after search
@@ -40,6 +40,6 @@ o.cole = 2
 -- no word wrap
 o.wrap = false
 -- enable mouse
-o.mouse = "a"
+o.mouse = 'a'
 -- highlight all search results
 o.hlsearch = true
