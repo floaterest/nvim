@@ -7,7 +7,7 @@ local styles = {
     b = 'bold'
 }
 
-function hi(group, line)
+local function hi(group, line)
     local cmd = line:sub(1,1) == '@' and { 'hi!', 'link' } or { 'hi' }
     cmd[#cmd + 1] = group
 
@@ -27,7 +27,7 @@ function hi(group, line)
     vim.cmd(table.concat(cmd, ' '))
 end
 
-function setup()
+local function setup()
     vim.cmd('hi clear')
     if vim.fn.exists('syntax_on') then vim.cmd('syn reset') end
 
