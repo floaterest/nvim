@@ -77,7 +77,9 @@ end
 function M.on_attach(_, n)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+    local function format()
+        vim.lsp.buf.format({async = true})
+    end
     snoremap({
         { 'n', 'gD', vim.lsp.buf.declaration },
         { 'n', 'gd', vim.lsp.buf.definition },
@@ -87,7 +89,7 @@ function M.on_attach(_, n)
         { 'n', '<c-k>', vim.lsp.buf.signature_help },
         { 'n', '<leader>ca', vim.lsp.buf.code_action },
         { 'n', '<leader>D', vim.lsp.buf.type_definition },
-        { 'n', '<leader>m=', vim.lsp.buf.formatting },
+        { 'n', '<leader>m=', format },
         { 'n', '<leader>mrr', vim.lsp.buf.rename },
     }, { buffer = n })
 end
