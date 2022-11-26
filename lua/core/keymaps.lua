@@ -53,7 +53,7 @@ function M.cmp(cmp, luasnip)
 
     return {
         -- tab to luasnip expand or cmp complete
-        ['<tab>'] = cmp.mapping(tab, { 'i', 's', 'c' }),
+        ['<tab>'] = cmp.mapping(tab, { 'i', 's' }),
         ['<s-tab>'] = cmp.mapping(stab, { 'i', 's' }),
         ['<c-b>'] = cmp.mapping.scroll_docs(-4),
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
