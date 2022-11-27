@@ -9,6 +9,7 @@ require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use 'neovim/nvim-lspconfig'
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     use 'hrsh7th/nvim-cmp'
     use 'saadparwaiz1/cmp_luasnip'
@@ -32,6 +33,7 @@ end)
 
 -- plugin setups, sorted alphabetically
 require('plugins.external.lsp')
+require('plugins.external.null')
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')

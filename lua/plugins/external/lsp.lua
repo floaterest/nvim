@@ -2,7 +2,8 @@ local lsconfig = require('lspconfig')
 local on_attach = require('core.keymaps').on_attach
 
 local servers = {
-    'tsserver', 'pyright'
+    'tsserver',
+    'pyright',
 }
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(
