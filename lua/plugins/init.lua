@@ -8,8 +8,6 @@ local packer_bootstrap = fn.empty(fn.glob(install_path)) > 0 and fn.system({
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
     use 'neovim/nvim-lspconfig'
 
     use 'hrsh7th/nvim-cmp'
@@ -33,7 +31,7 @@ require('packer').startup(function(use)
 end)
 
 -- plugin setups, sorted alphabetically
-require('plugins.external.mason')
+require('plugins.external.lsp')
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')
