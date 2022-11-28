@@ -4,7 +4,7 @@ return {
         CursorLineNr = 'lightest darker b',
         Folded = 'orange dark .',
         LineNr = 'lighter black .',
-        MatchParen = 'leek darker u',
+        MatchParen = 'teal darker u',
         Noise = '@Delimiter',
         NonText = 'light . .',
         Normal = 'white darkest .',
@@ -31,7 +31,7 @@ return {
     },
     indent = { IndentMarker = 'dark . .' }, -- for indent_blankline
     nvimtree = {
-        NvimTreeFolderIcon = 'leek . .',
+        NvimTreeFolderIcon = 'teal . .',
         NvimTreeIndentMarker = '@IndentMarker',
         NvimTreeRootFolder = 'orange . .',
     },

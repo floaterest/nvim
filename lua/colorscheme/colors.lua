@@ -36,7 +36,7 @@ return {
     orange = '#ff9966',
     blue = '#3989c5',
     indigo = '#3943c5',
-    leek = '#39c5bb',
+    teal = '#39c5bb',
 
     pink = '#ff6680',
     lime = '#66ff99',
