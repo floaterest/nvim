@@ -14,7 +14,7 @@ end
 
 luasnip.config.set_config({
     history = true,
-    update_events = "InsertLeave",
+    update_events = 'InsertLeave',
     enable_autosnippets = true,
     ext_base_prio = 300,
     ext_prio_increase = 1,
@@ -24,13 +24,13 @@ luasnip.config.set_config({
         sn = luasnip.sn,
         t = luasnip.t,
         i = luasnip.i,
-        f = require("luasnip.nodes.functionNode").F,
-        d = require("luasnip.nodes.dynamicNode").D,
-        l = require("luasnip.extras").lambda,
-        rep = require("luasnip.extras").rep,
-        fmt = require("luasnip.extras.fmt").fmt,
-        fmta = require("luasnip.extras.fmt").fmta,
-        parse = require("luasnip.util.parser").parse_snippet,
+        f = require('luasnip.nodes.functionNode').F,
+        d = require('luasnip.nodes.dynamicNode').D,
+        l = require('luasnip.extras').lambda,
+        rep = require('luasnip.extras').rep,
+        fmt = require('luasnip.extras.fmt').fmt,
+        fmta = require('luasnip.extras.fmt').fmta,
+        parse = require('luasnip.util.parser').parse_snippet,
         pack = function(snippets)
             local t = {}
             for _, v in ipairs(snippets) do
@@ -45,7 +45,7 @@ luasnip.config.set_config({
             return t
         end,
         map = function(tt, f)
-            t = {}
+            local t = {}
             for k, v in pairs(tt) do
                 table.insert(t, f(k, v))
             end
@@ -61,14 +61,8 @@ luasnip.config.set_config({
 })
 
 vim.cmd([[
-    au BufWritePost */luasnippets/*.lua :lua require("luasnip.loaders.from_lua").lazy_load()
+    au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()
 ]])
 
-require("luasnip.loaders.from_lua").lazy_load()
-vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]])
-
--- more mappings at mappings.lua
-vim.cmd([[imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' ]])
--- map = vim.api.nvim_set_keymap
--- map('i','<tab>','v:lua.complete()', { expr = true })
--- map('s','<tab>','v:lua.complete()', { expr = true })
+require('luasnip.loaders.from_lua').lazy_load()
+vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders.from_lua').edit_snippet_files()]])

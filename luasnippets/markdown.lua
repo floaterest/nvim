@@ -6,12 +6,9 @@ local details = '<details class="{class}" open>\n<summary>{}</summary>\n</detail
 
 local snip = {
     symbols = {
-        bc = '∵', conj = '∧', disj = '∨', exdisj = '⊻', exi = '∃', inf = '∞',
+        bc = '∵', conj = '∧', disj = '∨', exi = '∃', inf = '∞',
         ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
         un = '⋃', it = '⋂', eps = 'ε', neg = '¬', ['in'] = '∈',
-		['０'] = '⓪', ['１'] = '①', ['２'] = '②', ['３'] = '③', ['４'] = '④',
-		['５'] = '⑤', ['６'] = '⑥', ['７'] = '⑦', ['８'] = '⑧', ['９'] = '⑨',
-
     },
     pairs = { '()', '[]', '||' },
 }
@@ -38,7 +35,7 @@ local auto = {
         bcc = '&\\because',
         qed = '\\quad\\blacksquare',
         ex = '\\exists',
-        
+
         st = '\\textsf{ st }',
         i = '^{-1}',
         t = { '\\textsf', '{', '}' },
@@ -113,9 +110,9 @@ return pack({
     },
     map(snip.symbols, function(k,v) return s(k, t(v)) end),
     map(snip.pairs, function(_,v)
-        return s(trig(v), fmta('\\left<l><>\\right<r>', { 
+        return s(trig(v), fmta('\\left<l><>\\right<r>', {
             l = v:sub(1,#v/2),
-            r = v:sub(#v/2+1,#v), i(0) 
+            r = v:sub(#v/2+1,#v), i(0)
         }))
     end),
 }), pack({
@@ -151,7 +148,7 @@ return pack({
             b = i(1), e = rep(1), i(0)
         })),
     },
-    map(auto.pow, function(_, v) 
+    map(auto.pow, function(_, v)
         return s(rtrig(v .. ' '), { l(l.CAPTURE1), t('^'), l(l.CAPTURE2) })
     end),
     map(auto.details, function(k, v)
@@ -167,7 +164,7 @@ return pack({
             end),
         }))
     end),
-    map(auto.subs, function(k, v) 
+    map(auto.subs, function(k, v)
         return s(lead_trig(k), type(v) == 'string' and t(v) or {
             t(v[1]),
             d(1, function(_, parent) return sn(nil, {

@@ -5,7 +5,7 @@ require('surround').setup({
 	map_insert_mode = false,
     pairs = {
         nestable = {
-			p = { '(', ')' }, b = { '[', ']' }, B = { '{', '}' }, 
+			p = { '(', ')' }, b = { '[', ']' }, B = { '{', '}' },
 			a = { '<', '>' }, s = { '*', '*' },
 		},
         linear = {
