@@ -1,4 +1,4 @@
-local colors = require('colorscheme.colors')
+local colors = require('colo.colors')
 
 local theme = {
     normal = {
