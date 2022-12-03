@@ -1,6 +1,6 @@
 vim.cmd('ru! innit.vim')
 
-require('colorscheme').setup()
+require('colo')
 require('core')
 require('plugins')
 
