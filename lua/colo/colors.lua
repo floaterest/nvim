@@ -1,25 +1,4 @@
---[[
-black to white => 0x000000 to 0xf1f1f1f1 => 0 to 241
-    ```python
-    from scipy.stats import beta
-    [f'{int(241 * beta(1,1).cdf(i/8)):02x}' for i in range(9)]
-    ```
-colors
-    leek = #39c5bb = hsl(175.7,55.1%,49.8%)
-    sky = #66ccff = hsl(200,100%,70%)
-
-    red = leek.rotate(180)
-    green = leek.rotate(-30)
-    orange = sky.rotate(180)
-    blue = leek.rotate(30)
-    indigo = leek.rotate(60)
-
-    pink = sky.rotate(150)
-    lime = sky.rotate(-60)
-    yellow = sky.rotate(-150)
-    purple = sky.rotate(60).lighten(-50)
-    cyan = sky.rotate(-30)
-]]--
+-- see documentation for details
 return {
     black = '#000000',
     darkest = '#1e1e1e',
