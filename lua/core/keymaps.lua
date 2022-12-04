@@ -1,5 +1,3 @@
--- all non-default keymaps are here
-
 local M = {}
 
 local options = { silent = true, noremap = true }
