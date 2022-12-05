@@ -27,19 +27,15 @@ local function hi(group, line)
     vim.cmd(table.concat(cmd, ' '))
 end
 
-local function setup()
-    vim.cmd('hi clear')
-    if vim.fn.exists('syntax_on') then vim.cmd('syn reset') end
+vim.cmd('hi clear')
+if vim.fn.exists('syntax_on') then vim.cmd('syn reset') end
 
-    vim.o.bg = 'dark'
-    vim.o.tgc = true
-    vim.g.colors_name = 'floaterest'
+vim.o.bg = 'dark'
+vim.o.tgc = true
+vim.g.colors_name = 'custom'
 
-    for _, highlight in pairs(syn) do
-        for group, line in pairs(highlight) do
-            hi(group, line)
-        end
+for _, highlight in pairs(syn) do
+    for group, line in pairs(highlight) do
+        hi(group, line)
     end
 end
-
-return { setup = setup }
