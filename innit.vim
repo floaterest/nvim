@@ -25,11 +25,12 @@ au BufRead *.mdx call MarkdownSyntax()
 "     endwhile
 " endf
 
-" fu! SynGroup()
-"     let l:s = synID(line('.'), col('.'), 1)
-"     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-" endf
+" get syntax group under curosr
+fu! SynGroup()
+    let l:s = synID(line("."), col("."), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endf
 
 " command! HiFile call HiFile()
-" command! SynGroup call SynGroup()
+command! SynGroup call SynGroup()
 
