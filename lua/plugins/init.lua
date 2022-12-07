@@ -26,6 +26,7 @@ require('packer').startup(function(use)
     use 'ur4ltz/surround.nvim'
     use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'nvim-treesitter/playground'
 	use 'folke/which-key.nvim'
 
     if packer_bootstrap then require('packer').sync() end
