@@ -8,6 +8,7 @@ local packer_bootstrap = fn.empty(fn.glob(install_path)) > 0 and fn.system({
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    use 'nvim-lua/plenary.nvim'
     use 'windwp/nvim-autopairs'
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
@@ -17,14 +18,15 @@ require('packer').startup(function(use)
     use 'numToStr/Comment.nvim'
     use 'L3MON4D3/LuaSnip'
     use 'kylechui/nvim-surround'
-    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+    use 'nvim-telescope/telescope.nvim'
 
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
 
+    use 'kyazdani42/nvim-web-devicons'
 	use 'akinsho/bufferline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
+    use 'nvim-lualine/lualine.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
 	use 'folke/which-key.nvim'
@@ -46,5 +48,6 @@ require('plugins.behavior.telescope')
 require('plugins.interface.bufferline')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
+require('plugins.interface.nvim-tree')
 require('plugins.interface.treesitter')
 require('plugins.interface.whichkey')
