@@ -15,16 +15,16 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-nvim-lua'
     use 'saadparwaiz1/cmp_luasnip'
     use 'numToStr/Comment.nvim'
+    use 'L3MON4D3/LuaSnip'
+    use 'kylechui/nvim-surround'
+    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
 
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use 'L3MON4D3/LuaSnip'
-    use 'kylechui/nvim-surround'
 
 	use 'akinsho/bufferline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons' } }
-    use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
 	use 'folke/which-key.nvim'
