@@ -26,6 +26,7 @@ require('packer').startup(function(use)
     use 'kyazdani42/nvim-web-devicons'
 	use 'akinsho/bufferline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
