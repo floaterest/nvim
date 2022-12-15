@@ -31,9 +31,10 @@ return {
     },
     indent = { IndentMarker = 'dark . .' }, -- for indent_blankline
     nvimtree = {
-        NvimTreeFolderIcon = 'teal . .',
+        NvimTreeFolderIcon = 'yellow . .',
         NvimTreeIndentMarker = '@IndentMarker',
         NvimTreeRootFolder = 'orange . .',
+        NvimTreeExecFile = '@Normal',
     },
     treesitter = {
         TSConstBuiltin = 'sky . .',
