@@ -152,8 +152,6 @@ end
 
 -- which-key
 function M.which()
-    -- prefix for LSP bindings
-    local lsp = '[LSP] '
     return {
         ['<leader>'] = {
             b = {
@@ -173,28 +171,12 @@ function M.which()
                 p = { '<cmd>bp<cr>' ,'Go to previous' },
                 d = { '<cmd>bd<cr>', 'Delete' }
             },
-            c = {
-                name = '+code',
-
-                a = lsp .. 'Code action',
-            },
-            D = lsp .. 'Type definition',
             f = {
                 name = '+file',
                 b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
                 f = { '<cmd>Telescope find_files<cr>', 'Find file' },
                 s = { '<cmd>w<cr>', 'Save file' },
                 S = { '<cmd>wa<cr>', 'Save all files' },
-            },
-            m = {
-                name = '+major',
-                
-                ['='] = lsp .. 'Format file',
-                r = {
-                    -- i = lsp .. 'Organise imports',
-                    -- f = lsp .. 'Rename file',
-                    r = lsp .. 'Rename symbol',
-                }
             },
             w = {
                 name = '+window',
@@ -209,14 +191,6 @@ function M.which()
                 ['='] = { '<c-w>=', 'Make equal size' },
             },
         },
-        g = {
-            d = lsp .. 'Definition',
-            D = lsp .. 'Declaration',
-            i = lsp .. 'Implementation',
-            r = lsp .. 'References',
-        },
-        K = lsp .. 'Hover', -- it is possible to see first-level mappings
-        ['<c-k>'] = lsp .. 'Signature help'
     }
 end
 
