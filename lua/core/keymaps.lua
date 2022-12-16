@@ -128,7 +128,7 @@ function M.vanilla()
         { 'n', 'Y', 'v$hy' },
         -- no ex-cammand
         { 'n', 'Q', '' },
-        { 'n', '<c-n>', ':NvimTreeToggle<cr>'},
+        { 'n', '<c-n>', ':NvimTreeToggle<cr>' },
 
         -- { 'n', 'h', ';' },
         -- { 'n', 'j', 'h' },
@@ -157,15 +157,15 @@ function M.which()
             b = {
                 name = '+buffer',
 
-                ['1'] = { '<cmd>b1<cr>', 'which_key_ignore'},
-                ['2'] = { '<cmd>b2<cr>', 'which_key_ignore'},
-                ['3'] = { '<cmd>b3<cr>', 'which_key_ignore'},
-                ['4'] = { '<cmd>b4<cr>', 'which_key_ignore'},
-                ['5'] = { '<cmd>b5<cr>', 'which_key_ignore'},
-                ['6'] = { '<cmd>b6<cr>', 'which_key_ignore'},
-                ['7'] = { '<cmd>b7<cr>', 'which_key_ignore'},
-                ['8'] = { '<cmd>b8<cr>', 'which_key_ignore'},
-                ['9'] = { '<cmd>b9<cr>', 'which_key_ignore'},
+                ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
+                ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
+                ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
+                ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
+                ['5'] = { '<cmd>b5<cr>', 'which_key_ignore' },
+                ['6'] = { '<cmd>b6<cr>', 'which_key_ignore' },
+                ['7'] = { '<cmd>b7<cr>', 'which_key_ignore' },
+                ['8'] = { '<cmd>b8<cr>', 'which_key_ignore' },
+                ['9'] = { '<cmd>b9<cr>', 'which_key_ignore' },
 
                 n = { '<cmd>bn<cr>', 'Go to next' },
                 p = { '<cmd>bp<cr>' ,'Go to previous' },
