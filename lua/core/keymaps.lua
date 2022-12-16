@@ -95,7 +95,13 @@ function M.on_attach(_, n)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local function format()
-        vim.lsp.buf.format({async = true})
+        vim.lsp.buf.format({
+            async = true,
+            -- only use null-ls to format
+            filter = function(client)
+                return client.name == 'null-ls'
+            end
+        })
     end
     snoremap({
         { 'n', 'gD', vim.lsp.buf.declaration },
@@ -107,7 +113,7 @@ function M.on_attach(_, n)
         { 'n', '<leader>ca', vim.lsp.buf.code_action },
         { 'n', '<leader>D', vim.lsp.buf.type_definition },
         { 'n', '<leader>m=', format },
-        { 'n', '<leader>mrr', vim.lsp.buf.rename },
+        { 'n', '<leader>mr', vim.lsp.buf.rename },
     }, { buffer = n })
 end
 
@@ -122,6 +128,20 @@ function M.vanilla()
         { 'n', 'Y', 'v$hy' },
         -- no ex-cammand
         { 'n', 'Q', '' },
+        { 'n', '<c-n>', ':NvimTreeToggle<cr>'},
+
+        -- { 'n', 'h', ';' },
+        -- { 'n', 'j', 'h' },
+        -- { 'n', 'k', 'j' },
+        -- { 'n', 'l', 'k' },
+        -- { 'n', ';', 'l' },
+
+        -- { 'x', 'h', ';' },
+        -- { 'x', 'j', 'h' },
+        -- { 'x', 'k', 'j' },
+        -- { 'x', 'l', 'k' },
+        -- { 'x', ';', 'l' },
+
 
         { 'n', '<leader>e', vim.diagnostic.open_float },
         { 'n', '[d', vim.diagnostic.goto_prev },
