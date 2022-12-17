@@ -9,7 +9,7 @@ The colors are generated from this code below, using [scipy](https://pypi.org/pr
 
 ```py
 from scipy.stats import beta
-print([f'{int(255 * beta(2,2).cdf(i/8)):02x}'for i in range(9)])
+print([f'{int(255 * beta(1.5, 1.5).cdf(i/8)):02x}'for i in range(9)])
 ```
 
 ### Continuous Probability Distributions
@@ -23,7 +23,8 @@ $$a_i=255\int_0^{i/8}\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{
 
 i.e. $a_i=255F_X(i/8)$ where $X\sim\textrm{Beta}(\alpha,\beta)$ and $F_X$ is the CDF of $X$ for $i\in[0,8]$
 
-In [lua/colo/colors.lua](../lua/colo/colors.lua), it uses $\textrm{Beta}(\alpha=2,\beta=2)$.
+This config uses $\textrm{Beta}(\alpha=1.5,\beta=1.5)$ in [lua/colo/colors.lua](../lua/colo/colors.lua)
+
 
 ## Other RGB Colors
 
