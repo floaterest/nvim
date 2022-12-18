@@ -19,7 +19,40 @@ local function snoremap(t, opts)
     end, t)
 end
 
---#region keymaps sorted alphabetically
+-- keymaps that don't depend on plugins
+function M.core()
+    snoremap({
+        -- delete word
+        { 'i', '<c-bs>', '<c-w>' },
+        -- delete all chars before cursor, but put them in register
+        { 'i', '<c-u>', '<esc>v^d' },
+        -- yank until end of line
+        { 'n', 'Y', 'v$hy' },
+        -- no ex-cammand
+        { 'n', 'Q', '' },
+        { 'n', '<c-n>', ':NvimTreeToggle<cr>' },
+
+        -- { 'n', 'h', ';' },
+        -- { 'n', 'j', 'h' },
+        -- { 'n', 'k', 'j' },
+        -- { 'n', 'l', 'k' },
+        -- { 'n', ';', 'l' },
+
+        -- { 'x', 'h', ';' },
+        -- { 'x', 'j', 'h' },
+        -- { 'x', 'k', 'j' },
+        -- { 'x', 'l', 'k' },
+        -- { 'x', ';', 'l' },
+
+
+        { 'n', '<leader>e', vim.diagnostic.open_float },
+        { 'n', '[d', vim.diagnostic.goto_prev },
+        { 'n', ']d', vim.diagnostic.goto_next },
+        { 'n', '<leader>q', vim.diagnostic.setloclist },
+    })
+end
+
+--#region plugin keymaps sorted alphabetically
 
 -- nvim-cmp
 function M.cmp(cmp, luasnip)
@@ -115,39 +148,6 @@ function M.on_attach(_, n)
         { 'n', '<leader>m=', format },
         { 'n', '<leader>mr', vim.lsp.buf.rename },
     }, { buffer = n })
-end
-
--- keymaps that don't depend on plugins
-function M.vanilla()
-    snoremap({
-        -- delete word
-        { 'i', '<c-bs>', '<c-w>' },
-        -- delete all chars before cursor, but put them in register
-        { 'i', '<c-u>', '<esc>v^d' },
-        -- yank until end of line
-        { 'n', 'Y', 'v$hy' },
-        -- no ex-cammand
-        { 'n', 'Q', '' },
-        { 'n', '<c-n>', ':NvimTreeToggle<cr>' },
-
-        -- { 'n', 'h', ';' },
-        -- { 'n', 'j', 'h' },
-        -- { 'n', 'k', 'j' },
-        -- { 'n', 'l', 'k' },
-        -- { 'n', ';', 'l' },
-
-        -- { 'x', 'h', ';' },
-        -- { 'x', 'j', 'h' },
-        -- { 'x', 'k', 'j' },
-        -- { 'x', 'l', 'k' },
-        -- { 'x', ';', 'l' },
-
-
-        { 'n', '<leader>e', vim.diagnostic.open_float },
-        { 'n', '[d', vim.diagnostic.goto_prev },
-        { 'n', ']d', vim.diagnostic.goto_next },
-        { 'n', '<leader>q', vim.diagnostic.setloclist },
-    })
 end
 
 -- which-key
