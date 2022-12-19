@@ -21,33 +21,27 @@ end
 
 -- keymaps that don't depend on plugins
 function M.core()
-    snoremap({
-        -- delete word
-        { 'i', '<c-bs>', '<c-w>' },
-        -- delete all chars before cursor, but put them in register
-        { 'i', '<c-u>', '<esc>v^d' },
-        -- yank until end of line
-        { 'n', 'Y', 'v$hy' },
-        -- no ex-cammand
-        { 'n', 'Q', '' },
-        -- { 'n', 'h', ';' },
-        -- { 'n', 'j', 'h' },
-        -- { 'n', 'k', 'j' },
-        -- { 'n', 'l', 'k' },
-        -- { 'n', ';', 'l' },
-
-        -- { 'x', 'h', ';' },
-        -- { 'x', 'j', 'h' },
-        -- { 'x', 'k', 'j' },
-        -- { 'x', 'l', 'k' },
-        -- { 'x', ';', 'l' },
-
-
-        { 'n', '<leader>e', vim.diagnostic.open_float },
-        { 'n', '[d', vim.diagnostic.goto_prev },
-        { 'n', ']d', vim.diagnostic.goto_next },
-        { 'n', '<leader>q', vim.diagnostic.setloclist },
+    local which = require('which-key')
+    which.register({
+        ['<c-bs>'] = { '<c-w>', 'Delete word' },
+        ['<c-u>'] = { '<esc>v^d', 'Delete until ^' }
+    }, { mode = 'i' })
+    which.register({
+        Y = { 'v$hy', 'Yank until EOL' },
+        Q = { '', "Don't do ex-command" },
+        ['<leader>e'] = { vim.diagnostic.open_float, 'Open diagnostics' },
+        ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
+        [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
     })
+    -- local mappings = {
+    --     h = { ';', 'Repeat last f, t, F or T [count] times' },
+    --     j = { 'h', 'Left' },
+    --     k = { 'j', 'Down' },
+    --     l = { 'k', 'Up' },
+    --     [';'] = { 'l', 'Right' },
+    -- }
+    -- which.register(mappings)
+    -- which.register(mappings, { mode = 'x' })
 end
 
 --#region plugin keymaps sorted alphabetically
