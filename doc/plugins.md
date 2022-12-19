@@ -28,6 +28,7 @@ the needed external tools should be installed globally as NPM packages unless sp
   - [pyright](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright) needs `pyright`
 - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) makes other tools to become languages servers
   - [eslint_d](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint_d-2) needs `eslint_d`, and all the plugins required in `.eslintrc` needs to be installed locally in the same directory as it (e.g. if `~/.eslintrc.yaml`, then `~/node_modules` and ~/package.json`) ([issue](https://github.com/eslint/eslint/issues/11914))
+  - [blue](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#blue) needs `blue` to be installed with `pip`, and `~/.config/bin` should be in `PATH`
 
 ## Interface
 > plugins that provides useful interfaces
