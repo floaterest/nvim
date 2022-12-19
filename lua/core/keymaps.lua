@@ -30,8 +30,6 @@ function M.core()
         { 'n', 'Y', 'v$hy' },
         -- no ex-cammand
         { 'n', 'Q', '' },
-        { 'n', '<c-n>', ':NvimTreeToggle<cr>' },
-
         -- { 'n', 'h', ';' },
         -- { 'n', 'j', 'h' },
         -- { 'n', 'k', 'j' },
@@ -162,6 +160,15 @@ function M.on_attach(_, buffer)
         K = { vim.lsp.buf.hover, 'Hover' },
         -- ['<c-k>'] = { vim.lsp.buf.signature_help, 'Signature help' }
     }, { buffer = buffer })
+end
+
+-- nvim-tree
+function M.nvimtree()
+    local which = require('which-key')
+    local api = require('nvim-tree.api')
+    which.register({
+        ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
+    })
 end
 
 -- which-key
