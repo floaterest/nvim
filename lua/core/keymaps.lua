@@ -124,9 +124,10 @@ function M.comment()
 end
 
 -- LSP on_attach
-function M.on_attach(_, n)
+function M.on_attach(_, buffer)
+    local which = require('which-key')
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local function format()
         vim.lsp.buf.format({
             async = true,
@@ -136,18 +137,31 @@ function M.on_attach(_, n)
             end
         })
     end
-    snoremap({
-        { 'n', 'gD', vim.lsp.buf.declaration },
-        { 'n', 'gd', vim.lsp.buf.definition },
-        { 'n', 'K', vim.lsp.buf.hover },
-        { 'n', 'gi', vim.lsp.buf.implementation },
-        { 'n', 'gr', vim.lsp.buf.references },
-        { 'n', '<c-k>', vim.lsp.buf.signature_help },
-        { 'n', '<leader>ca', vim.lsp.buf.code_action },
-        { 'n', '<leader>D', vim.lsp.buf.type_definition },
-        { 'n', '<leader>m=', format },
-        { 'n', '<leader>mr', vim.lsp.buf.rename },
-    }, { buffer = n })
+    which.register({
+        ['<leader>'] = {
+            c = {
+                name = '+code',
+                a = { vim.lsp.buf.code_action, 'Code action' },
+            },
+            D = { vim.lsp.buf.type_definition, 'Type definition' },
+            r = {
+                name = '+rename',
+                r = { vim.lsp.buf.rename, 'Rename symbol' },
+            },
+            ['='] = {
+                ['='] = { format, 'Format file' },
+            },
+        },
+        g = {
+            name = '+goto',
+            d = { vim.lsp.buf.definition, 'Definition' },
+            D = { vim.lsp.buf.declaration, 'Declaration' },
+            i = { vim.lsp.buf.implementation, 'Implementation' },
+            r = { vim.lsp.buf.references, 'References' },
+        },
+        K = { vim.lsp.buf.hover, 'Hover' },
+        -- ['<c-k>'] = { vim.lsp.buf.signature_help, 'Signature help' }
+    }, { buffer = buffer })
 end
 
 -- which-key
