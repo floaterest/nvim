@@ -115,6 +115,17 @@ function M.comment()
     }
 end
 
+-- DAP
+function M.dap(dap)
+    local which = require('which-key')
+    which.register({
+        d = {
+            name = '+debug',
+            d = { dap.continue, 'Debug/Continue' }
+        }
+    }, { prefix = '<leader>' })
+end
+
 -- LSP on_attach
 function M.on_attach(_, buffer)
     local which = require('which-key')
