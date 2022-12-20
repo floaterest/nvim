@@ -1,22 +1,8 @@
 local M = {}
 
-local options = { silent = true, noremap = true }
-
 local function has_words_before()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-end
-
--- silent noremap
--- (not snore map because it's silent)
-local function snoremap(t, opts)
-    if opts then
-        opts = vim.tbl_extend('force', options, opts)
-    end
-    vim.tbl_map(function(v)
-        local mode, key, action = unpack(v)
-        vim.keymap.set(mode, key, action, opts)
-    end, t)
 end
 
 -- keymaps that don't depend on plugins
