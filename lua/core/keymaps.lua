@@ -141,6 +141,7 @@ function M.on_attach(_, buffer)
                 r = { vim.lsp.buf.rename, 'Rename symbol' },
             },
             ['='] = {
+                name = '+format',
                 ['='] = { format, 'Format file' },
             },
         },
@@ -152,7 +153,6 @@ function M.on_attach(_, buffer)
             r = { vim.lsp.buf.references, 'References' },
         },
         K = { vim.lsp.buf.hover, 'Hover' },
-        -- ['<c-k>'] = { vim.lsp.buf.signature_help, 'Signature help' }
     }, { buffer = buffer })
 end
 
