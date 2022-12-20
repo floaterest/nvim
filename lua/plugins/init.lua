@@ -23,6 +23,8 @@ require('packer').startup(function(use)
 
     use 'neovim/nvim-lspconfig'
     use 'jose-elias-alvarez/null-ls.nvim'
+    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap-python'
 
     use 'kyazdani42/nvim-web-devicons'
 	use 'akinsho/bufferline.nvim'
@@ -39,6 +41,7 @@ end)
 -- plugin setups, sorted alphabetically
 require('plugins.external.lsp')
 require('plugins.external.null')
+require('plugins.external.dap')
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')
