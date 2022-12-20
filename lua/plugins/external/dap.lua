@@ -1,4 +1,6 @@
 local dap = require('dap')
 
-require('core.keymaps').dap(dap)
-require('dap-python').setup('/usr/bin/python')
+return function(keymaps)
+    require('dap-python').setup('/usr/bin/python')
+    keymaps(dap)
+end
