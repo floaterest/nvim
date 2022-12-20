@@ -1,5 +1,5 @@
 local which = require('which-key')
-local keymaps = require('core.keymaps').which()
+local keymaps = require('plugins.keymaps')
 
 which.setup({
     key_labels = {
@@ -12,4 +12,4 @@ which.setup({
     hidden = { 'b%d$' }
 })
 
-which.register(keymaps)
+return keymaps.setup(which)

@@ -1,24 +1,55 @@
-local M = {}
+local M = { which = nil }
 
 local function has_words_before()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
--- keymaps that don't depend on plugins
-function M.core()
-    local which = require('which-key')
-    which.register({
-        ['<c-bs>'] = { '<c-w>', 'Delete word' },
-        ['<c-u>'] = { '<esc>v^d', 'Delete until ^' }
-    }, { mode = 'i' })
+
+function M.setup(which)
+    vim.g.mapleader = ' '
+    vim.g.maplocalleader = ' '
+
+    M.which = which
     which.register({
         Y = { 'v$hy', 'Yank until EOL' },
         Q = { '', "Don't do ex-command" },
-        ['<leader>e'] = { vim.diagnostic.open_float, 'Open diagnostics' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
     })
+    which.register({
+        b = {
+            name = '+buffer',
+
+            ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
+            ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
+            ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
+            ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
+
+            n = { '<cmd>bn<cr>', 'Go to next' },
+            p = { '<cmd>bp<cr>' ,'Go to previous' },
+            d = { '<cmd>bd<cr>', 'Delete' }
+        },
+        f = {
+            name = '+file',
+            b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
+            f = { '<cmd>Telescope find_files<cr>', 'Find file' },
+            s = { '<cmd>w<cr>', 'Save file' },
+            S = { '<cmd>wa<cr>', 'Save all files' },
+        },
+        w = {
+            name = '+window',
+            h = { '<c-w>h', 'Go to left' },
+            l = { '<c-w>l', 'Go to right' },
+            v = { '<c-w>v', 'Split' },
+            s = { '<c-w>s', 'Split window vertically' },
+            x = { '<c-w>x', 'Swap current with next' },
+            q = { '<c-w>q', 'Quit a window' },
+            ['>'] = { '<c-w>>', 'Increase Width' },
+            ['<'] = { '<c-w><', 'Decrease Width' },
+            ['='] = { '<c-w>=', 'Make equal size' },
+        },
+    }, { prefix = '<leader>' })
     -- local mappings = {
     --     h = { ';', 'Repeat last f, t, F or T [count] times' },
     --     j = { 'h', 'Left' },
@@ -28,6 +59,8 @@ function M.core()
     -- }
     -- which.register(mappings)
     -- which.register(mappings, { mode = 'x' })
+
+    return M
 end
 
 --#region plugin keymaps sorted alphabetically
@@ -72,39 +105,35 @@ function M.cmp(cmp, luasnip)
     }
 end
 
--- comment
-function M.comment()
-    -- these are default mappings
-    return {
-        toggler = {
-            ---Line-comment toggle keymap
-            line = 'gcc',
-            ---Block-comment toggle keymap
-            block = 'gbc',
-        },
-        ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-        opleader = {
-            ---Line-comment keymap
-            line = 'gc',
-            ---Block-comment keymap
-            block = 'gb',
-        },
-        ---LHS of extra mappings
-        extra = {
-            ---Add comment on the line above
-            above = 'gcO',
-            ---Add comment on the line below
-            below = 'gco',
-            ---Add comment at the end of line
-            eol = 'gcA',
-        },
-    }
-end
+-- comment (these are default mappings)
+M.comment ={
+    toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
+    opleader = {
+        ---Line-comment keymap
+        line = 'gc',
+        ---Block-comment keymap
+        block = 'gb',
+    },
+    ---LHS of extra mappings
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+}
 
 -- DAP
 function M.dap(dap)
-    local which = require('which-key')
-    which.register({
+    M.which.register({
         d = {
             name = '+debug',
             d = { dap.continue, 'Debug/Continue' }
@@ -114,7 +143,6 @@ end
 
 -- LSP on_attach
 function M.on_attach(_, buffer)
-    local which = require('which-key')
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local function format()
@@ -126,7 +154,7 @@ function M.on_attach(_, buffer)
             end
         })
     end
-    which.register({
+    M.which.register({
         ['<leader>'] = {
             c = {
                 name = '+code',
@@ -154,58 +182,14 @@ function M.on_attach(_, buffer)
 end
 
 -- nvim-tree
-function M.nvimtree()
-    local which = require('which-key')
-    local api = require('nvim-tree.api')
-    which.register({
+function M.nvimtree(api)
+    M.which.register({
         ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
     })
 end
 
--- which-key
-function M.which()
-    return {
-        ['<leader>'] = {
-            b = {
-                name = '+buffer',
-
-                ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
-                ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
-                ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
-                ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
-                ['5'] = { '<cmd>b5<cr>', 'which_key_ignore' },
-                ['6'] = { '<cmd>b6<cr>', 'which_key_ignore' },
-                ['7'] = { '<cmd>b7<cr>', 'which_key_ignore' },
-                ['8'] = { '<cmd>b8<cr>', 'which_key_ignore' },
-                ['9'] = { '<cmd>b9<cr>', 'which_key_ignore' },
-
-                n = { '<cmd>bn<cr>', 'Go to next' },
-                p = { '<cmd>bp<cr>' ,'Go to previous' },
-                d = { '<cmd>bd<cr>', 'Delete' }
-            },
-            f = {
-                name = '+file',
-                b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
-                f = { '<cmd>Telescope find_files<cr>', 'Find file' },
-                s = { '<cmd>w<cr>', 'Save file' },
-                S = { '<cmd>wa<cr>', 'Save all files' },
-            },
-            w = {
-                name = '+window',
-                h = { '<c-w>h', 'Go to left' },
-                l = { '<c-w>l', 'Go to right' },
-                v = { '<c-w>v', 'Split' },
-                s = { '<c-w>s', 'Split window vertically' },
-                x = { '<c-w>x', 'Swap current with next' },
-                q = { '<c-w>q', 'Quit a window' },
-                ['>'] = { '<c-w>>', 'Increase Width' },
-                ['<'] = { '<c-w><', 'Decrease Width' },
-                ['='] = { '<c-w>=', 'Make equal size' },
-            },
-        },
-    }
-end
-
 --#endregion keymaps 
 
-return M
+return {
+    setup = M.setup
+}
