@@ -5,6 +5,12 @@
 - the following are sorted based on file structure in [lua/plugins](../lua/plugins)
 - plugins are listed by lua package name, hyperlinked to their GitHub repository
 
+## Keymaps
+> exports keymaps to other plugins
+
+- [lua/plugins/whichkey.lua](../lua/plugins/whichkey.lua) will export all the keymaps to other plugins
+- [lua/plugins/keymaps.lua](../lua/plugins/keymaps.lua) contains the keymaps that whichkey.lua exports with
+
 ## Behavior
 
 > plugins that change the editing behavior of neovim
