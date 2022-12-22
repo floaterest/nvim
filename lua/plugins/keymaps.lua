@@ -63,12 +63,20 @@ function M.setup(which)
     return M
 end
 
--- one day there will be a need to register keymaps not in normal mode
 function M.register(keymaps, ...)
-    if ... == nil then
-        M.which.register(keymaps)
+    local maps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
+        keymaps[1], keymaps[2]
+    } or {
+        keymaps, nil
+    })
+
+    local t = type(maps)
+    if t == 'function'then
+        M.which.register(maps(...), opts)
+    elseif t == 'table' then
+        M.which.register(maps, opts)
     else
-        M.which.register(keymaps(...))
+        error(t .. ' is not a valid type for maps to register')
     end
 end
 
@@ -151,7 +159,7 @@ function M.dap(dap)
 end
 
 -- LSP on_attach
-function M.on_attach(_, buffer)
+function M.lsp(_, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local function format()
@@ -163,7 +171,7 @@ function M.on_attach(_, buffer)
             end
         })
     end
-    M.which.register({
+    return {{
         ['<leader>'] = {
             c = {
                 name = '+code',
@@ -187,7 +195,7 @@ function M.on_attach(_, buffer)
             r = { vim.lsp.buf.references, 'References' },
         },
         K = { vim.lsp.buf.hover, 'Hover' },
-    }, { buffer = buffer })
+    }, { buffer = buffer }}
 end
 
 -- nvim-tree
