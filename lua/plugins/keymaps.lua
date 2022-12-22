@@ -63,6 +63,15 @@ function M.setup(which)
     return M
 end
 
+-- one day there will be a need to register keymaps not in normal mode
+function M.register(keymaps, ...)
+    if ... == nil then
+        M.which.register(keymaps)
+    else
+        M.which.register(keymaps(...))
+    end
+end
+
 --#region plugin keymaps sorted alphabetically
 
 -- nvim-cmp
@@ -183,9 +192,9 @@ end
 
 -- nvim-tree
 function M.nvimtree(api)
-    M.which.register({
+    return {
         ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
-    })
+    }
 end
 
 --#endregion keymaps 

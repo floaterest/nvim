@@ -1,7 +1,7 @@
 local tree =  require('nvim-tree')
 local api = require('nvim-tree.api')
 
-return function(keymaps)
+return function(register, keymaps)
     tree.setup({
         disable_netrw = true,
         open_on_setup = true,
@@ -22,5 +22,5 @@ return function(keymaps)
             }
         },
     })
-    keymaps(api)
+    register(keymaps, api)
 end
