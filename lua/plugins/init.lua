@@ -40,9 +40,10 @@ end)
 
 -- prepare keymaps first
 local k = require('plugins.whichkey')
+local register = k.register
 
 -- plugin setups, sorted alphabetically
-require('plugins.external.lsp')(k.on_attach)
+require('plugins.external.lsp')(register, k.lsp)
 require('plugins.external.null')
 require('plugins.external.dap')(k.dap)
 
@@ -56,5 +57,5 @@ require('plugins.behavior.telescope')
 require('plugins.interface.bufferline')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
-require('plugins.interface.nvim-tree')(k.nvimtree)
+require('plugins.interface.nvim-tree')(register, k.nvimtree)
 require('plugins.interface.treesitter')
