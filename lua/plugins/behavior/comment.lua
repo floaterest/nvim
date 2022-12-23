@@ -1,4 +1,4 @@
-require('Comment').setup(vim.tbl_extend('force', {
+require('Comment').setup({
     sticky = false,
     ignore = '^$', -- ignore empty lines
-}))
+})
