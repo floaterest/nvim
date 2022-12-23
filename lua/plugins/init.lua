@@ -49,7 +49,7 @@ require('plugins.external.dap')(which.dap)
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')(which.cmp)
-require('plugins.behavior.comment')(which.comment)
+require('plugins.behavior.comment')
 require('plugins.behavior.luasnip')
 require('plugins.behavior.surround')
 require('plugins.behavior.telescope')
