@@ -122,32 +122,6 @@ function M.cmp(cmp, luasnip)
     }
 end
 
--- comment (these are default mappings)
-M.comment ={
-    toggler = {
-        ---Line-comment toggle keymap
-        line = 'gcc',
-        ---Block-comment toggle keymap
-        block = 'gbc',
-    },
-    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-    opleader = {
-        ---Line-comment keymap
-        line = 'gc',
-        ---Block-comment keymap
-        block = 'gb',
-    },
-    ---LHS of extra mappings
-    extra = {
-        ---Add comment on the line above
-        above = 'gcO',
-        ---Add comment on the line below
-        below = 'gco',
-        ---Add comment at the end of line
-        eol = 'gcA',
-    },
-}
-
 -- DAP
 function M.dap(dap)
     M.which.register({
@@ -158,7 +132,7 @@ function M.dap(dap)
     }, { prefix = '<leader>' })
 end
 
--- LSP on_attach
+-- LSP
 function M.lsp(_, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
