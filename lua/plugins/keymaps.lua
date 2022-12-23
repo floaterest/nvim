@@ -123,14 +123,14 @@ function M.cmp(cmp, luasnip)
 end
 
 -- DAP
-function M.dap(dap)
-    M.which.register({
+function M.dap(dap) return {
+    {
         d = {
             name = '+debug',
             d = { dap.continue, 'Debug/Continue' }
         }
-    }, { prefix = '<leader>' })
-end
+    }, { prefix = '<leader>' }
+} end
 
 -- LSP
 function M.lsp(_, buffer)
