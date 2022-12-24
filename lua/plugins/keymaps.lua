@@ -5,6 +5,13 @@ local function has_words_before()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
+local function incfont(amount)
+    local font = vim.api.nvim_eval('&gfn')
+    local a, b = font:find(':h%d+')
+    local size = font:sub(a + 2, b)
+    vim.o.gfn = font:sub(0, a + 1) .. size + amount .. font:sub(b + 1)
+end
+
 
 function M.setup(which)
     vim.g.mapleader = ' '
@@ -16,7 +23,10 @@ function M.setup(which)
         Q = { '', "Don't do ex-command" },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
+        ['<c-=>'] = { function() incfont(1) end, 'Increase font size' },
+        ['<c-->'] = { function() incfont(-1) end, 'Decrease font size' },
     })
+    
     which.register({
         b = {
             name = '+buffer',
