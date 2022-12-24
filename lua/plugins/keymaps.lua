@@ -85,12 +85,10 @@ end
 -- nvim-cmp
 function M.cmp(cmp, luasnip)
     local function tab(fallback)
-        if cmp.visible() then
-            if not cmp.get_selected_entry() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-                cmp.confirm()
-            end
+        if cmp.visible() and cmp.get_selected_entry() then
+            cmp.confirm()
+        elseif cmp.visible() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
         elseif has_words_before() then
