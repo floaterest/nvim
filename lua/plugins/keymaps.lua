@@ -144,6 +144,7 @@ function M.dap(dap) return {
 function M.lsp(_, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
     local function format()
         vim.lsp.buf.format({
             async = true,
@@ -153,29 +154,30 @@ function M.lsp(_, buffer)
             end
         })
     end
-    return {{
-        ['<leader>'] = {
-            c = {
-                name = '+code',
-                a = { vim.lsp.buf.code_action, 'Code action' },
-            },
-            D = { vim.lsp.buf.type_definition, 'Type definition' },
-            r = {
-                name = '+rename',
-                r = { vim.lsp.buf.rename, 'Rename symbol' },
-            },
-            ['='] = {
-                name = '+format',
-                ['='] = { format, 'Format file' },
-            },
+
+    local leader = {
+        a = {
+            name = '+action',
+            a = { vim.lsp.buf.code_action, 'List code actions' },
+        },
+        r = {
+            name = '+rename',
+            r = { vim.lsp.buf.rename, 'Rename symbol' },
+        },
+        ['='] = {
+            name = '+format',
+            ['='] = { format, 'Format file' },
         },
         g = {
             name = '+goto',
             d = { vim.lsp.buf.definition, 'Definition' },
-            D = { vim.lsp.buf.declaration, 'Declaration' },
             i = { vim.lsp.buf.implementation, 'Implementation' },
             r = { vim.lsp.buf.references, 'References' },
         },
+    }
+
+    return {{
+        ['<leader>'] = leader,
         K = { vim.lsp.buf.hover, 'Hover' },
     }, { buffer = buffer }}
 end
