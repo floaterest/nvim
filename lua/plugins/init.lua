@@ -18,6 +18,7 @@ require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use 'numToStr/Comment.nvim'
     use 'L3MON4D3/LuaSnip'
+    use 'karb94/neoscroll.nvim'
     use 'kylechui/nvim-surround'
     use 'nvim-telescope/telescope.nvim'
 
@@ -31,6 +32,7 @@ require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
+    use 'petertriho/nvim-scrollbar'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
 	use 'folke/which-key.nvim'
@@ -51,6 +53,7 @@ require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')(which.cmp)
 require('plugins.behavior.comment')
 require('plugins.behavior.luasnip')
+require('plugins.behavior.smooth')
 require('plugins.behavior.surround')
 require('plugins.behavior.telescope')
 
@@ -58,4 +61,5 @@ require('plugins.interface.bufferline')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
 require('plugins.interface.nvim-tree')(register, which.nvimtree)
+require('plugins.interface.scrollbar')
 require('plugins.interface.treesitter')
