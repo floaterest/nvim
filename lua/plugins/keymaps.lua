@@ -73,17 +73,19 @@ function M.setup(which)
 end
 
 function M.register(keymaps, ...)
-    local maps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
+    keymaps = type(keymaps) == 'function' and keymaps(...) or keymaps
+
+    local keymaps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
         keymaps[1], keymaps[2]
     } or {
         keymaps, nil
     })
 
-    local t = type(maps)
+    local t = type(keymaps)
     if t == 'function'then
-        M.which.register(maps(...), opts)
+        M.which.register(keymaps(...), opts)
     elseif t == 'table' then
-        M.which.register(maps, opts)
+        M.which.register(keymaps, opts)
     else
         error(t .. ' is not a valid type for maps to register')
     end
@@ -176,11 +178,12 @@ function M.lsp(_, buffer)
     }, { buffer = buffer }}
 end
 
-function M.nvimtree(api)
-    return {
+function M.nvimtree(api) return {
+    {
         ft = { api.tree.toggle, 'Toggle tree' },
-    }
-end
+    },
+    { prefix = '<leader>' }
+} end
 
 return {
     setup = M.setup
