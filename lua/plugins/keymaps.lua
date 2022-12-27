@@ -185,7 +185,7 @@ end
 -- nvim-tree
 function M.nvimtree(api)
     return {
-        ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
+        ft = { api.tree.toggle, 'Toggle tree' },
     }
 end
 
