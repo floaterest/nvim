@@ -12,7 +12,6 @@ local function incfont(amount)
     vim.o.gfn = font:sub(0, a + 1) .. size + amount .. font:sub(b + 1)
 end
 
-
 function M.setup(which)
     vim.g.mapleader = ' '
     vim.g.maplocalleader = ' '
@@ -90,9 +89,6 @@ function M.register(keymaps, ...)
     end
 end
 
---#region plugin keymaps sorted alphabetically
-
--- nvim-cmp
 function M.cmp(cmp, luasnip)
     local function tab(fallback)
         if cmp.visible() and cmp.get_selected_entry() then
@@ -130,7 +126,6 @@ function M.cmp(cmp, luasnip)
     }
 end
 
--- DAP
 function M.dap(dap) return {
     {
         d = {
@@ -140,7 +135,6 @@ function M.dap(dap) return {
     }, { prefix = '<leader>' }
 } end
 
--- LSP
 function M.lsp(_, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -182,14 +176,11 @@ function M.lsp(_, buffer)
     }, { buffer = buffer }}
 end
 
--- nvim-tree
 function M.nvimtree(api)
     return {
         ft = { api.tree.toggle, 'Toggle tree' },
     }
 end
-
---#endregion keymaps 
 
 return {
     setup = M.setup
