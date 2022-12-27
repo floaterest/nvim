@@ -14,7 +14,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 
 return function(register, lsp)
     local function on_attach(client, buffer)
-        register(lsp(client, buffer))
+        register(lsp, client, buffer)
     end
     
     vim.tbl_map(function(server)
