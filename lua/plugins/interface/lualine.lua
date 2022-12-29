@@ -1,4 +1,5 @@
-local colors = require('colorscheme.colors')
+local colors = require('colo.colors')
+local lualine = require('lualine')
 
 local theme = {
     normal = {
@@ -35,7 +36,7 @@ local filename = {
     }
 }
 
-require('lualine').setup({
+lualine.setup({
     options = { theme = theme },
     sections = {
         lualine_a = { 'mode' },
