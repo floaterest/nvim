@@ -19,7 +19,32 @@ local function snoremap(t, opts)
     end, t)
 end
 
---#region keymaps sorted alphabetically
+-- keymaps that don't depend on plugins
+function M.core()
+    local which = require('which-key')
+    which.register({
+        ['<c-bs>'] = { '<c-w>', 'Delete word' },
+        ['<c-u>'] = { '<esc>v^d', 'Delete until ^' }
+    }, { mode = 'i' })
+    which.register({
+        Y = { 'v$hy', 'Yank until EOL' },
+        Q = { '', "Don't do ex-command" },
+        ['<leader>e'] = { vim.diagnostic.open_float, 'Open diagnostics' },
+        ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
+        [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
+    })
+    -- local mappings = {
+    --     h = { ';', 'Repeat last f, t, F or T [count] times' },
+    --     j = { 'h', 'Left' },
+    --     k = { 'j', 'Down' },
+    --     l = { 'k', 'Up' },
+    --     [';'] = { 'l', 'Right' },
+    -- }
+    -- which.register(mappings)
+    -- which.register(mappings, { mode = 'x' })
+end
+
+--#region plugin keymaps sorted alphabetically
 
 -- nvim-cmp
 function M.cmp(cmp, luasnip)
@@ -91,90 +116,82 @@ function M.comment()
 end
 
 -- LSP on_attach
-function M.on_attach(_, n)
+function M.on_attach(_, buffer)
+    local which = require('which-key')
     -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(n, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local function format()
-        vim.lsp.buf.format({async = true})
+        vim.lsp.buf.format({
+            async = true,
+            -- only use null-ls to format
+            filter = function(client)
+                return client.name == 'null-ls'
+            end
+        })
     end
-    snoremap({
-        { 'n', 'gD', vim.lsp.buf.declaration },
-        { 'n', 'gd', vim.lsp.buf.definition },
-        { 'n', 'K', vim.lsp.buf.hover },
-        { 'n', 'gi', vim.lsp.buf.implementation },
-        { 'n', 'gr', vim.lsp.buf.references },
-        { 'n', '<c-k>', vim.lsp.buf.signature_help },
-        { 'n', '<leader>ca', vim.lsp.buf.code_action },
-        { 'n', '<leader>D', vim.lsp.buf.type_definition },
-        { 'n', '<leader>m=', format },
-        { 'n', '<leader>mrr', vim.lsp.buf.rename },
-    }, { buffer = n })
+    which.register({
+        ['<leader>'] = {
+            c = {
+                name = '+code',
+                a = { vim.lsp.buf.code_action, 'Code action' },
+            },
+            D = { vim.lsp.buf.type_definition, 'Type definition' },
+            r = {
+                name = '+rename',
+                r = { vim.lsp.buf.rename, 'Rename symbol' },
+            },
+            ['='] = {
+                name = '+format',
+                ['='] = { format, 'Format file' },
+            },
+        },
+        g = {
+            name = '+goto',
+            d = { vim.lsp.buf.definition, 'Definition' },
+            D = { vim.lsp.buf.declaration, 'Declaration' },
+            i = { vim.lsp.buf.implementation, 'Implementation' },
+            r = { vim.lsp.buf.references, 'References' },
+        },
+        K = { vim.lsp.buf.hover, 'Hover' },
+    }, { buffer = buffer })
 end
 
--- keymaps that don't depend on plugins
-function M.vanilla()
-    snoremap({
-        -- delete word
-        { 'i', '<c-bs>', '<c-w>' },
-        -- delete all chars before cursor, but put them in register
-        { 'i', '<c-u>', '<esc>v^d' },
-        -- yank until end of line
-        { 'n', 'Y', 'v$hy' },
-        -- no ex-cammand
-        { 'n', 'Q', '' },
-
-        { 'n', '<leader>e', vim.diagnostic.open_float },
-        { 'n', '[d', vim.diagnostic.goto_prev },
-        { 'n', ']d', vim.diagnostic.goto_next },
-        { 'n', '<leader>q', vim.diagnostic.setloclist },
+-- nvim-tree
+function M.nvimtree()
+    local which = require('which-key')
+    local api = require('nvim-tree.api')
+    which.register({
+        ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
     })
 end
 
 -- which-key
 function M.which()
-    -- prefix for LSP bindings
-    local lsp = '[LSP] '
     return {
         ['<leader>'] = {
             b = {
                 name = '+buffer',
 
-                ['1'] = { '<cmd>b1<cr>', 'which_key_ignore'},
-                ['2'] = { '<cmd>b2<cr>', 'which_key_ignore'},
-                ['3'] = { '<cmd>b3<cr>', 'which_key_ignore'},
-                ['4'] = { '<cmd>b4<cr>', 'which_key_ignore'},
-                ['5'] = { '<cmd>b5<cr>', 'which_key_ignore'},
-                ['6'] = { '<cmd>b6<cr>', 'which_key_ignore'},
-                ['7'] = { '<cmd>b7<cr>', 'which_key_ignore'},
-                ['8'] = { '<cmd>b8<cr>', 'which_key_ignore'},
-                ['9'] = { '<cmd>b9<cr>', 'which_key_ignore'},
+                ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
+                ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
+                ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
+                ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
+                ['5'] = { '<cmd>b5<cr>', 'which_key_ignore' },
+                ['6'] = { '<cmd>b6<cr>', 'which_key_ignore' },
+                ['7'] = { '<cmd>b7<cr>', 'which_key_ignore' },
+                ['8'] = { '<cmd>b8<cr>', 'which_key_ignore' },
+                ['9'] = { '<cmd>b9<cr>', 'which_key_ignore' },
 
                 n = { '<cmd>bn<cr>', 'Go to next' },
                 p = { '<cmd>bp<cr>' ,'Go to previous' },
                 d = { '<cmd>bd<cr>', 'Delete' }
             },
-            c = {
-                name = '+code',
-
-                a = lsp .. 'Code action',
-            },
-            D = lsp .. 'Type definition',
             f = {
                 name = '+file',
                 b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
                 f = { '<cmd>Telescope find_files<cr>', 'Find file' },
                 s = { '<cmd>w<cr>', 'Save file' },
                 S = { '<cmd>wa<cr>', 'Save all files' },
-            },
-            m = {
-                name = '+major',
-                
-                ['='] = lsp .. 'Format file',
-                r = {
-                    -- i = lsp .. 'Organise imports',
-                    -- f = lsp .. 'Rename file',
-                    r = lsp .. 'Rename symbol',
-                }
             },
             w = {
                 name = '+window',
@@ -189,14 +206,6 @@ function M.which()
                 ['='] = { '<c-w>=', 'Make equal size' },
             },
         },
-        g = {
-            d = lsp .. 'Definition',
-            D = lsp .. 'Declaration',
-            i = lsp .. 'Implementation',
-            r = lsp .. 'References',
-        },
-        K = lsp .. 'Hover', -- it is possible to see first-level mappings
-        ['<c-k>'] = lsp .. 'Signature help'
     }
 end
 
