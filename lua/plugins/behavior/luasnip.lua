@@ -52,10 +52,10 @@ luasnip.config.set_config({
             return t
         end,
         trig = function(tr)
-            return { trig = tr, wordTrig = false}
+            return { trig = tr, wordTrig = false }
         end,
         rtrig = function(tr)
-            return { trig = tr, wordTrig = false, regTrig = true}
+            return { trig = tr, wordTrig = false, regTrig = true }
         end
     }
 })
