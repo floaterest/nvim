@@ -15,9 +15,9 @@ return {
         Visual = '. gray .',
     },
     syntax = {
-        Comment = 'lighter . i',
+        Comment = 'gray . i',
         Constant = 'purple . .',
-        Delimiter = 'lighter . .',
+        Delimiter = 'light . .',
         Directory = 'yellow . .',
         Function = 'lime . .',
         Identifier = 'orange - -',
@@ -45,7 +45,7 @@ return {
         TSParameter = 'orange . .',
         TSProperty = '- . .',
         TSVariableBuiltin = '@TSConstBuiltin',
-        TSConstructor = '@Delimiter',
+        TSConstructor = '@TSConstBuiltin',
     },
     -- #region languages
     css = {
