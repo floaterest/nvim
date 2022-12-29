@@ -93,12 +93,12 @@ end
 
 function M.cmp(cmp, luasnip)
     local function tab(fallback)
-        if cmp.visible() and cmp.get_selected_entry() then
+        if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+        elseif cmp.visible() and cmp.get_selected_entry() then
             cmp.confirm()
         elseif cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
         elseif has_words_before() then
             cmp.complete()
         else
