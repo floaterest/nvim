@@ -38,13 +38,17 @@ require('packer').startup(function(use)
     if packer_bootstrap then require('packer').sync() end
 end)
 
+-- prepare keymaps first
+local which = require('plugins.whichkey')
+local register = which.register
+
 -- plugin setups, sorted alphabetically
-require('plugins.external.lsp')
+require('plugins.external.lsp')(register, which.lsp)
 require('plugins.external.null')
-require('plugins.external.dap')
+require('plugins.external.dap')(register, which.dap)
 
 require('plugins.behavior.autopairs')
-require('plugins.behavior.cmp')
+require('plugins.behavior.cmp')(which.cmp)
 require('plugins.behavior.comment')
 require('plugins.behavior.luasnip')
 require('plugins.behavior.surround')
@@ -53,6 +57,5 @@ require('plugins.behavior.telescope')
 require('plugins.interface.bufferline')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
-require('plugins.interface.nvim-tree')
+require('plugins.interface.nvim-tree')(register, which.nvimtree)
 require('plugins.interface.treesitter')
-require('plugins.interface.whichkey')

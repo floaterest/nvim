@@ -1,7 +1,8 @@
 vim.cmd('ru! innit.vim')
 
 require('colo')
-require('core')
+require('options')
 require('plugins')
 
 if vim.g.neovide then require('neovide') end
+
