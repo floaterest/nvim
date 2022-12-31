@@ -55,7 +55,7 @@ require('plugins.behavior.comment')
 require('plugins.behavior.luasnip')
 require('plugins.behavior.smooth')
 require('plugins.behavior.surround')
-require('plugins.behavior.telescope')
+require('plugins.behavior.telescope')(register, which.telescope)
 
 require('plugins.interface.bufferline')
 require('plugins.interface.indentline')
