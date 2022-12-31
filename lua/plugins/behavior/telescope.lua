@@ -1,3 +1,5 @@
+local builtin = require('telescope.builtin')
+
 require('telescope').setup({
     defaults = {
         file_ignore_patterns = {
@@ -10,3 +12,7 @@ require('telescope').setup({
         color_devicons = true,
     }
 })
+
+return function(register, keymaps)
+    register(keymaps, builtin)
+end

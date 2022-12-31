@@ -41,8 +41,6 @@ function M.setup(which)
         },
         f = {
             name = '+file',
-            b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
-            f = { '<cmd>Telescope find_files<cr>', 'Find file' },
             s = { '<cmd>w<cr>', 'Save file' },
             S = { '<cmd>wa<cr>', 'Save all files' },
         },
@@ -180,6 +178,14 @@ end
 function M.nvimtree(api) return {
     {
         ft = { api.tree.toggle, 'Toggle tree' },
+    },
+    { prefix = '<leader>' }
+} end
+
+function M.telescope(builtin) return {
+    {
+        ff = { builtin.find_files, 'Find file' },
+        fb = { builtin.buffers, 'Find buffer'},
     },
     { prefix = '<leader>' }
 } end
