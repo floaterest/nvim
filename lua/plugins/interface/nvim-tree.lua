@@ -1,4 +1,4 @@
-local tree =  require('nvim-tree')
+local tree = require('nvim-tree')
 local api = require('nvim-tree.api')
 
 return function(register, keymaps)
