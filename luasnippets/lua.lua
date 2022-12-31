@@ -1,8 +1,20 @@
-local i0 = { i(0) }
+local function sfmta(_, table)
+    local trig, a = unpack(table)
+    local _, n = a:gsub('<>', '')
+    local opt = {}
+    for index = 1, n do
+        opt[index] = i(n-index)
+    end
+    return s(trig, fmta(a, opt))
+end
 
-return {
-    s('f', fmta('function <>\nend', i0)),
-    s('lf', fmta('local function <>\nend', i0)),
-}, {
-    s('if ', fmta('if <> then\n\t<>\nend', { i(1), i(0) }))
+local snips = {
+    { 'f', 'function <>\nend' },
+    { 'lf', 'local function <>\nend' },
 }
+
+local autos = {
+    { 'if ', 'if <> then\n\t<>\nend' },
+}
+
+return map(snips, sfmta), map(autos, sfmta)
