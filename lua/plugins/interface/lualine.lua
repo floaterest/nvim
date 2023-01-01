@@ -4,7 +4,7 @@ local lualine = require('lualine')
 local theme = {
     normal = {
         a = { fg = colors.black, bg = colors.teal, gui = 'bold' },
-        b = { fg = colors.lightest, bg = colors.darkest },
+        b = { fg = colors.lightest, bg = colors.darker },
         c = { fg = colors.lighter, bg = colors.black },
 	},
     insert = {
