@@ -57,8 +57,8 @@ lualine.setup({
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { filename },
-        lualine_x = {},
+        lualine_c = { 'filename', 'diagnostics' },
+        lualine_x = { 'filesize' },
         lualine_y = {},
         lualine_z = {}
     },
