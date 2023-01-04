@@ -14,6 +14,11 @@ return {
         VertSplit = 'light black .',
         Visual = '. gray .',
     },
+    git = {
+        DiffAdd = 'lime . .',
+        DiffChange = 'orange . .',
+        DiffDelete = 'pink . .',
+    },
     syntax = {
         Comment = 'gray . i',
         Constant = 'purple . .',
