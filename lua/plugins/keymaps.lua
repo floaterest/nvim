@@ -129,7 +129,8 @@ function M.dap(dap) return {
     {
         d = {
             name = '+debug',
-            d = { dap.continue, 'Debug/Continue' }
+            d = { dap.continue, 'Debug/Continue' },
+            b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
         }
     }, { prefix = '<leader>' }
 } end
