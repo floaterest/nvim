@@ -26,6 +26,28 @@ local theme = {
     },
 }
 
+local modes = {
+    NORMAL = 'No',
+    VISUAL = 'Vi',
+    ['V-LINE'] = 'VL',
+    ['V-BLOCK'] = 'VB',
+    SELECT = 'Se',
+    INSERT = 'In',
+    COMMAND = 'Co',
+    -- ex-mode 
+    Terminal = 'Te',
+
+    ['O-PENDING'] = 'OP',
+    REPLACE = 'Re',
+    VREPLACE = 'VR',
+    -- insert-normal insert-visual, insert-select
+}
+
+local mode = {
+    'mode',
+    fmt = function(s) return modes[s] or s end,
+}
+
 local filename = {
     'filename',
     path = 1, -- relative path
@@ -39,7 +61,7 @@ local filename = {
 lualine.setup({
     options = { theme = theme },
     sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { mode },
         lualine_b = { 'branch' },
         lualine_c = { filename, 'diagnostics' },
         lualine_x = { 'encoding', {
