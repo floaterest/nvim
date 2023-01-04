@@ -12,7 +12,6 @@ local function incfont(amount)
     vim.o.gfn = font:sub(0, a + 1) .. size + amount .. font:sub(b + 1)
 end
 
-
 function M.setup(which)
     vim.g.mapleader = ' '
     vim.g.maplocalleader = ' '
@@ -42,8 +41,6 @@ function M.setup(which)
         },
         f = {
             name = '+file',
-            b = { '<cmd>Telescope buffers<cr>', 'Find buffer' },
-            f = { '<cmd>Telescope find_files<cr>', 'Find file' },
             s = { '<cmd>w<cr>', 'Save file' },
             S = { '<cmd>wa<cr>', 'Save all files' },
         },
@@ -74,33 +71,32 @@ function M.setup(which)
 end
 
 function M.register(keymaps, ...)
-    local maps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
+    keymaps = type(keymaps) == 'function' and keymaps(...) or keymaps
+
+    local keymaps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
         keymaps[1], keymaps[2]
     } or {
         keymaps, nil
     })
 
-    local t = type(maps)
+    local t = type(keymaps)
     if t == 'function'then
-        M.which.register(maps(...), opts)
+        M.which.register(keymaps(...), opts)
     elseif t == 'table' then
-        M.which.register(maps, opts)
+        M.which.register(keymaps, opts)
     else
         error(t .. ' is not a valid type for maps to register')
     end
 end
 
---#region plugin keymaps sorted alphabetically
-
--- nvim-cmp
 function M.cmp(cmp, luasnip)
     local function tab(fallback)
-        if cmp.visible() and cmp.get_selected_entry() then
+        if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+        elseif cmp.visible() and cmp.get_selected_entry() then
             cmp.confirm()
         elseif cmp.visible() then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
         elseif has_words_before() then
             cmp.complete()
         else
@@ -126,11 +122,9 @@ function M.cmp(cmp, luasnip)
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
         ['<c-space>'] = cmp.mapping.complete(),
         ['<c-e>'] = cmp.mapping.abort(),
-        ['<cr>'] = cmp.mapping.confirm({ select = true }),
     }
 end
 
--- DAP
 function M.dap(dap) return {
     {
         d = {
@@ -140,10 +134,10 @@ function M.dap(dap) return {
     }, { prefix = '<leader>' }
 } end
 
--- LSP
 function M.lsp(_, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
     local function format()
         vim.lsp.buf.format({
             async = true,
@@ -153,41 +147,48 @@ function M.lsp(_, buffer)
             end
         })
     end
-    return {{
-        ['<leader>'] = {
-            c = {
-                name = '+code',
-                a = { vim.lsp.buf.code_action, 'Code action' },
-            },
-            D = { vim.lsp.buf.type_definition, 'Type definition' },
-            r = {
-                name = '+rename',
-                r = { vim.lsp.buf.rename, 'Rename symbol' },
-            },
-            ['='] = {
-                name = '+format',
-                ['='] = { format, 'Format file' },
-            },
+
+    local leader = {
+        a = {
+            name = '+action',
+            a = { vim.lsp.buf.code_action, 'List code actions' },
+        },
+        r = {
+            name = '+rename',
+            r = { vim.lsp.buf.rename, 'Rename symbol' },
+        },
+        ['='] = {
+            name = '+format',
+            ['='] = { format, 'Format file' },
         },
         g = {
             name = '+goto',
             d = { vim.lsp.buf.definition, 'Definition' },
-            D = { vim.lsp.buf.declaration, 'Declaration' },
             i = { vim.lsp.buf.implementation, 'Implementation' },
             r = { vim.lsp.buf.references, 'References' },
         },
+    }
+
+    return {{
+        ['<leader>'] = leader,
         K = { vim.lsp.buf.hover, 'Hover' },
     }, { buffer = buffer }}
 end
 
--- nvim-tree
-function M.nvimtree(api)
-    return {
-        ['<c-n>'] = { api.tree.toggle, 'Toggle Explorer' }
-    }
-end
+function M.nvimtree(api) return {
+    {
+        ft = { api.tree.toggle, 'Toggle tree' },
+    },
+    { prefix = '<leader>' }
+} end
 
---#endregion keymaps 
+function M.telescope(builtin) return {
+    {
+        ff = { builtin.find_files, 'Find file' },
+        fb = { builtin.buffers, 'Find buffer'},
+    },
+    { prefix = '<leader>' }
+} end
 
 return {
     setup = M.setup

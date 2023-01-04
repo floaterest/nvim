@@ -4,7 +4,7 @@ local lualine = require('lualine')
 local theme = {
     normal = {
         a = { fg = colors.black, bg = colors.teal, gui = 'bold' },
-        b = { fg = colors.lightest, bg = colors.darkest },
+        b = { fg = colors.lightest, bg = colors.darker },
         c = { fg = colors.lighter, bg = colors.black },
 	},
     insert = {
@@ -41,7 +41,7 @@ lualine.setup({
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff' },
-        lualine_c = { filename },
+        lualine_c = { filename, 'diagnostics' },
         lualine_x = { 'encoding', {
             'fileformat',
             symbols = {
@@ -57,18 +57,10 @@ lualine.setup({
     inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { filename },
-        lualine_x = {},
+        lualine_c = { 'filename', 'diagnostics' },
+        lualine_x = { 'filesize' },
         lualine_y = {},
         lualine_z = {}
     },
-    -- tabline = {
-        -- lualine_a = {'buffers'},
-        -- lualine_b = {},
-        -- lualine_c = {},
-        -- lualine_x = {},
-        -- lualine_y = {},
-        -- lualine_z = {'tabs'}
-    -- },
-    extensions = { 'nvim-tree' }
+    extensions = { 'nvim-tree', --[[ 'nvim-dap-ui' ]] }
 })
