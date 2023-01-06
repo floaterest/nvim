@@ -19,7 +19,6 @@ function M.setup(which)
     M.which = which
     which.register({
         Y = { 'v$hy', 'Yank until EOL' },
-        Q = { '', "Don't do ex-command" },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
         ['<c-=>'] = { function() incfont(1) end, 'Increase font size' },
