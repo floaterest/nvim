@@ -71,9 +71,8 @@ lualine.setup({
                 dos = 'CRLF',
                 mac = 'CR'
             }},
-            'bo:filetype'
         },
-        lualine_y = { 'filesize' },
+        lualine_y = { 'bo:filetype' },
         lualine_z = { 'location' }
     },
     inactive_sections = {
