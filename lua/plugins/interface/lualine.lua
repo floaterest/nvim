@@ -58,6 +58,13 @@ local filename = {
     }
 }
 
+local function location()
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+    -- return string.format('%3d:%-2d', line, col)
+    return line .. ':' .. col
+  end
+
 lualine.setup({
     options = { theme = theme },
     sections = {
@@ -73,7 +80,7 @@ lualine.setup({
             }},
         },
         lualine_y = { 'bo:filetype' },
-        lualine_z = { 'location' }
+        lualine_z = { location }
     },
     inactive_sections = {
         lualine_a = {},
