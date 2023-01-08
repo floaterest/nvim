@@ -38,7 +38,7 @@ return {
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
         NvimTreeIndentMarker = '@IndentMarker',
-        NvimTreeRootFolder = 'orange . .',
+        NvimTreeRootFolder = 'yellow . .',
         NvimTreeExecFile = '@Normal',
         NvimTreeGitDirty = 'sky . .',
         NvimTreeGitStaged = 'lime . .',
