@@ -1,6 +1,20 @@
 local tree = require('nvim-tree')
 local api = require('nvim-tree.api')
 
+local icons = {
+    git_placement = 'signcolumn',
+    glyphs = {
+        git = {
+            unstaged = 'M', -- modified
+            staged = '',
+            renamed = 'R',
+            unmerged = 'U', -- haven't seen this yet
+            deleted = 'D',
+            untracked = 'U',
+        },
+    },
+}
+
 return function(register, keymaps)
     tree.setup({
         disable_netrw = true,
@@ -11,15 +25,10 @@ return function(register, keymaps)
             enable = true,
             show_on_dirs = true,
         },
-        view = {
-
-        },
         renderer = {
             add_trailing = true,
             highlight_git = true,
-            icons = {
-                git_placement = 'signcolumn',
-            }
+            icons = icons,
         },
     })
     register(keymaps, api)
