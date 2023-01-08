@@ -40,6 +40,12 @@ return {
         NvimTreeIndentMarker = '@IndentMarker',
         NvimTreeRootFolder = 'orange . .',
         NvimTreeExecFile = '@Normal',
+        NvimTreeGitDirty = 'sky . .',
+        NvimTreeGitStaged = 'lime . .',
+        NvimTreeGitMerge = 'teal . .',
+        NvimTreeGitRenamed = 'teal . .',
+        NvimTreeGitNew = 'orange . .',
+        NvimTreeGitDeleted = '@Comment',
     },
     treesitter = {
         TSConstBuiltin = 'sky . .',
