@@ -175,17 +175,17 @@ end
 
 function M.nvimtree(api) return {
     {
-        ft = { api.tree.toggle, 'Toggle tree' },
+        t = { api.tree.toggle, 'Toggle tree' },
     },
-    { prefix = '<leader>' }
+    { prefix = '<leader>f' }
 } end
 
 function M.telescope(builtin) return {
     {
-        ff = { builtin.find_files, 'Find file' },
-        fb = { builtin.buffers, 'Find buffer'},
+        f = { builtin.find_files, 'Find file' },
+        b = { builtin.buffers, 'Find buffer'},
     },
-    { prefix = '<leader>' }
+    { prefix = '<leader>f' }
 } end
 
 return {
