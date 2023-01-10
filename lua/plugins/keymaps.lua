@@ -126,12 +126,10 @@ end
 
 function M.dap(dap) return {
     {
-        d = {
-            name = '+debug',
-            d = { dap.continue, 'Debug/Continue' },
-            b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
-        }
-    }, { prefix = '<leader>' }
+        name = '+debug',
+        d = { dap.continue, 'Debug/Continue' },
+        b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
+    }, { prefix = '<leader>d' }
 } end
 
 function M.lsp(_, buffer)
