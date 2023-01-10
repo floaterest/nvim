@@ -1,23 +1,9 @@
 local luasnip = require('luasnip')
 
-local function term(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-function _G.complete()
-    if luasnip and luasnip.expand_or_jumpable() then
-        return term('<Plug>luasnip-expand-or-jump')
-    else
-        return term('<Tab>')
-    end
-end
-
 luasnip.config.set_config({
     history = true,
     update_events = 'InsertLeave',
     enable_autosnippets = true,
-    ext_base_prio = 300,
-    ext_prio_increase = 1,
     store_selection_keys = '<Tab>',
     snip_env = {
         s = luasnip.s,
@@ -60,9 +46,10 @@ luasnip.config.set_config({
     }
 })
 
+require("luasnip.loaders.from_lua").lazy_load()
+require("luasnip.loaders.from_lua").load({paths = {vim.fn.getcwd() .. "/.luasnippets/"}})
+
 vim.cmd([[
     au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()
+    command! LuaSnipEdit :lua require('luasnip.loaders.from_lua').edit_snippet_files()
 ]])
-
-require('luasnip.loaders.from_lua').lazy_load()
-vim.cmd([[command! LuaSnipEdit :lua require('luasnip.loaders.from_lua').edit_snippet_files()]])
