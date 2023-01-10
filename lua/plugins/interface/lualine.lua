@@ -34,7 +34,7 @@ local modes = {
     SELECT = 'Se',
     INSERT = 'In',
     COMMAND = 'Co',
-    -- ex-mode 
+    -- ex-mode
     Terminal = 'Te',
 
     ['O-PENDING'] = 'OP',

@@ -19,7 +19,7 @@ function M.setup(which)
         ['<c-=>'] = { function() incfont(1) end, 'Increase font size' },
         ['<c-->'] = { function() incfont(-1) end, 'Decrease font size' },
     })
-    
+
     which.register({
         b = {
             name = '+buffer',
@@ -102,7 +102,7 @@ function M.cmp(cmp, luasnip)
             fallback()
         end
     end
-    
+
     local function stab(fallback)
         if cmp.visible() then
             cmp.select_prev_item()
