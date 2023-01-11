@@ -7,6 +7,7 @@ local sources = {
     ca.eslint_d,
     fo.eslint_d,
     fo.blue, -- I'll use black when it supports single quotes
+    fo.stylua,
 }
 
 null.setup({
