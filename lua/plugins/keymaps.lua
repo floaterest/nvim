@@ -125,6 +125,21 @@ function M.cmp(cmp, luasnip)
 end
 
 function M.dap(dap) return {
+    --[[
+    s scopes
+    b breakpoints
+    t stacks (threads)
+    w watches
+    r repl
+    c console
+
+    spc d p b j (put breakpoints down (left bottom))
+    spc d p r l (put repl left (bottom left))
+    spc d t b (toggle breakpoints window)
+    spc d t s (toggle scopes window)
+    spc d g b (set focus on breakpoints window) (idk how)
+]]
+
     {
         name = '+debug',
         d = { dap.continue, 'Debug/Continue' },
