@@ -1,3 +1,4 @@
+local attach = require('plugins.keymaps.attach')
 local M = { which = nil }
 
 local function incfont(amount)
@@ -83,46 +84,7 @@ function M.register(keymaps, ...)
     end
 end
 
-function M.attach(_, buffer)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    local function format()
-        vim.lsp.buf.format({
-            async = true,
-            -- only use null-ls to format
-            filter = function(client)
-                return client.name == 'null-ls'
-            end
-        })
-    end
-
-    local leader = {
-        a = {
-            name = '+action',
-            a = { vim.lsp.buf.code_action, 'List code actions' },
-        },
-        r = {
-            name = '+rename',
-            r = { vim.lsp.buf.rename, 'Rename symbol' },
-        },
-        ['='] = {
-            name = '+format',
-            ['='] = { format, 'Format file' },
-        },
-        g = {
-            name = '+goto',
-            d = { vim.lsp.buf.definition, 'Definition' },
-            i = { vim.lsp.buf.implementation, 'Implementation' },
-            r = { vim.lsp.buf.references, 'References' },
-        },
-    }
-
-    return {{
-        ['<leader>'] = leader,
-        K = { vim.lsp.buf.hover, 'Hover' },
-    }, { buffer = buffer }}
-end
+M.attach = attach
 
 function M.cmp(cmp, luasnip)
     local function has_words_before()
