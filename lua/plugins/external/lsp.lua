@@ -13,13 +13,11 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(
 )
 
 return function(register, attach)
-    local function on_attach(client, buffer)
-        register(attach, client, buffer)
-    end
-
     vim.tbl_map(function(server)
         lsconfig[server].setup(vim.tbl_extend('force', {
-            on_attach = on_attach,
+            on_attach = function(client, buffer)
+                register(attach, client, buffer)
+            end,
             capabilities = capabilities,
         }, options[server] or {}))
     end, servers)
