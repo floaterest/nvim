@@ -10,6 +10,11 @@ local sources = {
     fo.stylua,
 }
 
-null.setup({
-    sources = sources,
-})
+return function(register, attach)
+    null.setup({
+        sources = sources,
+        on_attach = function(client, buffer)
+            register(attach, client, buffer)
+        end,
+    })
+end
