@@ -3,7 +3,8 @@ local function sfmta(_, table)
     local _, n = a:gsub('<>', '')
     local opt = {}
     for index = 1, n do
-        opt[index] = i(n-index)
+        -- last index will be 0
+        opt[index] = i(index % n)
     end
     return s(trig, fmta(a, opt))
 end
