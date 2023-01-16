@@ -10,7 +10,7 @@ local function sfmta(_, table)
 end
 
 local snips = {
-    { 'f', 'function <>\nend' },
+    { 'fu', 'function <>\nend' },
     { 'lf', 'local function <>\nend' },
 }
 
