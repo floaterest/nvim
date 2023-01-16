@@ -11,7 +11,7 @@
 The custom keymaps are inspired by [Spacemacs](https://www.spacemacs.org/). That's why most of them starts with space
 
 - [lua/plugins/whichkey.lua](../lua/plugins/whichkey.lua) will export all the keymaps to other plugins
-- [lua/plugins/keymaps.lua](../lua/plugins/keymaps.lua) contains the keymaps that whichkey.lua exports with
+- [lua/plugins/keymaps/](../lua/plugins/keymaps/) contains the keymaps that whichkey.lua exports with
 
 ## Behavior
 
