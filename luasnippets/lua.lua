@@ -16,6 +16,7 @@ local snips = {
 
 local autos = {
     { 'if ', 'if <> then\n\t<>\nend' },
+    { 'for ', 'for <> in pairs(<>) do\n\t<>\nend' }
 }
 
 return map(snips, sfmta), map(autos, sfmta)
