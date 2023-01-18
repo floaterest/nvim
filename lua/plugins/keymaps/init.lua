@@ -127,7 +127,13 @@ function M.cmp(cmp, luasnip)
     }
 end
 
-function M.dap(dap) return {
+function M.dap(dap) return { {
+    name = '+debug',
+    d = { dap.continue, 'Debug/Continue' },
+    b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
+}, { prefix = '<leader>d' } } end
+
+function M.dapui(ui) 
     --[[
     s scopes
     b breakpoints
@@ -142,13 +148,22 @@ function M.dap(dap) return {
     spc d t s (toggle scopes window)
     spc d g b (set focus on breakpoints window) (idk how)
 ]]
-
-    {
-        name = '+debug',
-        d = { dap.continue, 'Debug/Continue' },
-        b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
-    }, { prefix = '<leader>d' }
-} end
+    local toggle = {
+        name = '+toggle',
+        s = { function() ui.toggle('scopes') end, 'Scopes' },
+        b = { function() ui.toggle('breakpoints') end, 'Breakpoints' },
+        t = { function() ui.toggle('stacks') end, 'Stacks/Threads' },
+        w = { function() ui.toggle('watches') end, 'Watch' },
+        r = { function() ui.toggle('repl') end, 'REPL' },
+        c = { function() ui.toggle('console') end, 'Console' },
+    }
+    return {
+        {
+            u = { require('dapui').toggle, 'Toggle UI' },
+            t = toggle
+        }, { prefix = '<leader>d' }
+    }
+end
 
 function M.nvimtree(api) return {
     {
