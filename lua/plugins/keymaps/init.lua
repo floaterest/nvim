@@ -22,6 +22,8 @@ function M.setup(which)
     })
 
     which.register({
+        L = { '<cmd>bn<cr>', 'Go to next' },
+        H = { '<cmd>bp<cr>' ,'Go to previous' },
         b = {
             name = '+buffer',
 
