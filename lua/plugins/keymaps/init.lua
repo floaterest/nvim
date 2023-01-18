@@ -133,7 +133,7 @@ function M.dap(dap) return { {
     b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
 }, { prefix = '<leader>d' } } end
 
-function M.dapui(ui) 
+function M.dapui(dapui, ui)
     --[[
     s scopes
     b breakpoints
@@ -159,7 +159,7 @@ function M.dapui(ui)
     }
     return {
         {
-            u = { require('dapui').toggle, 'Toggle UI' },
+            u = { dapui.toggle, 'Toggle UI' },
             t = toggle
         }, { prefix = '<leader>d' }
     }
