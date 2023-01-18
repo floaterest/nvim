@@ -176,5 +176,8 @@ return pack({
             }) end)
         })
     end),
+    s(lead_rtrig('c(%l+)'), {
+        t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
+    }),
 })
 
