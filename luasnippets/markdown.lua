@@ -42,6 +42,7 @@ local auto = {
         t = { '\\textsf', '{', '}' },
 		g = { '\\tag', '{\\sf ', '}' },
         f = { '\\frac', '{', '}' },
+        an = { '', '\\langle ', '\\rangle' },
         im = '\\implies',
         rm = { '\\mathrm', '{', '}' },
         atan = { '\\mathrm{atan}', '(', ')' },
