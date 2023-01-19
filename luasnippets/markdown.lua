@@ -122,7 +122,7 @@ return pack({
         s('u ', { t('$'), i(0), t('$') }),
         s('uu ', fmta('$$\n<>\n$$', { i(0) })),
         s('ud ', { t('$\\displaystyle'), i(0), t('$') }),
-        s(lead_rtrig('det(%l*)'), fmt('<details {}open><summary>{}</summary>\n</details>',{
+        s(lead_rtrig('det(%l*)'), fmt('<details {}open>\n<summary>{}</summary>\n</details>',{
             f(function(_, snip)
                 local cap = snip.captures[1]
                 return cap:len() > 0 and string.format('class="%s" ', cap) or ''
