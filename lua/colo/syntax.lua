@@ -14,6 +14,11 @@ return {
         VertSplit = 'light black .',
         Visual = '. gray .',
     },
+    git = {
+        DiffAdd = 'lime . .',
+        DiffChange = 'orange . .',
+        DiffDelete = 'pink . .',
+    },
     syntax = {
         Comment = 'gray . i',
         Constant = 'purple . .',
@@ -33,8 +38,14 @@ return {
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
         NvimTreeIndentMarker = '@IndentMarker',
-        NvimTreeRootFolder = 'orange . .',
+        NvimTreeRootFolder = 'yellow . .',
         NvimTreeExecFile = '@Normal',
+        NvimTreeGitDirty = 'sky . .',
+        NvimTreeGitStaged = 'lime . .',
+        NvimTreeGitMerge = 'teal . .',
+        NvimTreeGitRenamed = 'teal . .',
+        NvimTreeGitNew = 'orange . .',
+        NvimTreeGitDeleted = '@Comment',
     },
     treesitter = {
         TSConstBuiltin = 'sky . .',

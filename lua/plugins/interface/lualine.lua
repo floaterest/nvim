@@ -26,6 +26,28 @@ local theme = {
     },
 }
 
+local modes = {
+    NORMAL = 'No',
+    VISUAL = 'Vi',
+    ['V-LINE'] = 'VL',
+    ['V-BLOCK'] = 'VB',
+    SELECT = 'Se',
+    INSERT = 'In',
+    COMMAND = 'Co',
+    -- ex-mode
+    Terminal = 'Te',
+
+    ['O-PENDING'] = 'OP',
+    REPLACE = 'Re',
+    VREPLACE = 'VR',
+    -- insert-normal insert-visual, insert-select
+}
+
+local mode = {
+    'mode',
+    fmt = function(s) return modes[s] or s end,
+}
+
 local filename = {
     'filename',
     path = 1, -- relative path
@@ -36,11 +58,18 @@ local filename = {
     }
 }
 
+local function location()
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+    -- return string.format('%3d:%-2d', line, col)
+    return line .. ':' .. col
+  end
+
 lualine.setup({
     options = { theme = theme },
     sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff' },
+        lualine_a = { mode },
+        lualine_b = { 'branch' },
         lualine_c = { filename, 'diagnostics' },
         lualine_x = { 'encoding', {
             'fileformat',
@@ -49,10 +78,9 @@ lualine.setup({
                 dos = 'CRLF',
                 mac = 'CR'
             }},
-            'bo:filetype'
         },
-        lualine_y = { 'filesize' },
-        lualine_z = { 'location' }
+        lualine_y = { 'bo:filetype' },
+        lualine_z = { location }
     },
     inactive_sections = {
         lualine_a = {},

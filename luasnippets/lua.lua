@@ -3,18 +3,20 @@ local function sfmta(_, table)
     local _, n = a:gsub('<>', '')
     local opt = {}
     for index = 1, n do
-        opt[index] = i(n-index)
+        -- last index will be 0
+        opt[index] = i(index % n)
     end
     return s(trig, fmta(a, opt))
 end
 
 local snips = {
-    { 'f', 'function <>\nend' },
+    { 'fu', 'function <>\nend' },
     { 'lf', 'local function <>\nend' },
 }
 
 local autos = {
     { 'if ', 'if <> then\n\t<>\nend' },
+    { 'for ', 'for <> in pairs(<>) do\n\t<>\nend' }
 }
 
 return map(snips, sfmta), map(autos, sfmta)
