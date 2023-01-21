@@ -11,7 +11,7 @@
 The custom keymaps are inspired by [Spacemacs](https://www.spacemacs.org/). That's why most of them starts with space
 
 - [lua/plugins/whichkey.lua](../lua/plugins/whichkey.lua) will export all the keymaps to other plugins
-- [lua/plugins/keymaps.lua](../lua/plugins/keymaps.lua) contains the keymaps that whichkey.lua exports with
+- [lua/plugins/keymaps/](../lua/plugins/keymaps/) contains the keymaps that whichkey.lua exports with
 
 ## Behavior
 
@@ -37,7 +37,8 @@ the needed external tools should be installed globally as NPM packages unless sp
   - [pyright](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright) needs `pyright`
 - [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) makes other tools to become languages servers
   - [eslint_d](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#eslint_d-2) needs `eslint_d`, and all the plugins required in `.eslintrc` needs to be installed locally in the same directory as it (e.g. if `~/.eslintrc.yaml`, then `~/node_modules` and ~/package.json`) ([issue](https://github.com/eslint/eslint/issues/11914))
-  - [blue](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#blue) needs `blue` to be installed with `pip`, and `~/.config/bin` should be in `PATH`
+  - [blue](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#blue) needs `blue` to be installed with `pip`, and `/home/{user}/.local/bin` should be in `PATH`
+  - [stylua](https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#stylua) needs `stylua` in `$PATH` (e.g. in `~/.local/bin`) from [releases](https://github.com/JohnnyMorganz/StyLua/releases)
 
 ## Interface
 > plugins that provides useful interfaces

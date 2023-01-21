@@ -15,6 +15,7 @@ local snip = {
 
 local auto = {
     subs = {
+        h = '\\texttt\\#',
 		no = '\\varnothing',
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
@@ -41,6 +42,7 @@ local auto = {
         t = { '\\textsf', '{', '}' },
 		g = { '\\tag', '{\\sf ', '}' },
         f = { '\\frac', '{', '}' },
+        an = { '', '\\langle ', '\\rangle' },
         im = '\\implies',
         rm = { '\\mathrm', '{', '}' },
         atan = { '\\mathrm{atan}', '(', ')' },
@@ -118,9 +120,9 @@ return pack({
 }), pack({
     {
         s('u ', { t('$'), i(0), t('$') }),
-        s('uu ', { t('$$'), i(0), t('$$') }),
+        s('uu ', fmta('$$\n<>\n$$', { i(0) })),
         s('ud ', { t('$\\displaystyle'), i(0), t('$') }),
-        s(lead_rtrig('det(%l*)'), fmt('<details {}open><summary>{}</summary>\n</details>',{
+        s(lead_rtrig('det(%l*)'), fmt('<details {}open>\n<summary>{}</summary>\n</details>',{
             f(function(_, snip)
                 local cap = snip.captures[1]
                 return cap:len() > 0 and string.format('class="%s" ', cap) or ''
@@ -174,5 +176,8 @@ return pack({
             }) end)
         })
     end),
+    s(lead_rtrig('c(%l+)'), {
+        t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
+    }),
 })
 

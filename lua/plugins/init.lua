@@ -46,9 +46,10 @@ local which = require('plugins.whichkey')
 local register = which.register
 
 -- plugin setups, sorted alphabetically
-require('plugins.external.lsp')(register, which.lsp)
-require('plugins.external.null')
+require('plugins.external.lsp')(register, which.attach)
+require('plugins.external.null')(register, which.attach)
 require('plugins.external.dap')(register, which.dap)
+require('plugins.external.dapui')(register, which.dapui)
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')(which.cmp)
