@@ -15,9 +15,12 @@ return {
         Visual = '. gray .',
     },
     git = {
-        DiffAdd = 'lime . .',
-        DiffChange = 'orange . .',
-        DiffDelete = 'pink . .',
+        DiffAdd = 'lime - .',
+        DiffChange = 'orange - .',
+        DiffDelete = 'pink - u',
+        GitSignsAdd = '@DiffAdd',
+        GitSignsChange = '@DiffChange',
+        GitSignsDelete = '@DiffDelete',
     },
     syntax = {
         Comment = 'gray . i',
