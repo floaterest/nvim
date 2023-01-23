@@ -30,6 +30,7 @@ require('packer').startup(function(use)
 
     use 'kyazdani42/nvim-web-devicons'
 	use 'akinsho/bufferline.nvim'
+    use 'lewis6991/gitsigns.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim'
@@ -60,6 +61,7 @@ require('plugins.behavior.surround')
 require('plugins.behavior.telescope')(register, which.telescope)
 
 require('plugins.interface.bufferline')
+require('plugins.interface.gitsigns')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
 require('plugins.interface.nvim-tree')(register, which.nvimtree)
