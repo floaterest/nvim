@@ -17,6 +17,7 @@ return {
     git = {
         DiffAdd = 'lime - .',
         DiffChange = 'orange - .',
+        -- it shows above the deleted lines
         DiffDelete = 'pink - u',
         GitSignsAdd = '@DiffAdd',
         GitSignsChange = '@DiffChange',
