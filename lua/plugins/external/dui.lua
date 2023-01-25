@@ -6,7 +6,6 @@ local config = require("dapui.config")
 local render = require("dapui.render")
 local ui_state = require("dapui.state")()
 
-
 local M = {
 	elements = {
         -- order matters
