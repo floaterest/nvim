@@ -29,6 +29,7 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
 
     use 'kyazdani42/nvim-web-devicons'
+    use 'lukas-reineke/virt-column.nvim'
 	use 'akinsho/bufferline.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
@@ -67,4 +68,5 @@ require('plugins.interface.lualine')
 require('plugins.interface.nvim-tree')(register, which.nvimtree)
 require('plugins.interface.scrollbar')
 require('plugins.interface.treesitter')
+require('plugins.interface.virtcolumn')
 
