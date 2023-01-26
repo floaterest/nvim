@@ -5,10 +5,10 @@ local icons = {
     git_placement = 'signcolumn',
     glyphs = {
         git = {
-            unstaged = 'M', -- modified
+            unstaged = 'M',
             staged = 'S',
             renamed = 'R',
-            unmerged = 'U', -- haven't seen this yet
+            unmerged = 'U', 
             deleted = 'D',
             untracked = 'U',
         },
@@ -33,3 +33,4 @@ return function(register, keymaps)
     })
     register(keymaps, api)
 end
+

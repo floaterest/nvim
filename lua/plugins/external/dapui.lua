@@ -9,3 +9,4 @@ return function(register, keymaps)
     dap.listeners.before.event_exited["dapui_config"] = dapui.close
     register(keymaps, dapui, dui)
 end
+

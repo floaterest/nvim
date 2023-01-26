@@ -43,3 +43,4 @@ o.wrap = false
 o.mouse = 'a'
 -- highlight all search results
 o.hlsearch = true
+

@@ -24,3 +24,4 @@ return {
     purple = '#a68cd9',
     cyan = '#66ffe6',
 }
+
