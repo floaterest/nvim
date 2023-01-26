@@ -8,9 +8,7 @@ local options = {
     -- will add server-specific options later
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 return function(register, attach)
     vim.tbl_map(function(server)
@@ -22,3 +20,4 @@ return function(register, attach)
         }, options[server] or {}))
     end, servers)
 end
+

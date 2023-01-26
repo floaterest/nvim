@@ -56,3 +56,4 @@ return function (client, buffer)
         K = { vim.lsp.buf.hover, 'Hover' },
     }, { buffer = buffer }}
 end
+

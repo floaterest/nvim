@@ -53,3 +53,4 @@ vim.cmd([[
     au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()
     command! LuaSnipEdit :lua require('luasnip.loaders.from_lua').edit_snippet_files()
 ]])
+

@@ -22,3 +22,4 @@ require('nvim-treesitter.configs').setup({
 vim.o.fdm = 'expr'
 vim.o.fde = 'nvim_treesitter#foldexpr()'
 vim.o.fdl = 99
+

@@ -67,3 +67,4 @@ require('plugins.interface.lualine')
 require('plugins.interface.nvim-tree')(register, which.nvimtree)
 require('plugins.interface.scrollbar')
 require('plugins.interface.treesitter')
+
