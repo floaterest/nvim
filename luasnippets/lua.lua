@@ -12,11 +12,10 @@ end
 local snips = {
     { 'fu', 'function <>\nend' },
     { 'lf', 'local function <>\nend' },
+    { 'if', 'if <> then\n\t<>\nend' },
+    { 'for', 'for <> in pairs(<>) do\n\t<>\nend' }
 }
 
-local autos = {
-    { 'if ', 'if <> then\n\t<>\nend' },
-    { 'for ', 'for <> in pairs(<>) do\n\t<>\nend' }
-}
+local autos = { }
 
 return map(snips, sfmta), map(autos, sfmta)
