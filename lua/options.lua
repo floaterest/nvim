@@ -1,5 +1,7 @@
 local o = vim.o
 
+-- set visual guide (colorcolumn)
+o.cc = '80'
 -- allow backspace
 o.bs = 'indent,eol,start'
 -- timeout in ms (e.g. for whichkey)
