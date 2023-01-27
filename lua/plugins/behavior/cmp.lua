@@ -34,4 +34,3 @@ return function(keymaps)
         })
     })
 end
-

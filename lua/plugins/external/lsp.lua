@@ -20,4 +20,3 @@ return function(register, attach)
         }, options[server] or {}))
     end, servers)
 end
-

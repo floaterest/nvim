@@ -33,4 +33,3 @@ endf
 
 command! HiFile call HiFile()
 command! SynGroup call SynGroup()
-

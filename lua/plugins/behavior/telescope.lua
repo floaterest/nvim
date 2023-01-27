@@ -16,4 +16,3 @@ require('telescope').setup({
 return function(register, keymaps)
     register(keymaps, builtin)
 end
-

@@ -185,4 +185,3 @@ function M.telescope(builtin) return {
 return {
     setup = M.setup
 }
-

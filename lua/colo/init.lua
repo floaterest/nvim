@@ -39,4 +39,3 @@ for _, highlight in pairs(syn) do
         hi(group, line)
     end
 end
-
