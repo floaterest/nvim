@@ -70,4 +70,3 @@ for name, hls in colors.items():
 ```
 
 </details>
-

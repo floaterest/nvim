@@ -8,7 +8,7 @@ local icons = {
             unstaged = 'M',
             staged = 'S',
             renamed = 'R',
-            unmerged = 'U', 
+            unmerged = 'U',
             deleted = 'D',
             untracked = 'U',
         },
@@ -33,4 +33,3 @@ return function(register, keymaps)
     })
     register(keymaps, api)
 end
-

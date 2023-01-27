@@ -13,4 +13,3 @@ My neovim config (optionally uses neovide)
     - see [doc/colo.md](doc/colo.md) for details
   - [syntax.lua](lua/colo/syntax.lua) defines syntax highlightings with the colors from `colors.lua`
 - [lua/plugins/](lua/plugins/) has too much to explain, see [doc/plugins.md](doc/plugins.md)
-

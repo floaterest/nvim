@@ -19,4 +19,3 @@ local snips = {
 local autos = { }
 
 return map(snips, sfmta), map(autos, sfmta)
-
