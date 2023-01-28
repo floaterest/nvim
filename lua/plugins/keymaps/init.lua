@@ -14,6 +14,8 @@ function M.setup(which)
 
     M.which = which
     which.register({
+        L = { '<cmd>bn<cr>', 'Go to next' },
+        H = { '<cmd>bp<cr>' ,'Go to previous' },
         Y = { 'v$hy', 'Yank until EOL' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
@@ -22,8 +24,6 @@ function M.setup(which)
     })
 
     which.register({
-        L = { '<cmd>bn<cr>', 'Go to next' },
-        H = { '<cmd>bp<cr>' ,'Go to previous' },
         b = {
             name = '+buffer',
 
@@ -70,14 +70,12 @@ end
 function M.register(keymaps, ...)
     keymaps = type(keymaps) == 'function' and keymaps(...) or keymaps
 
-    local keymaps, opts = unpack((type(keymaps) == 'table' and keymaps[1]) and {
-        keymaps[1], keymaps[2]
-    } or {
-        keymaps, nil
-    })
+    local keymaps, opts = unpack(
+        (type(keymaps) == 'table' and keymaps[1]
+    ) and { keymaps[1], keymaps[2] } or { keymaps, nil })
 
     local t = type(keymaps)
-    if t == 'function'then
+    if t == 'function' then
         M.which.register(keymaps(...), opts)
     elseif t == 'table' then
         M.which.register(keymaps, opts)
@@ -90,8 +88,9 @@ M.attach = attach
 
 function M.cmp(cmp, luasnip)
     local function has_words_before()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+        local num, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local line = vim.api.nvim_buf_get_lines(0, num - 1, num, true)[1]
+        return col ~= 0 and line:sub(col, col):match('%s') == nil
     end
 
     local function tab(fallback)
@@ -159,18 +158,14 @@ function M.dapui(dapui, ui)
         r = { function() ui.toggle('repl') end, 'REPL' },
         c = { function() ui.toggle('console') end, 'Console' },
     }
-    return {
-        {
-            u = { dapui.toggle, 'Toggle UI' },
-            t = toggle
-        }, { prefix = '<leader>d' }
-    }
+    return { {
+        u = { dapui.toggle, 'Toggle UI' },
+        t = toggle
+    }, { prefix = '<leader>d' } }
 end
 
 function M.nvimtree(api) return {
-    {
-        t = { api.tree.toggle, 'Toggle tree' },
-    },
+    { t = { api.tree.toggle, 'Toggle tree' } },
     { prefix = '<leader>f' }
 } end
 
@@ -182,6 +177,4 @@ function M.telescope(builtin) return {
     { prefix = '<leader>f' }
 } end
 
-return {
-    setup = M.setup
-}
+return { setup = M.setup }
