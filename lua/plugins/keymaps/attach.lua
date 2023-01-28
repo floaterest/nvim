@@ -2,9 +2,7 @@ local function format()
     vim.lsp.buf.format({
         async = true,
         -- only use null-ls to format
-        filter = function(client)
-            return client.name == 'null-ls'
-        end
+        filter = function(client) return client.name == 'null-ls' end
     })
 end
 
@@ -44,7 +42,6 @@ return function (client, buffer)
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     local leader = { g = { name = '+goto' } }
-
     for method, keymap in pairs(methods) do
         if client.supports_method(method) then
             leader = vim.tbl_extend('force', leader, keymap)
