@@ -1,18 +1,16 @@
 local colors = require((...) .. '.colors')
 local syn = require((...) .. '.syntax')
 
-local styles = {
-    i = 'italic',
-    u = 'underline',
-    b = 'bold'
-}
+local styles = { i = 'italic', u = 'underline', b = 'bold' }
 
 local function hi(group, line)
-    local cmd = line:sub(1,1) == '@' and { 'hi!', 'link' } or { 'hi' }
+    -- build highlight command in vimscript
+    local link = line:sub(1,1) == '@'
+    local cmd =  link and { 'hi!', 'link' } or { 'hi' }
     cmd[#cmd + 1] = group
 
     -- if link
-    if line:sub(1,1) == '@' then
+    if link then
         cmd[#cmd + 1] = line:sub(2)
     else
         local t = {}
@@ -31,7 +29,6 @@ vim.cmd('hi clear')
 if vim.fn.exists('syntax_on') then vim.cmd('syn reset') end
 
 vim.o.bg = 'dark'
-vim.o.tgc = true
 vim.g.colors_name = 'custom'
 
 for _, highlight in pairs(syn) do
