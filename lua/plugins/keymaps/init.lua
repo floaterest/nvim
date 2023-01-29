@@ -128,11 +128,11 @@ function M.cmp(cmp, luasnip)
     }
 end
 
-function M.dap(dap) return { {
+function M.dap(dap) return {{
     name = '+debug',
     d = { dap.continue, 'Debug/Continue' },
     b = { dap.toggle_breakpoint, 'Toggle breakpoint' },
-}, { prefix = '<leader>d' } } end
+}, { prefix = '<leader>d' }} end
 
 function M.dapui(dapui, ui)
     --[[
@@ -158,10 +158,10 @@ function M.dapui(dapui, ui)
         r = { function() ui.toggle('repl') end, 'REPL' },
         c = { function() ui.toggle('console') end, 'Console' },
     }
-    return { {
+    return {{
         u = { dapui.toggle, 'Toggle UI' },
         t = toggle
-    }, { prefix = '<leader>d' } }
+    }, { prefix = '<leader>d' }}
 end
 
 function M.nvimtree(api) return {
