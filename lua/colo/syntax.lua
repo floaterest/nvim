@@ -1,3 +1,15 @@
+-- the first-level key names don't matter
+--[[ CFG for the values:
+
+           S -> <color> | <link>
+     <color> -> <fg> <bg> <decoration>
+      <link> -> @<hlgroup>
+  <fg>, <bg> -> [a-z]+ | . | -
+<decoration> -> u | b | i | . | -
+
+. means unset
+- means NONE
+--]]
 return {
     plugins = {
         IndentMarker = 'dark . .', -- indent_blankline
