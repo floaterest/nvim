@@ -1,4 +1,8 @@
 return {
+    plugins = {
+        IndentMarker = 'dark . .', -- indent_blankline
+        VirtColumn = 'dark . .', -- virt-column
+    }, 
     ui = {
         Conceal = '- - .',
         CursorLineNr = 'lightest darker b',
@@ -38,7 +42,6 @@ return {
         String = 'yellow . .',
         Type = 'sky . i',
     },
-    indent = { IndentMarker = 'dark . .' }, -- for indent_blankline
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
         NvimTreeIndentMarker = '@IndentMarker',
