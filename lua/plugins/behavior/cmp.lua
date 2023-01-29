@@ -2,17 +2,12 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
-)
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 local function notcomment()
     local context = require('cmp.config.context')
     -- don't cmp in command mode
-    if vim.api.nvim_get_mode().mode == 'c' then
-        return false
-    end
+    if vim.api.nvim_get_mode().mode == 'c' then return false end
     local treesitter = context.in_treesitter_capture('comment')
     local syntax = context.in_syntax_group('Comment')
     return not treesitter and not syntax
