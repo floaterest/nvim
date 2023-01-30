@@ -36,6 +36,7 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim'
     use 'nvim-treesitter/playground'
     use 'petertriho/nvim-scrollbar'
+    use 'uga-rosa/ccc.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     if bootstrap then require('packer').sync() end
@@ -60,6 +61,7 @@ require('plugins.behavior.surround')
 require('plugins.behavior.telescope')(register, which.telescope)
 
 require('plugins.interface.bufferline')
+require('plugins.interface.ccc')
 require('plugins.interface.gitsigns')
 require('plugins.interface.indentline')
 require('plugins.interface.lualine')
