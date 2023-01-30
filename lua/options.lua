@@ -1,5 +1,7 @@
 local o = vim.o
 
+-- reload file changes (autoread)
+o.ar = true
 -- keep visual indent on wrap
 o.bri = true
 -- allow backspace
