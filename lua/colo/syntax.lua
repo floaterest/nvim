@@ -55,18 +55,6 @@ return {
         Type = 'sky . i',
         Tag = 'pink . .',
     },
-    nvimtree = {
-        NvimTreeFolderIcon = 'yellow . .',
-        NvimTreeIndentMarker = '@IndentMarker',
-        NvimTreeRootFolder = 'yellow . .',
-        NvimTreeExecFile = '@Normal',
-        NvimTreeGitDirty = 'sky . .',
-        NvimTreeGitStaged = 'lime . .',
-        NvimTreeGitMerge = 'teal . .',
-        NvimTreeGitRenamed = 'teal . .',
-        NvimTreeGitNew = 'orange . .',
-        NvimTreeGitDeleted = '@Comment',
-    },
     treesitter = {
         ['@tag.delimiter'] = '@Delimiter',
         TSConstBuiltin = 'sky . .',
@@ -79,6 +67,18 @@ return {
         TSProperty = '- . .',
         TSVariableBuiltin = '@TSConstBuiltin',
         TSConstructor = '@TSConstBuiltin',
+    },
+    nvimtree = {
+        NvimTreeFolderIcon = 'yellow . .',
+        NvimTreeIndentMarker = '@IndentMarker',
+        NvimTreeRootFolder = 'yellow . .',
+        NvimTreeExecFile = '@Normal',
+        NvimTreeGitDirty = 'sky . .',
+        NvimTreeGitStaged = 'lime . .',
+        NvimTreeGitMerge = 'teal . .',
+        NvimTreeGitRenamed = 'teal . .',
+        NvimTreeGitNew = 'orange . .',
+        NvimTreeGitDeleted = '@Comment',
     },
     -- #region languages
     css = {
