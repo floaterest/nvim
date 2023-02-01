@@ -53,6 +53,7 @@ return {
         StorageClass = 'pink . .',
         String = 'yellow . .',
         Type = 'sky . i',
+        Tag = 'pink . .',
     },
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
@@ -67,6 +68,7 @@ return {
         NvimTreeGitDeleted = '@Comment',
     },
     treesitter = {
+        ['@tag.delimiter'] = '@Delimiter',
         TSConstBuiltin = 'sky . .',
         TSPunctBracket = '@Delimiter',
         TSField = '- - -',
