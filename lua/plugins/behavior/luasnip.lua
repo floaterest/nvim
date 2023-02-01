@@ -42,7 +42,7 @@ luasnip.config.set_config({
 })
 
 require('luasnip.loaders.from_lua').lazy_load()
-local path = { paths = { vim.fn.getcwd() .. '/.luasnippets/' }}
+local path = { paths = { vim.fn.getcwd() .. '/luasnippets/' }}
 require('luasnip.loaders.from_lua').load(path)
 
 vim.cmd([[
