@@ -15,6 +15,7 @@ local sources = {
     fo.eslint_d.with(eslint),
     fo.blue, -- I'll use black when it supports single quotes
     fo.stylua,
+    fo.jq,
 }
 
 return function(register, attach)
