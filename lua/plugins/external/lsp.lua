@@ -2,6 +2,7 @@ local lsconfig = require('lspconfig')
 local servers = {
     'tsserver',
     'pyright',
+    'svelte',
 }
 
 local options = {
