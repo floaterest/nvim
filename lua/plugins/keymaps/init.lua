@@ -41,6 +41,7 @@ function M.setup(which)
             s = { '<cmd>w<cr>', 'Save file' },
             S = { '<cmd>wa<cr>', 'Save all files' },
         },
+        g = { '<cmd>:LazyGit<cr>', 'Open lazygit' },
         w = {
             name = '+window',
             h = { '<c-w>h', 'Go to left' },
