@@ -1,12 +1,3 @@
-fu MarkdownSyntax()
-    setl filetype=markdown
-    setl syn=markdown
-endf
-
-au BufRead *.mdx call MarkdownSyntax()
-" checktime each 4000ms (to work with vim.o.autoread)
-au CursorHold * checktime
-
 " highlight the output of `:hi`
 " usage:
 " :redir > file
