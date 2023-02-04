@@ -1,15 +1,10 @@
 local luasnip = require('luasnip')
 
 luasnip.config.set_config({
-    history = true,
-    update_events = 'InsertLeave',
-    enable_autosnippets = true,
-    store_selection_keys = '<Tab>',
+    history = false, enable_autosnippets = true,
+    update_events = 'InsertLeave', store_selection_keys = '<Tab>',
     snip_env = {
-        s = luasnip.s,
-        sn = luasnip.sn,
-        t = luasnip.t,
-        i = luasnip.i,
+        s = luasnip.s, sn = luasnip.sn, t = luasnip.t, i = luasnip.i,
         f = require('luasnip.nodes.functionNode').F,
         d = require('luasnip.nodes.dynamicNode').D,
         l = require('luasnip.extras').lambda,
@@ -20,7 +15,7 @@ luasnip.config.set_config({
         pack = function(snippets)
             local t = {}
             for _, v in ipairs(snippets) do
-                if(type(v) == 'table') then
+                if type(v) == 'table' then
                     for _, w in ipairs(v) do
                         table.insert(t, w)
                     end
@@ -46,8 +41,9 @@ luasnip.config.set_config({
     }
 })
 
-require("luasnip.loaders.from_lua").lazy_load()
-require("luasnip.loaders.from_lua").load({paths = {vim.fn.getcwd() .. "/.luasnippets/"}})
+require('luasnip.loaders.from_lua').lazy_load()
+local path = { paths = { vim.fn.getcwd() .. '/.luasnippets/' }}
+require('luasnip.loaders.from_lua').load(path)
 
 vim.cmd([[
     au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()

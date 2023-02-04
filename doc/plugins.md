@@ -49,4 +49,3 @@ the needed external tools should be installed globally as NPM packages unless sp
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) gives better syntax highlighting through [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
 - [scrollbar](https://github.com/petertriho/nvim-scrollbar) shows scroll bar with diagnostics
 - [which-key](https://github.com/folke/which-key.nvim) shows possible key shortcuts to help with my goldfish memory
-

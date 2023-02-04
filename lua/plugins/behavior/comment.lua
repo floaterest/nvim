@@ -1,4 +1,2 @@
-require('Comment').setup({
-    sticky = false,
-    ignore = '^$', -- ignore empty lines
-})
+-- ignore empty lines
+require('Comment').setup({ sticky = false, ignore = '^$' })

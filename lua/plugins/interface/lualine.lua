@@ -27,35 +27,18 @@ local theme = {
 }
 
 local modes = {
-    NORMAL = 'No',
-    VISUAL = 'Vi',
-    ['V-LINE'] = 'VL',
-    ['V-BLOCK'] = 'VB',
-    SELECT = 'Se',
-    INSERT = 'In',
-    COMMAND = 'Co',
-    -- ex-mode
-    Terminal = 'Te',
-
-    ['O-PENDING'] = 'OP',
-    REPLACE = 'Re',
-    VREPLACE = 'VR',
+    NORMAL = 'No', INSERT = 'In', SELECT = 'Se',
+    VISUAL = 'Vi', ['V-LINE'] = 'VL', ['V-BLOCK'] = 'VB', VREPLACE = 'VR',
+    COMMAND = 'Co', Terminal = 'Te', ['O-PENDING'] = 'OP', REPLACE = 'Re',
     -- insert-normal insert-visual, insert-select
 }
 
-local mode = {
-    'mode',
-    fmt = function(s) return modes[s] or s end,
-}
-
+local mode = { 'mode', fmt = function(s) return modes[s] or s end }
 local filename = {
     'filename',
-    path = 1, -- relative path
-    symbols = {
-        modified = ' [+]',
-        readonly = ' [r]',
-        unnamed = '[untitled]',
-    }
+    -- relative path
+    path = 1, 
+    symbols = { modified = ' [+]', readonly = ' [r]', unnamed = '[untitled]' }
 }
 
 local function location()
@@ -73,12 +56,8 @@ lualine.setup({
         lualine_c = { filename, 'diagnostics' },
         lualine_x = { 'encoding', {
             'fileformat',
-            symbols = {
-                unix = 'LF',
-                dos = 'CRLF',
-                mac = 'CR'
-            }},
-        },
+            symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' }
+        }},
         lualine_y = { 'bo:filetype' },
         lualine_z = { location }
     },

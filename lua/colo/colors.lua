@@ -1,13 +1,13 @@
 -- see documentation for details
 return {
     black = '#000000',
-    darkest = '#121212',
-    darker = '#313131',
-    dark = '#575757',
+    darkest = '#141414',
+    darker = '#333333',
+    dark = '#585858',
     gray = '#7f7f7f',
-    light = '#a7a7a7',
-    lighter = '#cdcdcd',
-    lightest = '#ececec',
+    light = '#a6a6a6',
+    lighter = '#cbcbcb',
+    lightest = '#eaeaea',
     white = '#ffffff',
 
     red = '#c53943',
