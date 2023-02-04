@@ -3,8 +3,9 @@ fu MarkdownSyntax()
     setl syn=markdown
 endf
 
-" au InsertLeave,FocusLost *.* w
 au BufRead *.mdx call MarkdownSyntax()
+" checktime each 4000ms (to work with vim.o.autoread)
+au CursorHold * checktime
 
 " highlight the output of `:hi`
 " usage:
@@ -33,4 +34,3 @@ endf
 
 command! HiFile call HiFile()
 command! SynGroup call SynGroup()
-

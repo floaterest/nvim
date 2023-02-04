@@ -1,4 +1,20 @@
+-- the first-level key names don't matter
+--[[ CFG for the values:
+
+           S -> <color> | <link>
+     <color> -> <fg> <bg> <decoration>
+      <link> -> @<hlgroup>
+  <fg>, <bg> -> [a-z]+ | . | -
+<decoration> -> u | b | i | . | -
+
+. means unset
+- means NONE
+--]]
 return {
+    plugins = {
+        IndentMarker = 'dark . .', -- indent_blankline
+        VirtColumn = 'dark . .', -- virt-column
+    }, 
     ui = {
         Conceal = '- - .',
         CursorLineNr = 'lightest darker b',
@@ -15,9 +31,13 @@ return {
         Visual = '. gray .',
     },
     git = {
-        DiffAdd = 'lime . .',
-        DiffChange = 'orange . .',
-        DiffDelete = 'pink . .',
+        DiffAdd = 'lime - .',
+        DiffChange = 'orange - .',
+        -- it shows above the deleted lines
+        DiffDelete = 'pink - u',
+        GitSignsAdd = '@DiffAdd',
+        GitSignsChange = '@DiffChange',
+        GitSignsDelete = '@DiffDelete',
     },
     syntax = {
         Comment = 'gray . i',
@@ -34,7 +54,6 @@ return {
         String = 'yellow . .',
         Type = 'sky . i',
     },
-    indent = { IndentMarker = 'dark . .' }, -- for indent_blankline
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
         NvimTreeIndentMarker = '@IndentMarker',
