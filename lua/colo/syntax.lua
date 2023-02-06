@@ -55,9 +55,10 @@ return {
         Tag = 'pink . .',
     },
     treesitter = {
+        ['@function.builtin'] = 'sky . .',
+        ['@parameter'] = 'orange . .',
         ['@tag.delimiter'] = '@Delimiter',
         ['@tag.attribute'] = '@Type',
-        ['@function.builtin'] = 'sky . .',
         ['@type.builtin'] = '@Type',
     },
     nvimtree = {
