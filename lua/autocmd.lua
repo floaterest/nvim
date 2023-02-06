@@ -1,7 +1,7 @@
 local groups = { custom = {
     FocusGained = function() vim.cmd('checktime') end,
     [{ 'FocusLost', 'BufLeave' }] = function()
-        if vim.api.nvim_eval('&ft') == 'NvimTree' then return end
+        if vim.bo.bt ~= '' then return end
         vim.cmd('w')
     end
 } }
