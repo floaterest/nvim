@@ -1,3 +1,5 @@
+require('util.luasnip')()
+
 local function sfmta(_, table)
     local trig, a = unpack(table)
     local _, n = a:gsub('<>', '')

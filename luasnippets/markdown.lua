@@ -1,3 +1,5 @@
+require('util.luasnip')()
+
 local tab = '  '
 local leader = '\\'
 local lead_trig = function(t) return trig(leader .. t .. ' ') end
