@@ -2,7 +2,7 @@ local luasnip = require('luasnip')
 
 luasnip.config.set_config({
     history = false, enable_autosnippets = true,
-    update_events = 'InsertLeave', store_selection_keys = '<Tab>',
+    region_check_events = 'InsertEnter', store_selection_keys = '<tab>',
     snip_env = {
         s = luasnip.s, sn = luasnip.sn, t = luasnip.t, i = luasnip.i,
         f = require('luasnip.nodes.functionNode').F,
