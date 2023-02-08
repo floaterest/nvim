@@ -1,4 +1,22 @@
 local luasnip = require('luasnip')
+local fn = require('plenary.functional')
+
+s = luasnip.s
+t = luasnip.t
+i = luasnip.i
+f = require('luasnip.nodes.functionNode').F
+d = require('luasnip.nodes.dynamicNode').D
+l = require('luasnip.extras').lambda
+rep = require('luasnip.extras').rep
+fmt = require('luasnip.extras.fmt').fmt
+fmta = require('luasnip.extras.fmt').fmta
+trig = function(tr)
+    return { trig = tr, wordTrig = false }
+end
+rtrig = function(tr)
+    return { trig = tr, wordTrig = false, regTrig = true }
+end
+
 function pack(snippets)
     local t = {}
     for _, v in ipairs(snippets) do
@@ -21,23 +39,22 @@ function map(tt, f)
     return t
 end
 
-local t = {
-    s = luasnip.s, t = luasnip.t, i = luasnip.i,
-    f = require('luasnip.nodes.functionNode').F,
-    d = require('luasnip.nodes.dynamicNode').D,
-    l = require('luasnip.extras').lambda,
-    rep = require('luasnip.extras').rep,
-    fmt = require('luasnip.extras.fmt').fmt,
-    fmta = require('luasnip.extras.fmt').fmta,
-    pack = pack, map = map,
-    trig = function(tr)
-        return { trig = tr, wordTrig = false }
-    end,
-    rtrig = function(tr)
-        return { trig = tr, wordTrig = false, regTrig = true }
+local function ifmt(delimiters, trigger, template)
+    -- return snippet with each delimiter replaced by insert node
+    local _, n = template:gsub(delimiters, '')
+    local option = {}
+    for index = 1, n do
+        -- last index will be 0
+        option[index] = i(index % n)
     end
-}
-
-return function()
-    setfenv(2, vim.tbl_extend('force', _G, t))
+    return s(trigger, fmt(template, option, { delimiters = delimiters }))
 end
+
+ifmts = fn.partial(vim.tbl_map, function(tbl)
+    return ifmt('{}', unpack(tbl))
+end)
+ifmtas = fn.partial(vim.tbl_map, function(tbl)
+    return ifmt('<>', unpack(tbl))
+end)
+
+return setfenv(2, _G)
