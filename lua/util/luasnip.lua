@@ -1,5 +1,5 @@
 local luasnip = require('luasnip')
-local fn = require('plenary.functional')
+local func = require('plenary.functional')
 
 s = luasnip.s
 t = luasnip.t
@@ -50,10 +50,10 @@ local function ifmt(delimiters, trigger, template)
     return s(trigger, fmt(template, option, { delimiters = delimiters }))
 end
 
-ifmts = fn.partial(vim.tbl_map, function(tbl)
+ifmts = func.partial(vim.tbl_map, function(tbl)
     return ifmt('{}', unpack(tbl))
 end)
-ifmtas = fn.partial(vim.tbl_map, function(tbl)
+ifmtas = func.partial(vim.tbl_map, function(tbl)
     return ifmt('<>', unpack(tbl))
 end)
 
