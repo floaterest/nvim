@@ -8,8 +8,8 @@ luasnip.config.set_config({
 luasnip.filetype_extend('svelte', { 'typescript' })
 
 require('luasnip.loaders.from_lua').lazy_load()
-local path = { paths = { vim.fn.getcwd() .. '/luasnippets/' }}
-require('luasnip.loaders.from_lua').load(path)
+-- local path = { paths = { vim.fn.getcwd() .. '/luasnippets/' }}
+-- require('luasnip.loaders.from_lua').load(path)
 
 vim.cmd([[
     au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()
