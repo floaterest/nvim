@@ -39,8 +39,9 @@ function map(tt, f)
     return t
 end
 
-local function ifmta(trigger, template)
+ifmtas = func.partial(func.kv_map, function(kv)
     -- return snippet with each delimiter replaced by insert node
+    local trigger, template = unpack(kv)
     local _, n = template:gsub('<>', '')
     local option = {}
     for index = 1, n do
@@ -48,10 +49,6 @@ local function ifmta(trigger, template)
         option[index] = i(index % n)
     end
     return s(trigger, fmta(template, option, { delimiters = delimiters }))
-end
-
-ifmtas = func.partial(func.kv_map, function(kv)
-    return ifmta(unpack(kv))
 end)
 
 return setfenv(2, _G)
