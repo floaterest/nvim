@@ -1,7 +1,7 @@
 local luasnip = require('luasnip')
 
 luasnip.config.set_config({
-    history = false, enable_autosnippets = true,
+    history = false, enable_autosnippets = true, snip_env = {},
     region_check_events = 'InsertEnter', store_selection_keys = '<tab>',
 })
 
