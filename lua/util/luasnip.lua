@@ -39,22 +39,19 @@ function map(tt, f)
     return t
 end
 
-local function ifmt(delimiters, trigger, template)
+local function ifmta(trigger, template)
     -- return snippet with each delimiter replaced by insert node
-    local _, n = template:gsub(delimiters, '')
+    local _, n = template:gsub('<>', '')
     local option = {}
     for index = 1, n do
         -- last index will be 0
         option[index] = i(index % n)
     end
-    return s(trigger, fmt(template, option, { delimiters = delimiters }))
+    return s(trigger, fmta(template, option, { delimiters = delimiters }))
 end
 
-ifmts = func.partial(vim.tbl_map, function(tbl)
-    return ifmt('{}', unpack(tbl))
-end)
-ifmtas = func.partial(vim.tbl_map, function(tbl)
-    return ifmt('<>', unpack(tbl))
+ifmtas = func.partial(func.kv_map, function(kv)
+    return ifmta(unpack(kv))
 end)
 
 return setfenv(2, _G)
