@@ -48,7 +48,7 @@ ifmtas = func.partial(func.kv_map, function(kv)
         -- last index will be 0
         option[index] = i(index % n)
     end
-    return s(trigger, fmta(template, option, { delimiters = delimiters }))
+    return s(trigger, fmta(template, option))
 end)
 
 return setfenv(2, _G)
