@@ -39,9 +39,12 @@ function map(tt, f)
     return t
 end
 
-ifmtas = func.partial(func.kv_map, function(kv)
+function starmap(fun, t)
+    return func.kv_map(function(kv) return fun(unpack(kv)) end, t)
+end
+
+ifmtas = func.partial(starmap, function(trigger, template)
     -- return snippet with each delimiter replaced by insert node
-    local trigger, template = unpack(kv)
     local _, n = template:gsub('<>', '')
     local option = {}
     for index = 1, n do
