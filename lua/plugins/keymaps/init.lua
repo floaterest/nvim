@@ -26,21 +26,16 @@ function M.setup(which)
     which.register({
         b = {
             name = '+buffer',
-
-            ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
-            ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
-            ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
-            ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
-
             n = { '<cmd>bn<cr>', 'Go to next' },
             p = { '<cmd>bp<cr>' ,'Go to previous' },
-            d = { '<cmd>bd<cr>', 'Delete' }
+            d = { '<cmd>bd!<cr>', 'Delete' }
         },
         f = {
             name = '+file',
             s = { '<cmd>w<cr>', 'Save file' },
             S = { '<cmd>wa<cr>', 'Save all files' },
         },
+        g = { '<cmd>:LazyGit<cr>', 'Open lazygit' },
         w = {
             name = '+window',
             h = { '<c-w>h', 'Go to left' },

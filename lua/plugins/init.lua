@@ -21,12 +21,14 @@ require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
 
     use 'jose-elias-alvarez/null-ls.nvim'
+    use 'kdheepak/lazygit.nvim'
     use 'mfussenegger/nvim-dap-python'
     use 'mfussenegger/nvim-dap'
     use 'neovim/nvim-lspconfig'
     use 'rcarriga/nvim-dap-ui'
 
 	use 'akinsho/bufferline.nvim'
+    use 'dstein64/nvim-scrollview'
 	use 'folke/which-key.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'kyazdani42/nvim-web-devicons'
@@ -35,7 +37,6 @@ require('packer').startup(function(use)
     use 'lukas-reineke/virt-column.nvim'
     use 'nvim-lualine/lualine.nvim'
     use 'nvim-treesitter/playground'
-    use 'petertriho/nvim-scrollbar'
     use 'uga-rosa/ccc.nvim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
@@ -56,7 +57,7 @@ require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')(which.cmp)
 require('plugins.behavior.comment')
 require('plugins.behavior.luasnip')
-require('plugins.behavior.smooth')
+require('plugins.behavior.scroll')
 require('plugins.behavior.surround')
 require('plugins.behavior.telescope')(register, which.telescope)
 
