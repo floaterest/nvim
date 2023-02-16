@@ -14,6 +14,8 @@ o.cole = 2
 o.cot = 'menuone,noinsert,noselect'
 -- <tab> expands to spaces
 o.et = true
+-- format options
+o.fo = 'jcrql'
 -- allow multiple unsaved buffers
 o.hid = true
 -- no highlight after search
