@@ -18,16 +18,18 @@ o.et = true
 o.fo = 'jcrql'
 -- allow multiple unsaved buffers
 o.hid = true
--- no highlight after search
-o.hls = false
 -- highlight all search results
-o.hlsearch = true
+o.hls= true
+-- case insensitive search
+o.ic = true
 -- enable mouse
 o.mouse = 'a'
 -- current line number
 o.nu = true
 -- relative line number
 o.rnu = true
+-- use case sensitive search iff search contains upper case letters
+o.scs = true
 -- don't syntax highlight after 500 lines
 o.smc = 500
 -- don't show '-- insert --'
