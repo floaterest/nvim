@@ -45,7 +45,7 @@ local autos = {
     },
 }
 
-local languages = { 'java', 'rust' }
+local languages = { 'java', 'rs' }
 
 local function mat(_, snip)
     -- v for vertical bars (determinant)
@@ -141,8 +141,8 @@ local autosnippets = List.new({
     sleadr('int (%S+) (%S+) (%S+) ', fmt('\\int_{a}^{b}{}\\,d{var}', {
         a = numinf(1), b = numinf(2), i(0), var = l(l.CAPTURE3)
     })),
-    slead('beg', fmta('\\begin{<b>}\n\t<>\n\\end{<e>}', {
-        b = i(1), e = rep(1), i(0)
+    slead('beg', fmta('\\begin{<env>}\n\t<>\n\\end{<env>}', {
+        env = i(1), i(0)
     })),
     -- <details> with optional class
     sleadr('det(%l*) ', details(f(function(_, snip)
@@ -161,7 +161,7 @@ local autosnippets = List.new({
         ['u '] = '$<>$', ['uu '] = '$$\n<>\n$$', ['ud '] = '$\\displaystyle<>$',
     }),
     kv_slead(function(env) return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
-        env = env, d(1, function(_, parent)
+        env = t(env), d(1, function(_, parent)
             local raw = vim.tbl_map(function(_, line)
                 return tostring(line:gsub('^%$+', ''))
             end, parent.env.SELECT_RAW)
