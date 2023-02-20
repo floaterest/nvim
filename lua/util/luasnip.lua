@@ -16,15 +16,17 @@ function kv_map(fun, t)
     return func.kv_map(function(kv) return fun(unpack(kv)) end, t)
 end
 
-ifmtas = func.partial(kv_map, function(trigger, template)
+local function iformat(delim) return func.partial(kv_map, function(trig, templ)
     -- return snippet with each delimiter replaced by insert node
-    local _, n = template:gsub('<>', '')
+    local _, n = templ:gsub(delim, '')
     local option = {}
     for index = 1, n do
         -- last index will be 0
         option[index] = i(index % n)
     end
-    return s(trigger, fmta(template, option))
-end)
+    return s(trig, fmt(templ, option, { delimiters = delim }))
+end) end
 
+ifmtas = iformat('<>')
+ifmts = iformat('{}')
 return setfenv(2, _G)
