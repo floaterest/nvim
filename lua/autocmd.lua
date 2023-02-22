@@ -7,8 +7,9 @@ local commands = {
         end
     end
 }
- 
-vim.api.nvim_create_augroup('custom', { clear = true })
+
+local group = 'custom'
+vim.api.nvim_create_augroup(group, { clear = true })
 for events, callback in pairs(commands) do
     local opts = { group = group, callback = callback }
     -- https://neovim.io/doc/user/api.html#api-autocmd

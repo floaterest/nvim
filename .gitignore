@@ -1,10 +1,3 @@
-# GUI settings
-ginit.lua
-ginit.vim
-
-# test files
-*.json
-
 # compiled plugin
 /plugin/
 
