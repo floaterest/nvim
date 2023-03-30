@@ -21,7 +21,6 @@ require('packer').startup(function(use)
     use 'windwp/nvim-autopairs'
 
     use 'jose-elias-alvarez/null-ls.nvim'
-    use 'kdheepak/lazygit.nvim'
     use 'mfussenegger/nvim-dap-python'
     use 'mfussenegger/nvim-dap'
     use 'neovim/nvim-lspconfig'
