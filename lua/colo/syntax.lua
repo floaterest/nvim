@@ -14,7 +14,7 @@ return {
     plugins = {
         IndentMarker = 'dark . .', -- indent_blankline
         VirtColumn = 'dark . .', -- virt-column
-    }, 
+    },
     ui = {
         Conceal = '- - .',
         CursorLineNr = 'lightest darker b',
@@ -56,10 +56,12 @@ return {
     },
     treesitter = {
         ['@function.builtin'] = 'sky . .',
+        ['@function.macro'] = '@@function.builtin',
         ['@parameter'] = 'orange . .',
         ['@tag.delimiter'] = '@Delimiter',
         ['@tag.attribute'] = '@Type',
         ['@type.builtin'] = '@Type',
+        ['@variable.builtin'] = '@function.builtin',
     },
     nvimtree = {
         NvimTreeFolderIcon = 'yellow . .',
