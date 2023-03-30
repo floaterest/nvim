@@ -28,7 +28,7 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
 
 	use 'akinsho/bufferline.nvim'
-    use 'dstein64/nvim-scrollview'
+    use 'ggandor/leap.nvim'
 	use 'folke/which-key.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'kyazdani42/nvim-web-devicons'
@@ -52,6 +52,7 @@ require('plugins.external.dap')(register, which.dap)
 require('plugins.external.dapui')(register, which.dapui)
 require('plugins.external.lsp')(register, which.attach)
 require('plugins.external.null')(register, which.attach)
+require('leap').add_default_mappings()
 
 require('plugins.behavior.autopairs')
 require('plugins.behavior.cmp')(which.cmp)
