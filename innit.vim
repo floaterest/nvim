@@ -1,3 +1,6 @@
+" checktime each 4000ms (to work with vim.o.autoread)
+au CursorHold * checktime
+
 " highlight the output of `:hi`
 " usage:
 " :redir > file
