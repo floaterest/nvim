@@ -28,7 +28,7 @@ function M.setup(which)
             name = '+buffer',
             n = { '<cmd>bn<cr>', 'Go to next' },
             p = { '<cmd>bp<cr>' ,'Go to previous' },
-            d = { '<cmd>bd!<cr>', 'Delete' }
+            d = { '<cmd>bd<cr>', 'Delete' }
         },
         f = {
             name = '+file',
