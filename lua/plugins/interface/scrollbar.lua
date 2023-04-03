@@ -1,1 +1,1 @@
-require('scrollview').setup()
+require("scrollbar").setup()
