@@ -40,6 +40,8 @@ function M.setup(which)
             h = { '<c-w>h', 'Go to left' },
             l = { '<c-w>l', 'Go to right' },
             v = { '<c-w>v', 'Split' },
+            j = { '<c-w>j', 'Go to down' },
+            k = { '<c-w>k', 'Go to up' },
             s = { '<c-w>s', 'Split window vertically' },
             x = { '<c-w>x', 'Swap current with next' },
             q = { '<c-w>q', 'Quit a window' },
