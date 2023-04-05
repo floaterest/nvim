@@ -12,40 +12,57 @@ local snips = {
 
 local autos = {
     subs = {
+        -- Linear Algebra
+        ch = '\\textrm{char}',
+        sp = '\\textrm{sp}',
+        ra = '\\textrm{ran}',
+
+        -- Theory of Computation
 		no = '\\varnothing',
-        Sa = '\\Sigma^\\ast', Ga = '\\Gamma^\\ast',
-        ha = '\\htmlClass{accent}',
+        Sa = '\\Sigma^\\ast',
+        Ga = '\\Gamma^\\ast',
         a = '^\\ast',
-        S = '\\Sigma', G = '\\Gamma',
+        an = { '', '\\langle ', '\\rangle' },
+
+
+        -- Calculus
+        di = '\\textrm{div }',
+        cu = '\\textrm{curl }',
 
         p = '\\varphi', d = '\\delta', l = '\\lambda', e = '\\varepsilon',
+        S = '\\Sigma', G = '\\Gamma', P = '\\Phi',
+
         q = '\\quad', en = '\\enspace',
-        ex = '\\exists',
+
         tf = '\\therefore', bc = '\\because',
-        tff = '&\\therefore', bcc = '&\\because',
+        tF = '\\therefore&&', bC = '\\because&&',
+        tff = '\\therefore\\,&', bcc = '\\because\\,&',
+
+        fo = '\\forall', ex = '\\exists',
+
         qed = '\\quad\\blacksquare',
 
         st = '\\textsf{ st }',
+        tt = { '\\texttt', '{', '}' },
         t = { '\\textsf', '{', '}' },
-		g = { '\\tag', '{\\sf ', '}' },
+        i = '^{-1}',
+		g = { '\\tag', '{\sf', '}' },
         f = { '\\frac', '{', '}' },
-        an = { '', '\\langle ', '\\rangle' },
         im = '\\implies',
         rm = { '\\mathrm', '{', '}' },
         atan = { '\\mathrm{atan}', '(', ')' },
-        ob = { '\\overbrace', '{', '}' }, ub = { '\\underbrace', '{', '}' },
-        ol = '\\overline '
+        ob = { '\\overbrace', '{', '}' },
+        ub = { '\\underbrace', '{', '}' },
+        ol = '\\overline ',
+        ul = '\\underline ',
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
     },
     envs = {
         al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array',
-        pm = 'pmatrix', bm = 'bmatrix', vm = 'vmatrix',
     },
 }
-
-local languages = { 'java', 'rs' }
 
 local function mat(_, snip)
     -- v for vertical bars (determinant)
@@ -82,7 +99,9 @@ end) end
 local function numinf(n, space) return f(function(_, snip)
     -- num to num, f to infty
     local s = snip.captures[n]:gsub('^f$', '\\infty')
-    s = (not s:match('\\?%w+') and not space) and '{' .. s .. '}' or s
+    if s:len() ~= 1 and not s:match('^\\') then
+        s = '{' .. s .. '}'
+    end
     return (space and s:match('^%a')) and ' ' .. s or s
 end) end
 
@@ -111,6 +130,9 @@ end
 local snippets = List.new({
     -- v for determinant, %d for column count
     sleadr('(v?)mat(%d) (.+)', f(mat)),
+    sleadr('code(%l+)', {
+        t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
+    }),
 }):concat(
     kv_map(function(k, v) return s(k, t(v)) end, snips.symbols),
     vim.tbl_map(function(pair)
@@ -122,7 +144,16 @@ local snippets = List.new({
 
 local autosnippets = List.new({
     sleadr('bb(%l) ', fmt('\\mathbb {}', { l(l.CAPTURE1:upper()) })),
+    sleadr('bb(%l)(%S) ', fmt('\\mathbb {}^{}', {
+        l(l.CAPTURE1:upper()), l(l.CAPTURE2)
+    })),
     sleadr('cal(%l) ', fmt('\\mathcal {}', { l(l.CAPTURE1:upper()) })),
+    sleadr('cal(%l)(.) ', fmta('\\mathcal <>(<>)', {
+        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper())
+    })),
+    sleadr('cal(%l)(.)(.)', fmta('\\mathcal <>(<>,<>)', {
+        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()), l(l.CAPTURE3:upper())
+    })),
     sleadr('lim(%l)(%S+) ', fmta('\\lim_{<x>\\to<to>}', {
         x = l(l.CAPTURE1), to = numinf(2, true)
     })),
@@ -141,9 +172,6 @@ local autosnippets = List.new({
     sleadr('int (%S+) (%S+) (%S+) ', fmt('\\int_{a}^{b}{}\\,d{var}', {
         a = numinf(1), b = numinf(2), i(0), var = l(l.CAPTURE3)
     })),
-    slead('beg', fmta('\\begin{<env>}\n\t<>\n\\end{<env>}', {
-        env = i(1), i(0)
-    })),
     -- <details> with optional class
     sleadr('det(%l*) ', details(f(function(_, snip)
         local cap = snip.captures[1]
@@ -153,10 +181,6 @@ local autosnippets = List.new({
     kv_slead(function(class)
         return details(string.format('class="%s" ', class))
     end, autos.details),
-    vim.tbl_map(function(lang) return slead(
-        lang .. ' ',
-        fmt('<Code code="{code}" lang="{lang}"/>', { code = i(0), lang = lang }
-    )) end, languages),
     ifmtas({
         ['u '] = '$<>$', ['uu '] = '$$\n<>\n$$', ['ud '] = '$\\displaystyle<>$',
     }),
