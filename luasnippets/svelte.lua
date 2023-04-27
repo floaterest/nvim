@@ -1,5 +1,5 @@
 require('util.luasnip')
-List = require('plenary/collections/py_list')
+local List = require('plenary/collections/py_list')
 
 local snips = {
     ts = '<script lang="ts">\n\t{}\n</script>',
