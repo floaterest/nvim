@@ -13,8 +13,10 @@ local eslint = {
 local sources = {
     ca.eslint_d.with(eslint),
     fo.eslint_d.with(eslint),
-    fo.blue, -- I'll use black when it supports single quotes
-    fo.jq,
+    -- fo.jq,
+    fo.rustfmt,
+    fo.yapf,
+    fo.clang_format,
 }
 
 return function(register, attach)
