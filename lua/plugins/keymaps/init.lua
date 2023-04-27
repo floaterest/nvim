@@ -28,7 +28,7 @@ function M.setup(which)
             name = '+buffer',
             n = { '<cmd>bn<cr>', 'Go to next' },
             p = { '<cmd>bp<cr>' ,'Go to previous' },
-            d = { '<cmd>bd!<cr>', 'Delete' }
+            d = { '<cmd>bd<cr>', 'Delete' }
         },
         f = {
             name = '+file',
@@ -39,10 +39,12 @@ function M.setup(which)
             name = '+window',
             h = { '<c-w>h', 'Go to left' },
             l = { '<c-w>l', 'Go to right' },
-            v = { '<c-w>v', 'Split' },
-            s = { '<c-w>s', 'Split window vertically' },
-            x = { '<c-w>x', 'Swap current with next' },
-            q = { '<c-w>q', 'Quit a window' },
+            v = { '<c-w>v', 'Split vertically' },
+            j = { '<c-w>j', 'Go to down' },
+            k = { '<c-w>k', 'Go to up' },
+            s = { '<c-w>s', 'Split horizontally' },
+            x = { '<c-w>x', 'Swap' },
+            q = { '<c-w>q', 'Quit' },
             ['>'] = { '<c-w>>', 'Increase Width' },
             ['<'] = { '<c-w><', 'Decrease Width' },
             ['='] = { '<c-w>=', 'Make equal size' },
@@ -167,6 +169,7 @@ function M.telescope(builtin) return {
     {
         f = { builtin.find_files, 'Find file' },
         b = { builtin.buffers, 'Find buffer'},
+        g = { builtin.live_grep, 'Live grep'},
     },
     { prefix = '<leader>f' }
 } end
