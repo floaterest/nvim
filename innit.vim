@@ -1,6 +1,8 @@
 " checktime each 4000ms (to work with vim.o.autoread)
 au CursorHold * checktime
 
+let $RUSTUP_TOOLCHAIN='stable'
+
 " highlight the output of `:hi`
 " usage:
 " :redir > file
