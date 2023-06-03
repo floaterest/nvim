@@ -17,6 +17,7 @@ function M.setup(which)
         L = { '<cmd>bn<cr>', 'Go to next' },
         H = { '<cmd>bp<cr>' ,'Go to previous' },
         Y = { 'v$hy', 'Yank until EOL' },
+        ['<c-s>'] = { vim.cmd.w, 'Save file' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
         ['<c-=>'] = { function() incfont(1) end, 'Increase font size' },
@@ -26,13 +27,19 @@ function M.setup(which)
     which.register({
         b = {
             name = '+buffer',
+
+            ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
+            ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
+            ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
+            ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
+
             n = { '<cmd>bn<cr>', 'Go to next' },
             p = { '<cmd>bp<cr>' ,'Go to previous' },
             d = { '<cmd>bd<cr>', 'Delete' }
         },
         f = {
             name = '+file',
-            s = { '<cmd>w<cr>', 'Save file' },
+            s = { vim.cmd.w , 'Save file' },
             S = { '<cmd>wa<cr>', 'Save all files' },
         },
         w = {
@@ -121,6 +128,11 @@ function M.cmp(cmp, luasnip)
         ['<c-f>'] = cmp.mapping.scroll_docs(4),
         ['<c-space>'] = cmp.mapping.complete(),
         ['<c-e>'] = cmp.mapping.abort(),
+        ["<CR>"] = cmp.mapping.confirm({
+            -- this is the important line
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          }),
     }
 end
 

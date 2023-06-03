@@ -14,20 +14,28 @@ local autos = {
     subs = {
         -- Linear Algebra
         ch = '\\textrm{char}',
-        sp = '\\textrm{sp}',
-        ra = '\\textrm{ran}',
+        sp = '\\operatorname{sp}',
+        ra = '\\operatorname{ran}',
+        si = '\\operatorname{sign}',
+        pe = '^\\perp',
+        s = '\\sigma',
+        -- ['in'] = '\\textrm{inv }',
 
         -- Theory of Computation
 		no = '\\varnothing',
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
-        a = '^\\ast',
+        mi = '_\\mathrm{min}',
+        a = '^*',
         an = { '', '\\langle ', '\\rangle' },
 
 
         -- Calculus
         di = '\\textrm{div }',
         cu = '\\textrm{curl }',
+        o = '\\omega',
+        W = '\\bigwedge',
+        w = '\\wedge',
 
         p = '\\varphi', d = '\\delta', l = '\\lambda', e = '\\varepsilon',
         S = '\\Sigma', G = '\\Gamma', P = '\\Phi',
@@ -40,21 +48,21 @@ local autos = {
 
         fo = '\\forall', ex = '\\exists',
 
-        qed = '\\quad\\blacksquare',
+        qed = '\\quad\\square',
 
         st = '\\textsf{ st }',
         tt = { '\\texttt', '{', '}' },
         t = { '\\textsf', '{', '}' },
         i = '^{-1}',
-		g = { '\\tag', '{\sf', '}' },
+		g = { '\\tag', '{\\sf', '}' },
         f = { '\\frac', '{', '}' },
         im = '\\implies',
         rm = { '\\mathrm', '{', '}' },
         atan = { '\\mathrm{atan}', '(', ')' },
         ob = { '\\overbrace', '{', '}' },
         ub = { '\\underbrace', '{', '}' },
-        ol = '\\overline ',
-        ul = '\\underline ',
+        ol = '\\overline',
+        ul = {'\\underline '},
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
