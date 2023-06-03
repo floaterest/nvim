@@ -20,7 +20,9 @@ return function(keymaps)
             expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         mapping = cmp.mapping.preset.insert(keymaps(cmp, luasnip)),
+
         sources = cmp.config.sources({
+            { name = "copilot" },
             { name = 'nvim_lua' }, -- one day I will develop my nvim config in nvim
             { name = 'nvim_lsp' },
             { name = 'luasnip' },

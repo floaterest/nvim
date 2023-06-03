@@ -14,22 +14,18 @@ o.cole = 2
 o.cot = 'menuone,noinsert,noselect'
 -- <tab> expands to spaces
 o.et = true
--- format options
-o.fo = 'jcrql'
 -- allow multiple unsaved buffers
 o.hid = true
+-- no highlight after search
+o.hls = false
 -- highlight all search results
-o.hls= true
--- case insensitive search
-o.ic = true
+o.hlsearch = true
 -- enable mouse
 o.mouse = 'a'
 -- current line number
 o.nu = true
 -- relative line number
 o.rnu = true
--- use case sensitive search iff search contains upper case letters
-o.scs = true
 -- don't syntax highlight after 500 lines
 o.smc = 500
 -- don't show '-- insert --'
