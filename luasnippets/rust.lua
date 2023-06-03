@@ -10,7 +10,9 @@ local macros = {
 
 local autos = {
     '.unwrap()',
+    '.enumerate()',
     '.collect()',
+    ' usize',
 }
 
 local autosnippets = vim.tbl_map(function(str)
