@@ -15,7 +15,7 @@ local sources = {
     fo.eslint_d.with(eslint),
     -- fo.jq,
     fo.rustfmt,
-    fo.yapf,
+    fo.blue,
     fo.clang_format,
 }
 
