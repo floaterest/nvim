@@ -16,6 +16,7 @@ local sources = {
     -- fo.jq,
     fo.rustfmt,
     fo.blue,
+    fo.fourmolu,
     fo.clang_format,
 }
 
