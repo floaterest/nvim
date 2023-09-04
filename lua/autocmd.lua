@@ -1,6 +1,6 @@
 local commands = {
     FocusGained = function() vim.cmd('checktime') end,
-    [{ 'FocusLost', 'BufLeave' }] = function(args)
+    [{ 'FocusLost', 'BufLeave', 'InsertLeave' }] = function(args)
         -- modified file with no buftype
         if vim.fn.getbufinfo(args.buf)[1].changed == 1 and vim.bo.bt == '' then
             vim.cmd.w()
