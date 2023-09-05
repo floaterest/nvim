@@ -12,7 +12,6 @@ local languages = {
 require('nvim-treesitter.configs').setup({
     ensure_installed = languages,
     highlight = { enable = true },
-    indent = { enable = true },
     playground = { enable = true },
 })
 
