@@ -6,7 +6,7 @@
 local languages = {
     'astro', 'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'jsonc', 'lua',
     'markdown', 'python', 'regex', 'rust', 'svelte', 'toml', 'typescript',
-    'vim', 'yaml'
+    'vim', 'yaml', 'haskell'
 }
 
 require('nvim-treesitter.configs').setup({
