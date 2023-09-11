@@ -7,11 +7,13 @@ local lsconfig = require('lspconfig')
 --     telemetry = { enable = false },
 -- }
 
-local rust = { ['rust-analyzer']= {
-    diagnostics = {
-        disabled = { 'inactive-code' },
-    },
-} }
+local rust = {
+    ['rust-analyzer'] = {
+        diagnostics = {
+            disabled = { 'inactive-code' },
+        },
+    }
+}
 
 local haskell = {
     formattingProvider = "fourmolu",
