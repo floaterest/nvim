@@ -32,6 +32,7 @@ local servers = {
 }
 
 local function exists(config)
+    -- check if binary exists
     local binary = config.document_config.default_config.cmd[1]
     return vim.fn.executable(binary) == 1
 end
