@@ -9,9 +9,7 @@ local lsconfig = require('lspconfig')
 
 local rust = {
     ['rust-analyzer'] = {
-        diagnostics = {
-            disabled = { 'inactive-code' },
-        },
+        diagnostics = { disabled = { 'inactive-code' } },
     }
 }
 
@@ -24,10 +22,7 @@ local servers = {
     pyright = {},
     svelte = {},
     clangd = {},
-    hls = {
-        filetypes = { 'haskell', 'lhaskell', 'cabal' },
-        haskell = haskell,
-    },
+    hls = { haskell = haskell },
     rust_analyzer = { settings = rust },
 }
 
