@@ -28,12 +28,7 @@ local commands = {
 
 
 local leader = '\\'
-local function sw(trig, ...)
-    return s({ trig = trig, wordTrig = false }, ...)
-end
-local function swr(trig, ...)
-    return s({ trig = trig, wordTrig = false, regTrig = true }, ...)
-end
+
 local function slead(trig, ...)
     return s({ trig = leader .. trig, wordTrig = false }, ...)
 end
