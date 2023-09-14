@@ -3,11 +3,30 @@ require('util.luasnip')
 
 local snips = {
     symbols = {
-        bc = '∵', conj = '∧', disj = '∨', exi = '∃', inf = '∞',
-        ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
-        l = 'λ', P = 'Π', equiv  = '≡', S = 'Σ', G = 'Γ', D = 'Δ',
-        bot = '⊥', no = '∅',
-        un = '⋃', it = '⋂', eps = 'ε', neg = '¬', ['in'] = '∈',
+        bc = '∵',
+        conj = '∧',
+        disj = '∨',
+        exi = '∃',
+        inf = '∞',
+        ne = '≠',
+        nexi = '∄',
+        nin = '∉',
+        sqrt = '√',
+        tf = '∴',
+        uni = '∀',
+        l = 'λ',
+        P = 'Π',
+        equiv = '≡',
+        S = 'Σ',
+        G = 'Γ',
+        D = 'Δ',
+        bot = '⊥',
+        no = '∅',
+        un = '⋃',
+        it = '⋂',
+        eps = 'ε',
+        neg = '¬',
+        ['in'] = '∈',
     },
     pairs = { '()', '[]', '||' },
 }
@@ -24,7 +43,7 @@ local autos = {
         -- ['in'] = '\\textrm{inv }',
 
         -- Theory of Computation
-		no = '\\varnothing',
+        no = '\\varnothing',
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
         mi = '_\\mathrm{min}',
@@ -39,16 +58,26 @@ local autos = {
         W = '\\bigwedge',
         w = '\\wedge',
 
-        p = '\\varphi', d = '\\delta', l = '\\lambda', e = '\\varepsilon',
-        S = '\\Sigma', G = '\\Gamma', P = '\\Phi',
+        p = '\\varphi',
+        d = '\\delta',
+        l = '\\lambda',
+        e = '\\varepsilon',
+        S = '\\Sigma',
+        G = '\\Gamma',
+        P = '\\Phi',
 
-        q = '\\quad', en = '\\enspace',
+        q = '\\quad',
+        en = '\\enspace',
 
-        tf = '\\therefore', bc = '\\because',
-        tF = '\\therefore&&', bC = '\\because&&',
-        tff = '\\therefore\\,&', bcc = '\\because\\,&',
+        tf = '\\therefore',
+        bc = '\\because',
+        tF = '\\therefore&&',
+        bC = '\\because&&',
+        tff = '\\therefore\\,&',
+        bcc = '\\because\\,&',
 
-        fo = '\\forall', ex = '\\exists',
+        fo = '\\forall',
+        ex = '\\exists',
 
         qed = '\\quad\\square',
 
@@ -56,7 +85,7 @@ local autos = {
         tt = { '\\texttt', '{', '}' },
         t = { '\\textsf', '{', '}' },
         i = '^{-1}',
-		g = { '\\tag', '{\\sf', '}' },
+        g = { '\\tag', '{\\sf', '}' },
         f = { '\\frac', '{', '}' },
         im = '\\implies',
         rm = { '\\mathrm', '{', '}' },
@@ -64,7 +93,7 @@ local autos = {
         ob = { '\\overbrace', '{', '}' },
         ub = { '\\underbrace', '{', '}' },
         ol = '\\overline',
-        ul = {'\\underline '},
+        ul = { '\\underline ' },
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
@@ -94,26 +123,30 @@ local function mat(_, snip)
     return table.concat(content, '')
 end
 
-local function partial(n) return f(function(_, snip)
-    -- partial derivative
-    local a = snip.captures[n]
-    local b = snip.captures[n + 1]
-    -- if numerator
-    if b then
-        return (b:len() == 1 and '\\partial ' or '\\partial^' .. b:len()) .. a
-    else
-        return a:gsub('(%d)', '^%1'):gsub('(%l)', '\\partial %1')
-    end
-end) end
+local function partial(n)
+    return f(function(_, snip)
+        -- partial derivative
+        local a = snip.captures[n]
+        local b = snip.captures[n + 1]
+        -- if numerator
+        if b then
+            return (b:len() == 1 and '\\partial ' or '\\partial^' .. b:len()) .. a
+        else
+            return a:gsub('(%d)', '^%1'):gsub('(%l)', '\\partial %1')
+        end
+    end)
+end
 
-local function numinf(n, space) return f(function(_, snip)
-    -- num to num, f to infty
-    local s = snip.captures[n]:gsub('^f$', '\\infty')
-    if s:len() ~= 1 and not s:match('^\\') then
-        s = '{' .. s .. '}'
-    end
-    return (space and s:match('^%a')) and ' ' .. s or s
-end) end
+local function numinf(n, space)
+    return f(function(_, snip)
+        -- num to num, f to infty
+        local s = snip.captures[n]:gsub('^f$', '\\infty')
+        if s:len() ~= 1 and not s:match('^\\') then
+            s = '{' .. s .. '}'
+        end
+        return (space and s:match('^%a')) and ' ' .. s or s
+    end)
+end
 
 local function details(attr)
     local opts = { attr = attr, i(0) }
@@ -147,7 +180,7 @@ local snippets = List.new({
     kv_map(function(k, v) return s(k, t(v)) end, snips.symbols),
     vim.tbl_map(function(pair)
         return sw(pair, fmt('\\left{l}{}\\right{r}', {
-            l = pair:sub(1, #pair/2), r = pair:sub(#pair/2+1, #pair), i(0)
+            l = pair:sub(1, #pair / 2), r = pair:sub(#pair / 2 + 1, #pair), i(0)
         }))
     end, snips.pairs)
 )
@@ -178,7 +211,7 @@ local autosnippets = List.new({
     sleadr('sum(%l)(%d)(%w+) ', fmta('\\sum_{<i>=<a>}^<b>', {
         i = l(l.CAPTURE1), a = l(l.CAPTURE2), b = numinf(3)
     })),
-    sleadr('int(%l) ', fmt('\\int{}\\,d{x}', { x = l(l.CAPTURE1), i(0)})),
+    sleadr('int(%l) ', fmt('\\int{}\\,d{x}', { x = l(l.CAPTURE1), i(0) })),
     sleadr('int (%S+) (%S+) (%S+) ', fmt('\\int_{a}^{b}{}\\,d{var}', {
         a = numinf(1), b = numinf(2), i(0), var = l(l.CAPTURE3)
     })),
@@ -194,22 +227,29 @@ local autosnippets = List.new({
     ifmtas({
         ['u '] = '$<>$', ['uu '] = '$$\n<>\n$$', ['ud '] = '$\\displaystyle<>$',
     }),
-    kv_slead(function(env) return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
-        env = t(env), d(1, function(_, parent)
-            local raw = vim.tbl_map(function(_, line)
-                return tostring(line:gsub('^%$+', ''))
-            end, parent.env.SELECT_RAW)
-            return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
-        end)
-    }) end, autos.envs),
-    kv_slead(function(sub) return type(sub) == 'string' and t(sub) or {
-        t(sub[1]),
-        d(1, function(_, parent) return sn(nil, {
-            t(sub[2]),
-            (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
-            t(sub[3])
-        }) end)
-    } end,autos.subs)
+    kv_slead(function(env)
+        return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
+            env = t(env),
+            d(1, function(_, parent)
+                local raw = vim.tbl_map(function(_, line)
+                    return tostring(line:gsub('^%$+', ''))
+                end, parent.env.SELECT_RAW)
+                return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
+            end)
+        })
+    end, autos.envs),
+    kv_slead(function(sub)
+        return type(sub) == 'string' and t(sub) or {
+            t(sub[1]),
+            d(1, function(_, parent)
+                return sn(nil, {
+                    t(sub[2]),
+                    (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
+                    t(sub[3])
+                })
+            end)
+        }
+    end, autos.subs)
 )
 
 return snippets, autosnippets
