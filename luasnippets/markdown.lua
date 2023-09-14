@@ -5,6 +5,8 @@ local snips = {
     symbols = {
         bc = '∵', conj = '∧', disj = '∨', exi = '∃', inf = '∞',
         ne = '≠', nexi = '∄', nin = '∉', sqrt = '√', tf = '∴',  uni = '∀',
+        l = 'λ', P = 'Π', equiv  = '≡', S = 'Σ', G = 'Γ', D = 'Δ',
+        bot = '⊥', no = '∅',
         un = '⋃', it = '⋂', eps = 'ε', neg = '¬', ['in'] = '∈',
     },
     pairs = { '()', '[]', '||' },
