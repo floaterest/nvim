@@ -7,7 +7,6 @@ local commands = {
     ss = { '\\subsection*', '{', '}' },
     sss = { '\\subsubsection*', '{', '}' },
     no = '\\varnothing',
-    a = '^\\ast',
 
     p = '\\varphi',
     im = '\\implies',
