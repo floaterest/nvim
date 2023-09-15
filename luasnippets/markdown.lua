@@ -48,14 +48,8 @@ local autos = {
         En = '\\mathcal E_\\neg',
         Es = '\\mathcal E_\\square',
         W = '\\mathcal W_p',
-        -- Linear Algebra
-        ch = '\\textrm{char}',
-        sp = '\\operatorname{sp}',
-        ra = '\\operatorname{ran}',
-        si = '\\operatorname{sign}',
-        pe = '^\\perp',
+
         s = '\\sigma',
-        -- ['in'] = '\\textrm{inv }',
 
         -- Theory of Computation
         no = '\\varnothing',
