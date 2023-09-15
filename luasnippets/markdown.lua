@@ -37,6 +37,17 @@ local snips = {
 
 local autos = {
     subs = {
+        -- logic
+        L = '\\mathcal L_p',
+        Ls = '\\mathcal L_p^s',
+        v = '\\vdash',
+        V = '\\vDash',
+        B = '\\mathcal B',
+        F = '\\{F,T\\}',
+        oo ={ '\\overline', '{\\overline ', '}'},
+        En = '\\mathcal E_\\neg',
+        Es = '\\mathcal E_\\square',
+        W = '\\mathcal W_p',
         -- Linear Algebra
         ch = '\\textrm{char}',
         sp = '\\operatorname{sp}',
@@ -59,7 +70,6 @@ local autos = {
         di = '\\textrm{div }',
         cu = '\\textrm{curl }',
         o = '\\omega',
-        W = '\\bigwedge',
         w = '\\wedge',
 
         p = '\\varphi',
