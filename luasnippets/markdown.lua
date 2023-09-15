@@ -49,14 +49,12 @@ local autos = {
         Es = '\\mathcal E_\\square',
         W = '\\mathcal W_p',
 
-        s = '\\sigma',
 
         -- Theory of Computation
         no = '\\varnothing',
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
         mi = '_\\mathrm{min}',
-        a = '^*',
         an = { '', '\\langle ', '\\rangle' },
 
 
@@ -65,14 +63,6 @@ local autos = {
         cu = '\\textrm{curl }',
         o = '\\omega',
         w = '\\wedge',
-
-        p = '\\varphi',
-        d = '\\delta',
-        l = '\\lambda',
-        e = '\\varepsilon',
-        S = '\\Sigma',
-        G = '\\Gamma',
-        P = '\\Phi',
 
         q = '\\quad',
         en = '\\enspace',
@@ -102,6 +92,18 @@ local autos = {
         ub = { '\\underbrace', '{', '}' },
         ol = '\\overline',
         ul = { '\\underline ' },
+
+        -- greek
+        a = '\\alpha',
+        b = '\\beta',
+        d = '\\delta',
+        e = '\\varepsilon',
+        G = '\\Gamma',
+        l = '\\lambda',
+        P = '\\Phi',
+        p = '\\varphi',
+        S = '\\Sigma',
+        s = '\\sigma',
     },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
