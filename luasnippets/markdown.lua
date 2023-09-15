@@ -3,30 +3,34 @@ require('util.luasnip')
 
 local snips = {
     symbols = {
+        -- logic
         bc = '∵',
+        tf = '∴',
         conj = '∧',
         disj = '∨',
-        exi = '∃',
-        inf = '∞',
-        ne = '≠',
-        nexi = '∄',
-        nin = '∉',
-        sqrt = '√',
-        tf = '∴',
         uni = '∀',
+        exi = '∃',
+        nexi = '∄',
+        equiv = '≡',
+        neg = '¬',
+        ne = '≠',
+        -- set theory
+        no = '∅',
+        ['in'] = '∈',
+        nin = '∉',
+        un = '⋃',
+        it = '⋂',
+        -- greek
         l = 'λ',
         P = 'Π',
-        equiv = '≡',
         S = 'Σ',
         G = 'Γ',
         D = 'Δ',
+        e = 'ε',
+        -- misc
+        sqrt = '√',
+        inf = '∞',
         bot = '⊥',
-        no = '∅',
-        un = '⋃',
-        it = '⋂',
-        eps = 'ε',
-        neg = '¬',
-        ['in'] = '∈',
     },
     pairs = { '()', '[]', '||' },
 }
