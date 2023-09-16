@@ -51,10 +51,8 @@ local autos = {
 
 
         -- Theory of Computation
-        no = '\\varnothing',
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
-        mi = '_\\mathrm{min}',
         an = { '', '\\langle ', '\\rangle' },
 
 
@@ -92,7 +90,11 @@ local autos = {
         ub = { '\\underbrace', '{', '}' },
         ol = '\\overline',
         ul = { '\\underline ' },
-
+        -- set
+        no = '\\varnothing',
+        un = '\\cup',
+        Un = '\\bigcup',
+        mi = '\\setminus',
         -- greek
         a = '\\alpha',
         b = '\\beta',
