@@ -56,21 +56,20 @@ local autos = {
         fl = { '', '\\lfloor', '\\rfloor' },
         ce = { '', '\\lceil', '\\rceil'},
 
+        -- proof
         tf = '\\therefore',
         bc = '\\because',
         tF = '\\therefore&&',
         bC = '\\because&&',
         tff = '\\therefore\\,&',
         bcc = '\\because\\,&',
+        qed = '\\quad\\square',
+        f = { '\\frac', '{', '}' },
+        im = '\\implies',
+        i = '^{-1}',
 
         fo = '\\forall',
         ex = '\\exists',
-
-        qed = '\\quad\\square',
-
-        i = '^{-1}',
-        f = { '\\frac', '{', '}' },
-        im = '\\implies',
 
         -- typography
         q = '\\quad',
