@@ -238,8 +238,8 @@ local autosnippets = List.new({
         return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
             env = t(env),
             d(1, function(_, parent)
-                local raw = vim.tbl_map(function(_, line)
-                    return tostring(line:gsub('^%$+', ''))
+                local raw = vim.tbl_map(function(line)
+                    return '  ' .. line
                 end, parent.env.SELECT_RAW)
                 return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
             end)
