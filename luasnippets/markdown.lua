@@ -49,12 +49,12 @@ local autos = {
         Es = '\\mathcal E_\\square',
         W = '\\mathcal W_p',
 
-
-        -- Theory of Computation
+        -- computation
         Sa = '\\Sigma^\\ast',
         Ga = '\\Gamma^\\ast',
         an = { '', '\\langle ', '\\rangle' },
-
+        fl = { '', '\\lfloor', '\\rfloor' },
+        ce = { '', '\\lceil', '\\rceil'},
 
         -- Calculus
         di = '\\textrm{div }',
