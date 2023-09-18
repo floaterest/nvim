@@ -56,15 +56,6 @@ local autos = {
         fl = { '', '\\lfloor', '\\rfloor' },
         ce = { '', '\\lceil', '\\rceil'},
 
-        -- Calculus
-        di = '\\textrm{div }',
-        cu = '\\textrm{curl }',
-        o = '\\omega',
-        w = '\\wedge',
-
-        q = '\\quad',
-        en = '\\enspace',
-
         tf = '\\therefore',
         bc = '\\because',
         tF = '\\therefore&&',
@@ -77,19 +68,23 @@ local autos = {
 
         qed = '\\quad\\square',
 
-        st = '\\textsf{ st }',
-        tt = { '\\texttt', '{', '}' },
-        t = { '\\textsf', '{', '}' },
         i = '^{-1}',
-        g = { '\\tag', '{\\sf', '}' },
         f = { '\\frac', '{', '}' },
         im = '\\implies',
+
+        -- typography
+        q = '\\quad',
+        en = '\\enspace',
+        st = '\\text{ st }',
+        t = { '\\text', '{', '}' },
+        tt = { '\\texttt', '{', '}' },
         rm = { '\\mathrm', '{', '}' },
-        atan = { '\\mathrm{atan}', '(', ')' },
+        g = { '\\tag', '{', '}' },
         ob = { '\\overbrace', '{', '}' },
         ub = { '\\underbrace', '{', '}' },
         ol = '\\overline',
-        ul = { '\\underline ' },
+        ul = '\\underline',
+
         -- set
         no = '\\varnothing',
         un = '\\cup',
