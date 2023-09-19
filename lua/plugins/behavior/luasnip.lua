@@ -6,6 +6,7 @@ luasnip.config.set_config({
 })
 
 luasnip.filetype_extend('svelte', { 'typescript' })
+luasnip.filetype_extend('markdown', { 'tex' })
 
 require('luasnip.loaders.from_lua').lazy_load()
 -- local path = { paths = { vim.fn.getcwd() .. '/luasnippets/' }}
