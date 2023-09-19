@@ -38,10 +38,7 @@ local snips = {
 local autos = {
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
-    },
-    envs = {
-        al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array',
-    },
+    }
 }
 
 local function mat(_, snip)
@@ -168,18 +165,7 @@ local autosnippets = List.new({
     end, autos.details),
     ifmtas({
         ['u '] = '$<>$', ['uu '] = '$$\n<>\n$$', ['ud '] = '$\\displaystyle<>$',
-    }),
-    kv_slead(function(env)
-        return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
-            env = t(env),
-            d(1, function(_, parent)
-                local raw = vim.tbl_map(function(line)
-                    return '  ' .. line
-                end, parent.env.SELECT_RAW)
-                return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
-            end)
-        })
-    end, autos.envs)
+    })
 )
 
 return snippets, autosnippets

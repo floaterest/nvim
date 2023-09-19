@@ -68,6 +68,9 @@ local commands = {
     s = '\\sigma',
 }
 
+local environments = {
+    al = 'aligned', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
+}
 
 local leader = '\\'
 
@@ -83,10 +86,6 @@ local function kv_slead(fun, t)
         return slead(trig .. ' ', fun(snip))
     end, t)
 end
-
-local environments = {
-    al = 'aligned', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
-}
 
 
 local autosnippets = List.new({
@@ -109,8 +108,8 @@ local autosnippets = List.new({
         return fmta('\\begin{<env>}\n<>\n\\end{<env>}', {
             env = t(env),
             d(1, function(_, parent)
-                local raw = vim.tbl_map(function(_, line)
-                    return tostring(line:gsub('^%$+', ''))
+                local raw = vim.tbl_map(function(line)
+                    return '  ' .. line
                 end, parent.env.SELECT_RAW)
                 return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
             end)
