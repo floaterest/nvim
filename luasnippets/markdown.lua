@@ -44,7 +44,7 @@ local autos = {
         V = '\\vDash',
         B = '\\mathcal B',
         F = '\\{F,T\\}',
-        oo ={ '\\overline', '{\\overline ', '}'},
+        oo = { '\\overline', '{\\overline ', '}' },
         En = '\\mathcal E_\\neg',
         Es = '\\mathcal E_\\square',
         W = '\\mathcal W_p',
@@ -54,7 +54,7 @@ local autos = {
         Ga = '\\Gamma^\\ast',
         an = { '', '\\langle ', '\\rangle' },
         fl = { '', '\\lfloor', '\\rfloor' },
-        ce = { '', '\\lceil', '\\rceil'},
+        ce = { '', '\\lceil', '\\rceil' },
 
         -- proof
         tf = '\\therefore',
