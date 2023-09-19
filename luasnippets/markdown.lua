@@ -36,71 +36,6 @@ local snips = {
 }
 
 local autos = {
-    subs = {
-        -- logic
-        L = '\\mathcal L_p',
-        Ls = '\\mathcal L_p^s',
-        v = '\\vdash',
-        V = '\\vDash',
-        B = '\\mathcal B',
-        F = '\\{F,T\\}',
-        oo = { '\\overline', '{\\overline ', '}' },
-        En = '\\mathcal E_\\neg',
-        Es = '\\mathcal E_\\square',
-        W = '\\mathcal W_p',
-
-        -- computation
-        Sa = '\\Sigma^\\ast',
-        Ga = '\\Gamma^\\ast',
-        an = { '', '\\langle ', '\\rangle' },
-        fl = { '', '\\lfloor', '\\rfloor' },
-        ce = { '', '\\lceil', '\\rceil' },
-
-        -- proof
-        tf = '\\therefore',
-        bc = '\\because',
-        tF = '\\therefore&&',
-        bC = '\\because&&',
-        tff = '\\therefore\\,&',
-        bcc = '\\because\\,&',
-        qed = '\\quad\\square',
-        f = { '\\frac', '{', '}' },
-        im = '\\implies',
-        i = '^{-1}',
-
-        fo = '\\forall',
-        ex = '\\exists',
-
-        -- typography
-        q = '\\quad',
-        en = '\\enspace',
-        st = '\\text{ st }',
-        t = { '\\text', '{', '}' },
-        tt = { '\\texttt', '{', '}' },
-        rm = { '\\mathrm', '{', '}' },
-        g = { '\\tag', '{', '}' },
-        ob = { '\\overbrace', '{', '}' },
-        ub = { '\\underbrace', '{', '}' },
-        ol = '\\overline',
-        ul = '\\underline',
-
-        -- set
-        no = '\\varnothing',
-        un = '\\cup',
-        Un = '\\bigcup',
-        mi = '\\setminus',
-        -- greek
-        a = '\\alpha',
-        b = '\\beta',
-        d = '\\delta',
-        e = '\\varepsilon',
-        G = '\\Gamma',
-        l = '\\lambda',
-        P = '\\Phi',
-        p = '\\varphi',
-        S = '\\Sigma',
-        s = '\\sigma',
-    },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
     },
@@ -244,19 +179,7 @@ local autosnippets = List.new({
                 return sn(nil, #raw > 0 and t(raw) or { t('\t'), i(1) })
             end)
         })
-    end, autos.envs),
-    kv_slead(function(sub)
-        return type(sub) == 'string' and t(sub) or {
-            t(sub[1]),
-            d(1, function(_, parent)
-                return sn(nil, {
-                    t(sub[2]),
-                    (#parent.env.SELECT_RAW > 0) and t(parent.env.SELECT_RAW) or i(1),
-                    t(sub[3])
-                })
-            end)
-        }
-    end, autos.subs)
+    end, autos.envs)
 )
 
 return snippets, autosnippets
