@@ -35,10 +35,8 @@ local snips = {
     pairs = { '()', '[]', '||' },
 }
 
-local autos = {
-    details = {
-        def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
-    }
+local details = {
+    def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
 }
 
 local function mat(_, snip)
@@ -162,10 +160,7 @@ local autosnippets = List.new({
 }):concat(
     kv_slead(function(class)
         return details(string.format('class="%s" ', class))
-    end, autos.details),
-    ifmtas({
-        ['u '] = '$<>$', ['uu '] = '$$\n<>\n$$', ['ud '] = '$\\displaystyle<>$',
-    })
+    end, details)
 )
 
 return snippets, autosnippets
