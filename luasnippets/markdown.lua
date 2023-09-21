@@ -32,7 +32,6 @@ local snips = {
         inf = '∞',
         bot = '⊥',
     },
-    pairs = { '()', '[]', '||' },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
     }
@@ -64,9 +63,6 @@ local function details(attr)
 end
 
 local leader = '\\'
-local function sw(trig, ...)
-    return s({ trig = trig, wordTrig = false }, ...)
-end
 local function slead(trig, ...)
     return s({ trig = leader .. trig, wordTrig = false }, ...)
 end
@@ -87,12 +83,7 @@ local snippets = List.new({
         t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
     }),
 }):concat(
-    kv_map(function(k, v) return s(k, t(v)) end, snips.symbols),
-    vim.tbl_map(function(pair)
-        return sw(pair, fmt('\\left{l}{}\\right{r}', {
-            l = pair:sub(1, #pair / 2), r = pair:sub(#pair / 2 + 1, #pair), i(0)
-        }))
-    end, snips.pairs)
+    kv_map(function(k, v) return s(k, t(v)) end, snips.symbols)
 )
 
 local autosnippets = List.new({
