@@ -59,31 +59,6 @@ local function mat(_, snip)
     return table.concat(content, '')
 end
 
-local function partial(n)
-    return f(function(_, snip)
-        -- partial derivative
-        local a = snip.captures[n]
-        local b = snip.captures[n + 1]
-        -- if numerator
-        if b then
-            return (b:len() == 1 and '\\partial ' or '\\partial^' .. b:len()) .. a
-        else
-            return a:gsub('(%d)', '^%1'):gsub('(%l)', '\\partial %1')
-        end
-    end)
-end
-
-local function numinf(n, space)
-    return f(function(_, snip)
-        -- num to num, f to infty
-        local s = snip.captures[n]:gsub('^f$', '\\infty')
-        if s:len() ~= 1 and not s:match('^\\') then
-            s = '{' .. s .. '}'
-        end
-        return (space and s:match('^%a')) and ' ' .. s or s
-    end)
-end
-
 local function details(attr)
     local opts = { attr = attr, i(0) }
     return fmt('<details {attr}open>\n<summary>{}</summary>\n</details>', opts)
@@ -122,35 +97,6 @@ local snippets = List.new({
 )
 
 local autosnippets = List.new({
-    sleadr('bb(%l) ', fmt('\\mathbb {}', { l(l.CAPTURE1:upper()) })),
-    sleadr('bb(%l)(%S) ', fmt('\\mathbb {}^{}', {
-        l(l.CAPTURE1:upper()), l(l.CAPTURE2)
-    })),
-    sleadr('cal(%l) ', fmt('\\mathcal {}', { l(l.CAPTURE1:upper()) })),
-    sleadr('cal(%l)(.) ', fmta('\\mathcal <>(<>)', {
-        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper())
-    })),
-    sleadr('cal(%l)(.)(.)', fmta('\\mathcal <>(<>,<>)', {
-        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()), l(l.CAPTURE3:upper())
-    })),
-    sleadr('lim(%l)(%S+) ', fmta('\\lim_{<x>\\to<to>}', {
-        x = l(l.CAPTURE1), to = numinf(2, true)
-    })),
-    -- derivative in Leibniz's notation
-    sleadr('der(%l)(%l)', fmta('\\frac{d<>}{d<>}', {
-        l(l.CAPTURE1), l(l.CAPTURE2)
-    })),
-    -- partial derivative
-    sleadr('(d?)par([^t])(%w+) ', fmta('\\<>frac{<>}{<>}', {
-        l(l.CAPTURE1), partial(2), partial(3)
-    })),
-    sleadr('sum(%l)(%d)(%w+) ', fmta('\\sum_{<i>=<a>}^<b>', {
-        i = l(l.CAPTURE1), a = l(l.CAPTURE2), b = numinf(3)
-    })),
-    sleadr('int(%l) ', fmt('\\int{}\\,d{x}', { x = l(l.CAPTURE1), i(0) })),
-    sleadr('int (%S+) (%S+) (%S+) ', fmt('\\int_{a}^{b}{}\\,d{var}', {
-        a = numinf(1), b = numinf(2), i(0), var = l(l.CAPTURE3)
-    })),
     -- <details> with optional class
     sleadr('det(%l*) ', details(f(function(_, snip)
         local cap = snip.captures[1]
