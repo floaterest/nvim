@@ -93,6 +93,28 @@ local function kv_slead(fun, t)
     end, t)
 end
 
+
+local function mat(_, snip)
+    -- v for vertical bars (determinant)
+    local columns = tonumber(snip.captures[2])
+    local env = snip.captures[1] == 'v' and 'vmatrix' or 'pmatrix'
+    local content = { '\\begin{' .. env .. '}' }
+    local i, line = 1, ''
+    -- for each space-separated tokens
+    for s in snip.captures[3]:gmatch('%S+') do
+        if i % columns == 0 then
+            content[#content + 1] = line .. s .. '\\\\'
+            line = ''
+        else
+            line = line .. s .. '&'
+        end
+        i = i + 1
+    end
+    content[#content + 1] = '\\end{' .. env .. '}'
+    return table.concat(content, '')
+end
+
+
 local function partial(n)
     return f(function(_, snip)
         -- partial derivative
@@ -119,7 +141,9 @@ local function numinf(n, space)
 end
 
 
-local snippets = List.new({}):concat(
+local snippets = List.new({
+    sleadr('(v?)mat(%d) (.+)', f(mat))
+}):concat(
     vim.tbl_map(function(pair)
         return sw(pair, fmt('\\left{l}{}\\right{r}', {
             l = pair:sub(1, #pair / 2), r = pair:sub(#pair / 2 + 1, #pair), i(0)
