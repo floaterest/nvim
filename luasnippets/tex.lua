@@ -72,8 +72,14 @@ local environments = {
     al = 'aligned', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
 }
 
+local pairs = { '()', '[]', '||' }
+
+
 local leader = '\\'
 
+local function sw(trig, ...)
+    return s({ trig = trig, wordTrig = false }, ...)
+end
 local function slead(trig, ...)
     return s({ trig = leader .. trig, wordTrig = false }, ...)
 end
@@ -112,6 +118,14 @@ local function numinf(n, space)
     end)
 end
 
+
+local snippets = List.new({}):concat(
+    vim.tbl_map(function(pair)
+        return sw(pair, fmt('\\left{l}{}\\right{r}', {
+            l = pair:sub(1, #pair / 2), r = pair:sub(#pair / 2 + 1, #pair), i(0)
+        }))
+    end, pairs)
+)
 
 local autosnippets = List.new({
     sleadr('bb(%l) ', fmt('\\mathbb {}', { l(l.CAPTURE1:upper()) })),
@@ -175,4 +189,4 @@ local autosnippets = List.new({
     end, commands)
 )
 
-return {}, autosnippets
+return snippets, autosnippets
