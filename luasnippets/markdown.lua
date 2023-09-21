@@ -57,7 +57,6 @@ local function kv_slead(fun, t)
 end
 
 local snippets = List.new({
-    -- v for determinant, %d for column count
     sleadr('code(%l+)', {
         t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
     }),

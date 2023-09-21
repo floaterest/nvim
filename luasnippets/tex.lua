@@ -142,6 +142,7 @@ end
 
 
 local snippets = List.new({
+    -- v for determinant, %d for column count
     sleadr('(v?)mat(%d) (.+)', f(mat))
 }):concat(
     vim.tbl_map(function(pair)
