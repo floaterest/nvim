@@ -37,26 +37,6 @@ local snips = {
     }
 }
 
-local function mat(_, snip)
-    -- v for vertical bars (determinant)
-    local columns = tonumber(snip.captures[2])
-    local env = snip.captures[1] == 'v' and 'vmatrix' or 'pmatrix'
-    local content = { '\\begin{' .. env .. '}' }
-    local i, line = 1, ''
-    -- for each space-separated tokens
-    for s in snip.captures[3]:gmatch('%S+') do
-        if i % columns == 0 then
-            content[#content + 1] = line .. s .. '\\\\'
-            line = ''
-        else
-            line = line .. s .. '&'
-        end
-        i = i + 1
-    end
-    content[#content + 1] = '\\end{' .. env .. '}'
-    return table.concat(content, '')
-end
-
 local function details(attr)
     local opts = { attr = attr, i(0) }
     return fmt('<details {attr}open>\n<summary>{}</summary>\n</details>', opts)
@@ -78,7 +58,6 @@ end
 
 local snippets = List.new({
     -- v for determinant, %d for column count
-    sleadr('(v?)mat(%d) (.+)', f(mat)),
     sleadr('code(%l+)', {
         t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
     }),
