@@ -33,10 +33,9 @@ local snips = {
         bot = '⊥',
     },
     pairs = { '()', '[]', '||' },
-}
-
-local details = {
-    def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
+    details = {
+        def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
+    }
 }
 
 local function mat(_, snip)
@@ -106,7 +105,7 @@ local autosnippets = List.new({
 }):concat(
     kv_slead(function(class)
         return details(string.format('class="%s" ', class))
-    end, details)
+    end, snips.details)
 )
 
 return snippets, autosnippets
