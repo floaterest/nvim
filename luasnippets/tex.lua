@@ -69,7 +69,7 @@ local commands = {
 }
 
 local environments = {
-    al = 'aligned', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
+    al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
 }
 
 local pairs = { '()', '[]', '||' }
