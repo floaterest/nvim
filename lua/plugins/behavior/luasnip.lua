@@ -13,7 +13,9 @@ require('luasnip.loaders.from_lua').lazy_load()
 -- require('luasnip.loaders.from_lua').lazy_load(path)
 -- require('luasnip.loaders.from_lua').lazy_load('./luasnippets')
 
-vim.cmd([[
-    au BufWritePost */luasnippets/*.lua :lua require('luasnip.loaders.from_lua').lazy_load()
-    command! LuaSnipEdit :lua require('luasnip.loaders.from_lua').edit_snippet_files()
-]])
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = '*/luasnippets/*.lua',
+    callback = function() require('luasnip.loaders.from_lua').lazy_load() end
+})
+
+vim.api.nvim_create_user_command('LuaSnipEdit', function() require('luasnip.loaders.from_lua').edit_snippet_files()end, {})
