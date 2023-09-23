@@ -1,2 +1,2 @@
 -- see syntax.lua for IndentMarker
-require("ibl").setup()
+require("ibl").setup({ indent = { highlight = { 'IndentMarker' } }})
