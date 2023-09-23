@@ -1,69 +1,48 @@
-local install = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer = 'git@github.com:wbthomason/packer.nvim'
-local cmd = { 'git', 'clone', '--depth', '1', packer, install }
-local bootstrap = vim.fn.empty(vim.fn.glob(install)) > 0 and vim.fn.system(cmd)
+local lazy = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazy) then
+    local repo = 'git@github.com:folke/lazy.nvim.git'
+    -- latest stable release
+    vim.fn.system({ 'git', 'clone', '--filter=blob:none', repo, '--branch=stable', lazy })
+end
+vim.opt.rtp:prepend(lazy)
 
-require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+require('lazy').setup({
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/nvim-cmp',
+    'kylechui/nvim-surround',
+    'L3MON4D3/LuaSnip',
+    'numToStr/Comment.nvim',
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'saadparwaiz1/cmp_luasnip',
+    'windwp/nvim-autopairs',
 
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/nvim-cmp'
-    use 'kylechui/nvim-surround'
-    use 'L3MON4D3/LuaSnip'
-    use 'numToStr/Comment.nvim'
-    use 'nvim-lua/plenary.nvim'
-    use 'nvim-telescope/telescope.nvim'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'windwp/nvim-autopairs'
+    'neovim/nvim-lspconfig',
+    'jose-elias-alvarez/null-ls.nvim',
+    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui',
+    'mfussenegger/nvim-dap-python',
 
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'mfussenegger/nvim-dap-python'
-    use 'mfussenegger/nvim-dap'
-    use 'neovim/nvim-lspconfig'
-    use 'rcarriga/nvim-dap-ui'
+    'akinsho/bufferline.nvim',
+    'ggandor/leap.nvim',
+    'folke/which-key.nvim',
+    'kyazdani42/nvim-tree.lua',
+    'kyazdani42/nvim-web-devicons',
 
-    use 'akinsho/bufferline.nvim'
-    use 'ggandor/leap.nvim'
-    use 'folke/which-key.nvim'
-    use 'kyazdani42/nvim-tree.lua'
-    use 'kyazdani42/nvim-web-devicons'
-    -- use {
-    --     "zbirenbaum/copilot.lua",
-    --     cmd = "Copilot",
-    --     event = "InsertEnter",
-    --     config = function()
-    --       require("copilot").setup({
-    --         suggestion = { enabled = false },
-    --         panel = { enabled = false },
-    --       })
-    --     end,
-    --   }
-    -- use {
-    --   "zbirenbaum/copilot-cmp",
-    --   after = { "copilot.lua" },
-    --   config = function ()
-    --     require("copilot_cmp").setup()
-    --   end
-    -- }
+    'stevearc/dressing.nvim',
+    'lewis6991/gitsigns.nvim',
+    'lukas-reineke/indent-blankline.nvim',
+    'lukas-reineke/virt-column.nvim',
+    'nvim-lualine/lualine.nvim',
+    'nvim-treesitter/playground',
+    'petertriho/nvim-scrollbar',
+    'uga-rosa/ccc.nvim',
+    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+})
 
-    -- use 'github/copilot.vim'
-    -- use 'hrsh7th/cmp-copilot'
-    use 'stevearc/dressing.nvim'
-    use 'lewis6991/gitsigns.nvim'
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-    use 'lukas-reineke/indent-blankline.nvim'
-    use 'lukas-reineke/virt-column.nvim'
-    use 'nvim-lualine/lualine.nvim'
-    use 'nvim-treesitter/playground'
-    use 'petertriho/nvim-scrollbar'
-    use 'uga-rosa/ccc.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-    if bootstrap then require('packer').sync() end
-end)
 
 -- prepare keymaps first
 local which = require('plugins.whichkey')
