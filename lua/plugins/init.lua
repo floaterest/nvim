@@ -71,9 +71,3 @@ require('plugins.interface.nvim-tree')(register, which.nvimtree)
 require('plugins.interface.scrollbar')
 require('plugins.interface.treesitter')
 require('plugins.interface.virtcolumn')
-
-vim.g.copilot_filetypes = {
-    xml = false,
-    markdown = false,
-    json = false,
-}
