@@ -40,7 +40,7 @@ require('lazy').setup({
     'nvim-treesitter/playground',
     'petertriho/nvim-scrollbar',
     'uga-rosa/ccc.nvim',
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter', cmd = 'TSUpdate' },
 })
 
 
