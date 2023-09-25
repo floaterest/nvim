@@ -22,9 +22,9 @@ require('lazy').setup({
 
     'neovim/nvim-lspconfig',
     'jose-elias-alvarez/null-ls.nvim',
-    'mfussenegger/nvim-dap',
-    'rcarriga/nvim-dap-ui',
-    'mfussenegger/nvim-dap-python',
+    -- 'mfussenegger/nvim-dap',
+    -- 'rcarriga/nvim-dap-ui',
+    -- 'mfussenegger/nvim-dap-python',
 
     'akinsho/bufferline.nvim',
     'ggandor/leap.nvim',
