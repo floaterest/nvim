@@ -8,9 +8,9 @@ vim.opt.rtp:prepend(lazy)
 
 require('lazy').setup({
     'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lua',
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
+    { 'hrsh7th/cmp-nvim-lsp', lazy = true },
+    { 'hrsh7th/cmp-nvim-lua', lazy = true },
     'hrsh7th/nvim-cmp',
     'kylechui/nvim-surround',
     'L3MON4D3/LuaSnip',
@@ -20,8 +20,8 @@ require('lazy').setup({
     'saadparwaiz1/cmp_luasnip',
     'windwp/nvim-autopairs',
 
-    'neovim/nvim-lspconfig',
-    'jose-elias-alvarez/null-ls.nvim',
+    { 'neovim/nvim-lspconfig', lazy = true },
+    { 'jose-elias-alvarez/null-ls.nvim', lazy = true },
     -- 'mfussenegger/nvim-dap',
     -- 'rcarriga/nvim-dap-ui',
     -- 'mfussenegger/nvim-dap-python',
@@ -37,7 +37,7 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     'lukas-reineke/virt-column.nvim',
     'nvim-lualine/lualine.nvim',
-    'nvim-treesitter/playground',
+    { 'nvim-treesitter/playground', lazy = true },
     'petertriho/nvim-scrollbar',
     'uga-rosa/ccc.nvim',
     'nvim-treesitter/nvim-treesitter',
