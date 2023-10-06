@@ -1,5 +1,3 @@
-vim.cmd('ru! innit.vim')
-
 require('colo')
 require('autocmd')
 require('options')

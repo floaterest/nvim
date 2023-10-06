@@ -6,6 +6,8 @@ local commands = {
             vim.cmd.w()
         end
     end
+    -- enable autoread
+    CursorHold = function() vim.cmd.checkt() end,
 }
 
 local group = 'custom'
