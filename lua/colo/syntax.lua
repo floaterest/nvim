@@ -60,6 +60,7 @@ return {
         ['@parameter'] = 'orange . .',
         ['@tag.delimiter'] = '@Delimiter',
         ['@tag.attribute'] = '@Type',
+        ['@text.literal.block'] = 'lighter . .',
         ['@type.builtin'] = '@Type',
         ['@variable.builtin'] = '@function.builtin',
     },
