@@ -7,26 +7,38 @@ local lsconfig = require('lspconfig')
 --     telemetry = { enable = false },
 -- }
 
-local rust = { ['rust-analyzer']= {
-    diagnostics = {
-        disabled = { 'inactive-code' },
-    },
-} }
+local rust = {
+    ['rust-analyzer'] = {
+        diagnostics = { disabled = { 'inactive-code' } },
+    }
+}
+
+local haskell = {
+    formattingProvider = "fourmolu",
+}
 
 local servers = {
     tsserver = {},
     pyright = {},
     svelte = {},
     clangd = {},
+    hls = { haskell = haskell },
     rust_analyzer = { settings = rust },
 }
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local function exists(config)
+    -- check if binary exists
+    local binary = config.document_config.default_config.cmd[1]
+    return vim.fn.executable(binary) == 1
+end
 
 return function(register, attach)
     local onatt = function(client, buffer) register(attach, client, buffer) end
-    local opts = { on_attach = onatt, capabilities = capabilities }
+    local opts = { on_attach = onatt }
     func.kv_map(function(kv)
         local server, options = unpack(kv)
-        lsconfig[server].setup(vim.tbl_extend('error', opts, options))
+        if exists(lsconfig[server]) then
+            return lsconfig[server].setup(vim.tbl_extend('error', opts, options))
+        end
     end, servers)
 end
