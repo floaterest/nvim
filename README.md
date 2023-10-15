@@ -12,4 +12,4 @@ My neovim config (optionally uses neovide)
   - [colors.lua](lua/colo/colors.lua) exports color names with their RGB values to other lua scripts to create a custom colorscheme
     - see [doc/colo.md](doc/colo.md) for details
   - [syntax.lua](lua/colo/syntax.lua) defines syntax highlightings with the colors from `colors.lua`
-- [lua/plugins/](lua/plugins/) has too much to explain, see [doc/plugins.md](doc/plugins.md)
+- [lua/plugins/](lua/plugins/) has plugins
