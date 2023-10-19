@@ -32,6 +32,7 @@ require('lazy').setup({
     'stevearc/dressing.nvim',
     'uga-rosa/ccc.nvim',
     'windwp/nvim-autopairs',
+    { 'echasnovski/mini.nvim', version = false },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
     { 'hrsh7th/cmp-nvim-lsp', lazy = true },
     { 'hrsh7th/cmp-nvim-lua', lazy = true },
