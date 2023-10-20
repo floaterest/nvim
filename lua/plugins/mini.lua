@@ -24,3 +24,7 @@ require('mini.surround').setup({
         suffix_next = 'n',
     }
 })
+
+require('mini.pairs').setup()
+
+require('mini.tabline').setup()
