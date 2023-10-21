@@ -31,7 +31,6 @@ require('lazy').setup({
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
     'uga-rosa/ccc.nvim',
-    'windwp/nvim-autopairs',
     { 'echasnovski/mini.nvim', version = false },
     { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
     { 'hrsh7th/cmp-nvim-lsp', lazy = true },
@@ -50,7 +49,6 @@ local register = which.register
 -- require('plugins.dap')(register, which.dap)
 -- require('plugins.dapui')(register, which.dapui)
 require('leap').add_default_mappings()
-require('plugins.autopairs')
 require('plugins.bufferline')
 require('plugins.ccc')
 require('plugins.cmp')(which.cmp)
