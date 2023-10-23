@@ -21,7 +21,6 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'lukas-reineke/virt-column.nvim',
-    'numToStr/Comment.nvim',
     'nvim-lua/plenary.nvim',
     'nvim-lualine/lualine.nvim',
     'nvim-telescope/telescope.nvim',
@@ -48,7 +47,6 @@ local register = which.register
 -- require('plugins.dapui')(register, which.dapui)
 require('leap').add_default_mappings()
 require('plugins.cmp')(which.cmp)
-require('plugins.comment')
 require('plugins.gitsigns')
 require('plugins.indentline')
 require('plugins.lsp')(register, which.attach)
