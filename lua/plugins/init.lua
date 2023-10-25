@@ -19,7 +19,6 @@ require('lazy').setup({
     'kylechui/nvim-surround',
     'L3MON4D3/LuaSnip',
     'lewis6991/gitsigns.nvim',
-    'lukas-reineke/indent-blankline.nvim',
     'lukas-reineke/virt-column.nvim',
     'nvim-lua/plenary.nvim',
     'nvim-lualine/lualine.nvim',
@@ -48,7 +47,6 @@ local register = which.register
 require('leap').add_default_mappings()
 require('plugins.cmp')(which.cmp)
 require('plugins.gitsigns')
-require('plugins.indentline')
 require('plugins.lsp')(register, which.attach)
 require('plugins.lualine')
 require('plugins.luasnip')

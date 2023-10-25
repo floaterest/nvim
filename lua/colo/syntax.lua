@@ -12,7 +12,6 @@
 --]]
 return {
     plugins = {
-        IndentMarker = 'dark . .', -- indent_blankline
         VirtColumn = 'dark . .', -- virt-column
     },
     ui = {
