@@ -16,7 +16,6 @@ require('lazy').setup({
     'hrsh7th/nvim-cmp',
     'kyazdani42/nvim-tree.lua',
     'kyazdani42/nvim-web-devicons',
-    'kylechui/nvim-surround',
     'L3MON4D3/LuaSnip',
     'lewis6991/gitsigns.nvim',
     'lukas-reineke/virt-column.nvim',
@@ -54,7 +53,6 @@ require('plugins.mini')
 require('plugins.null')(register, which.attach)
 require('plugins.nvim-tree')(register, which.nvimtree)
 require('plugins.scrollbar')
-require('plugins.surround')
 require('plugins.telescope')(register, which.telescope)
 require('plugins.treesitter')
 require('plugins.virtcolumn')
