@@ -17,6 +17,7 @@ require('lazy').setup({
     'kyazdani42/nvim-tree.lua',
     'kyazdani42/nvim-web-devicons',
     'L3MON4D3/LuaSnip',
+    'kdheepak/lazygit.nvim',
     'lewis6991/gitsigns.nvim',
     'lukas-reineke/virt-column.nvim',
     'nvim-lua/plenary.nvim',
@@ -39,6 +40,8 @@ require('lazy').setup({
 -- prepare keymaps first
 local which = require('plugins.whichkey')
 local register = which.register
+local lazygit = require('lazygit')
+which.register({ ['<leader>g'] = { lazygit.lazygit, 'Open LazyGit' } })
 
 -- plugin setups, sorted alphabetically
 -- require('plugins.dap')(register, which.dap)
