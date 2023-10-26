@@ -24,6 +24,7 @@ require('lazy').setup({
     'L3MON4D3/LuaSnip',
     'lewis6991/gitsigns.nvim',
     'lukas-reineke/virt-column.nvim',
+    'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'nvim-lualine/lualine.nvim',
     'nvim-telescope/telescope.nvim',
@@ -32,7 +33,6 @@ require('lazy').setup({
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
     { 'echasnovski/mini.nvim', version = false },
-    { 'neovim/nvim-lspconfig', lazy = true },
     { 'nvim-treesitter/playground', lazy = true },
 })
 
