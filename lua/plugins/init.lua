@@ -32,6 +32,7 @@ require('lazy').setup({
     'petertriho/nvim-scrollbar',
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
+    { 'folke/noice.nvim', event = 'VeryLazy' }
     { 'echasnovski/mini.nvim', version = false },
     { 'nvim-treesitter/playground', lazy = true },
 })
@@ -53,6 +54,7 @@ require('plugins.lsp')(register, which.attach)
 require('plugins.lualine')
 require('plugins.luasnip')
 require('plugins.mini')
+require('plugins.noice')
 require('plugins.null')(register, which.attach)
 require('plugins.nvim-tree')(register, which.nvimtree)
 require('plugins.scrollbar')
