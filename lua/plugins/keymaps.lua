@@ -37,7 +37,7 @@ local methods = {
     }
 }
 
-return function (client, buffer)
+local function attach(client, buffer)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(buffer, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
