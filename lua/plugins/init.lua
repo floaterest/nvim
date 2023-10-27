@@ -32,7 +32,11 @@ require('lazy').setup({
     'petertriho/nvim-scrollbar',
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
-    { 'folke/noice.nvim', event = 'VeryLazy' }
+    {
+        'folke/noice.nvim',
+        event = 'VeryLazy',
+        dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' }
+    },
     { 'echasnovski/mini.nvim', version = false },
     { 'nvim-treesitter/playground', lazy = true },
 })
