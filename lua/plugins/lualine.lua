@@ -37,7 +37,7 @@ local mode = { 'mode', fmt = function(s) return modes[s] or s end }
 local filename = {
     'filename',
     -- relative path
-    path = 1, 
+    path = 1,
     symbols = { modified = ' [+]', readonly = ' [r]', unnamed = '[untitled]' }
 }
 
@@ -54,11 +54,8 @@ lualine.setup({
         lualine_a = { mode },
         lualine_b = { 'branch' },
         lualine_c = { filename, 'diagnostics' },
-        lualine_x = { 'encoding', {
-            'fileformat',
-            symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' }
-        }},
-        lualine_y = { 'bo:filetype' },
+        lualine_x = { 'encoding' },
+        lualine_y = { 'filetype' },
         lualine_z = { location }
     },
     inactive_sections = {
