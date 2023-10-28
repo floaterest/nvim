@@ -15,6 +15,8 @@ require('nvim-treesitter.configs').setup({
     playground = { enable = true },
 })
 
+vim.treesitter.language.register('markdown', 'mdx')
+
 -- code folding
 vim.o.fdm = 'expr'
 vim.o.fde = 'nvim_treesitter#foldexpr()'
