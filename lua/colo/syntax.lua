@@ -27,7 +27,7 @@ return {
         Title = 'yellow . .',
         Underlined = 'yellow . u',
         VertSplit = 'light black .',
-        Visual = '. gray .',
+        Visual = '. dark .',
     },
     git = {
         DiffAdd = 'lime - .',
