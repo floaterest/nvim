@@ -5,7 +5,11 @@ local commands = {
         if vim.fn.getbufinfo(args.buf)[1].changed == 1 and vim.bo.bt == '' then
             vim.cmd.w()
         end
-    end
+    end,
+    TextYankPost = function()
+        -- highlight yanked text
+        vim.highlight.on_yank({ timeout = 500, on_visual = false })
+    end,
     -- enable autoread
     CursorHold = function() vim.cmd.checkt() end,
 }
