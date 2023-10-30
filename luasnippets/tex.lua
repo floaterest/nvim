@@ -51,10 +51,12 @@ local commands = {
     e = '\\varepsilon',
     G = '\\Gamma',
     l = '\\lambda',
+    o = '\\omega',
     P = '\\Phi',
     p = '\\varphi',
     S = '\\Sigma',
     s = '\\sigma',
+    T = '\\Theta',
 }
 
 local environments = {
