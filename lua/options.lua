@@ -1,48 +1,24 @@
 local o = vim.o
-
--- reload file changes (autoread)
-o.ar = true
--- keep visual indent on wrap
-o.bri = true
--- allow backspace
-o.bs = 'indent,eol,start'
--- set visual guide (colorcolumn)
-o.cc = '80'
--- conceal level
-o.cole = 2
--- complete option
-o.cot = 'menuone,noinsert,noselect'
--- <tab> expands to spaces
-o.et = true
--- allow multiple unsaved buffers
-o.hid = true
--- no highlight after search
-o.hls = false
--- highlight all search results
-o.hlsearch = true
--- enable mouse
-o.mouse = 'a'
--- current line number
-o.nu = true
--- relative line number
-o.rnu = true
--- don't syntax highlight after 500 lines
-o.smc = 500
--- don't show '-- insert --'
-o.smd = false
--- num of lines to keep above/below cursor
-o.so = 8
--- spaces per tab
-o.sts = 4
--- columns per shift
-o.sw = 4
--- no swap file
-o.swf = false
--- use 24-bit color
-o.tgc = true
--- timeout in ms (e.g. for whichkey)
-o.tm = 500
--- columns per tabstop
-o.ts = 4
--- no word wrap
-o.wrap = false
+o.ar = true -- reload file changes (autoread)
+o.bri = true -- keep visual indent on wrap
+o.bs = 'indent,eol,start' -- allow backspace
+o.cc = '80' -- set visual guide (colorcolumn)
+o.cole = 2 -- conceal level
+o.cot = 'menuone,noinsert,noselect' -- complete option
+o.et = true -- <tab> expands to spaces
+o.hid = true -- allow multiple unsaved buffers
+o.hls = false -- no highlight after search
+o.hlsearch = true -- highlight all search results
+o.mouse = 'a' -- enable mouse
+o.nu = true -- current line number
+o.rnu = true -- relative line number
+o.smc = 500 -- don't syntax highlight after 500 lines
+o.smd = false -- don't show '-- insert --'
+o.so = 8 -- num of lines to keep above/below cursor
+o.sts = 4 -- spaces per tab
+o.sw = 4 -- columns per shift
+o.swf = false -- no swap file
+o.tgc = true -- use 24-bit color
+o.tm = 500 -- timeout in ms (e.g. for whichkey)
+o.ts = 4 -- columns per tabstop
+o.wrap = false -- no word wrap
