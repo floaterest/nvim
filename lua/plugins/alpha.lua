@@ -1,7 +1,8 @@
 local context_manager = require('plenary.context_manager')
 local with = context_manager.with
 local open = context_manager.open
-local path = vim.fn.stdpath('config') .. '/alpha/neovim.txt'
+local scan = require('plenary.scandir').scan_dir
+local arts = scan(vim.fn.stdpath('config') .. '/alpha/')
 
 local header = {
     type = 'text',
@@ -12,7 +13,9 @@ local header = {
     }
 }
 
-with(open(path, 'r'), function(reader)
+-- RNG (?)
+local i = os.time() % #arts + 1
+with(open(arts[i], 'r'), function(reader)
     repeat
         local line = reader:read('*l')
         table.insert(header.val, line)
