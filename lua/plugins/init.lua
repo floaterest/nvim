@@ -10,6 +10,7 @@ require('lazy').setup({
     -- 'mfussenegger/nvim-dap-python',
     -- 'mfussenegger/nvim-dap',
     -- 'rcarriga/nvim-dap-ui',
+    'akinsho/bufferline.nvim',
     'folke/which-key.nvim',
     'ggandor/leap.nvim',
     'goolord/alpha-nvim',
@@ -54,6 +55,7 @@ which.register({ ['<leader>g'] = { lazygit.lazygit, 'Open LazyGit' } })
 -- require('plugins.dapui')(register, which.dapui)
 require('leap').add_default_mappings()
 require('plugins.alpha')
+require('plugins.bufferline')
 require('plugins.cmp')(which.cmp)
 require('plugins.gitsigns')
 require('plugins.lsp')(register, which.attach)
