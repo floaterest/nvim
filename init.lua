@@ -10,4 +10,10 @@ require('plugins')
 vim.g.do_filetype_lua = true
 vim.g.did_load_filetypes = true
 
+vim.filetype.add({
+    -- *.mdx is markdown
+    extension = { mdx = 'markdown' }
+})
+
+
 if vim.g.neovide then require('neovide') end
