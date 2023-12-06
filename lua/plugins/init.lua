@@ -7,40 +7,37 @@ end
 vim.opt.rtp:prepend(lazy)
 
 require('lazy').setup({
-    'hrsh7th/cmp-buffer',
-    { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
-    { 'hrsh7th/cmp-nvim-lsp', lazy = true },
-    { 'hrsh7th/cmp-nvim-lua', lazy = true },
-    'hrsh7th/nvim-cmp',
-    'kylechui/nvim-surround',
-    'L3MON4D3/LuaSnip',
-    'numToStr/Comment.nvim',
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'saadparwaiz1/cmp_luasnip',
-    'windwp/nvim-autopairs',
-
-    { 'neovim/nvim-lspconfig', lazy = true },
-    { 'jose-elias-alvarez/null-ls.nvim', lazy = true },
+    -- 'mfussenegger/nvim-dap-python',
     -- 'mfussenegger/nvim-dap',
     -- 'rcarriga/nvim-dap-ui',
-    -- 'mfussenegger/nvim-dap-python',
-
     'akinsho/bufferline.nvim',
-    'ggandor/leap.nvim',
     'folke/which-key.nvim',
+    'ggandor/leap.nvim',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/nvim-cmp',
     'kyazdani42/nvim-tree.lua',
     'kyazdani42/nvim-web-devicons',
-
-    'stevearc/dressing.nvim',
+    'kylechui/nvim-surround',
+    'L3MON4D3/LuaSnip',
     'lewis6991/gitsigns.nvim',
     'lukas-reineke/indent-blankline.nvim',
     'lukas-reineke/virt-column.nvim',
+    'numToStr/Comment.nvim',
+    'nvim-lua/plenary.nvim',
     'nvim-lualine/lualine.nvim',
-    { 'nvim-treesitter/playground', lazy = true },
-    'petertriho/nvim-scrollbar',
-    'uga-rosa/ccc.nvim',
+    'nvim-telescope/telescope.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'petertriho/nvim-scrollbar',
+    'saadparwaiz1/cmp_luasnip',
+    'stevearc/dressing.nvim',
+    'uga-rosa/ccc.nvim',
+    'windwp/nvim-autopairs',
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', lazy = true },
+    { 'hrsh7th/cmp-nvim-lsp', lazy = true },
+    { 'hrsh7th/cmp-nvim-lua', lazy = true },
+    { 'jose-elias-alvarez/null-ls.nvim', lazy = true },
+    { 'neovim/nvim-lspconfig', lazy = true },
+    { 'nvim-treesitter/playground', lazy = true },
 })
 
 
@@ -49,25 +46,25 @@ local which = require('plugins.whichkey')
 local register = which.register
 
 -- plugin setups, sorted alphabetically
--- require('plugins.external.dap')(register, which.dap)
--- require('plugins.external.dapui')(register, which.dapui)
-require('plugins.external.lsp')(register, which.attach)
-require('plugins.external.null')(register, which.attach)
+-- require('plugins.dap')(register, which.dap)
+-- require('plugins.dapui')(register, which.dapui)
+require('plugins.lsp')(register, which.attach)
+require('plugins.null')(register, which.attach)
 require('leap').add_default_mappings()
 
-require('plugins.behavior.autopairs')
-require('plugins.behavior.cmp')(which.cmp)
-require('plugins.behavior.comment')
-require('plugins.behavior.luasnip')
-require('plugins.behavior.surround')
-require('plugins.behavior.telescope')(register, which.telescope)
+require('plugins.autopairs')
+require('plugins.cmp')(which.cmp)
+require('plugins.comment')
+require('plugins.luasnip')
+require('plugins.surround')
+require('plugins.telescope')(register, which.telescope)
 
-require('plugins.interface.bufferline')
-require('plugins.interface.ccc')
-require('plugins.interface.gitsigns')
-require('plugins.interface.indentline')
-require('plugins.interface.lualine')
-require('plugins.interface.nvim-tree')(register, which.nvimtree)
-require('plugins.interface.scrollbar')
-require('plugins.interface.treesitter')
-require('plugins.interface.virtcolumn')
+require('plugins.bufferline')
+require('plugins.ccc')
+require('plugins.gitsigns')
+require('plugins.indentline')
+require('plugins.lualine')
+require('plugins.nvim-tree')(register, which.nvimtree)
+require('plugins.scrollbar')
+require('plugins.treesitter')
+require('plugins.virtcolumn')
