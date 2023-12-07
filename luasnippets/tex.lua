@@ -2,17 +2,6 @@ local List = require('plenary.collections.py_list')
 require('util.luasnip')
 
 local commands = {
-    -- logic
-    L = '\\mathcal L_p',
-    Ls = '\\mathcal L_p^s',
-    v = '\\vdash',
-    V = '\\vDash',
-    B = '\\mathcal B',
-    F = '\\{F,T\\}',
-    oo = { '\\overline', '{\\overline ', '}' },
-    En = '\\mathcal E_\\neg',
-    Es = '\\mathcal E_\\square',
-    W = '\\mathcal W_p',
     -- computation
     Sa = '\\Sigma^\\ast',
     Ga = '\\Gamma^\\ast',
@@ -62,10 +51,12 @@ local commands = {
     e = '\\varepsilon',
     G = '\\Gamma',
     l = '\\lambda',
+    o = '\\omega',
     P = '\\Phi',
     p = '\\varphi',
     S = '\\Sigma',
     s = '\\sigma',
+    T = '\\Theta',
 }
 
 local environments = {
