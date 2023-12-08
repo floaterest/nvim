@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.{md,mdx} setfilet markdown | set syn=markdown
+au BufRead,BufNewFile *.{md,mdx} set syn=markdown
