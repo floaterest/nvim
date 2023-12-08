@@ -15,5 +15,6 @@ vim.filetype.add({
     extension = { mdx = 'markdown' }
 })
 
+vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
 if vim.g.neovide then require('neovide') end
