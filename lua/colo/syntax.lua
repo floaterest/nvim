@@ -48,7 +48,7 @@ return {
         Statement = 'pink . -',
         PreProc = '@Statement',
         Special = 'purple . .',
-        Type = 'sky . i',
+        Type = 'sky . -',
         StorageClass = 'pink . .',
         String = 'yellow . .',
         Tag = 'pink . .',
