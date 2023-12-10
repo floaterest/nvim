@@ -48,7 +48,7 @@ require('lazy').setup({
 local which = require('plugins.whichkey')
 local register = which.register
 local lazygit = require('lazygit')
-which.register({ ['<leader>g'] = { lazygit.lazygit, 'Open LazyGit' } })
+which.register({ ['<leader>gg'] = { lazygit.lazygit, 'Open LazyGit' } })
 
 -- plugin setups, sorted alphabetically
 -- require('plugins.dap')(register, which.dap)
