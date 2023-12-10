@@ -63,10 +63,10 @@ function M.setup(which)
 
     M.which = which
     which.register({
-        L = { '<cmd>bn<cr>', 'Go to next' },
-        H = { '<cmd>bp<cr>' ,'Go to previous' },
+        L = { vim.cmd.bn, 'Go to next' },
+        H = { vim.cmd.bp ,'Go to previous' },
         Y = { 'v$hy', 'Yank until EOL' },
-        ['<c-s>'] = { vim.cmd.w, 'Save file' },
+        ['<c-s>'] = { vim.cmd.w, 'Save buffer' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
     })
@@ -74,20 +74,14 @@ function M.setup(which)
     which.register({
         b = {
             name = '+buffer',
-
-            ['1'] = { '<cmd>b1<cr>', 'which_key_ignore' },
-            ['2'] = { '<cmd>b2<cr>', 'which_key_ignore' },
-            ['3'] = { '<cmd>b3<cr>', 'which_key_ignore' },
-            ['4'] = { '<cmd>b4<cr>', 'which_key_ignore' },
-
-            n = { '<cmd>bn<cr>', 'Go to next' },
-            p = { '<cmd>bp<cr>' ,'Go to previous' },
-            d = { '<cmd>bd<cr>', 'Delete' }
+            n = { vim.cmd.bn, 'Go to next' },
+            p = { vim.cmd.bp ,'Go to previous' },
+            d = { vim.cmd.bd, 'Delete' }
         },
         f = {
             name = '+file',
             s = { vim.cmd.w , 'Save file' },
-            S = { '<cmd>wa<cr>', 'Save all files' },
+            S = { vim.cmd.wa, 'Save all files' },
         },
         w = {
             name = '+window',
