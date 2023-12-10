@@ -56,12 +56,6 @@ end
 
 local M = { which = nil }
 
-local function incfont(amount)
-    local font = vim.api.nvim_eval('&gfn')
-    local a, b = font:find(':h%d+')
-    local size = font:sub(a + 2, b)
-    vim.o.gfn = font:sub(0, a + 1) .. size + amount .. font:sub(b + 1)
-end
 
 function M.setup(which)
     vim.g.mapleader = ' '
@@ -75,8 +69,6 @@ function M.setup(which)
         ['<c-s>'] = { vim.cmd.w, 'Save file' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
-        ['<c-=>'] = { function() incfont(1) end, 'Increase font size' },
-        ['<c-->'] = { function() incfont(-1) end, 'Decrease font size' },
     })
 
     which.register({
