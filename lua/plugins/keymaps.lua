@@ -66,12 +66,18 @@ function M.setup(which)
         return function() vim.cmd.wincmd(key) end
     end
 
+    local function copy()
+        vim.fn.setreg('+', vim.fn.join(vim.fn.getbufline('%', 1, '$'), "\n"), 'l')
+        print('Copied buffer to clipboard')
+    end
+
     M.which = which
     which.register({
         L = { vim.cmd.bn, 'Go to next' },
         H = { vim.cmd.bp ,'Go to previous' },
         Y = { 'v$hy', 'Yank until EOL' },
         ['<c-s>'] = { vim.cmd.w, 'Save buffer' },
+        ['<c-c>'] = { copy, 'Copy buffer' },
         ['[d'] = { vim.diagnostic.goto_prev, 'Previous diagnostic' },
         [']d'] = { vim.diagnostic.goto_next, 'Next diagnostic' },
     })
