@@ -71,6 +71,10 @@ local autosnippets = List.new({
         local cap = snip.captures[1]
         return cap:len() > 0 and string.format('class="%s" ', cap) or ''
     end))),
+    slead('pro ', fmt(
+        '<details class="list-none" open>\n<summary>**Proof.**</summary>\n{}\n</details>',
+        { i(0) }
+    )),
     slead('tikz ', fmt('<Tikz>\n{{String.raw`\n{}\n`}}\n</Tikz>', { i(0) })),
 }):concat(
     kv_slead(function(class)
