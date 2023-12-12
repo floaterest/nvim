@@ -18,6 +18,5 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 vim.api.nvim_create_user_command('LuaSnipEdit',
-    function() require('luasnip.loaders.from_lua').edit_snippet_files() end,
-    {}
+    function() require('luasnip.loaders').edit_snippet_files() end, {}
 )
