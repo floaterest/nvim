@@ -61,6 +61,11 @@ function M.setup(which)
     vim.g.mapleader = ' '
     vim.g.maplocalleader = ' '
 
+
+    local function wincmd(key)
+        return function() vim.cmd.wincmd(key) end
+    end
+
     M.which = which
     which.register({
         L = { vim.cmd.bn, 'Go to next' },
@@ -85,17 +90,17 @@ function M.setup(which)
         },
         w = {
             name = '+window',
-            h = { '<c-w>h', 'Go to left' },
-            l = { '<c-w>l', 'Go to right' },
-            v = { '<c-w>v', 'Split vertically' },
-            j = { '<c-w>j', 'Go to down' },
-            k = { '<c-w>k', 'Go to up' },
-            s = { '<c-w>s', 'Split horizontally' },
-            x = { '<c-w>x', 'Swap' },
-            q = { '<c-w>q', 'Quit' },
-            ['>'] = { '<c-w>>', 'Increase Width' },
-            ['<'] = { '<c-w><', 'Decrease Width' },
-            ['='] = { '<c-w>=', 'Make equal size' },
+            h = { wincmd('h'), 'Go to left' },
+            l = { wincmd('l'), 'Go to right' },
+            v = { wincmd('v'), 'Split vertically' },
+            j = { wincmd('j'), 'Go to down' },
+            k = { wincmd('k'), 'Go to up' },
+            s = { wincmd('s'), 'Split horizontally' },
+            x = { wincmd('x'), 'Swap' },
+            q = { wincmd('q'), 'Quit' },
+            ['>'] = { wincmd('>'), 'Increase Width' },
+            ['<'] = { wincmd('<'), 'Decrease Width' },
+            ['='] = { wincmd('='), 'Make equal size' },
         },
     }, { prefix = '<leader>' })
     -- local mappings = {
