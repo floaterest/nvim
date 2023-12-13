@@ -2,6 +2,9 @@ local List = require('plenary.collections.py_list')
 require('util.luasnip')
 
 local commands = {
+    -- analysis
+    ak = 'a_{n_k}',
+    ['-'] = '\\setminus',
     -- computation
     Sa = '\\Sigma^\\ast',
     Ga = '\\Gamma^\\ast',
@@ -134,7 +137,7 @@ end
 
 local snippets = List.new({
     -- v for determinant, %d for column count
-    sleadr('(v?)mat(%d) (.+)', f(mat))
+    sleadr('(v?)mat(%d) (.+)', f(mat)),
 }):concat(
     vim.tbl_map(function(pair)
         return sw(pair, fmt('\\left{l}{}\\right{r}', {
@@ -144,6 +147,7 @@ local snippets = List.new({
 )
 
 local autosnippets = List.new({
+    sleadr('a(%d) ', fmta('a_{n_<>}', { l(l.CAPTURE1) })),
     sleadr('bb(%l) ', fmt('\\mathbb {}', { l(l.CAPTURE1:upper()) })),
     sleadr('bb(%l)(%S) ', fmt('\\mathbb {}^{}', {
         l(l.CAPTURE1:upper()), l(l.CAPTURE2)
@@ -155,7 +159,9 @@ local autosnippets = List.new({
     sleadr('cal(%l)(.)(.)', fmta('\\mathcal <>(<>,<>)', {
         l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()), l(l.CAPTURE3:upper())
     })),
-    sleadr('lim(%l)(%S+) ', fmta('\\lim_{<x>\\to<to>}', {
+    sleadr('lin ', t('\\liminf_{n\\to\\infty}')),
+    sleadr('lis ', t('\\limsup_{n\\to\\infty}')),
+    sleadr('lim(%l)(%S) ', fmta('\\lim_{<x>\\to<to>}', {
         x = l(l.CAPTURE1), to = numinf(2, true)
     })),
     -- derivative in Leibniz's notation
@@ -166,7 +172,10 @@ local autosnippets = List.new({
     sleadr('(d?)par([^t])(%w+) ', fmta('\\<>frac{<>}{<>}', {
         l(l.CAPTURE1), partial(2), partial(3)
     })),
-    sleadr('sum(%l)(%d)(%w+) ', fmta('\\sum_{<i>=<a>}^<b>', {
+    sleadr('sum(%l)(%S) ', fmta('\\sum_{<x>=1}^<to>', {
+        x = l(l.CAPTURE1), to = numinf(2)
+    })),
+    sleadr('sum(%l)(%S)(%w+) ', fmta('\\sum_{<i>=<a>}^<b>', {
         i = l(l.CAPTURE1), a = l(l.CAPTURE2), b = numinf(3)
     })),
     sleadr('int(%l) ', fmt('\\int{}\\,d{x}', { x = l(l.CAPTURE1), i(0) })),
