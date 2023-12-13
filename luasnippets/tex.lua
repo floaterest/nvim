@@ -37,6 +37,7 @@ local commands = {
     ub = { '\\underbrace', '{', '}' },
     ol = '\\overline',
     ul = '\\underline',
+    ph = '\\phantom',
     ss = { '\\subsection*', '{', '}' },
     sss = { '\\subsubsection*', '{', '}' },
     -- set
