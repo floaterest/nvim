@@ -38,5 +38,4 @@ require('alpha').setup({
             opts = { spacing = 1 },
         }
     },
-    opts = { margin = 5 },
 })
