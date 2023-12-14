@@ -30,8 +30,8 @@ require('alpha').setup({
         {
             type = 'group',
             val = {
-                dashboard.button('f', '  Find file',       '<cmd>Telescope find_files<cr>'),
-                dashboard.button('r', '  Recent files',    '<cmd>Telescope oldfiles<cr>'),
+                dashboard.button('f', '  Open file',       '<cmd>Telescope find_files<cr>'),
+                dashboard.button('r', '  Open Recent',     '<cmd>Telescope oldfiles<cr>'),
                 dashboard.button('g', '  Find text',       '<cmd>Telescope live_grep<cr>'),
                 dashboard.button('q', '  Quit',            '<cmd>qa<cr>'),
             },
