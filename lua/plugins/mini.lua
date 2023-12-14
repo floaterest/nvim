@@ -9,20 +9,4 @@ require('mini.comment').setup({
     }
 })
 
-require('mini.surround').setup({
-    -- can't think of a way to map without conflict with leap
-    mappings = {
-        add = 'ys',
-        delete = 'ds',
-        find = '',
-        find_left = '',
-        highlight = '',
-        replace = '',
-        update_n_lines = '',
-
-        suffix_last = 'l',
-        suffix_next = 'n',
-    }
-})
-
 require('mini.pairs').setup()

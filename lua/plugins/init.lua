@@ -11,6 +11,7 @@ require('lazy').setup({
     -- 'mfussenegger/nvim-dap',
     -- 'rcarriga/nvim-dap-ui',
     'akinsho/bufferline.nvim',
+    { "kylechui/nvim-surround", event = "VeryLazy" },
     'folke/which-key.nvim',
     'ggandor/leap.nvim',
     'goolord/alpha-nvim',
@@ -31,7 +32,6 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-treesitter/nvim-treesitter',
-    'petertriho/nvim-scrollbar',
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
     {
@@ -54,6 +54,7 @@ which.register({ ['<leader>gg'] = { lazygit.lazygit, 'Open LazyGit' } })
 -- require('plugins.dap')(register, which.dap)
 -- require('plugins.dapui')(register, which.dapui)
 require('leap').add_default_mappings()
+require("nvim-surround").setup({})
 require('plugins.alpha')
 require('plugins.bufferline')
 require('plugins.cmp')(which.cmp)
@@ -65,7 +66,6 @@ require('plugins.mini')
 require('plugins.noice')
 require('plugins.null')(register, which.attach)
 require('plugins.nvim-tree')(register, which.nvimtree)
-require('plugins.scrollbar')
 require('plugins.telescope')(register, which.telescope)
 require('plugins.treesitter')
 require('plugins.virtcolumn')
