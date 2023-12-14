@@ -7,6 +7,9 @@ local theme = {
         b = { fg = colors.lightest, bg = colors.darker },
         c = { fg = colors.lighter, bg = colors.black },
 	},
+    terminal = {
+        a = { fg = colors.black, bg = colors.sky, gui = 'bold' },
+    },
     insert = {
         a = { fg = colors.black, bg = colors.sky, gui = 'bold' },
     },
@@ -29,7 +32,7 @@ local theme = {
 local modes = {
     NORMAL = 'No', INSERT = 'In', SELECT = 'Se',
     VISUAL = 'Vi', ['V-LINE'] = 'VL', ['V-BLOCK'] = 'VB', VREPLACE = 'VR',
-    COMMAND = 'Co', Terminal = 'Te', ['O-PENDING'] = 'OP', REPLACE = 'Re',
+    COMMAND = 'Co', TERMINAL = 'Te', ['O-PENDING'] = 'OP', REPLACE = 'Re',
     -- insert-normal insert-visual, insert-select
 }
 
