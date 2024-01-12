@@ -66,6 +66,8 @@ local snippets = List.new({
 
 local autosnippets = List.new({
     sleadr('cen ', fmt('<div class="flex justify-center">{}\n</div>', { i(0) })),
+    sleadr('tit ', fmt('<span title="{}"></span>', { i(0) })),
+    sleadr('spa ', fmt('<span class="{}"></span>', { i(0) })),
     -- <details> with optional class
     sleadr('det(%l*) ', details(f(function(_, snip)
         local cap = snip.captures[1]

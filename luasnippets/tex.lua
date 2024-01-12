@@ -2,9 +2,11 @@ local List = require('plenary.collections.py_list')
 require('util.luasnip')
 
 local commands = {
+    -- algebra
+    ch = '\\operatorname{char}',
     -- analysis
     ak = 'a_{n_k}',
-    ['-'] = '\\setminus',
+    ['-'] = '\\setminus ',
     -- computation
     Sa = '\\Sigma^\\ast',
     Ga = '\\Gamma^\\ast',
@@ -21,6 +23,7 @@ local commands = {
     qed = '\\quad\\square',
     f = { '\\frac', '{', '}' },
     im = '\\implies',
+    mi = '\\impliedby',
     i = '^{-1}',
     fo = '\\forall',
     ex = '\\exists',
@@ -44,7 +47,6 @@ local commands = {
     no = '\\varnothing',
     un = '\\cup',
     Un = '\\bigcup',
-    mi = '\\setminus',
     se = '\\subseteq',
     su = '\\subset',
     -- greek
