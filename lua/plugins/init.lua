@@ -20,7 +20,7 @@ require('lazy').setup({
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/nvim-cmp',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'kdheepak/lazygit.nvim',
     'kyazdani42/nvim-tree.lua',
     'kyazdani42/nvim-web-devicons',
@@ -65,7 +65,7 @@ require('plugins.lualine')
 require('plugins.luasnip')
 require('plugins.mini')
 require('plugins.noice')
-require('plugins.null')(register, which.attach)
+require('plugins.none')(register, which.attach)
 require('plugins.nvim-tree')(register, which.nvimtree)
 require('plugins.telescope')(register, which.telescope)
 require('plugins.treesitter')
