@@ -24,7 +24,6 @@ local servers = {
     tsserver = {},
     pyright = {},
     svelte = {},
-    clangd = {},
     hls = { haskell = haskell },
     rust_analyzer = { settings = rust },
 }
@@ -38,6 +37,10 @@ end
 return function(register, attach)
     local onatt = function(client, buffer) register(attach, client, buffer) end
     local opts = { on_attach = onatt }
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities.offsetEncoding = 'utf-8'
+    -- lsconfig.clangd.setup({ capabilities = capabilities })
+    -- vim.lsp.protocol.make_client_capabilities()
     func.kv_map(function(kv)
         local server, options = unpack(kv)
         if exists(lsconfig[server]) then

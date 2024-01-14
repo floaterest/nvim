@@ -1,5 +1,5 @@
 local null = require('null-ls')
--- local di = null.builtins.diagnostics
+local di = null.builtins.diagnostics
 local ca = null.builtins.code_actions
 local fo = null.builtins.formatting
 
@@ -16,6 +16,8 @@ local sources = {
     -- fo.jq,
     fo.rustfmt,
     fo.blue,
+    di.flake8,
+    di.pylint,
     fo.fourmolu,
     fo.clang_format,
 }
