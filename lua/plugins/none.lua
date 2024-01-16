@@ -17,7 +17,11 @@ local sources = {
     fo.rustfmt,
     fo.blue,
     di.flake8,
-    di.pylint,
+    di.pylint.with({
+        filter = function(diagnostic)
+            return diagnostic.code ~= "unused-argument"
+        end,
+    }),
     fo.fourmolu,
     fo.clang_format,
 }

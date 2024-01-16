@@ -2,36 +2,6 @@ local List = require('plenary.collections.py_list')
 require('util.luasnip')
 
 local snips = {
-    symbols = {
-        -- logic
-        bc = '∵',
-        tf = '∴',
-        conj = '∧',
-        disj = '∨',
-        uni = '∀',
-        exi = '∃',
-        nexi = '∄',
-        equiv = '≡',
-        neg = '¬',
-        ne = '≠',
-        -- set theory
-        no = '∅',
-        ['in'] = '∈',
-        nin = '∉',
-        un = '⋃',
-        it = '⋂',
-        -- greek
-        D = 'Δ',
-        e = 'ε',
-        G = 'Γ',
-        l = 'λ',
-        P = 'Π',
-        S = 'Σ',
-        -- misc
-        sqrt = '√',
-        inf = '∞',
-        bot = '⊥',
-    },
     details = {
         def = 'definition', the = 'theorem', exa = 'example', alg = 'algorithm',
     }
@@ -60,9 +30,7 @@ local snippets = List.new({
     sleadr('code(%l+)', {
         t('<Code code="'), i(0), t('" lang="'), l(l.CAPTURE1), t('"/>')
     }),
-}):concat(
-    kv_map(function(k, v) return s(k, t(v)) end, snips.symbols)
-)
+})
 
 local autosnippets = List.new({
     sleadr('cen ', fmt('<div class="flex justify-center">{}\n</div>', { i(0) })),

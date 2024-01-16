@@ -44,6 +44,8 @@ local commands = {
     ss = { '\\subsection*', '{', '}' },
     sss = { '\\subsubsection*', '{', '}' },
     -- set
+    hoo = '\\hookrightarrow ',
+    two = '\\twoheadrightarrow ',
     no = '\\varnothing',
     un = '\\cup',
     Un = '\\bigcup',

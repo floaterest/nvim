@@ -15,6 +15,7 @@ o.rnu = true -- relative line number
 o.smc = 500 -- don't syntax highlight after 500 lines
 o.smd = false -- don't show '-- insert --'
 o.so = 8 -- num of lines to keep above/below cursor
+o.spr = true -- split right
 o.sts = 4 -- spaces per tab
 o.sw = 4 -- columns per shift
 o.swf = false -- no swap file

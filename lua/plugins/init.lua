@@ -32,6 +32,7 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/playground',
     'saadparwaiz1/cmp_luasnip',
     'stevearc/dressing.nvim',
     {
@@ -40,7 +41,6 @@ require('lazy').setup({
         dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' }
     },
     { 'echasnovski/mini.nvim', version = false },
-    { 'nvim-treesitter/playground', lazy = true },
 })
 
 
