@@ -2,8 +2,21 @@ local List = require('plenary.collections.py_list')
 require('util.luasnip')
 
 local commands = {
+    -- set theory
+    inj = '\\hookrightarrow ',
+    surj = '\\twoheadrightarrow ',
+    res = '\\upharpoonright',
+    bij = '\\stackrel\\sim\\to',
+    no = '\\varnothing',
+    un = '\\cup',
+    Un = '\\bigcup',
+    se = '\\subseteq',
+    su = '\\subset',
+    dom = '\\operatorname{dom}',
+    ran = '\\operatorname{ran}',
     -- algebra
     ch = '\\operatorname{char}',
+    sy = '\\operatorname{Syl}',
     -- analysis
     ak = 'a_{n_k}',
     ['-'] = '\\setminus ',
@@ -43,14 +56,6 @@ local commands = {
     ph = '\\phantom',
     ss = { '\\subsection*', '{', '}' },
     sss = { '\\subsubsection*', '{', '}' },
-    -- set
-    hoo = '\\hookrightarrow ',
-    two = '\\twoheadrightarrow ',
-    no = '\\varnothing',
-    un = '\\cup',
-    Un = '\\bigcup',
-    se = '\\subseteq',
-    su = '\\subset',
     -- greek
     a = '\\alpha',
     b = '\\beta',

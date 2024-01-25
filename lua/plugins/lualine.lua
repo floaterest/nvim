@@ -57,7 +57,13 @@ lualine.setup({
         lualine_a = { mode },
         lualine_b = { 'branch' },
         lualine_c = { filename, 'diagnostics' },
-        lualine_x = { 'encoding' },
+        lualine_x = {
+            {
+                require("noice").api.statusline.mode.get,
+                cond = require("noice").api.statusline.mode.has,
+            }
+        },
+
         lualine_y = { 'filetype' },
         lualine_z = { location }
     },
