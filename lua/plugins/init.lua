@@ -29,6 +29,7 @@ require('lazy').setup({
     'lukas-reineke/virt-column.nvim',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
+    'numToStr/Comment.nvim',
     'nvim-lualine/lualine.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -56,6 +57,7 @@ which.register({ ['<leader>gg'] = { lazygit.lazygit, 'Open LazyGit' } })
 require('leap').add_default_mappings()
 require("nvim-surround").setup({})
 require('plugins.alpha')
+require('plugins.comment')
 require('plugins.bufferline')
 require('plugins.cmp')(which.cmp)
 require('plugins.gitsigns')

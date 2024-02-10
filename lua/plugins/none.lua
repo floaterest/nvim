@@ -11,11 +11,15 @@ local eslint = {
 }
 
 local sources = {
-    ca.eslint_d.with(eslint),
-    fo.eslint_d.with(eslint),
+    -- ca.eslint_d.with(eslint),
+    -- fo.eslint_d.with(eslint),
     -- fo.jq,
-    fo.rustfmt,
-    fo.blue,
+    -- fo.rustfmt,
+    -- fo.blue,
+    fo.raco_fmt,
+    -- fo.raco_fmt.with({
+    --     extra_args = {'--width', '60'}
+    -- }),
     -- di.flake8,
     -- di.pylint.with({
     --     filter = function(diagnostic)
@@ -23,7 +27,7 @@ local sources = {
     --     end,
     -- }),
     fo.fourmolu,
-    fo.clang_format,
+    -- fo.clang_format,
 }
 
 return function(register, attach)

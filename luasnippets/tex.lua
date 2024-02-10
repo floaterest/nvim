@@ -20,6 +20,7 @@ local commands = {
     -- analysis
     ak = 'a_{n_k}',
     ['-'] = '\\setminus ',
+    ['2'] = '^2',
     -- computation
     Sa = '\\Sigma^\\ast',
     Ga = '\\Gamma^\\ast',

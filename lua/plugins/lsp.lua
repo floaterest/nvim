@@ -24,6 +24,7 @@ local servers = {
     tsserver = {},
     pyright = {},
     svelte = {},
+    racket_langserver = {},
     -- clangd = {},
     hls = { haskell = haskell },
     rust_analyzer = { settings = rust },
