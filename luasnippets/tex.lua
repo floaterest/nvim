@@ -8,8 +8,8 @@ local commands = {
     res = '\\upharpoonright',
     bij = '\\stackrel\\sim\\to',
     no = '\\varnothing',
-    un = '\\cup',
-    Un = '\\bigcup',
+    U = '\\bigcup',
+    I = '\\bigcap',
     se = '\\subseteq',
     su = '\\subset',
     dom = '\\operatorname{dom}',
@@ -26,7 +26,7 @@ local commands = {
     Ga = '\\Gamma^\\ast',
     an = { '', '\\langle ', '\\rangle' },
     fl = { '', '\\lfloor', '\\rfloor' },
-    ce = { '', '\\lceil', '\\rceil' },
+    -- ce = { '', '\\lceil', '\\rceil' },
     -- proof
     tf = '\\therefore',
     bc = '\\because',
@@ -34,7 +34,7 @@ local commands = {
     bC = '\\because&&',
     tff = '\\therefore\\,&',
     bcc = '\\because\\,&',
-    qed = '\\quad\\square',
+    qed = '\\enspace\\square',
     f = { '\\frac', '{', '}' },
     im = '\\implies',
     mi = '\\impliedby',
@@ -42,6 +42,7 @@ local commands = {
     fo = '\\forall',
     ex = '\\exists',
     -- typography
+    h = '\\hfill',
     q = '\\quad',
     en = '\\enspace',
     st = '\\text{ st }',
@@ -75,6 +76,7 @@ local commands = {
 
 local environments = {
     al = 'align*', ca = 'cases', ga = 'gather*', ar = 'array', it = 'itemize',
+    ce = 'center', ad = 'aligned'
 }
 
 local pairs = { '()', '[]', '||' }
@@ -151,9 +153,9 @@ local snippets = List.new({
     sleadr('(v?)mat(%d) (.+)', f(mat)),
 }):concat(
     vim.tbl_map(function(pair)
-        return sw(pair, fmt('\\left{l}{}\\right{r}', {
-            l = pair:sub(1, #pair / 2), r = pair:sub(#pair / 2 + 1, #pair), i(0)
-        }))
+        local left = '\\left' .. pair:sub(1, #pair / 2)
+        local right = '\\right' .. pair:sub(#pair / 2 + 1, #pair)
+        return sw(pair, {t(left), i(1), t(right), i(0)})
     end, pairs)
 )
 

@@ -20,6 +20,7 @@ require('lazy').setup({
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/nvim-cmp',
+    { 'windwp/nvim-autopairs', event = "InsertEnter" },
     'nvimtools/none-ls.nvim',
     'kdheepak/lazygit.nvim',
     'kyazdani42/nvim-tree.lua',
@@ -58,6 +59,7 @@ require('leap').add_default_mappings()
 require("nvim-surround").setup({})
 require('plugins.alpha')
 require('plugins.comment')
+require('plugins.autopairs')
 require('plugins.bufferline')
 require('plugins.cmp')(which.cmp)
 require('plugins.gitsigns')
