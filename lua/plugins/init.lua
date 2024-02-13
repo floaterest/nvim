@@ -20,7 +20,8 @@ require('lazy').setup({
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lua',
     'hrsh7th/nvim-cmp',
-    { 'windwp/nvim-autopairs', event = "InsertEnter" },
+    'windwp/nvim-autopairs',
+    'Shatur/neovim-session-manager',
     'nvimtools/none-ls.nvim',
     'kdheepak/lazygit.nvim',
     'kyazdani42/nvim-tree.lua',
@@ -58,8 +59,8 @@ which.register({ ['<leader>gg'] = { lazygit.lazygit, 'Open LazyGit' } })
 require('leap').add_default_mappings()
 require("nvim-surround").setup({})
 require('plugins.alpha')
-require('plugins.comment')
 require('plugins.autopairs')
+require('plugins.comment')
 require('plugins.bufferline')
 require('plugins.cmp')(which.cmp)
 require('plugins.gitsigns')
@@ -73,3 +74,8 @@ require('plugins.nvim-tree')(register, which.nvimtree)
 require('plugins.telescope')(register, which.telescope)
 require('plugins.treesitter')
 require('plugins.virtcolumn')
+
+local config = require('session_manager.config')
+require('session_manager').setup({
+    autoload_mode = config.AutoloadMode.Disabled,
+})

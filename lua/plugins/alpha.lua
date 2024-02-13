@@ -23,6 +23,8 @@ with(open(arts[i], 'r'), function(reader)
 end)
 
 local dashboard = require('alpha.themes.dashboard')
+local button = dashboard.button
+
 require('alpha').setup({
     layout = {
         header,
@@ -30,10 +32,11 @@ require('alpha').setup({
         {
             type = 'group',
             val = {
-                dashboard.button('f', '  Open file', '<cmd>Telescope find_files<cr>'),
-                dashboard.button('r', '  Open Recent', '<cmd>Telescope oldfiles<cr>'),
-                dashboard.button('g', '  Find text', '<cmd>Telescope live_grep<cr>'),
-                dashboard.button('q', '  Quit', '<cmd>qa<cr>'),
+                button('f', '  Open file', '<cmd>Telescope find_files<cr>'),
+                -- button('r', '  Open Recent', '<cmd>Telescope oldfiles<cr>'),
+                -- button('g', '  Find text', '<cmd>Telescope live_grep<cr>'),
+                button('q', '  Quit', '<cmd>qa<cr>'),
+                button('s', "  Open last session", '<cmd>SessionManager load_last_session<cr>')
             },
             opts = { spacing = 1 },
         }

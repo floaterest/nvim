@@ -229,13 +229,18 @@ function M.nvimtree(api) return {
     { prefix = '<leader>f' }
 } end
 
-function M.telescope(builtin) return {
-    {
-        f = { builtin.find_files, 'Find file' },
-        b = { builtin.buffers, 'Find buffer'},
-        g = { builtin.live_grep, 'Live grep'},
-    },
-    { prefix = '<leader>f' }
-} end
+function M.telescope(builtin)
+    local function find_files()
+        builtin.find_files({ hidden = true })
+    end
+    return {
+        {
+            f = { find_files, 'Find file' },
+            b = { builtin.buffers, 'Find buffer'},
+            g = { builtin.live_grep, 'Live grep'},
+        },
+        { prefix = '<leader>f' }
+    }
+end
 
 return { setup = M.setup }

@@ -12,7 +12,7 @@
 --]]
 return {
     plugins = {
-        VirtColumn = 'dark . .', -- virt-column
+        VirtColumn = 'dark . -', -- virt-column
     },
     ui = {
         Conceal = '- - .',
