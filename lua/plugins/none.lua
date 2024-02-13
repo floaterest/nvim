@@ -27,7 +27,7 @@ local sources = {
     --     end,
     -- }),
     fo.fourmolu,
-    -- fo.clang_format,
+    fo.clang_format,
 }
 
 return function(register, attach)
