@@ -1,6 +1,7 @@
-local builtin = require('telescope.builtin')
+local builtin = require("telescope.builtin")
 
-require('telescope').setup({
-})
+require("telescope").setup({})
 
-return function(register, keymaps) register(keymaps, builtin) end
+return function(register, keymaps)
+	register(keymaps, builtin)
+end

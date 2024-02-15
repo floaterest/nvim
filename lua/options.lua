@@ -1,14 +1,14 @@
 vim.o.ar = true -- reload file changes (autoread)
 vim.o.bri = true -- keep visual indent on wrap
-vim.o.bs = 'indent,eol,start' -- allow backspace
+vim.o.bs = "indent,eol,start" -- allow backspace
 vim.o.cole = 2 -- conceal level
-vim.o.shm = 'W'
-vim.o.cot = 'menuone,noinsert,noselect' -- complete option
+vim.o.shm = "W"
+vim.o.cot = "menuone,noinsert,noselect" -- complete option
 vim.o.et = true -- <tab> expands to spaces
 vim.o.hid = true -- allow multiple unsaved buffers
 vim.o.hls = false -- no highlight after search
 vim.o.hlsearch = true -- highlight all search results
-vim.o.mouse = 'a' -- enable mouse
+vim.o.mouse = "a" -- enable mouse
 vim.o.nu = true -- current line number
 vim.o.ph = 4 -- max popmenu height
 vim.o.rnu = true -- relative line number
@@ -26,19 +26,19 @@ vim.o.ts = 4 -- columns per tabstop
 vim.o.wrap = false -- no word wrap
 
 vim.g.clipboard = {
-    copy = {
-        ['+'] = {'wl-copy', '--trim-newline'},
-        ['*'] = {'wl-copy', '--trim-newline'},
-    },
-    paste = {
-        ['+'] = {'wl-paste', '--no-newline'},
-        ['*'] = {'wl-paste', '--no-newline'},
-    },
+	copy = {
+		["+"] = { "wl-copy", "--trim-newline" },
+		["*"] = { "wl-copy", "--trim-newline" },
+	},
+	paste = {
+		["+"] = { "wl-paste", "--no-newline" },
+		["*"] = { "wl-paste", "--no-newline" },
+	},
 }
 
 vim.filetype.add({
-    -- *.mdx is markdown
-    extension = { mdx = 'markdown' }
+	-- *.mdx is markdown
+	extension = { mdx = "markdown" },
 })
 
-vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>")
