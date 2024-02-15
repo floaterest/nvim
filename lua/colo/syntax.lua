@@ -24,7 +24,7 @@ local ui = {
 	NonText = "light",
 	Normal = "white darkest",
 	PMenu = "white black",
-	Title = "yellow",
+	Title = "yellow . b",
 	VertSplit = "light black",
 	Visual = ". dark",
 }
@@ -54,20 +54,32 @@ local syntax = {
 local treesitter = {
 	["@function.builtin"] = "sky",
 	["@function.macro"] = "@@function.builtin",
+
 	["@markup.environment"] = "@Statement",
 	["@markup.heading.3"] = "yellow . bu",
-	["@markup.heading.4"] = "yellow . b",
+	["@markup.heading.4"] = "@Title",
 	["@markup.heading.5"] = "@Title",
-	["@markup.strong"] = ". . b",
-	["@module"] = "@Title",
 	["@markup.math"] = "@Special",
-	["@namespace"] = "@Title",
+    ["@markup.italic"] = ". . i",
+	["@markup.strong"] = ". . b",
+
+	["@module"] = "@Title",
+	["@namespace"] = "@@function.builtin",
 	["@parameter"] = "orange",
 	["@string.documentation"] = "gray",
 	["@tag.attribute"] = "@Type",
 	["@tag.delimiter"] = "@Delimiter",
+
+	["@text.environment"] = "@@text.environment",
 	["@text.literal.block"] = "lighter",
+	["@text.math"] = "@@markup.math",
+	['@text.emphasis'] = '@@markup.italic',
+	["@text.strong"] = "@@markup.strong",
+	["@text.title.3"] = "@@markup.heading.3",
+	["@text.title.4"] = "@@markup.heading.4",
+	["@text.title.5"] = "@@markup.heading.5",
 	["@type.builtin"] = "@Type",
+
 	["@variable.builtin"] = "@function.builtin",
 }
 local nvimtree = {

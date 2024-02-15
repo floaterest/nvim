@@ -1,73 +1,108 @@
-require('colo')
-require('autocmd')
-require('options')
-require('plugins')
+require("colo")
+require("autocmd")
+require("options")
+require("plugins")
 
 -- see log in ~/.local/state/nvim/lsp.log
 -- vim.lsp.set_log_level("debug")
 
-if vim.g.neovide then require('neovide') end
-
+if vim.g.neovide then
+	require("neovide")
+end
 
 local function hasgrandparent(match, _, _, predicate)
-    local node = match[predicate[2]]
-    for _ = 1, 2 do
-      if not node then return false end
-      node = node:parent()
-    end
-    if not node then return false end
-    local ancestor_types = { unpack(predicate, 3) }
-    if vim.tbl_contains(ancestor_types, node:type()) then
-      return true
-    end
-    return false
+	local node = match[predicate[2]]
+	for _ = 1, 2 do
+		if not node then
+			return false
+		end
+		node = node:parent()
+	end
+	if not node then
+		return false
+	end
+	local ancestor_types = { unpack(predicate, 3) }
+	if vim.tbl_contains(ancestor_types, node:type()) then
+		return true
+	end
+	return false
 end
 
 local function setpairs(match, _, source, predicate, metadata)
-    -- (#set-pairs! @aa key list)
-    local capture_id = predicate[2]
-    local node = match[capture_id]
-    local key = predicate[3]
-    if not node then return end
-    local node_text = vim.treesitter.get_node_text(node, source)
-    -- if metadata[capture_id] and metadata[capture_id].range then
-    --   local sr, sc, er, ec = unpack(metadata[capture_id].range)
-    --   node_text = vim.api.nvim_buf_get_text(source, sr, sc, er, ec, {})[1]
-    -- end
-    for i = 4, #predicate, 2 do
-      if node_text == predicate[i] then
-        metadata[key] = predicate[i+1]
-        break
-      end
-    end
+	-- (#set-pairs! @aa key list)
+	local capture_id = predicate[2]
+	local node = match[capture_id]
+	local key = predicate[3]
+	if not node then
+		return
+	end
+	local node_text = vim.treesitter.get_node_text(node, source)
+	-- if metadata[capture_id] and metadata[capture_id].range then
+	--   local sr, sc, er, ec = unpack(metadata[capture_id].range)
+	--   node_text = vim.api.nvim_buf_get_text(source, sr, sc, er, ec, {})[1]
+	-- end
+	for i = 4, #predicate, 2 do
+		if node_text == predicate[i] then
+			metadata[key] = predicate[i + 1]
+			break
+		end
+	end
 end
 
-
-local context_manager = require('plenary.context_manager')
+local context_manager = require("plenary.context_manager")
 local with = context_manager.with
 local open = context_manager.open
 
-
+-- read highlight files
 local filenames = {
-    unpack(vim.api.nvim_get_runtime_file('queries/latex/*.scm', true)),
-    -- unpack(vim.treesitter.query.get_files('latex', 'highlights'))
+	unpack(vim.treesitter.query.get_files("latex", "highlights")),
+	unpack(vim.api.nvim_get_runtime_file("queries/latex/*.scm", true)),
 }
 
-vim.treesitter.query.add_predicate('has-grandparent?', hasgrandparent, true)
-vim.treesitter.query.add_directive('set-pairs!', setpairs, true)
+vim.treesitter.query.add_predicate("has-grandparent?", hasgrandparent, true)
+vim.treesitter.query.add_directive("set-pairs!", setpairs, true)
 
--- with(open('/tmp/file.txt', 'w'), function(f)
---     f:write(vim.inspect(filenames))
--- end)
+with(open("/tmp/file.txt", "w"), function(f)
+	f:write(vim.inspect(filenames))
+end)
 
-local query = table.concat(vim.tbl_map(function(f)
-    return with(open(f), function(r)
-        return r:read('*a')
-    end)
-end, filenames))
+-- make query
+local query = table.concat(
+	vim.tbl_map(function(f)
+		return with(open(f), function(r)
+			return r:read("*a")
+		end)
+	end, filenames),
+	"\n\n"
+)
 
--- with(open('/tmp/file.txt', 'w'), function(f)
---     f:write(query)
--- end)
+-- add custom symbols
+local symbols = {
+	because = "∵",
+	therefore = "∴",
+	implies = "⇒",
+	enspace = " ",
+	square = "□",
+	sube = "⊆",
+	["{"] = "{",
+	["}"] = "}",
+}
 
-vim.treesitter.query.set('latex', 'highlights', query)
+local qa = [[(generic_command
+  command: ((command_name) @text.math
+  (#any-of? @text.math]]
+local qb = [[))
+  (#set-pairs! @text.math conceal]]
+
+for command, symbol in pairs(symbols) do
+	qa = qa .. '\n    "\\\\' .. command .. '" '
+    qb = qb .. '\n    "\\\\' .. command .. '" "' .. symbol .. '" '
+end
+
+query = query .. qa .. qb .. '))'
+
+with(open("/tmp/query.txt", "w"), function(f)
+	f:write(query)
+end)
+
+-- vim.treesitter.query.set("latex", "highlights", query)

@@ -20,6 +20,7 @@ local sources = {
 	-- fo.rustfmt,
 	-- fo.blue,
 	fo.raco_fmt,
+	fo.stylua,
 	-- fo.raco_fmt.with({
 	--     extra_args = {'--width', '60'}
 	-- }),
