@@ -27,8 +27,8 @@ require('lazy').setup({
     'kyazdani42/nvim-tree.lua',
     'kyazdani42/nvim-web-devicons',
     'L3MON4D3/LuaSnip',
+    "m4xshen/smartcolumn.nvim",
     'lewis6991/gitsigns.nvim',
-    'lukas-reineke/virt-column.nvim',
     'neovim/nvim-lspconfig',
     'nvim-lua/plenary.nvim',
     'numToStr/Comment.nvim',
@@ -44,6 +44,7 @@ require('lazy').setup({
         dependencies = { 'MunifTanjim/nui.nvim', 'rcarriga/nvim-notify' }
     },
     { 'echasnovski/mini.nvim', version = false },
+    { 'ryleelyman/latex.nvim', opts = require('plugins.latex') }
 })
 
 
@@ -68,12 +69,17 @@ require('plugins.lsp')(register, which.attach)
 require('plugins.lualine')
 require('plugins.luasnip')
 require('plugins.mini')
-require('plugins.noice')
+-- require('plugins.noice')
 require('plugins.none')(register, which.attach)
 require('plugins.nvim-tree')(register, which.nvimtree)
 require('plugins.telescope')(register, which.telescope)
 require('plugins.treesitter')
-require('plugins.virtcolumn')
+
+require('smartcolumn').setup({
+    disabled_filetypes = {
+        'tex', 'alpha', "help", "text", "markdown"
+    }
+})
 
 local config = require('session_manager.config')
 require('session_manager').setup({

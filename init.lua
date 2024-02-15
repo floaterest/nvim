@@ -7,8 +7,8 @@ require('plugins')
 -- vim.lsp.set_log_level("debug")
 
 -- enable filetype.lua
-vim.g.do_filetype_lua = true
-vim.g.did_load_filetypes = true
+-- vim.g.do_filetype_lua = true
+-- vim.g.did_load_filetypes = true
 
 vim.filetype.add({
     -- *.mdx is markdown

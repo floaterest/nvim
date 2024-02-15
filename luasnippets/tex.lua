@@ -196,6 +196,7 @@ local autosnippets = List.new({
         a = numinf(1), b = numinf(2), i(0), var = l(l.CAPTURE3)
     })),
     sleadr('beg(%l+) ', fmta('\\begin{<env>}\n<>\n\\end{<env>}', { env = l(l.CAPTURE1), i(0) })),
+    sleadr('beg ', fmta('\\begin{<env>}\n<>\n\\end{<env>}', { env = i(1), i(0) })),
 }):concat(
     ifmtas({
         ['u '] = '$<>$',

@@ -6,8 +6,7 @@ local commands = {
             vim.cmd.w()
         end
     end,
-    TextYankPost = function()
-        -- highlight yanked text
+    TextYankPost = function() -- highlight yanked text
         vim.highlight.on_yank({ timeout = 500, on_visual = false })
     end,
     -- enable autoread

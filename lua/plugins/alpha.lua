@@ -33,10 +33,11 @@ require('alpha').setup({
             type = 'group',
             val = {
                 button('f', '  Open file', '<cmd>Telescope find_files<cr>'),
-                -- button('r', '  Open Recent', '<cmd>Telescope oldfiles<cr>'),
-                -- button('g', '  Find text', '<cmd>Telescope live_grep<cr>'),
+                button('r', '  Open Recent', '<cmd>Telescope oldfiles<cr>'),
+                button('g', '  Find text', '<cmd>Telescope live_grep<cr>'),
                 button('q', '  Quit', '<cmd>qa<cr>'),
-                button('s', "  Open last session", '<cmd>SessionManager load_last_session<cr>')
+                button('s', '󱈄  Select sessions', '<cmd>SessionManager load_session<cr>'),
+                button('o', "  Open last session", '<cmd>SessionManager load_current_dir_session<cr>')
             },
             opts = { spacing = 1 },
         }

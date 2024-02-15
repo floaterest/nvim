@@ -1,38 +1,35 @@
 local colors = require((...) .. '.colors')
-local syn = require((...) .. '.syntax')
+local syntax = require((...) .. '.syntax')
 
 local styles = { i = 'italic', u = 'underline', b = 'bold' }
 
 local function hi(group, line)
-    -- build highlight command in vimscript
-    local link = line:sub(1,1) == '@'
-    local cmd =  link and { 'hi!', 'link' } or { 'hi' }
-    cmd[#cmd + 1] = group
-
-    -- if link
-    if link then
-        cmd[#cmd + 1] = line:sub(2)
-    else
-        local t = {}
-        for s in line:gmatch('[^%s]+') do
-            t[#t + 1] = s
-        end
-        cmd[#cmd + 1] = t[1] == '.' and '' or ('guifg=' .. (t[1] == '-' and 'NONE' or colors[t[1]]))
-        cmd[#cmd + 1] = t[2] == '.' and '' or ('guibg=' .. (t[2] == '-' and 'NONE' or colors[t[2]]))
-        cmd[#cmd + 1] = t[3] == '.' and '' or ('gui=' .. (t[3] == '-' and 'NONE' or styles[t[3]]))
+    if line:sub(1, 1) == '@' then
+        return vim.api.nvim_set_hl(0, group, { link = line:sub(2) })
     end
 
-    vim.cmd(table.concat(cmd, ' '))
+    local line = line:gsub('-', 'NONE')
+    local iter = line:gmatch('[^%s]+')
+    local opts = {
+        fg = colors[iter()],
+        bg = colors[iter()],
+    }
+    local style = styles[iter()]
+    if style then
+        opts[style] = true
+    end
+    vim.api.nvim_set_hl(0, group, opts)
 end
 
-vim.cmd('hi clear')
-if vim.fn.exists('syntax_on') then vim.cmd('syn reset') end
+vim.cmd.hi('clear')
+
+if vim.fn.exists('syntax_on') then
+    vim.cmd.syn('reset')
+end
 
 vim.o.bg = 'dark'
 vim.g.colors_name = 'custom'
 
-for _, highlight in pairs(syn) do
-    for group, line in pairs(highlight) do
-        hi(group, line)
-    end
+for group, line in pairs(syntax) do
+    hi(group, line)
 end

@@ -87,7 +87,11 @@ function M.setup(which)
             name = '+buffer',
             n = { vim.cmd.bn, 'Go to next' },
             p = { vim.cmd.bp ,'Go to previous' },
-            d = { vim.cmd.bd, 'Delete' }
+            d = { function()
+                -- delete current buffer and move to next
+                vim.cmd.bn()
+                vim.cmd.bd('#')
+            end, 'Delete' }
         },
         f = {
             name = '+file',

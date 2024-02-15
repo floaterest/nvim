@@ -4,24 +4,10 @@ require('notify').setup({
 
 require("noice").setup({
   routes = {
-    { -- avoid written messages
-      filter = {
-        event = "msg_show",
-        kind = "",
-      },
-      opts = { skip = true },
-    },
     { -- avoid undo messages
       filter = {
         event = "msg_show",
         find = "line",
-      },
-      opts = { skip = true },
-    },
-    { -- avoid search messages
-      filter = {
-        event = "msg_show",
-        kind = "search_count",
       },
       opts = { skip = true },
     },
