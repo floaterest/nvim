@@ -2,7 +2,9 @@
 --[[ CFG for the values:
 
            S -> <color> | <link>
-     <color> -> <fg> [ <bg> ] [ <decoration> ]
+     <color> -> <fg> | <fg> <bg> | <color-deco>
+<color-deco> -> <fg> <bg> <decoration>
+<color-deco> -> <color-deco><decoration>
       <link> -> @<hlgroup>
   <fg>, <bg> -> [a-z]+ | . | -
 <decoration> -> u | b | i | .
@@ -53,16 +55,21 @@ local syntax = {
 local treesitter = {
     ['@function.builtin'] = 'sky',
     ['@function.macro'] = '@@function.builtin',
+    ['@markup.environment'] = '@Statement',
+    ['@markup.heading.3'] ='yellow . bu',
+    ['@markup.heading.4'] ='yellow . b',
+    ['@markup.heading.5'] ='@Title',
+    ['@markup.strong'] = '. . b',
+    ['@module'] ='@Title',
+    ['@markup.math'] ='@Special',
+    ['@namespace'] = '@Title',
     ['@parameter'] = 'orange',
     ['@string.documentation'] = 'gray',
     ['@tag.attribute'] = '@Type',
     ['@tag.delimiter'] = '@Delimiter',
     ['@text.literal.block'] = 'lighter',
-    ['@namespace'] = '@Title',
     ['@type.builtin'] = '@Type',
-    ['@text.math'] ='@Special',
     ['@variable.builtin'] = '@function.builtin',
-    ['@text.environment'] = '@Statement',
 }
 local nvimtree = {
     NvimTreeFolderIcon = 'yellow',

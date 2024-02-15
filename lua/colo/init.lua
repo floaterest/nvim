@@ -14,9 +14,13 @@ local function hi(group, line)
         fg = colors[iter()],
         bg = colors[iter()],
     }
-    local style = styles[iter()]
+    local style = iter()
     if style then
-        opts[style] = true
+        for c in style:gmatch('.') do
+            if styles[c] then
+                opts[styles[c]] = true
+            end
+        end
     end
     vim.api.nvim_set_hl(0, group, opts)
 end

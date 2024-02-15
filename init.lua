@@ -6,26 +6,68 @@ require('plugins')
 -- see log in ~/.local/state/nvim/lsp.log
 -- vim.lsp.set_log_level("debug")
 
--- enable filetype.lua
--- vim.g.do_filetype_lua = true
--- vim.g.did_load_filetypes = true
-
-vim.filetype.add({
-    -- *.mdx is markdown
-    extension = { mdx = 'markdown' }
-})
-
-vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
-
 if vim.g.neovide then require('neovide') end
 
-vim.g.clipboard = {
-    copy = {
-        ['+'] = {'wl-copy', '--trim-newline'},
-        ['*'] = {'wl-copy', '--trim-newline'},
-    },
-    paste = {
-        ['+'] = {'wl-paste', '--no-newline'},
-        ['*'] = {'wl-paste', '--no-newline'},
-    },
+
+local function hasgrandparent(match, _, _, predicate)
+    local node = match[predicate[2]]
+    for _ = 1, 2 do
+      if not node then return false end
+      node = node:parent()
+    end
+    if not node then return false end
+    local ancestor_types = { unpack(predicate, 3) }
+    if vim.tbl_contains(ancestor_types, node:type()) then
+      return true
+    end
+    return false
+end
+
+local function setpairs(match, _, source, predicate, metadata)
+    -- (#set-pairs! @aa key list)
+    local capture_id = predicate[2]
+    local node = match[capture_id]
+    local key = predicate[3]
+    if not node then return end
+    local node_text = vim.treesitter.get_node_text(node, source)
+    -- if metadata[capture_id] and metadata[capture_id].range then
+    --   local sr, sc, er, ec = unpack(metadata[capture_id].range)
+    --   node_text = vim.api.nvim_buf_get_text(source, sr, sc, er, ec, {})[1]
+    -- end
+    for i = 4, #predicate, 2 do
+      if node_text == predicate[i] then
+        metadata[key] = predicate[i+1]
+        break
+      end
+    end
+end
+
+
+local context_manager = require('plenary.context_manager')
+local with = context_manager.with
+local open = context_manager.open
+
+
+local filenames = {
+    unpack(vim.api.nvim_get_runtime_file('queries/latex/*.scm', true)),
+    -- unpack(vim.treesitter.query.get_files('latex', 'highlights'))
 }
+
+vim.treesitter.query.add_predicate('has-grandparent?', hasgrandparent, true)
+vim.treesitter.query.add_directive('set-pairs!', setpairs, true)
+
+-- with(open('/tmp/file.txt', 'w'), function(f)
+--     f:write(vim.inspect(filenames))
+-- end)
+
+local query = table.concat(vim.tbl_map(function(f)
+    return with(open(f), function(r)
+        return r:read('*a')
+    end)
+end, filenames))
+
+-- with(open('/tmp/file.txt', 'w'), function(f)
+--     f:write(query)
+-- end)
+
+vim.treesitter.query.set('latex', 'highlights', query)

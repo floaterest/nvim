@@ -1,27 +1,44 @@
-local o = vim.o
-o.ar = true -- reload file changes (autoread)
-o.bri = true -- keep visual indent on wrap
-o.bs = 'indent,eol,start' -- allow backspace
-o.cole = 2 -- conceal level
-o.shm = 'W'
-o.cot = 'menuone,noinsert,noselect' -- complete option
-o.et = true -- <tab> expands to spaces
-o.hid = true -- allow multiple unsaved buffers
-o.hls = false -- no highlight after search
-o.hlsearch = true -- highlight all search results
-o.mouse = 'a' -- enable mouse
-o.nu = true -- current line number
-o.ph = 4 -- max popmenu height
-o.rnu = true -- relative line number
-o.smc = 500 -- don't syntax highlight after 500 lines
-o.smd = false -- don't show '-- insert --'
-o.so = 8 -- num of lines to keep above/below cursor
-o.spr = true -- split right
-o.sb = true -- split below
-o.sts = 4 -- spaces per tab
-o.sw = 4 -- columns per shift
-o.swf = false -- no swap file
-o.tgc = true -- use 24-bit color
-o.tm = 500 -- timeout in ms (e.g. for whichkey)
-o.ts = 4 -- columns per tabstop
-o.wrap = false -- no word wrap
+vim.o.ar = true -- reload file changes (autoread)
+vim.o.bri = true -- keep visual indent on wrap
+vim.o.bs = 'indent,eol,start' -- allow backspace
+vim.o.cole = 2 -- conceal level
+vim.o.shm = 'W'
+vim.o.cot = 'menuone,noinsert,noselect' -- complete option
+vim.o.et = true -- <tab> expands to spaces
+vim.o.hid = true -- allow multiple unsaved buffers
+vim.o.hls = false -- no highlight after search
+vim.o.hlsearch = true -- highlight all search results
+vim.o.mouse = 'a' -- enable mouse
+vim.o.nu = true -- current line number
+vim.o.ph = 4 -- max popmenu height
+vim.o.rnu = true -- relative line number
+vim.o.smc = 500 -- don't syntax highlight after 500 lines
+vim.o.smd = false -- don't show '-- insert --'
+vim.o.so = 8 -- num of lines to keep above/below cursor
+vim.o.spr = true -- split right
+vim.o.sb = true -- split below
+vim.o.sts = 4 -- spaces per tab
+vim.o.sw = 4 -- columns per shift
+vim.o.swf = false -- no swap file
+vim.o.tgc = true -- use 24-bit color
+vim.o.tm = 500 -- timeout in ms (e.g. for whichkey)
+vim.o.ts = 4 -- columns per tabstop
+vim.o.wrap = false -- no word wrap
+
+vim.g.clipboard = {
+    copy = {
+        ['+'] = {'wl-copy', '--trim-newline'},
+        ['*'] = {'wl-copy', '--trim-newline'},
+    },
+    paste = {
+        ['+'] = {'wl-paste', '--no-newline'},
+        ['*'] = {'wl-paste', '--no-newline'},
+    },
+}
+
+vim.filetype.add({
+    -- *.mdx is markdown
+    extension = { mdx = 'markdown' }
+})
+
+vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
