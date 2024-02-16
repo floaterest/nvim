@@ -44,6 +44,7 @@ require("lazy").setup({
 		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 	},
 	{ "echasnovski/mini.nvim", version = false },
+	-- {'ryleelyman/latex.nvim', opts={}}
 })
 
 -- prepare keymaps first

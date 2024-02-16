@@ -161,17 +161,11 @@ local snippets = List.new({
 
 local autosnippets = List.new({
     sleadr('a(%d) ', fmta('a_{n_<>}', { l(l.CAPTURE1) })),
-    sleadr('bb(%l) ', fmt('\\mathbb {}', { l(l.CAPTURE1:upper()) })),
-    sleadr('bb(%l)(%S) ', fmt('\\mathbb {}^{}', {
+    sleadr('bb(%l) ', fmta('\\mathbb{<>}', { l(l.CAPTURE1:upper()) })),
+    sleadr('bb(%l)(%S) ', fmta('\\mathbb{<>}^<>', {
         l(l.CAPTURE1:upper()), l(l.CAPTURE2)
     })),
-    sleadr('cal(%l) ', fmt('\\mathcal {}', { l(l.CAPTURE1:upper()) })),
-    sleadr('cal(%l)(.) ', fmta('\\mathcal <>(<>)', {
-        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper())
-    })),
-    sleadr('cal(%l)(.)(.)', fmta('\\mathcal <>(<>,<>)', {
-        l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()), l(l.CAPTURE3:upper())
-    })),
+    sleadr('cal(%l) ', fmta('\\mathcal{<>} ', { l(l.CAPTURE1:upper()) })),
     sleadr('lin ', t('\\liminf_{n\\to\\infty}')),
     sleadr('lis ', t('\\limsup_{n\\to\\infty}')),
     sleadr('lim(%l)(%S) ', fmta('\\lim_{<x>\\to<to>}', {

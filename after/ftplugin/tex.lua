@@ -3,8 +3,8 @@ vim.bo.sts = 2
 vim.bo.sw = 2
 vim.opt_local.cc = "0"
 
+-- surround
 local config = require("nvim-surround.config")
-
 require("nvim-surround").buffer_setup({
 	surrounds = {
 		c = {

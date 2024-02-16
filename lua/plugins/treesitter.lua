@@ -9,11 +9,13 @@ local languages = {
 	"c",
 	"cpp",
 	"css",
+	"haskell",
 	"html",
 	"javascript",
 	"jsonc",
 	"lua",
 	"markdown",
+"markdown_inline",
 	"python",
 	"regex",
 	"rust",
@@ -22,7 +24,6 @@ local languages = {
 	"typescript",
 	"vim",
 	"yaml",
-	"haskell",
 }
 
 require("nvim-treesitter.configs").setup({

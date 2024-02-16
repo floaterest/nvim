@@ -10,6 +10,13 @@ if vim.g.neovide then
 	require("neovide")
 end
 
+
+-- treesitter
+
+local context_manager = require("plenary.context_manager")
+local with = context_manager.with
+local open = context_manager.open
+
 local function hasgrandparent(match, _, _, predicate)
 	local node = match[predicate[2]]
 	for _ = 1, 2 do
@@ -37,10 +44,6 @@ local function setpairs(match, _, source, predicate, metadata)
 		return
 	end
 	local node_text = vim.treesitter.get_node_text(node, source)
-	-- if metadata[capture_id] and metadata[capture_id].range then
-	--   local sr, sc, er, ec = unpack(metadata[capture_id].range)
-	--   node_text = vim.api.nvim_buf_get_text(source, sr, sc, er, ec, {})[1]
-	-- end
 	for i = 4, #predicate, 2 do
 		if node_text == predicate[i] then
 			metadata[key] = predicate[i + 1]
@@ -49,22 +52,13 @@ local function setpairs(match, _, source, predicate, metadata)
 	end
 end
 
-local context_manager = require("plenary.context_manager")
-local with = context_manager.with
-local open = context_manager.open
+vim.treesitter.query.add_predicate("has-grandparent?", hasgrandparent, true)
+vim.treesitter.query.add_directive("set-pairs!", setpairs, true)
 
--- read highlight files
 local filenames = {
 	unpack(vim.treesitter.query.get_files("latex", "highlights")),
 	unpack(vim.api.nvim_get_runtime_file("queries/latex/*.scm", true)),
 }
-
-vim.treesitter.query.add_predicate("has-grandparent?", hasgrandparent, true)
-vim.treesitter.query.add_directive("set-pairs!", setpairs, true)
-
-with(open("/tmp/file.txt", "w"), function(f)
-	f:write(vim.inspect(filenames))
-end)
 
 -- make query
 local query = table.concat(
@@ -72,8 +66,7 @@ local query = table.concat(
 		return with(open(f), function(r)
 			return r:read("*a")
 		end)
-	end, filenames),
-	"\n\n"
+	end, filenames), "\n\n"
 )
 
 -- add custom symbols
@@ -83,7 +76,6 @@ local symbols = {
 	implies = "⇒",
 	enspace = " ",
 	square = "□",
-	sube = "⊆",
 	["{"] = "{",
 	["}"] = "}",
 }
@@ -101,8 +93,6 @@ end
 
 query = query .. qa .. qb .. '))'
 
-with(open("/tmp/query.txt", "w"), function(f)
-	f:write(query)
-end)
+vim.treesitter.query.set("latex", "highlights", query)
 
--- vim.treesitter.query.set("latex", "highlights", query)
+
