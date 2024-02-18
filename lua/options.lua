@@ -39,10 +39,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.filetype.add({
-	-- *.mdx is markdown
 	extension = {
 		mdx = "markdown",
-		tex = "tex",
+		tmpl = "markdown",
 	},
 })
 

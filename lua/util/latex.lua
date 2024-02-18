@@ -22,10 +22,8 @@ local function conceal(s)
 end
 
 local misc = {
-	{ '"\\\\item"', '@punctuation.special', '@conceal', conceal('•') }
+	{ '"\\\\item"', "@punctuation.special", "@conceal", conceal("•") },
 }
-
-
 
 local function mapsort(tbl, surround)
 	local t = func.kv_map(function(kv)
@@ -155,12 +153,9 @@ local greek = generic("@text.math", {
 })
 
 local operators = generic("@operator", {
-	["|"] = "‖",
 	["in"] = "∈",
 	amalg = "∐",
 	angle = "∠",
-	langle = '⟨',
-	rangle = '⟩',
 	approx = "≈",
 	ast = "∗",
 	asymp = "≍",
@@ -208,6 +203,7 @@ local operators = generic("@operator", {
 	geq = "≥",
 	gets = "←",
 	gg = "⟫",
+	gt = ">",
 	hookleftarrow = "↩",
 	hookrightarrow = "↪",
 	iff = "⇔",
@@ -216,6 +212,7 @@ local operators = generic("@operator", {
 	int = "∫",
 	jmath = "𝚥",
 	land = "∧",
+	langle = "⟨",
 	lceil = "⌈",
 	ldots = "…",
 	le = "≤",
@@ -232,6 +229,7 @@ local operators = generic("@operator", {
 	ll = "≪",
 	lmoustache = "╭",
 	lor = "∨",
+	lt = "<",
 	mapsto = "↦",
 	mid = "∣",
 	models = "╞",
@@ -264,6 +262,7 @@ local operators = generic("@operator", {
 	propto = "∝",
 	qquad = " ",
 	quad = " ",
+	rangle = "⟩",
 	rceil = "⌉",
 	Re = "ℜ",
 	rfloor = "⌋",
@@ -281,6 +280,7 @@ local operators = generic("@operator", {
 	smile = "‿",
 	sqcap = "⊓",
 	sqcup = "⊔",
+	sqrt = "√",
 	sqsubset = "⊏",
 	sqsubseteq = "⊑",
 	sqsupset = "⊐",
@@ -636,6 +636,6 @@ return {
 	typography = typography,
 	scripts = scripts,
 	subscripts = subscripts,
-    supscripts = supscripts,
+	supscripts = supscripts,
 	misc = misc,
 }

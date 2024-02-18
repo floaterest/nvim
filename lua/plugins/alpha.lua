@@ -14,7 +14,7 @@ return function()
 
 	local context_manager = require("plenary.context_manager")
 	local with, open = context_manager.with, context_manager.open
-    -- read lines
+	-- read lines
 	with(open(arts[i], "r"), function(reader)
 		repeat
 			local line = reader:read("*l")

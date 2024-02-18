@@ -158,6 +158,7 @@
     "\\geq"
     "\\gets"
     "\\gg"
+    "\\gt"
     "\\hookleftarrow"
     "\\hookrightarrow"
     "\\iff"
@@ -180,6 +181,7 @@
     "\\ll"
     "\\lmoustache"
     "\\lor"
+    "\\lt"
     "\\mapsto"
     "\\mid"
     "\\models"
@@ -254,8 +256,7 @@
     "\\vee"
     "\\wedge"
     "\\wp"
-    "\\wr"
-    "\\|")
+    "\\wr")
   (#set-pairs! @operator conceal
     "\\Downarrow" "⇓"
     "\\Im" "ℑ"
@@ -315,6 +316,7 @@
     "\\geq" "≥"
     "\\gets" "←"
     "\\gg" "⟫"
+    "\\gt" ">"
     "\\hookleftarrow" "↩"
     "\\hookrightarrow" "↪"
     "\\iff" "⇔"
@@ -337,6 +339,7 @@
     "\\ll" "≪"
     "\\lmoustache" "╭"
     "\\lor" "∨"
+    "\\lt" "<"
     "\\mapsto" "↦"
     "\\mid" "∣"
     "\\models" "╞"
@@ -411,8 +414,7 @@
     "\\vee" "∨"
     "\\wedge" "∧"
     "\\wp" "℘"
-    "\\wr" "≀"
-    "\\|" "‖"))
+    "\\wr" "≀"))
 
 ;; symbols
 (generic_command
