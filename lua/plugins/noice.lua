@@ -1,8 +1,5 @@
-require("notify").setup({
+return {
 	stages = "fade",
-})
-
-require("noice").setup({
 	routes = {
 		{ -- avoid undo messages
 			filter = {
@@ -27,4 +24,4 @@ require("noice").setup({
 		lsp_doc_border = false, -- add a border to hover docs and signature help
 	},
 	-- messages = { enabled = false },
-})
+}

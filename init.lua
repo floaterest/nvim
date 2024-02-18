@@ -9,3 +9,6 @@ require("plugins")
 if vim.g.neovide then
 	require("neovide")
 end
+
+vim.g.do_filetype_lua = 1
+

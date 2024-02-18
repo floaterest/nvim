@@ -35,10 +35,15 @@ vim.g.clipboard = {
 		["*"] = { "wl-paste", "--no-newline" },
 	},
 }
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.filetype.add({
 	-- *.mdx is markdown
-	extension = { mdx = "markdown" },
+	extension = {
+		mdx = "markdown",
+		tex = "tex",
+	},
 })
 
 vim.keymap.set("t", "<esc>", "<c-\\><c-n>")

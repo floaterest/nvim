@@ -16,11 +16,11 @@ local commands = {
     ran = '\\operatorname{ran}',
     -- algebra
     ch = '\\operatorname{char}',
+    lcm = '\\operatorname{lcm}',
     sy = '\\operatorname{Syl}',
+    op = '\\oplus',
     -- analysis
-    ak = 'a_{n_k}',
     ['-'] = '\\setminus ',
-    ['2'] = '^2',
     -- computation
     Sa = '\\Sigma^\\ast',
     Ga = '\\Gamma^\\ast',
@@ -36,8 +36,8 @@ local commands = {
     bcc = '\\because\\,&',
     qed = '\\enspace\\square',
     f = { '\\frac', '{', '}' },
-    im = '\\implies',
-    mi = '\\impliedby',
+    im = '\\implies ',
+    mi = '\\impliedby ',
     i = '^{-1}',
     fo = '\\forall',
     ex = '\\exists',
@@ -49,15 +49,15 @@ local commands = {
     t = { '\\text', '{', '}' },
     tt = { '\\texttt', '{', '}' },
     bf = { '\\textbf', '{', '}' },
-    rm = { '\\mathrm', '{', '}' },
     g = { '\\tag', '{', '}' },
     ob = { '\\overbrace', '{', '}' },
     ub = { '\\underbrace', '{', '}' },
     ol = '\\overline',
     ul = '\\underline',
     ph = '\\phantom',
-    ss = { '\\subsection*', '{', '}' },
-    sss = { '\\subsubsection*', '{', '}' },
+    n = { '\\section*', '{', '}' },
+    nn = { '\\subsection*', '{', '}' },
+    nnn = { '\\subsubsection*', '{', '}' },
     -- greek
     a = '\\alpha',
     b = '\\beta',
@@ -160,14 +160,11 @@ local snippets = List.new({
 )
 
 local autosnippets = List.new({
-    sleadr('a(%d) ', fmta('a_{n_<>}', { l(l.CAPTURE1) })),
     sleadr('bb(%l) ', fmta('\\mathbb{<>}', { l(l.CAPTURE1:upper()) })),
-    sleadr('bb(%l)(%S) ', fmta('\\mathbb{<>}^<>', {
+    sleadr('bb(%l)(%S) ', fmta('\\mathbb{<>}_<>', {
         l(l.CAPTURE1:upper()), l(l.CAPTURE2)
     })),
     sleadr('cal(%l) ', fmta('\\mathcal{<>} ', { l(l.CAPTURE1:upper()) })),
-    sleadr('lin ', t('\\liminf_{n\\to\\infty}')),
-    sleadr('lis ', t('\\limsup_{n\\to\\infty}')),
     sleadr('lim(%l)(%S) ', fmta('\\lim_{<x>\\to<to>}', {
         x = l(l.CAPTURE1), to = numinf(2, true)
     })),

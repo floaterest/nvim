@@ -14,7 +14,6 @@
 --]]
 
 local ui = {
-	Conceal = "- -",
 	CursorLineNr = "lightest darker b",
 	Folded = "orange dark",
 	LineNr = "lighter black",
@@ -57,6 +56,8 @@ local treesitter = {
 
 	["@markup.environment"] = "@Statement",
 	["@markup.heading.3"] = "yellow . bu",
+	["@markup.heading.2.marker"] = "@Delimiter",
+	["@markup.heading.2"] = "yellow",
 	["@markup.heading.4"] = "@Title",
 	["@markup.math"] = "@Special",
 	["@markup.heading.5"] = "@Title",
@@ -64,14 +65,15 @@ local treesitter = {
 	['@markup.list'] = '@Delimiter',
 	["@markup.strong"] = ". . b",
 
-	["@module"] = "yellow",
+	["@module.latex"] = "yellow",
+	["@module.builtin"] = "@function.builtin",
 	["@namespace"] = "@@function.builtin",
 	["@parameter"] = "orange",
 	["@string.documentation"] = "gray",
 	["@tag.attribute"] = "@Type",
 	["@tag.delimiter"] = "@Delimiter",
 
-	["@text.environment"] = "@@text.environment",
+	["@text.environment"] = "@@markup.environment",
 	["@text.literal.block"] = "lighter",
 	["@text.math"] = "@@markup.math",
 	['@text.emphasis'] = '@@markup.italic',
@@ -95,32 +97,32 @@ local nvimtree = {
 	NvimTreeGitNew = "orange",
 	NvimTreeGitDeleted = "@Comment",
 }
-local languages = vim.tbl_flatten({
-	css = {
-		cssBraces = "@Delimiter",
-		cssCustomProp = "@Normal",
-		cssIdentifier = "orange . i",
-		cssPseudoClassId = "sky . i",
-		cssProp = "@Normal",
-		cssClassName = "lime . i",
-		cssClassNameDot = "@Delimiter",
-		cssImportant = "pink",
-	},
-	sass = {
-		sassVariableAssignment = "@Delimiter",
-		sassFunctionName = "@Function",
-		sassProperty = "@Delimiter",
-		sassMixinName = "@TSFuncBuiltin",
-	},
-	html = {
-		htmlTag = "@Delimiter",
-		htmlEndTag = "@Delimiter",
-	},
-	markdown = {
-		markdownBold = ". . b",
-		markdownItalic = ". . i",
-		markdownListMarker = "@Delimiter",
-	},
-})
+-- local languages = vim.tbl_flatten({
+-- 	css = {
+-- 		cssBraces = "@Delimiter",
+-- 		cssCustomProp = "@Normal",
+-- 		cssIdentifier = "orange . i",
+-- 		cssPseudoClassId = "sky . i",
+-- 		cssProp = "@Normal",
+-- 		cssClassName = "lime . i",
+-- 		cssClassNameDot = "@Delimiter",
+-- 		cssImportant = "pink",
+-- 	},
+-- 	sass = {
+-- 		sassVariableAssignment = "@Delimiter",
+-- 		sassFunctionName = "@Function",
+-- 		sassProperty = "@Delimiter",
+-- 		sassMixinName = "@TSFuncBuiltin",
+-- 	},
+-- 	html = {
+-- 		htmlTag = "@Delimiter",
+-- 		htmlEndTag = "@Delimiter",
+-- 	},
+-- 	markdown = {
+-- 		markdownBold = ". . b",
+-- 		markdownItalic = ". . i",
+-- 		markdownListMarker = "@Delimiter",
+-- 	},
+-- })
 
-return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree, languages)
+return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree)

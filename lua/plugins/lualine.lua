@@ -1,5 +1,4 @@
 local colors = require("colo.colors")
-local lualine = require("lualine")
 
 local theme = {
 	normal = {
@@ -64,19 +63,19 @@ local function location()
 	return line .. ":" .. col
 end
 
-lualine.setup({
+local status, noice = pcall(require, "noice")
+local x = status and { {
+	noice.api.statusline.mode.get,
+	cond = noice.api.statusline.mode.has,
+} } or {}
+
+return {
 	options = { theme = theme },
 	sections = {
 		lualine_a = { mode },
 		lualine_b = { "branch" },
 		lualine_c = { filename, "diagnostics" },
-		lualine_x = {
-			{
-				require("noice").api.statusline.mode.get,
-				cond = require("noice").api.statusline.mode.has,
-			},
-		},
-
+		lualine_x = x,
 		lualine_y = { "filetype" },
 		lualine_z = { location },
 	},
@@ -89,6 +88,6 @@ lualine.setup({
 		lualine_z = {},
 	},
 	extensions = {
-		"nvim-tree", --[[ 'nvim-dap-ui' ]]
+		"nvim-tree", --'nvim-dap-ui'
 	},
-})
+}
