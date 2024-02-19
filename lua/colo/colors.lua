@@ -23,4 +23,28 @@ return {
 	sky = "#66ccff",
 	purple = "#a68cd9",
 	cyan = "#66ffe6",
+
+	-- white = "#000000",
+	-- lightest = "#141414",
+	-- lighter = "#333333",
+	-- light = "#585858",
+	-- gray = "#7f7f7f",
+	-- dark = "#a6a6a6",
+	-- darker = "#cbcbcb",
+	-- darkest = "#eaeaea",
+	-- black = "#ffffff",
+
+	-- pink = "#c53943",
+	-- lime = "#44aa66",
+	-- yellow = "#A31515",
+	-- sky = "#3989c5",
+	-- purple = "#3943c5",
+	-- cyan = "#39c5bb",
+
+	-- red = "#ff6680",
+	-- green = "#66ff99",
+	-- orange = "#ffe666",
+	-- blue = "#66ccff",
+	-- indigo = "#a68cd9",
+	-- teal = "#66ffe6",
 }
