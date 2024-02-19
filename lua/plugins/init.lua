@@ -7,9 +7,6 @@ end
 vim.opt.rtp:prepend(lazy)
 
 require("lazy").setup({
-	-- 'mfussenegger/nvim-dap-python',
-	-- 'mfussenegger/nvim-dap',
-	-- 'rcarriga/nvim-dap-ui',
 	"kyazdani42/nvim-web-devicons",
 	"nvim-lua/plenary.nvim",
 	{ "akinsho/bufferline.nvim", opts = {} },
@@ -47,8 +44,8 @@ require("lazy").setup({
 	},
 	{
 		"folke/noice.nvim",
-		event = "VeryLazy",
 		opts = require("plugins.noice"),
+		event = "VeryLazy",
 		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 	},
 })
