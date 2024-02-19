@@ -11,3 +11,4 @@ if vim.g.neovide then
 end
 
 vim.g.do_filetype_lua = 1
+
