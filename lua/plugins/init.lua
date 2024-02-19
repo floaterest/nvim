@@ -40,7 +40,10 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = require("plugins.treesitter"),
-		dependencies = { "nvim-treesitter/playground" },
+		dependencies = {
+			"nvim-treesitter/playground",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 	},
 	{
 		"folke/noice.nvim",

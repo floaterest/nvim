@@ -21,9 +21,19 @@ local languages = {
 	"yaml",
 }
 
+local select = {
+	enable = true,
+	lookahead = true,
+	keymaps = {
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+	},
+}
+
 return function()
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = languages,
+		textobjects = { select = select },
 		highlight = { enable = true },
 		playground = { enable = true },
 	})
