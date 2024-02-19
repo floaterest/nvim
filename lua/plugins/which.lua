@@ -1,9 +1,3 @@
-local function wincmd(key)
-	return function()
-		vim.cmd.wincmd(key)
-	end
-end
-
 local function copy()
 	vim.fn.setreg("+", vim.fn.join(vim.fn.getbufline("%", 1, "$"), "\n"), "l")
 	print("Copied buffer to clipboard")
@@ -23,7 +17,15 @@ local vanilla = {
 	["<c-c>"] = { copy, "Copy buffer" },
 }
 
+local function wincmd(key)
+	return function()
+		vim.cmd.wincmd(key)
+	end
+end
+
+
 local leader = {
+    x = { vim.cmd.x },
 	b = {
 		name = "+buffer",
 		n = { vim.cmd.bn, "Next" },
@@ -99,6 +101,15 @@ local function tree(api)
 	return { t = { api.tree.toggle, "Toggle tree" } }, { prefix = "<leader>f" }
 end
 
+local function session(ses)
+	return {
+		name = "+session",
+		s = { ses.load_session, "Select sessions" },
+		o = { ses.load_last_session, "Open last session" },
+		O = { ses.load_last_session, "Open last session here" },
+	}, { prefix = "<leader>s" }
+end
+
 --[[
     TODO dap dapui
 
@@ -144,5 +155,10 @@ return function()
 	local status, api = pcall(require, "nvim-tree.api")
 	if status then
 		which.register(tree(api))
+	end
+
+	local status, ses = pcall(require, "session_manager")
+	if status then
+		which.register(session(ses))
 	end
 end
