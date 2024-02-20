@@ -25,7 +25,6 @@ end
 
 
 local leader = {
-    x = { vim.cmd.x },
 	b = {
 		name = "+buffer",
 		n = { vim.cmd.bn, "Next" },
