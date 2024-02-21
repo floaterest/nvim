@@ -306,6 +306,7 @@ local operators = generic("@operator", {
 	Uparrow = "⇑",
 	updownarrow = "↕",
 	Updownarrow = "⇕",
+	upharpoonright = "↾",
 	vdash = "⊢",
 	vdots = "⋮",
 	vee = "∨",

@@ -12,7 +12,7 @@ local snips = {
 
 local function details(attr)
 	local opts = { attr = attr, i(0) }
-	return fmt("<details {attr}open>\n<summary>{}</summary>\n</details>", opts)
+	return fmt("<details {attr}open>\n<summary>{}</summary>\n\n</details>", opts)
 end
 
 local leader = "\\"
