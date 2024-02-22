@@ -10,8 +10,8 @@ local commands = {
 	no = "\\varnothing",
 	U = "\\bigcup",
 	I = "\\bigcap",
-	se = "\\subseteq",
-	su = "\\subset",
+	se = "\\subseteq ",
+	su = "\\subset ",
 	dom = "\\operatorname{dom}",
 	ran = "\\operatorname{ran}",
 	-- algebra
@@ -168,7 +168,8 @@ local autosnippets = List.new({
 			l(l.CAPTURE2),
 		})
 	),
-	sleadr("cal(%l) ", fmta("\\mathcal{<>}", { l(l.CAPTURE1:upper()) })),
+	sleadr("cal(%l) ", fmta("\\mathcal{<>} ", { l(l.CAPTURE1:upper()) })),
+	sleadr("cal(%l)(%l) ", fmta("\\mathcal{<>} (<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
 	sleadr(
 		"lim(%l)(%S) ",
 		fmta("\\lim_{<x>\\to<to>}", {

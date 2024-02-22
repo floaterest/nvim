@@ -63,13 +63,14 @@ local function location()
 	return line .. ":" .. col
 end
 
+
+return function()
 local status, noice = pcall(require, "noice")
 local x = status and { {
 	noice.api.statusline.mode.get,
 	cond = noice.api.statusline.mode.has,
 } } or {}
-
-return {
+    require('lualine').setup({
 	options = { theme = theme },
 	sections = {
 		lualine_a = { mode },
@@ -90,4 +91,4 @@ return {
 	extensions = {
 		"nvim-tree", --'nvim-dap-ui'
 	},
-}
+})end

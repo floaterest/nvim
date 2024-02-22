@@ -10,6 +10,7 @@ return function()
 
 	luasnip.filetype_extend("svelte", { "typescript" })
 	luasnip.filetype_extend("markdown", { "tex" })
+    luasnip.filetype_extend('plaintex', {'tex'})
 
 	require("luasnip.loaders.from_lua").lazy_load()
 

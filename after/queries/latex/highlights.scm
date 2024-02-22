@@ -162,6 +162,7 @@
     "\\hookleftarrow"
     "\\hookrightarrow"
     "\\iff"
+    "\\impliedby"
     "\\implies"
     "\\in"
     "\\int"
@@ -192,6 +193,7 @@
     "\\nearrow"
     "\\neg"
     "\\neq"
+    "\\nexists"
     "\\ni"
     "\\notin"
     "\\nwarrow"
@@ -323,6 +325,7 @@
     "\\hookleftarrow" "↩"
     "\\hookrightarrow" "↪"
     "\\iff" "⇔"
+    "\\impliedby" "⇐"
     "\\implies" "⇒"
     "\\in" "∈"
     "\\int" "∫"
@@ -353,6 +356,7 @@
     "\\nearrow" "↗"
     "\\neg" "¬"
     "\\neq" "≠"
+    "\\nexists" "∄"
     "\\ni" "∋"
     "\\notin" "∉"
     "\\nwarrow" "↖"
@@ -428,6 +432,7 @@
   (#has-ancestor? @text.math math_environment inline_formula displayed_equation)
   (#not-has-ancestor? @text.math label_definition text_mode)
   (#any-of? @text.math
+    "\\#"
     "\\aleph"
     "\\clubsuit"
     "\\diamondsuit"
@@ -441,6 +446,7 @@
     "\\square"
     "\\varnothing")
   (#set-pairs! @text.math conceal
+    "\\#" "#"
     "\\aleph" "ℵ"
     "\\clubsuit" "♣"
     "\\diamondsuit" "♢"
