@@ -40,8 +40,9 @@ local snippets = List.new({
 })
 
 local autosnippets = List.new({
-	sleadr("cen ", fmt('<div class="flex justify-center">{}\n</div>', { i(0) })),
+	sleadr("cen ", fmt('<div class="flex justify-center">\n\n{}\n</div>', { i(0) })),
 	sleadr("tit ", fmt('<span title="{}"></span>', { i(0) })),
+    sleadr("rig ", fmt('<span style="float: right;">{}</span>', { i(0) })),
 	sleadr("spa ", fmt('<span class="{}"></span>', { i(0) })),
 	sleadr("lam ", t("λ")),
 	sleadr("div ", fmt('<div class="{}"></div>', { i(0) })),
@@ -53,7 +54,7 @@ local autosnippets = List.new({
 			return cap:len() > 0 and string.format('class="%s" ', cap) or ""
 		end))
 	),
-	slead("pro ", fmt('<details class="list-none" open>\n<summary>**Proof.**</summary>\n{}\n</details>', { i(0) })),
+	slead("pro ", fmt('<details class="list-none" open>\n<summary>**Proof.**</summary>\n\n{}\n</details>', { i(0) })),
 	slead("tikz ", fmt("<Tikz>\n{{String.raw`\n{}\n`}}\n</Tikz>", { i(0) })),
 }):concat(kv_slead(function(class)
 	return details(string.format('class="%s" ', class))

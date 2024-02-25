@@ -31,12 +31,12 @@ return function()
 			{
 				type = "group",
 				val = {
-					button("f", "  Open file", "<cmd>Telescope find_files<cr>"),
-					button("r", "  Open Recent", "<cmd>Telescope oldfiles<cr>"),
-					button("g", "  Find text", "<cmd>Telescope live_grep<cr>"),
-					button("q", "  Quit", "<cmd>qa<cr>"),
+					button("f", "󰈔  Find file", "<cmd>Telescope find_files<cr>"),
+					button("g", "  Live grep", "<cmd>Telescope live_grep<cr>"),
+					button("t", "  File Explorer", "<cmd>NvimTreeOpen<cr>"),
 					button("s", "󱈄  Select sessions", "<cmd>SessionManager load_session<cr>"),
 					button("o", "  Open last session", "<cmd>SessionManager load_current_dir_session<cr>"),
+					button("q", "󰗼  Quit", "<cmd>qa<cr>"),
 				},
 				opts = { spacing = 1 },
 			},
