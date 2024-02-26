@@ -11,12 +11,13 @@ local commands = {
 	U = "\\bigcup",
 	I = "\\bigcap",
 	se = "\\subseteq",
+	es = "\\supseteq",
 	su = "\\subset",
 	dom = "\\operatorname{dom}",
 	ran = "\\operatorname{ran}",
 	-- algebra
 	ch = "\\operatorname{char}",
-    cl = '\\operatorname{cl}',
+	cl = "\\operatorname{cl}",
 	lcm = "\\operatorname{lcm}",
 	op = "\\oplus",
 	-- analysis

@@ -25,6 +25,6 @@ return {
 	},
 	messages = {
 		view_error = "mini",
-        view_warn = 'mini'
+		view_warn = "mini",
 	},
 }

@@ -23,7 +23,6 @@ local function wincmd(key)
 	end
 end
 
-
 local leader = {
 	b = {
 		name = "+buffer",
