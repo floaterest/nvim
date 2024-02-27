@@ -24,7 +24,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", opts = require("plugins.telescope") },
 	{ "nvimtools/none-ls.nvim", config = require("plugins.none") },
 	{ "Shatur/neovim-session-manager", config = require("plugins.session") },
-	{ "stevearc/dressing.nvim", opts = {} },
+	-- { "stevearc/dressing.nvim", opts = {} },
 	{ "windwp/nvim-autopairs", config = require("plugins.autopairs") },
 	{
 		"hrsh7th/nvim-cmp",
@@ -45,10 +45,10 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 	},
-	{
-		"folke/noice.nvim",
-		opts = require("plugins.noice"),
-		event = "VeryLazy",
-		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	-- 	opts = require("plugins.noice"),
+	-- 	event = "VeryLazy",
+	-- 	dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+	-- },
 })

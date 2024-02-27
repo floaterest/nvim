@@ -18,7 +18,6 @@ return function()
 		-- ca.eslint_d.with(eslint),
 		-- fo.eslint_d.with(eslint),
 		-- fo.jq,
-		-- fo.rustfmt,
 		-- fo.blue,
 		fo.raco_fmt,
 		fo.stylua,
@@ -31,7 +30,6 @@ return function()
 		--         return diagnostic.code ~= "unused-argument"
 		--     end,
 		-- }),
-		fo.fourmolu,
 		fo.clang_format,
 	}
 
