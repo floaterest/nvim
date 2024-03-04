@@ -18,12 +18,15 @@ local commands = {
 	-- algebra
 	ch = "\\operatorname{char}",
 	cl = "\\operatorname{cl}",
+    tr = '\\triangleleft',
 	lcm = "\\operatorname{lcm}",
 	op = "\\oplus",
+    pr = '\\operatorname{Pr}',
 	-- analysis
 	["-"] = "\\setminus ",
 	-- computation
 	Sa = "\\Sigma^\\ast",
+    B = '\\{0,1\\}',
 	Ga = "\\Gamma^\\ast",
 	an = { "", "\\langle ", "\\rangle" },
 	fl = { "", "\\lfloor", "\\rfloor" },
@@ -160,7 +163,7 @@ local snippets = List.new({
 end, pairs))
 
 local autosnippets = List.new({
-	slead("pr ", t({ "\\textit{Proof.}", "" })),
+	-- slead("pr ", t({ "\\textit{Proof.}", "" })),
 	slead("\\sy(%d)", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
 	sleadr("bb(%l) ", fmta("\\mathbb{<>}", { l(l.CAPTURE1:upper()) })),
 	sleadr(
