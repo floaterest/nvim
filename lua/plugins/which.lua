@@ -104,6 +104,7 @@ local function session(ses)
 		name = "+session",
 		s = { ses.load_session, "Select sessions" },
 		o = { ses.load_last_session, "Open last session" },
+		d = { ses.delete_session, "Delete sessions" },
 		O = { ses.load_last_session, "Open last session here" },
 	}, { prefix = "<leader>s" }
 end

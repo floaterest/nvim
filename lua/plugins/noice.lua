@@ -4,10 +4,17 @@ return {
 		{ -- avoid undo messages
 			filter = {
 				event = "msg_show",
-				find = "line",
+                find = "line",
 			},
 			opts = { skip = true },
 		},
+        {
+            filter ={
+                event='notify',
+                find = "was properly", -- NvimTree
+            },
+            view = 'mini'
+        },
 	},
 	lsp = {
 		progress = { enabled = false },

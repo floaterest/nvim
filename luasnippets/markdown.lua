@@ -1,6 +1,33 @@
 local List = require("plenary.collections.py_list")
 require("util.luasnip")
 
+local greek = {
+	alpha = "α",
+	beta = "β",
+	gamma = "γ",
+	delta = "δ",
+	epsilon = "ε",
+	zeta = "ζ",
+	eta = "η",
+	theta = "θ",
+	iota = "ι",
+	kappa = "κ",
+	lambda = "λ",
+	mu = "μ",
+	nu = "ν",
+	xi = "ξ",
+	omicron = "ο",
+	pi = "π",
+	rho = "ρ",
+	sigma = "σ",
+	tau = "τ",
+	upsilon = "υ",
+	phi = "φ",
+	chi = "χ",
+	psi = "ψ",
+	omega = "ω",
+}
+
 local snips = {
 	details = {
 		def = "definition",
@@ -37,7 +64,9 @@ local snippets = List.new({
 		l(l.CAPTURE1),
 		t('"/>'),
 	}),
-})
+}):concat(
+ifmtas(greek)
+)
 
 local autosnippets = List.new({
 	sleadr("cen ", fmt('<div class="flex justify-center">\n\n{}\n</div>', { i(0) })),

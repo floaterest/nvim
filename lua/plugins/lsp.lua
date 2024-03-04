@@ -13,7 +13,7 @@ local rust = {
 local haskell = {
 	formattingProvider = "fourmolu",
 	plugin = {
-		stan = { globalOn = false },
+		stan = { globalOn = true },
 	},
 }
 
