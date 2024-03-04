@@ -315,6 +315,7 @@ local operators = generic("@operator", {
 	vdots = "⋮",
 	vee = "∨",
 	wedge = "∧",
+    vert = "|",
 	wp = "℘",
 	wr = "≀",
 })
