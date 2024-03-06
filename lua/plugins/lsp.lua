@@ -12,9 +12,6 @@ local rust = {
 
 local haskell = {
 	formattingProvider = "fourmolu",
-	plugin = {
-		stan = { globalOn = true },
-	},
 }
 
 local servers = {

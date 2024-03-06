@@ -173,8 +173,8 @@ local autosnippets = List.new({
 			l(l.CAPTURE2),
 		})
 	),
-	sleadr("cal(%l) ", fmta("\\mathcal{<>} ", { l(l.CAPTURE1:upper()) })),
-	sleadr("cal(%l)(%l) ", fmta("\\mathcal{<>} (<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
+	sleadr("cal(%l) ", fmta("\\mathcal{<>}", { l(l.CAPTURE1:upper()) })),
+	sleadr("cal(%l)(%l) ", fmta("\\mathcal{<>}(<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
 	sleadr(
 		"lim(%l)(%S) ",
 		fmta("\\lim_{<x>\\to<to>}", {
