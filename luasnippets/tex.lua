@@ -12,22 +12,22 @@ local commands = {
 	I = "\\bigcap",
 	se = "\\subseteq",
 	es = "\\supseteq",
-    n = '\\aleph_',
+	n = "\\aleph_",
 	su = "\\subset",
 	dom = "\\operatorname{dom}",
 	ran = "\\operatorname{ran}",
 	-- algebra
 	ch = "\\operatorname{char}",
 	cl = "\\operatorname{cl}",
-    tr = '\\triangleleft',
+	tr = "\\triangleleft",
 	lcm = "\\operatorname{lcm}",
 	op = "\\oplus",
-    pr = '\\operatorname{Pr}',
+	pr = "\\operatorname{Pr}",
 	-- analysis
 	["-"] = "\\setminus ",
 	-- computation
 	Sa = "\\Sigma^\\ast",
-    B = '\\{0,1\\}',
+	B = "\\{0,1\\}",
 	Ga = "\\Gamma^\\ast",
 	an = { "", "\\langle ", "\\rangle" },
 	fl = { "", "\\lfloor", "\\rfloor" },
@@ -167,6 +167,14 @@ local autosnippets = List.new({
 	-- slead("pr ", t({ "\\textit{Proof.}", "" })),
 	slead("\\sy(%d)", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
 	sleadr("bb(%l) ", fmta("\\mathbb{<>}", { l(l.CAPTURE1:upper()) })),
+
+	sleadr(
+		"bb(%l)([+-]) ",
+		fmta("\\mathbb{<>}^<>", {
+			l(l.CAPTURE1:upper()),
+			l(l.CAPTURE2),
+		})
+	),
 	sleadr(
 		"bb(%l)(%S) ",
 		fmta("\\mathbb{<>}_<>", {

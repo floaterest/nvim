@@ -4,6 +4,13 @@ return {
 		{ -- avoid undo messages
 			filter = {
 				event = "msg_show",
+                find = 'line',
+			},
+			opts = { skip = true },
+		},
+		{ -- avoid undo messages
+			filter = {
+				event = "msg_show",
 				kind = "",
 			},
 			opts = { skip = true },
