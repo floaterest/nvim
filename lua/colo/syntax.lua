@@ -90,7 +90,7 @@ local treesitter = {
 	["@type.builtin"] = "@Type",
 
 	["@variable.builtin"] = "@function.builtin",
-	["@property"] = "@Statement",
+	["@property.yaml"] = "@Statement",
 }
 local nvimtree = {
 	NvimTreeFolderIcon = "yellow",

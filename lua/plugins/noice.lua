@@ -4,28 +4,22 @@ return {
 		{ -- avoid undo messages
 			filter = {
 				event = "msg_show",
-                find = 'line',
-			},
-			opts = { skip = true },
-		},
-		{ -- avoid undo messages
-			filter = {
-				event = "msg_show",
-				kind = "",
+                any = {
+                {find = 'line'},
+				{kind = ""},
+                }
 			},
 			opts = { skip = true },
 		},
 		{
 			filter = {
 				event = "notify",
-				find = "was properly", -- NvimTree
-			},
-			view = "mini",
-		},
-		{
-			filter = {
-				event = "notify",
-				find = " -> ", -- NvimTree
+                any={
+                    {find = "was properly"},
+                    {find=' -> '},
+                    {find='Already'},
+                }
+				 
 			},
 			view = "mini",
 		},
