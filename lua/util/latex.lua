@@ -157,6 +157,7 @@ local operators = generic("@operator", {
 	amalg = "∐",
 	angle = "∠",
 	approx = "≈",
+    operatorname = '',
 	ast = "∗",
 	asymp = "≍",
 	backslash = "∖",

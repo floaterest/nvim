@@ -9,6 +9,7 @@ local commands = {
 	bij = "\\stackrel\\sim\\to",
 	no = "\\varnothing",
 	U = "\\bigcup",
+	r = "\\to ",
 	I = "\\bigcap",
 	se = "\\subseteq",
 	es = "\\supseteq",
@@ -24,7 +25,8 @@ local commands = {
 	op = "\\oplus",
 	pr = "\\operatorname{Pr}",
 	-- analysis
-	["-"] = "\\setminus ",
+	ank = "a_{n_k}",
+	["8"] = "\\infty ",
 	-- computation
 	Sa = "\\Sigma^\\ast",
 	B = "\\{0,1\\}",
@@ -165,9 +167,9 @@ end, pairs))
 
 local autosnippets = List.new({
 	-- slead("pr ", t({ "\\textit{Proof.}", "" })),
-	slead("\\sy(%d)", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
+	sleadr("sy(%d)", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
 	sleadr("bb(%l) ", fmta("\\mathbb{<>}", { l(l.CAPTURE1:upper()) })),
-
+	slead("pro ", t({ "\\textit{Proof.}", "" })),
 	sleadr(
 		"bb(%l)([+-]) ",
 		fmta("\\mathbb{<>}^<>", {

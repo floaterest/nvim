@@ -4,22 +4,22 @@ return {
 		{ -- avoid undo messages
 			filter = {
 				event = "msg_show",
-                any = {
-                {find = 'line'},
-				{kind = ""},
-                }
+				any = {
+					{ find = "line" },
+					{ find = "changes" },
+					{ kind = "" },
+				},
 			},
 			opts = { skip = true },
 		},
 		{
 			filter = {
 				event = "notify",
-                any={
-                    {find = "was properly"},
-                    {find=' -> '},
-                    {find='Already'},
-                }
-				 
+				any = {
+					{ find = "was properly" },
+					{ find = " -> " },
+					{ find = "Already" },
+				},
 			},
 			view = "mini",
 		},

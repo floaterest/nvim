@@ -200,6 +200,7 @@
     "\\odot"
     "\\oint"
     "\\ominus"
+    "\\operatorname"
     "\\oplus"
     "\\oslash"
     "\\otimes"
@@ -259,6 +260,7 @@
     "\\vdash"
     "\\vdots"
     "\\vee"
+    "\\vert"
     "\\wedge"
     "\\wp"
     "\\wr")
@@ -363,6 +365,7 @@
     "\\odot" "⊙"
     "\\oint" "∮"
     "\\ominus" "⊖"
+    "\\operatorname" ""
     "\\oplus" "⊕"
     "\\oslash" "⊘"
     "\\otimes" "⊗"
@@ -422,6 +425,7 @@
     "\\vdash" "⊢"
     "\\vdots" "⋮"
     "\\vee" "∨"
+    "\\vert" "|"
     "\\wedge" "∧"
     "\\wp" "℘"
     "\\wr" "≀"))

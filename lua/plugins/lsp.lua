@@ -12,6 +12,9 @@ local rust = {
 
 local haskell = {
 	formattingProvider = "fourmolu",
+    plugin = {
+        ['hls-hlint-plugin'] = { globalOn = true },
+    }
 }
 
 local servers = {

@@ -71,7 +71,7 @@ ifmtas(greek)
 local autosnippets = List.new({
 	sleadr("cen ", fmt('<div class="flex justify-center">\n\n{}\n</div>', { i(0) })),
 	sleadr("tit ", fmt('<span title="{}"></span>', { i(0) })),
-	sleadr("flo ", fmt('<span class="float-right">({})</span>', { i(0) })),
+	sleadr("h ", fmt('<span class="float-right">({})</span>', { i(0) })),
 	sleadr("spa ", fmt('<span class="{}"></span>', { i(0) })),
 	sleadr("lam ", t("λ")),
 	sleadr("div ", fmt('<div class="{}"></div>', { i(0) })),
