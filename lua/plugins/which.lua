@@ -35,6 +35,7 @@ local leader = {
 		s = { vim.cmd.w, "Save file" },
 		S = { vim.cmd.wa, "Save all files" },
 	},
+	q = { vim.cmd.q, "Quit" },
 	w = {
 		name = "+window",
 		h = { wincmd("h"), "Go to left" },
