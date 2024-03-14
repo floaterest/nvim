@@ -1,15 +1,5 @@
 local icons = {
 	git_placement = "signcolumn",
-	glyphs = {
-		git = {
-			unstaged = "M",
-			staged = "S",
-			renamed = "R",
-			deleted = "D",
-			unmerged = "U",
-			untracked = "U",
-		},
-	},
 }
 
 local renderer = { add_trailing = true, highlight_git = true, icons = icons }
@@ -17,6 +7,8 @@ local renderer = { add_trailing = true, highlight_git = true, icons = icons }
 return {
 	disable_netrw = true,
 	hijack_cursor = true,
-	diagnostics = { enable = true, show_on_dirs = true },
+	view = {
+		side = "right",
+	},
 	renderer = renderer,
 }
