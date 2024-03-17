@@ -1,6 +1,18 @@
 local List = require("plenary.collections.py_list")
 require("util.luasnip")
 
+local maru = {
+	["1"] = "①",
+	["2"] = "②",
+	["3"] = "③",
+	["4"] = "④",
+	["5"] = "⑤",
+	["6"] = "⑥",
+	["7"] = "⑦",
+	["8"] = "⑧",
+	["9"] = "⑨",
+}
+
 local greek = {
 	alpha = "α",
 	beta = "β",
@@ -64,9 +76,7 @@ local snippets = List.new({
 		l(l.CAPTURE1),
 		t('"/>'),
 	}),
-}):concat(
-ifmtas(greek)
-)
+}):concat(ifmtas(greek), ifmtas(maru))
 
 local autosnippets = List.new({
 	sleadr("cen ", fmt('<div class="flex justify-center">\n\n{}\n</div>', { i(0) })),

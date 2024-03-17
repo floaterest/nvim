@@ -9,12 +9,14 @@ vim.opt.rtp:prepend(lazy)
 require("lazy").setup({
 	"kyazdani42/nvim-web-devicons",
 	"nvim-lua/plenary.nvim",
+	{ "zbirenbaum/copilot.lua", config = require("plugins.copilot") },
 	{ "akinsho/bufferline.nvim", opts = {} },
 	{ "folke/which-key.nvim", config = require("plugins.which") },
 	{ "ggandor/leap.nvim", config = require("plugins.leap") },
 	{ "goolord/alpha-nvim", config = require("plugins.alpha") },
 	{ "kyazdani42/nvim-tree.lua", opts = require("plugins.nvim-tree") },
 	{ "kylechui/nvim-surround", opts = {} },
+	{ "AndreM222/copilot-lualine" },
 	{ "L3MON4D3/LuaSnip", config = require("plugins.luasnip") },
 	{ "lewis6991/gitsigns.nvim", opts = require("plugins.gitsigns") },
 	{ "m4xshen/smartcolumn.nvim", opts = require("plugins.column") },
@@ -26,6 +28,7 @@ require("lazy").setup({
 	{ "Shatur/neovim-session-manager", config = require("plugins.session") },
 	{ "stevearc/dressing.nvim", opts = {} },
 	{ "windwp/nvim-autopairs", config = require("plugins.autopairs") },
+	{ "zbirenbaum/copilot-cmp", opts = {} },
 	{
 		"hrsh7th/nvim-cmp",
 		config = require("plugins.cmp"),

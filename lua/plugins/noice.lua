@@ -6,7 +6,7 @@ return {
 				event = "msg_show",
 				any = {
 					{ find = "line" },
-					{ find = "changes" },
+					{ find = "change" },
 					{ kind = "" },
 				},
 			},
