@@ -25,7 +25,6 @@ local commands = {
 	op = "\\oplus",
 	pr = "\\operatorname{Pr}",
 	-- analysis
-	ank = "a_{n_k}",
 	["8"] = "\\infty ",
 	-- computation
 	Sa = "\\Sigma^\\ast",
@@ -51,6 +50,7 @@ local commands = {
 	-- typography
 	h = "\\hfill",
 	q = "\\quad",
+    c = '\\cdots ',
 	en = "\\enspace",
 	st = "\\text{ st }",
 	t = { "\\text", "{", "}" },
@@ -62,9 +62,9 @@ local commands = {
 	ol = "\\overline",
 	ul = "\\underline",
 	ph = "\\phantom",
-	c = { "\\section*", "{", "}" },
-	cc = { "\\subsection*", "{", "}" },
-	ccc = { "\\subsubsection*", "{", "}" },
+	k = { "\\section*", "{", "}" },
+	kk = { "\\subsection*", "{", "}" },
+	kkk = { "\\subsubsection*", "{", "}" },
 	-- greek
 	a = "\\alpha",
 	b = "\\beta",
@@ -166,8 +166,8 @@ local snippets = List.new({
 end, pairs))
 
 local autosnippets = List.new({
-	-- slead("pr ", t({ "\\textit{Proof.}", "" })),
-	sleadr("sy(%d)", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
+	sleadr("(%l)nk ", fmta("<>_{n_k}", { l(l.CAPTURE1) })),
+	sleadr("sy(%d) ", fmta("\\operatorname{Syl}_<>", { l(l.CAPTURE1) })),
 	sleadr("bb(%l) ", fmta("\\mathbb{<>}", { l(l.CAPTURE1:upper()) })),
 	slead("pro ", t({ "\\textit{Proof.}", "" })),
 	sleadr(

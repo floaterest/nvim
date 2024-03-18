@@ -6,9 +6,16 @@ if not vim.loop.fs_stat(lazy) then
 end
 vim.opt.rtp:prepend(lazy)
 
+local presence = {
+	neovim_image_text = "Neovim",
+	-- enable_line_number=true,
+	buttons = false,
+}
+
 require("lazy").setup({
 	"kyazdani42/nvim-web-devicons",
 	"nvim-lua/plenary.nvim",
+	{ "andweeb/presence.nvim", opts = presence },
 	{ "zbirenbaum/copilot.lua", config = require("plugins.copilot") },
 	{ "akinsho/bufferline.nvim", opts = {} },
 	{ "folke/which-key.nvim", config = require("plugins.which") },
