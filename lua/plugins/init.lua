@@ -62,3 +62,7 @@ require("lazy").setup({
 		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 	},
 })
+
+require("notify").setup({
+    timeout = 1000,
+})
