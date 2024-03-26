@@ -103,34 +103,10 @@ local nvimtree = {
 	NvimTreeGitRenamed = "teal",
 	NvimTreeGitNew = "orange",
 	NvimTreeGitDeleted = "@Comment",
-}
--- local languages = vim.tbl_flatten({
--- 	css = {
--- 		cssBraces = "@Delimiter",
--- 		cssCustomProp = "@Normal",
--- 		cssIdentifier = "orange . i",
--- 		cssPseudoClassId = "sky . i",
--- 		cssProp = "@Normal",
--- 		cssClassName = "lime . i",
--- 		cssClassNameDot = "@Delimiter",
--- 		cssImportant = "pink",
--- 	},
--- 	sass = {
--- 		sassVariableAssignment = "@Delimiter",
--- 		sassFunctionName = "@Function",
--- 		sassProperty = "@Delimiter",
--- 		sassMixinName = "@TSFuncBuiltin",
--- 	},
--- 	html = {
--- 		htmlTag = "@Delimiter",
--- 		htmlEndTag = "@Delimiter",
--- 	},
--- 	markdown = {
--- 		markdownBold = ". . b",
--- 		markdownItalic = ". . i",
--- 		markdownListMarker = "@Delimiter",
--- 	},
--- })
 
--- return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree, languages)
+    -- prologPredicate = '@Function',
+    -- prologClause = '@Normal',
+    -- prologVariable = '@@parameter'
+}
+
 return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree)

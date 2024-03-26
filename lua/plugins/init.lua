@@ -31,6 +31,7 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", config = require("plugins.comment") },
 	{ "nvim-lualine/lualine.nvim", opts = require("plugins.lualine") },
 	{ "nvim-telescope/telescope.nvim", opts = require("plugins.telescope") },
+    
 	{ "nvimtools/none-ls.nvim", config = require("plugins.none") },
 	{ "Shatur/neovim-session-manager", config = require("plugins.session") },
 	{ "stevearc/dressing.nvim", opts = {} },
@@ -47,14 +48,14 @@ require("lazy").setup({
 			"saadparwaiz1/cmp_luasnip",
 		},
 	},
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter",
-	-- 	config = require("plugins.treesitter"),
-	-- 	dependencies = {
-	-- 		"nvim-treesitter/playground",
-	-- 		"nvim-treesitter/nvim-treesitter-textobjects",
-	-- 	},
-	-- },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = require("plugins.treesitter"),
+		dependencies = {
+			"nvim-treesitter/playground",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+	},
 	{
 		"folke/noice.nvim",
 		opts = require("plugins.noice"),
