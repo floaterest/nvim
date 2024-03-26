@@ -132,4 +132,5 @@ local nvimtree = {
 -- 	},
 -- })
 
+-- return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree, languages)
 return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree)

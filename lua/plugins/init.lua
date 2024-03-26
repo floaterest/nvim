@@ -47,14 +47,14 @@ require("lazy").setup({
 			"saadparwaiz1/cmp_luasnip",
 		},
 	},
-	{
-		"nvim-treesitter/nvim-treesitter",
-		config = require("plugins.treesitter"),
-		dependencies = {
-			"nvim-treesitter/playground",
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-	},
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter",
+	-- 	config = require("plugins.treesitter"),
+	-- 	dependencies = {
+	-- 		"nvim-treesitter/playground",
+	-- 		"nvim-treesitter/nvim-treesitter-textobjects",
+	-- 	},
+	-- },
 	{
 		"folke/noice.nvim",
 		opts = require("plugins.noice"),

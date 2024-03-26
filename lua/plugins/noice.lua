@@ -1,15 +1,23 @@
 return {
 	stages = "fade",
 	routes = {
-		{ -- avoid undo messages
+		{
+			filter = {
+				event = "msg_show",
+				find = "Offline", -- copilot
+			},
+			opts = { skip = true },
+		},
+		{
 			filter = {
 				event = "msg_show",
 				any = {
-					{ find = "line" },
+					{ find = " line" },
 					{ find = "change" },
 					{ kind = "" },
 				},
 			},
+			-- view = "mini",
 			opts = { skip = true },
 		},
 		{
