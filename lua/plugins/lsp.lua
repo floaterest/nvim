@@ -21,6 +21,7 @@ local servers = {
 	tsserver = {},
 	pyright = {},
 	svelte = {},
+    prolog_ls = {},
 	racket_langserver = {},
 	-- clangd = {},
 	hls = { haskell = haskell },
