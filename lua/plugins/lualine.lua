@@ -47,11 +47,10 @@ end
 
 return function()
 	local status, noice = pcall(require, "noice")
-    local x = ''
-	-- local x = status and  {
-	-- 	noice.api.statusline.mode.get,
-	-- 	cond = noice.api.statusline.mode.has,
-	--  } or { }
+	local x = status and  {
+		noice.api.statusline.mode.get,
+		cond = noice.api.statusline.mode.has,
+	 } or { }
 	require("lualine").setup({
 		options = { theme = 'auto' },
 		sections = {
@@ -59,7 +58,7 @@ return function()
 			lualine_b = { "branch" },
 			lualine_c = { filename, "diagnostics" },
 			-- lualine_x = { x, { "copilot", symbols = { show_colors = true } } },
-			lualine_x = {  },
+			lualine_x = { x },
 			lualine_y = { 'filetype' },
 			lualine_z = { location },
 		},
