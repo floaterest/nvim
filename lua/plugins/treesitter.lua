@@ -1,23 +1,47 @@
--- basically all the languages I know/use
--- run :TSInstallInfo to see list
-
--- markdown_inline?
--- not found: sass mdx
 local languages = {
-    'astro', 'bash', 'c', 'cpp', 'css', 'html', 'javascript', 'jsonc', 'lua',
-    'markdown', 'python', 'regex', 'rust', 'svelte', 'toml', 'typescript',
-    'vim', 'yaml', 'haskell'
+	"astro",
+	"bash",
+	"c",
+	"cpp",
+	"css",
+	"haskell",
+	"html",
+	"javascript",
+	"jsonc",
+	"lua",
+	"markdown",
+	"markdown_inline",
+	"python",
+    "typst",
+	"regex",
+	"rust",
+	"svelte",
+	"toml",
+	"typescript",
+	"vim",
+	"yaml",
 }
 
-require('nvim-treesitter.configs').setup({
-    ensure_installed = languages,
-    highlight = { enable = true },
-    playground = { enable = true },
-})
+local select = {
+	enable = true,
+	lookahead = true,
+	keymaps = {
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+	},
+}
 
-vim.treesitter.language.register('markdown', 'mdx')
-
--- code folding
-vim.o.fdm = 'expr'
-vim.o.fde = 'nvim_treesitter#foldexpr()'
-vim.o.fdl = 99
+return function()
+	require("nvim-treesitter.configs").setup({
+		ensure_installed = languages,
+		textobjects = { select = select },
+		highlight = { enable = true },
+		playground = { enable = true },
+	})
+	require("util.treesitter")()
+	vim.treesitter.language.register("markdown", "mdx")
+	-- code folding
+	vim.o.fdm = "expr"
+	vim.o.fde = "nvim_treesitter#foldexpr()"
+	vim.o.fdl = 99
+end

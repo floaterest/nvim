@@ -1,1 +1,1 @@
-require('gitsigns').setup({ signcolumn = false, numhl = true })
+return { signcolumn = false, numhl = true }
