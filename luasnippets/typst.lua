@@ -49,6 +49,7 @@ local greek = {
     IX = "Ⅸ",
     XI = "Ⅺ",
     XII = "Ⅻ",
+	semi = "⋉",
 }
 
 local subs = {
@@ -67,11 +68,11 @@ local subs = {
 	lra = "<->",
 	im = "==>",
 	mi = "<==",
+    sq = '□',
 	partial = "∂",
 }
 
 local space = {
-	semi = "⋉",
 	joi = "⋈",
 	int = "∫",
 	dot = "·",
@@ -82,6 +83,7 @@ local space = {
 	phi = "φ",
     equiv = '\u{2261}',
     nequiv = '\u{2262}',
+    til = '∼',
 	bc = "∵",
 	bcc = "∵ &&",
 	tf = "∴",
@@ -140,7 +142,7 @@ local auto = List.new({
 	s("ul ", fmta("underline(<>)", { i(0) })),
 	s("\\l ", t("<- ")),
 	s({ trig = "\\i ", wordTrig = false }, t("^(-1)")),
-	s({ trig = "c(%l) ", regTrig = true }, fmta("cal(<>)", { l(l.CAPTURE1:upper()) })),
+	-- s({ trig = "c(%l) ", regTrig = true }, fmta("cal(<>)", { l(l.CAPTURE1:upper()) })),
 	-- s({ trig = "c(%l)(%l) ", regTrig = true }, fmta("cal(<>)(<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
 }):concat(
 	kv_map(function(trig, name)
@@ -150,7 +152,7 @@ local auto = List.new({
 		return s(trig .. " ", t(name .. " "))
 	end, space),
 	vim.tbl_map(function(name)
-		return s("#" .. name:sub(0, 3) .. " ", fmt("#{}({})[\n{}\n]", { t(name), i(1), i(0) }))
+		return s("#" .. name:sub(0, 3) .. " ", fmt("#{}[\n{}\n]", { t(name), i(0) }))
 	end, commands)
 )
 

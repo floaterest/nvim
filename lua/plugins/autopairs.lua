@@ -8,7 +8,7 @@ return function()
 		Rule("$", "$", { "tex", "latex", "typst" })
 			:with_move(cond.done())
 			:with_pair(cond.not_before_text("\\"))
-			:with_cr(cond.none()),
+			:with_cr(cond.done()),
 		Rule("```", "```", { "typst" })
 			:with_move(cond.done())
 			:with_pair(cond.not_before_text("\\"))
