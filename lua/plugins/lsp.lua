@@ -14,6 +14,7 @@ local haskell = {
 	formattingProvider = "fourmolu",
 	plugin = {
 		["hls-hlint-plugin"] = { globalOn = true },
+		['hls-fourmolu-plugin'] = { globalOn= true}
 	},
 }
 

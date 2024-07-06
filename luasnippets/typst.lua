@@ -140,7 +140,6 @@ local auto = List.new({
 	-- s("$ ", fmta("$ <> ", { i(0) })),
 	s("ol ", fmta("overline(<>)", { i(0) })),
 	s("ul ", fmta("underline(<>)", { i(0) })),
-	s("\\l ", t("<- ")),
 	s({ trig = "\\i ", wordTrig = false }, t("^(-1)")),
 	-- s({ trig = "c(%l) ", regTrig = true }, fmta("cal(<>)", { l(l.CAPTURE1:upper()) })),
 	-- s({ trig = "c(%l)(%l) ", regTrig = true }, fmta("cal(<>)(<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
