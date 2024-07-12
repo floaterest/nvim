@@ -15,6 +15,4 @@ local symbols = {
 }
 return kv_map(function(trig, name)
     return s(trig, t(name))
-end, symbols), {
-	s("\\l ", t("<- "))
-}
+end, symbols)

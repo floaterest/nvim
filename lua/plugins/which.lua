@@ -6,7 +6,7 @@ end
 local vanilla = {
 	L = { vim.cmd.bn, "Go to next" },
 	H = { vim.cmd.bp, "Go to previous" },
-	Y = { "v$hy", "Yank until EOL" },
+	Y = { "y$", "Yank until EOL" },
 	["<c-s>"] = { vim.cmd.w, "Save buffer" },
 	["<c-c>"] = { copy, "Copy buffer" },
 }
