@@ -3,102 +3,97 @@ local function copy()
 	print("Copied buffer to clipboard")
 end
 
-local vanilla = {
-	L = { vim.cmd.bn, "Go to next" },
-	H = { vim.cmd.bp, "Go to previous" },
-	Y = { "y$", "Yank until EOL" },
-	["<c-s>"] = { vim.cmd.w, "Save buffer" },
-	["<c-c>"] = { copy, "Copy buffer" },
-}
-
 local function wincmd(key)
 	return function()
 		vim.cmd.wincmd(key)
 	end
 end
 
-local leader = {
-	b = {
-		name = "+buffer",
-		n = { vim.cmd.bn, "Next" },
-		p = { vim.cmd.bp, "Previous" },
-		d = { vim.cmd.bd, "Delete" },
-	},
-	f = {
-		name = "+file",
-		s = { vim.cmd.w, "Save file" },
-		S = { vim.cmd.wa, "Save all files" },
-	},
-	q = { vim.cmd.q, "Quit" },
-	w = {
-		name = "+window",
-		h = { wincmd("h"), "Go to left" },
-		l = { wincmd("l"), "Go to right" },
-		v = { wincmd("v"), "Split vertically" },
-		j = { wincmd("j"), "Go to down" },
-		k = { wincmd("k"), "Go to up" },
-		s = { wincmd("s"), "Split horizontally" },
-		x = { wincmd("x"), "Swap" },
-		q = { wincmd("q"), "Quit" },
-		[">"] = { wincmd(">"), "Increase Width" },
-		["<"] = { wincmd("<"), "Decrease Width" },
-		["="] = { wincmd("="), "Make equal size" },
-	},
+local default = {
+	{ "<c-c>", copy, desc = "Copy buffer" },
+	{ "<c-s>", vim.cmd.w, desc = "Save buffer" },
+	{ "H", vim.cmd.bp, desc = "Go to previous" },
+	{ "L", vim.cmd.bn, desc = "Go to next" },
+	{ "Y", "y$", desc = "Yank until EOL" },
+
+	{ "<leader>q", vim.cmd.q, desc = "Quit" },
+
+	{ "<leader>b", group = "buffer" },
+	{ "<leader>bd", vim.cmd.bd, desc = "Delete buffer" },
+	{ "<leader>bn", vim.cmd.bn, desc = "Next buffer" },
+	{ "<leader>bp", vim.cmd.bp, desc = "Previous buffer" },
+
+	{ "<leader>f", group = "file" },
+	{ "<leader>fS", vim.cmd.wa, desc = "Save all files" },
+	{ "<leader>fs", vim.cmd.w, desc = "Save file" },
+
+	{ "<leader>t", group = "Tab" },
+	{ "<leader>tc", vim.cmd.tabc, desc = "Close tab" },
+	{ "<leader>tn", vim.cmd.tabn, desc = "Next tab" },
+	{ "<leader>to", vim.cmd.tabo, desc = "Close all other tabs" },
+	{ "<leader>tp", vim.cmd.tabp, desc = "Previous tab" },
+	{ "<leader>tt", "tab sp", desc = "Open current buffer in new tab" },
+
+	{ "<leader>w", group = "window" },
+	{ "<leader>w<", wincmd("<"), desc = "Decrease Width" },
+	{ "<leader>w=", wincmd("="), desc = "Equally high and wide" },
+	{ "<leader>w>", wincmd(">"), desc = "Increase Width" },
+	{ "<leader>wh", wincmd("h"), desc = "Go to the left window" },
+	{ "<leader>wj", wincmd("j"), desc = "Go to the down window" },
+	{ "<leader>wk", wincmd("k"), desc = "Go to the up window" },
+	{ "<leader>wl", wincmd("l"), desc = "Go to the right window" },
+	{ "<leader>ws", wincmd("s"), desc = "Split window horizontally" },
+	{ "<leader>wv", wincmd("v"), desc = "Split window vertically" },
+	{ "<leader>wx", wincmd("x"), desc = "Swap current with next" },
 }
 
 local function telescope(builtin)
-	local function find_files()
-		return builtin.find_files({ hidden = true })
-	end
 	return {
-		f = { find_files, "Find file" },
-		b = { builtin.buffers, "Find buffer" },
-		g = { builtin.live_grep, "Live grep" },
-	}, { prefix = "<leader>f" }
+		{ "<leader>fb", builtin.buffers, desc = "Find buffer" },
+		{ "<leader>ff", builtin.find_files, desc = "Find file" },
+		{ "<leader>fg", builtin.live_grep, desc = "Live grep" },
+	}
 end
 
 local function format()
 	vim.lsp.buf.format({ async = true })
 end
+
 -- https://neovim.io/doc/user/lsp.html#lsp-method
 local server = {
-	a = { name = "+action", a = { vim.lsp.buf.code_action, "List code actions" } },
-	r = { name = "+rename", r = { vim.lsp.buf.rename, "Rename symbol" } },
-	["="] = { name = "+format", ["="] = { format, "Format file" } },
-	g = {
-		name = "+goto",
-		d = { vim.lsp.buf.definition, "Definition" },
-		D = { vim.lsp.buf.declaration, "Declaration" },
-		i = { vim.lsp.buf.implementation, "Implementation" },
-		r = { vim.lsp.buf.references, "References" },
-	},
+	{ "<leader>==", format, desc = "Format file" },
+	{ "<leader>aa", vim.lsp.buf.code_action, desc = "List code actions" },
+	{ "<leader>g", group = "goto" },
+	{ "<leader>gD", vim.lsp.buf.declaration, desc = "Declaration" },
+	{ "<leader>gd", vim.lsp.buf.definition, desc = "Definition" },
+	{ "<leader>gi", vim.lsp.buf.implementation, desc = "Implementation" },
+	{ "<leader>gr", vim.lsp.buf.references, desc = "References" },
+	{ "<leader>r", group = "rename" },
+	{ "<leader>rr", vim.lsp.buf.rename, desc = "Rename symbol" },
+	{ "K", vim.lsp.buf.hover, desc = "Hover" },
+	{ "[d", vim.diagnostic.goto_prev, desc = "Previous diagnostic" },
+	{ "]d", vim.diagnostic.goto_next, desc = "Next diagnostic" },
 }
 
 -- LSP
 local function callback(which, ev)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-	which.register({
-		["<leader>"] = server,
-		K = { vim.lsp.buf.hover, "Hover" },
-		["[d"] = { vim.diagnostic.goto_prev, "Previous diagnostic" },
-		["]d"] = { vim.diagnostic.goto_next, "Next diagnostic" },
-	}, { buffer = ev.buf })
+	which.add({ buffer = ev.buf, server })
 end
 
 local function tree(api)
-	return { t = { api.tree.toggle, "Toggle tree" } }, { prefix = "<leader>f" }
+	return { "<leader>ft", api.tree.toggle, desc = "Toggle tree" }
 end
 
 local function session(ses)
 	return {
-		name = "+session",
-		s = { ses.load_session, "Select sessions" },
-		o = { ses.load_last_session, "Open last session" },
-		d = { ses.delete_session, "Delete sessions" },
-		O = { ses.load_last_session, "Open last session here" },
-	}, { prefix = "<leader>s" }
+		{ "<leader>s", group = "session" },
+		{ "<leader>sO", ses.load_current_dir_session, desc = "Open last session here" },
+		{ "<leader>sd", ses.delete_session, desc = "Delete sessions" },
+		{ "<leader>so", ses.load_last_session, desc = "Open last session" },
+		{ "<leader>ss", ses.load_session, desc = "Select sessions" },
+	}
 end
 
 --[[
@@ -126,12 +121,11 @@ return function()
 	local func = require("plenary.functional")
 
 	which.setup({
-		key_labels = { ["<space>"] = "spc" },
+		replace = { key = { { "<Space>", "SPC" } } },
 		icons = { breadcrumb = "›", separator = "→" },
+		preset = "helix",
+		spec = default,
 	})
-
-	which.register(vanilla)
-	which.register(leader, { prefix = "<leader>" })
 
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -140,16 +134,16 @@ return function()
 
 	local status, b = pcall(require, "telescope.builtin")
 	if status then
-		which.register(telescope(b))
+		which.add(telescope(b))
 	end
 
 	local status, api = pcall(require, "nvim-tree.api")
 	if status then
-		which.register(tree(api))
+		which.add(tree(api))
 	end
 
 	local status, ses = pcall(require, "session_manager")
 	if status then
-		which.register(session(ses))
+		which.add(session(ses))
 	end
 end
