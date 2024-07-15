@@ -39,7 +39,6 @@ return function()
 	local lsconfig = require("lspconfig")
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	-- capabilities.offsetEncoding = 'utf-8'
-	-- lsconfig.clangd.setup({ capabilities = capabilities })
 
 	for server, options in pairs(servers) do
 		if exists(lsconfig[server]) then
