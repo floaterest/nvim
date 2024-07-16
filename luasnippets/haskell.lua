@@ -31,17 +31,18 @@ local snip = {
 	z = "ζ",
 }
 
-local auto={
-    ['\\ot '] ="<- ",
-    ['\\bind ']="=<< ",
-    ['\\sqcap ']='\u{2293}',
-    ['\\oplus '] = '\u{2295}',
+local auto = {
+	["\\ot "] = "<- ",
+	["\\bind "] = "=<< ",
+	["\\sqcap "] = "\u{2293} ",
+	["\\oplus "] = "\u{2295} ",
+	["\\forall "] = "∀ ",
 }
 
 function sub_map(tbl)
-return kv_map(function(trig, name)
+	return kv_map(function(trig, name)
 		return s(trig, t(name))
-	end,tbl)
+	end, tbl)
 end
 
 return sub_map(snip), sub_map(auto)

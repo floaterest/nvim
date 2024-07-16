@@ -9,7 +9,10 @@ The colors are generated from this code below, using [scipy](https://pypi.org/pr
 
 ```py
 from scipy.stats import beta
-print([f'{int(255 * beta(1.5, 1.5).cdf(i/8)):02x}'for i in range(9)])
+
+for i in range(9):
+    n = int(255 * beta(1.75, 1.75).cdf(i/8))
+    print('#' + f'{n:02x}' * 3)
 ```
 
 ### Continuous Probability Distributions

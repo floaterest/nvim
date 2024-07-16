@@ -1,5 +1,5 @@
 local colors = require((...) .. ".colors")
-local syntax = require((...) .. ".syntax")
+local highlights = require((...) .. ".highlights")
 
 local styles = { i = "italic", u = "underline", b = "bold" }
 
@@ -36,7 +36,7 @@ return {
 		vim.o.bg = "dark"
 		vim.g.colors_name = "custom"
 		
-		for group, line in pairs(syntax) do
+		for group, line in pairs(highlights) do
 			hi(group, line)
 		end
 	end

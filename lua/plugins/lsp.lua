@@ -11,18 +11,19 @@ local rust = {
 }
 
 local haskell = {
-	formattingProvider = "fourmolu",
-	plugin = {
-		["hls-hlint-plugin"] = { globalOn = true },
-		['hls-fourmolu-plugin'] = { globalOn= true}
-	},
+	-- formattingProvider = "fourmolu",
+	-- plugin = {
+	-- 	["hls-hlint-plugin"] = { globalOn = true },
+	-- 	["hls-fourmolu-plugin"] = { globalOn = true },
+	-- 	["hls-semantic-tokens-plugin"] = { globalOn = true },
+	-- },
 }
 
 local servers = {
 	tsserver = {},
 	pyright = {},
 	svelte = {},
-    typst_lsp = {},
+	typst_lsp = {},
 	racket_langserver = {},
 	-- clangd = {},
 	hls = { haskell = haskell },
@@ -35,21 +36,10 @@ local function exists(config)
 end
 
 return function()
-	local func = require("plenary.functional")
 	local lsconfig = require("lspconfig")
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	-- capabilities.offsetEncoding = 'utf-8'
-
 	for server, options in pairs(servers) do
 		if exists(lsconfig[server]) then
 			lsconfig[server].setup(options)
 		end
 	end
-
-	-- return function(register, attach)
-	-- 	local onatt = function(client, buffer)
-	-- 		register(attach, client, buffer)
-	-- 	end
-	-- 	local opts = { on_attach = onatt }
-	-- end
 end

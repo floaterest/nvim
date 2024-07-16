@@ -12,12 +12,12 @@ end
 local default = {
 	{ "<c-c>", copy, desc = "Copy buffer" },
 	{ "<c-s>", vim.cmd.w, desc = "Save buffer" },
+	{ "<c-n>", "<cmd>Noice dismiss<cr>", desc = "Dismiss Noice" },
 	{ "H", vim.cmd.bp, desc = "Go to previous" },
 	{ "L", vim.cmd.bn, desc = "Go to next" },
 	{ "Y", "y$", desc = "Yank until EOL" },
 
 	{ "<leader>P", '"+P', desc = "System paste before", mode = { "n", "x" } },
-	{ "<leader>c", "gcc", desc = "Toogle comment" },
 	{ "<leader>d", vim.cmd.bd, desc = "Delete buffer" },
 	{ "<leader>p", '"+p', desc = "System paste", mode = { "n", "x" } },
 	{ "<leader>q", vim.cmd.q, desc = "Quit" },
@@ -70,36 +70,6 @@ local server = {
 	{ "]d", vim.diagnostic.goto_next, desc = "Next diagnostic" },
 }
 
--- LSP
-local function lsp_attach(which, ev)
-	print("Attach to " .. ev.buf)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-	which.add({ buffer = ev.buf, server })
-end
-
-local function telescope(builtin)
-	return {
-		{ "<leader>fb", builtin.buffers, desc = "Find buffer" },
-		{ "<leader>ff", builtin.find_files, desc = "Find file" },
-		{ "<leader>fg", builtin.live_grep, desc = "Live grep" },
-	}
-end
-
-local function tree(api)
-	return { "<leader>ft", api.tree.toggle, desc = "Toggle tree" }
-end
-
-local function session(ses)
-	return {
-		{ "<leader>s", group = "session" },
-		{ "<leader>sO", ses.load_current_dir_session, desc = "Open last session here" },
-		{ "<leader>sd", ses.delete_session, desc = "Delete sessions" },
-		{ "<leader>so", ses.load_last_session, desc = "Open last session" },
-		{ "<leader>ss", ses.load_session, desc = "Select sessions" },
-	}
-end
-
 --[[
     TODO dap dapui
 
@@ -128,27 +98,50 @@ return function()
 		replace = { key = { { "<Space>", "SPC" } } },
 		icons = { breadcrumb = "›", separator = "→" },
 		preset = "classic",
-        modes ={x=false},
 		spec = default,
 	})
 
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-		callback = func.partial(lsp_attach, which),
+		callback = function(ev)
+			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+			which.add(vim.tbl_map(function(t)
+				return vim.tbl_extend("force", t, { buffer = ev.buf })
+			end, server))
+		end,
 	})
 
-	local status, b = pcall(require, "telescope.builtin")
+	local status, api = pcall(require, "Comment.api")
 	if status then
-		which.add(telescope(b))
+		which.add({
+			{ "<leader>c", api.toggle.linewise.current, desc = "Comment line" },
+			{ "<leader>C", api.toggle.blockwise.current, desc = "Comment block" },
+		})
+	end
+
+	local status, builtin = pcall(require, "telescope.builtin")
+	if status then
+		which.add({
+			{ "<leader>fb", builtin.buffers, desc = "Find buffer" },
+			{ "<leader>ff", builtin.find_files, desc = "Find file" },
+			{ "<leader>fg", builtin.live_grep, desc = "Live grep" },
+		})
 	end
 
 	local status, api = pcall(require, "nvim-tree.api")
 	if status then
-		which.add(tree(api))
+		which.add({ "<leader>ft", api.tree.toggle, desc = "Toggle tree" })
 	end
 
 	local status, ses = pcall(require, "session_manager")
 	if status then
-		which.add(session(ses))
+		which.add({
+			{ "<leader>s", group = "session" },
+			{ "<leader>sO", ses.load_current_dir_session, desc = "Open last session here" },
+			{ "<leader>sd", ses.delete_session, desc = "Delete sessions" },
+			{ "<leader>so", ses.load_last_session, desc = "Open last session" },
+			{ "<leader>ss", ses.load_session, desc = "Select sessions" },
+		})
 	end
 end

@@ -16,13 +16,14 @@
 local ui = {
 	ColorColumn = ". darker",
 	LineNr = "gray black",
-	CursorLine = '-',
+	CursorLine = "-",
 	CursorLineNr = "light . b",
 	Folded = "orange dark",
 	MatchParen = "teal darker u",
 	Noise = "@Delimiter",
 	NonText = "light",
-	Normal = "lightst darkest",
+	NormalFloat = "lightest darker",
+	Normal = "lightest darkest",
 	PMenu = "white black",
 	Title = "yellow . b",
 	VertSplit = "light black",
@@ -105,9 +106,9 @@ local nvimtree = {
 	NvimTreeGitNew = "orange",
 	NvimTreeGitDeleted = "@Comment",
 
-    -- prologPredicate = '@Function',
-    -- prologClause = '@Normal',
-    -- prologVariable = '@@parameter'
+	-- prologPredicate = '@Function',
+	-- prologClause = '@Normal',
+	-- prologVariable = '@@parameter'
 }
 
 return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree)
