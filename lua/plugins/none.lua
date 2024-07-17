@@ -1,5 +1,12 @@
+local null = require("null-ls")
 
-local function typstyle(h, methods) return h.make_builtin({
+local di = null.builtins.diagnostics
+local ca = null.builtins.code_actions
+local fo = null.builtins.formatting
+
+local helpers = require("null-ls.helpers")
+local methods = require("null-ls.methods")
+local typstyle = helpers.make_builtin({
 	name = "typstyle",
 	meta = {
 		url = "https://github.com/Enter-tainer/typstyle",
@@ -9,51 +16,27 @@ local function typstyle(h, methods) return h.make_builtin({
 	filetypes = { "typ", "typst" },
 	generator_opts = {
 		command = "typstyle",
-		args = { },
+		args = {},
 		to_stdin = true,
 	},
-	factory = h.formatter_factory,
-})end
+	factory = helpers.formatter_factory,
+})
 
+local sources = {
+	-- fo.jq,
+	-- fo.blue,
+	fo.stylua,
+	typstyle,
+	-- fo.raco_fmt.with({
+	--     extra_args = {'--width', '60'}
+	-- }),
+	-- di.flake8,
+	-- di.pylint.with({
+	--     filter = function(diagnostic)
+	--         return diagnostic.code ~= "unused-argument"
+	--     end,
+	-- }),
+	-- fo.clang_format,
+}
 
-return function()
-	local null = require("null-ls")
-
-	local di = null.builtins.diagnostics
-	local ca = null.builtins.code_actions
-	local fo = null.builtins.formatting
-
-	local eslint = {
-		filetypes = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"svelte",
-		},
-	}
-	local h = require("null-ls.helpers")
-	local methods = require("null-ls.methods")
-
-	local sources = {
-		-- ca.eslint_d.with(eslint),
-		-- fo.eslint_d.with(eslint),
-		-- fo.jq,
-		-- fo.blue,
-		fo.stylua,
-		-- fo.typstfmt,
-		typstyle(h,methods),
-		-- fo.raco_fmt.with({
-		--     extra_args = {'--width', '60'}
-		-- }),
-		-- di.flake8,
-		-- di.pylint.with({
-		--     filter = function(diagnostic)
-		--         return diagnostic.code ~= "unused-argument"
-		--     end,
-		-- }),
-		-- fo.clang_format,
-	}
-
-	null.setup({ sources = sources })
-end
+null.setup({ sources = sources })

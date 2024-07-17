@@ -1,3 +1,6 @@
+local which = require("which-key")
+local func = require("plenary.functional")
+
 local function copy()
 	vim.fn.setreg("+", vim.fn.join(vim.fn.getbufline("%", 1, "$"), "\n"), "l")
 	print("Copied buffer to clipboard")
@@ -9,6 +12,11 @@ local function wincmd(key)
 	end
 end
 
+local function bd()
+    vim.cmd.bn()
+    vim.cmd.bd('#')
+end
+
 local default = {
 	{ "<c-c>", copy, desc = "Copy buffer" },
 	{ "<c-s>", vim.cmd.w, desc = "Save buffer" },
@@ -17,20 +25,14 @@ local default = {
 	{ "L", vim.cmd.bn, desc = "Go to next" },
 	{ "Y", "y$", desc = "Yank until EOL" },
 
+	{ "<leader><leader>", group = "other" },
+
 	{ "<leader>P", '"+P', desc = "System paste before", mode = { "n", "x" } },
 	{ "<leader>d", vim.cmd.bd, desc = "Delete buffer" },
 	{ "<leader>p", '"+p', desc = "System paste", mode = { "n", "x" } },
 	{ "<leader>q", vim.cmd.q, desc = "Quit" },
 	{ "<leader>y", '"+y', desc = "System yank", mode = "x" },
-
-	{ "<leader>b", group = "buffer" },
-	{ "<leader>bd", vim.cmd.bd, desc = "Delete buffer" },
-	{ "<leader>bn", vim.cmd.bn, desc = "Next buffer" },
-	{ "<leader>bp", vim.cmd.bp, desc = "Previous buffer" },
-
-	{ "<leader>f", group = "file" },
-	{ "<leader>fS", vim.cmd.wa, desc = "Save all files" },
-	{ "<leader>fs", vim.cmd.w, desc = "Save file" },
+	{ "<leader>D", bd, desc = "Delete buffer #" },
 
 	{ "<leader>t", group = "Tab" },
 	{ "<leader>tc", vim.cmd.tabc, desc = "Close tab" },
@@ -90,58 +92,50 @@ local server = {
     spc d u (toggle ui)
 ]]
 
-return function()
-	local which = require("which-key")
-	local func = require("plenary.functional")
+which.setup({
+	replace = { key = { { "<Space>", "SPC" } } },
+	icons = { breadcrumb = "›", separator = "→" },
+	preset = "classic",
+	spec = default,
+})
 
-	which.setup({
-		replace = { key = { { "<Space>", "SPC" } } },
-		icons = { breadcrumb = "›", separator = "→" },
-		preset = "classic",
-		spec = default,
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(ev)
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+		which.add(vim.tbl_map(function(t)
+			return vim.tbl_extend("force", t, { buffer = ev.buf })
+		end, server))
+	end,
+})
+
+local status, api = pcall(require, "Comment.api")
+if status then
+	which.add({
+		{ "<leader>c", api.toggle.linewise.current, desc = "Comment line" },
+		{ "<leader>C", api.toggle.blockwise.current, desc = "Comment block" },
 	})
+end
 
-	vim.api.nvim_create_autocmd("LspAttach", {
-		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-		callback = function(ev)
-			vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-			which.add(vim.tbl_map(function(t)
-				return vim.tbl_extend("force", t, { buffer = ev.buf })
-			end, server))
-		end,
+local status, builtin = pcall(require, "telescope.builtin")
+if status then
+	which.add({
+		{ "<leader>b", builtin.buffers, desc = "Find buffer" },
+		{ "<leader>f", builtin.find_files, desc = "Find file" },
+		{ "<leader><leader>g", builtin.live_grep, desc = "Live grep" },
 	})
+end
 
-	local status, api = pcall(require, "Comment.api")
-	if status then
-		which.add({
-			{ "<leader>c", api.toggle.linewise.current, desc = "Comment line" },
-			{ "<leader>C", api.toggle.blockwise.current, desc = "Comment block" },
-		})
-	end
+local status, api = pcall(require, "nvim-tree.api")
+if status then
+	which.add({ "<leader><leader>t", api.tree.toggle, desc = "Toggle tree" })
+end
 
-	local status, builtin = pcall(require, "telescope.builtin")
-	if status then
-		which.add({
-			{ "<leader>fb", builtin.buffers, desc = "Find buffer" },
-			{ "<leader>ff", builtin.find_files, desc = "Find file" },
-			{ "<leader>fg", builtin.live_grep, desc = "Live grep" },
-		})
-	end
-
-	local status, api = pcall(require, "nvim-tree.api")
-	if status then
-		which.add({ "<leader>ft", api.tree.toggle, desc = "Toggle tree" })
-	end
-
-	local status, ses = pcall(require, "session_manager")
-	if status then
-		which.add({
-			{ "<leader>s", group = "session" },
-			{ "<leader>sO", ses.load_current_dir_session, desc = "Open last session here" },
-			{ "<leader>sd", ses.delete_session, desc = "Delete sessions" },
-			{ "<leader>so", ses.load_last_session, desc = "Open last session" },
-			{ "<leader>ss", ses.load_session, desc = "Select sessions" },
-		})
-	end
+local status, ses = pcall(require, "session_manager")
+if status then
+	which.add({
+		{ "<leader>o", ses.load_current_dir_session, desc = "Open last session here" },
+		{ "<leader>s", ses.load_session, desc = "Select sessions" },
+	})
 end

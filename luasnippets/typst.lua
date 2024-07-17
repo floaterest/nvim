@@ -35,20 +35,9 @@ local greek = {
 	-- X = "Ξ",
 	le = "⩽",
 	i = "^(-1)",
-	inf = "∞",
-	n = "א",
 	no = "nothing",
 	iff = "<==>",
 	st = "★",
-	II = "Ⅱ",
-	III = "Ⅲ",
-	IV = "Ⅳ",
-	VI = "Ⅵ",
-	VII = "Ⅶ",
-	VIII = "Ⅷ",
-	IX = "Ⅸ",
-	XI = "Ⅺ",
-	XII = "Ⅻ",
 	semi = "⋉",
 }
 
@@ -114,6 +103,7 @@ local space = {
 	-- typography
 	qu = "quad",
 	h1 = "#h(1fr)",
+    oplus = "\u{2295}",
 }
 
 local commands = {
@@ -135,6 +125,8 @@ local snip = List.new({
 		return s({ trig = "_" .. trig, wordTrig = false }, t("_" .. name))
 	end, greek)
 )
+
+-- ε
 
 local auto = List.new({
 	-- s("$ ", fmta("$ <> ", { i(0) })),

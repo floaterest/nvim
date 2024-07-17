@@ -6,6 +6,12 @@ if not vim.loop.fs_stat(lazy) then
 end
 vim.opt.rtp:prepend(lazy)
 
+local function req(path)
+	return function()
+		require(path)
+	end
+end
+
 local presence = {
 	neovim_image_text = "Neovim",
 	buttons = false,
@@ -43,42 +49,46 @@ local typst = {
 	-- invert_colors = "always",
 	-- debug = true,
 	port = 8080,
-	get_root = function()
-		return vim.fn.getcwd()
-	end,
+	get_root = vim.fn.getcwd,
 }
 
+local function req(path)
+	return function()
+		require(path)
+	end
+end
+
 require("lazy").setup({
+	cmp,
+	treesitter,
 	noice,
-	{
-		'Julian/lean.nvim',
-		event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
-		opts = { mappings = true }
-	},
+	-- {
+	-- 	"Julian/lean.nvim",
+	-- 	event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+	-- 	opts = { mappings = true },
+	-- },
 	{ "floaterest/typst-preview.nvim", ft = "typst", opts = typst },
 	-- { "willothy/flatten.nvim", opts = {nest_if_no_args=true}, lazy = false, priority = 1001 },
 	-- { "zbirenbaum/copilot.lua", config = require("plugins.copilot") },
 	-- { "AndreM222/copilot-lualine" },
 	-- { "zbirenbaum/copilot-cmp", opts = {} },
 	-- { "andweeb/presence.nvim", opts = presence },
-	"kyazdani42/nvim-web-devicons",
-	"nvim-lua/plenary.nvim",
+	{ "L3MON4D3/LuaSnip", config = req("plugins.luasnip") },
+	{ "Shatur/neovim-session-manager", config = req("plugins.session") },
 	{ "akinsho/bufferline.nvim", opts = {} },
-	{ "folke/which-key.nvim", config = require("plugins.which") },
-	{ "ggandor/leap.nvim", config = require("plugins.leap") },
-	{ "goolord/alpha-nvim", config = require("plugins.alpha") },
+	{ "folke/which-key.nvim", config = req("plugins.which") },
+	{ "ggandor/leap.nvim", config = req("plugins.leap") },
+	{ "goolord/alpha-nvim", config = req("plugins.alpha") },
 	{ "kyazdani42/nvim-tree.lua", opts = require("plugins.nvim-tree") },
+	{ "kyazdani42/nvim-web-devicons", lazy = false },
 	{ "kylechui/nvim-surround", opts = {} },
-	{ "L3MON4D3/LuaSnip", config = require("plugins.luasnip") },
 	{ "lewis6991/gitsigns.nvim", opts = require("plugins.gitsigns") },
-	{ "neovim/nvim-lspconfig", config = require("plugins.lsp") },
-	{ "numToStr/Comment.nvim", config = require("plugins.comment") },
-	{ "nvim-lualine/lualine.nvim", opts = require("plugins.lualine") },
-	{ "nvim-telescope/telescope.nvim", opts = require("plugins.telescope") },
-	{ "nvimtools/none-ls.nvim", config = require("plugins.none") },
-	{ "Shatur/neovim-session-manager", config = require("plugins.session") },
+	{ "neovim/nvim-lspconfig", config = req("plugins.lsp") },
+	{ "numToStr/Comment.nvim", opts = {} },
+	{ "nvim-lua/plenary.nvim", lazy = false },
+	{ "nvim-lualine/lualine.nvim", opts = req("plugins.lualine") },
+	{ "nvim-telescope/telescope.nvim", config = req("plugins.telescope") },
+	{ "nvimtools/none-ls.nvim", config = req("plugins.none") },
 	{ "stevearc/dressing.nvim", opts = {} },
-	{ "windwp/nvim-autopairs", config = require("plugins.autopairs") },
-	cmp,
-	treesitter,
+	{ "windwp/nvim-autopairs", config = req("plugins.autopairs") },
 })

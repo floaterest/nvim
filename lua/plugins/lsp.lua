@@ -35,11 +35,9 @@ local function exists(config)
 	return vim.fn.executable(binary) == 1
 end
 
-return function()
-	local lsconfig = require("lspconfig")
-	for server, options in pairs(servers) do
-		if exists(lsconfig[server]) then
-			lsconfig[server].setup(options)
-		end
+local lsconfig = require("lspconfig")
+for server, options in pairs(servers) do
+	if exists(lsconfig[server]) then
+		lsconfig[server].setup(options)
 	end
 end

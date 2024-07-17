@@ -1,3 +1,1 @@
-return function()
-	require("leap").add_default_mappings()
-end
+require("leap").add_default_mappings()

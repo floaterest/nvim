@@ -45,33 +45,32 @@ local function location()
 	return line .. ":" .. col
 end
 
-return function()
-	local status, noice = pcall(require, "noice")
-	local x = status and  {
-		noice.api.statusline.mode.get,
-		cond = noice.api.statusline.mode.has,
-	 } or { }
-	require("lualine").setup({
-		options = { theme = 'auto' },
-		sections = {
-			lualine_a = { mode },
-			lualine_b = { "branch" },
-			lualine_c = { filename, "diagnostics" },
-			-- lualine_x = { x, { "copilot", symbols = { show_colors = true } } },
-			lualine_x = { x },
-			lualine_y = { 'filetype' },
-			lualine_z = { location },
-		},
-		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = { filename, "diagnostics" },
-			lualine_x = { "filesize" },
-			lualine_y = {},
-			lualine_z = {},
-		},
-		extensions = {
-			"nvim-tree", --'nvim-dap-ui'
-		},
-	})
-end
+local status, noice = pcall(require, "noice")
+local x = status and {
+	noice.api.statusline.mode.get,
+	cond = noice.api.statusline.mode.has,
+} or {}
+
+require("lualine").setup({
+	options = { theme = "auto" },
+	sections = {
+		lualine_a = { mode },
+		lualine_b = { "branch" },
+		lualine_c = { filename, "diagnostics" },
+		-- lualine_x = { x, { "copilot", symbols = { show_colors = true } } },
+		lualine_x = { x },
+		lualine_y = { "filetype" },
+		lualine_z = { location },
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { filename, "diagnostics" },
+		lualine_x = { "filesize" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	extensions = {
+		"nvim-tree", --'nvim-dap-ui'
+	},
+})
