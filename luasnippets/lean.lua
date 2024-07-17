@@ -8,7 +8,7 @@ local symbols = {
 	["and"] = "∧",
 }
 local pairs = {
-	an = {"⟨", "⟩"},
+	an = { "⟨", "⟩" },
 }
 return List.new({}):concat(
 	kv_map(function(trig, name)

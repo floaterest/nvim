@@ -8,7 +8,7 @@ local commands = {
 	res = "\\upharpoonright",
 	bij = "\\stackrel\\sim\\to",
 	no = "\\varnothing",
-    ti = "\\times",
+	ti = "\\times",
 	c = "^\\circ",
 	U = "\\bigcup",
 	r = "\\to",
@@ -28,7 +28,7 @@ local commands = {
 	pr = "\\operatorname{Pr}",
 	-- analysis
 	["8"] = "\\infty",
-    rr = '\\rightrightarrows ',
+	rr = "\\rightrightarrows ",
 	-- computation
 	Sa = "\\Sigma^\\ast",
 	B = "\\{0,1\\}",
@@ -51,7 +51,7 @@ local commands = {
 	ex = "\\exists",
 	-- typography
 	h = { "\\hfill", "(", ")" },
-    eq = " &= ",
+	eq = " &= ",
 	q = "\\quad",
 	de = "\\stackrel{\\text{def}}=",
 	en = "\\enspace",
@@ -76,7 +76,7 @@ local commands = {
 	e = "\\varepsilon",
 	G = "\\Gamma",
 	l = "\\lambda",
-    L = "\\Lambda",
+	L = "\\Lambda",
 	o = "\\omega",
 	P = "\\Phi",
 	p = "\\varphi",

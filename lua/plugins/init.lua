@@ -87,7 +87,11 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", opts = {} },
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "nvim-lualine/lualine.nvim", opts = req("plugins.lualine") },
-	{ "nvim-telescope/telescope.nvim", config = req("plugins.telescope") },
+	{
+		"nvim-telescope/telescope.nvim",
+		config = req("plugins.telescope"),
+		dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
+	},
 	{ "nvimtools/none-ls.nvim", config = req("plugins.none") },
 	{ "stevearc/dressing.nvim", opts = {} },
 	{ "windwp/nvim-autopairs", config = req("plugins.autopairs") },

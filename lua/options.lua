@@ -13,7 +13,7 @@ vim.o.nu = true -- current line number
 vim.o.ph = 4 -- max popmenu height
 vim.o.rnu = true -- relative line number
 vim.o.sb = true -- split below
-vim.o.scl = 'number' -- show error at line number
+vim.o.scl = "number" -- show error at line number
 -- vim.o.shm = "asWF" -- shortmess
 vim.o.si = true -- smart indent
 vim.o.smc = 500 -- don't syntax highlight after 500 lines
@@ -34,6 +34,6 @@ vim.g.maplocalleader = " "
 vim.filetype.add({
 	extension = {
 		mdx = "markdown",
-		typ = 'typst',
+		typ = "typst",
 	},
 })

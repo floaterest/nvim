@@ -12,7 +12,7 @@ local languages = {
 	"markdown",
 	"markdown_inline",
 	"python",
-    "typst",
+	"typst",
 	"regex",
 	"rust",
 	"svelte",

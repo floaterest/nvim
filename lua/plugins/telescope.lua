@@ -15,4 +15,10 @@ telescope.setup({
 		-- `hidden = true` is not supported in text grep commands.
 		vimgrep_arguments = vimgrep_arguments,
 	},
+	extensions = {
+		file_browser = {
+			hijack_netrw = true,
+		},
+	},
 })
+telescope.load_extension("file_browser")

@@ -32,12 +32,12 @@ return {
 		if vim.fn.exists("syntax_on") then
 			vim.cmd.syn("reset")
 		end
-		
+
 		vim.o.bg = "dark"
 		vim.g.colors_name = "custom"
-		
+
 		for group, line in pairs(highlights) do
 			hi(group, line)
 		end
-	end
+	end,
 }

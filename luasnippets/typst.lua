@@ -103,7 +103,7 @@ local space = {
 	-- typography
 	qu = "quad",
 	h1 = "#h(1fr)",
-    oplus = "\u{2295}",
+	oplus = "\u{2295}",
 }
 
 local commands = {

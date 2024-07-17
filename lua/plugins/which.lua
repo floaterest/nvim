@@ -1,6 +1,8 @@
 local which = require("which-key")
 local func = require("plenary.functional")
 
+local other = "<leader>p"
+
 local function copy()
 	vim.fn.setreg("+", vim.fn.join(vim.fn.getbufline("%", 1, "$"), "\n"), "l")
 	print("Copied buffer to clipboard")
@@ -13,8 +15,8 @@ local function wincmd(key)
 end
 
 local function bd()
-    vim.cmd.bn()
-    vim.cmd.bd('#')
+	vim.cmd.bn()
+	vim.cmd.bd("#")
 end
 
 local default = {
@@ -25,7 +27,7 @@ local default = {
 	{ "L", vim.cmd.bn, desc = "Go to next" },
 	{ "Y", "y$", desc = "Yank until EOL" },
 
-	{ "<leader><leader>", group = "other" },
+	{ other, group = "other" },
 
 	{ "<leader>P", '"+P', desc = "System paste before", mode = { "n", "x" } },
 	{ "<leader>d", vim.cmd.bd, desc = "Delete buffer" },
@@ -123,13 +125,13 @@ if status then
 	which.add({
 		{ "<leader>b", builtin.buffers, desc = "Find buffer" },
 		{ "<leader>f", builtin.find_files, desc = "Find file" },
-		{ "<leader><leader>g", builtin.live_grep, desc = "Live grep" },
+		{ other .. "g", builtin.live_grep, desc = "Live grep" },
 	})
 end
 
 local status, api = pcall(require, "nvim-tree.api")
 if status then
-	which.add({ "<leader><leader>t", api.tree.toggle, desc = "Toggle tree" })
+	which.add({ other .. "t", api.tree.toggle, desc = "Toggle tree" })
 end
 
 local status, ses = pcall(require, "session_manager")

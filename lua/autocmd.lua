@@ -4,17 +4,17 @@ local commands = {
 	end,
 	[{ "FocusLost", "BufLeave", "InsertLeave" }] = function(args)
 		-- modified file with no buftype
-		if vim.fn.getbufinfo(args.buf)[1].changed and vim.fn.expand('%') ~= "" and vim.bo.bt == "" then
+		if vim.fn.getbufinfo(args.buf)[1].changed and vim.fn.expand("%") ~= "" and vim.bo.bt == "" then
 			vim.cmd("silent! w")
 		end
 	end,
 	TextYankPost = function() -- highlight yanked text
 		vim.highlight.on_yank({ timeout = 500, on_visual = false })
 	end,
-    TermOpen = function()
-        vim.opt_local.nu = false
-        vim.opt_local.rnu = false
-    end,
+	TermOpen = function()
+		vim.opt_local.nu = false
+		vim.opt_local.rnu = false
+	end,
 }
 
 local group = "custom"
