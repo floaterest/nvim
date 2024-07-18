@@ -1,4 +1,6 @@
+local config = require("plugins._config")
 local lazy = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazy) then
 	local repo = "git@github.com:folke/lazy.nvim.git"
 	-- latest stable release
@@ -12,90 +14,18 @@ local function req(path)
 	end
 end
 
-local presence = {
-	neovim_image_text = "Neovim",
-	buttons = false,
-}
-
-local cmp = {
-	"hrsh7th/nvim-cmp",
-	config = require("plugins.cmp"),
-	dependencies = {
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-nvim-lsp-signature-help",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-nvim-lua",
-		"saadparwaiz1/cmp_luasnip",
-	},
-}
-
-local treesitter = {
-	"nvim-treesitter/nvim-treesitter",
-	config = require("plugins.treesitter"),
-	dependencies = {
-		"nvim-treesitter/playground",
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	},
-}
-
-local noice = {
-	"folke/noice.nvim",
-	opts = require("plugins.noice"),
-	dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-}
-
-local typst = {
-	-- invert_colors = "always",
-	debug = true,
-	port = 8080,
-	get_root = function(_)
-		return vim.fn.getcwd()
-	end,
-}
-
-local function req(path)
-	return function()
-		require(path)
-	end
-end
-
-require("lazy").setup({
-	cmp,
-	treesitter,
-	noice,
-	-- {
-	-- 	"Julian/lean.nvim",
-	-- 	event = { "BufReadPre *.lean", "BufNewFile *.lean" },
-	-- 	opts = { mappings = true },
-	-- },
-	{ dir="/home/u/Projects/typst-preview.nvim", ft = "typst", opts = typst },
-	-- { "willothy/flatten.nvim", opts = {nest_if_no_args=true}, lazy = false, priority = 1001 },
-	-- { "zbirenbaum/copilot.lua", config = require("plugins.copilot") },
-	-- { "AndreM222/copilot-lualine" },
-	-- { "zbirenbaum/copilot-cmp", opts = {} },
-	-- { "andweeb/presence.nvim", opts = presence },
+local noice = require("lazy").setup({
+	{ "floaterest/typst-preview.nvim", ft = "typst", opts = config.typst },
 	{ "L3MON4D3/LuaSnip", config = req("plugins.luasnip") },
-	{ "Shatur/neovim-session-manager", config = req("plugins.session") },
-	{
-		"akinsho/bufferline.nvim",
-		opts = {
-			options = {
-				separator_style = { "", "" },
-				hover = {
-					enabled = true,
-					delay = 0,
-					reveal = { "close" },
-				},
-			},
-		},
-	},
+	{ "Shatur/neovim-session-manager", config = config.session },
+	{ "akinsho/bufferline.nvim", opts = config.bufferline },
 	{ "folke/which-key.nvim", config = req("plugins.which") },
-	{ "ggandor/leap.nvim", config = req("plugins.leap") },
+	{ "ggandor/leap.nvim", config = config.leap },
 	{ "goolord/alpha-nvim", config = req("plugins.alpha") },
-	{ "kyazdani42/nvim-tree.lua", opts = require("plugins.nvim-tree") },
+	{ "kyazdani42/nvim-tree.lua", opts = config.tree },
 	{ "kyazdani42/nvim-web-devicons", lazy = false },
 	{ "kylechui/nvim-surround", opts = {} },
-	{ "lewis6991/gitsigns.nvim", opts = require("plugins.gitsigns") },
+	{ "lewis6991/gitsigns.nvim", opts = config.gitsigns },
 	{ "neovim/nvim-lspconfig", config = req("plugins.lsp") },
 	{ "numToStr/Comment.nvim", opts = {} },
 	{ "nvim-lua/plenary.nvim", lazy = false },
@@ -104,4 +34,29 @@ require("lazy").setup({
 	{ "nvimtools/none-ls.nvim", config = req("plugins.none") },
 	{ "stevearc/dressing.nvim", opts = {} },
 	{ "windwp/nvim-autopairs", config = req("plugins.autopairs") },
+	{
+		"hrsh7th/nvim-cmp",
+		config = require("plugins.cmp"),
+		dependencies = {
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+            
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"saadparwaiz1/cmp_luasnip",
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = require("plugins.treesitter"),
+		dependencies = {
+			"nvim-treesitter/playground",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+	},
+	{
+		"folke/noice.nvim",
+		opts = require("plugins.noice"),
+		dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+	},
 })
