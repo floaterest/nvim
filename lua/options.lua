@@ -9,6 +9,7 @@ vim.o.hid = true -- allow multiple unsaved buffers
 vim.o.hls = false -- no highlight after search
 vim.o.hlsearch = true -- highlight all search results
 vim.o.mouse = "a" -- enable mouse
+vim.o.mousemev = true
 vim.o.nu = true -- current line number
 vim.o.ph = 4 -- max popmenu height
 vim.o.rnu = true -- relative line number
@@ -30,6 +31,7 @@ vim.o.wrap = false -- no word wrap
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.do_filetype_lua = 1
 
 vim.filetype.add({
 	extension = {
@@ -37,3 +39,5 @@ vim.filetype.add({
 		typ = "typst",
 	},
 })
+
+vim.cmd.colo("custom")

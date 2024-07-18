@@ -29,6 +29,7 @@ local ui = {
 	VertSplit = "light black",
 	Visual = ". dark",
 }
+
 local git = {
 	DiffAdd = "lime -",
 	DiffChange = "orange -",
@@ -37,6 +38,7 @@ local git = {
 	GitSignsChange = "@DiffChange",
 	GitSignsDelete = "@DiffDelete",
 }
+
 local syntax = {
 	Comment = "gray . i",
 	Constant = "purple",
@@ -52,6 +54,7 @@ local syntax = {
 	String = "yellow",
 	Tag = "pink",
 }
+
 local treesitter = {
 	["@function.builtin"] = "sky",
 	["@function.macro"] = "@@function.builtin",
@@ -94,6 +97,7 @@ local treesitter = {
 	["@variable.builtin"] = "@function.builtin",
 	["@property.yaml"] = "@Statement",
 }
+
 local nvimtree = {
 	NvimTreeFolderIcon = "yellow",
 	NvimTreeIndentMarker = "@IndentMarker",
@@ -105,10 +109,11 @@ local nvimtree = {
 	NvimTreeGitRenamed = "teal",
 	NvimTreeGitNew = "orange",
 	NvimTreeGitDeleted = "@Comment",
-
-	-- prologPredicate = '@Function',
-	-- prologClause = '@Normal',
-	-- prologVariable = '@@parameter'
 }
 
-return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree)
+local bufferline = {
+	BufferLineTabSelected = "white . b",
+	BufferLineBufferSelected = "white darkest b",
+}
+
+return vim.tbl_extend("force", ui, git, syntax, treesitter, nvimtree, bufferline)

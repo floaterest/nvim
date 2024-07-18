@@ -41,15 +41,16 @@ local treesitter = {
 local noice = {
 	"folke/noice.nvim",
 	opts = require("plugins.noice"),
-	event = "VeryLazy",
 	dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 }
 
 local typst = {
 	-- invert_colors = "always",
-	-- debug = true,
+	debug = true,
 	port = 8080,
-	get_root = vim.fn.getcwd,
+	get_root = function(_)
+		return vim.fn.getcwd()
+	end,
 }
 
 local function req(path)
@@ -67,7 +68,7 @@ require("lazy").setup({
 	-- 	event = { "BufReadPre *.lean", "BufNewFile *.lean" },
 	-- 	opts = { mappings = true },
 	-- },
-	{ "floaterest/typst-preview.nvim", ft = "typst", opts = typst },
+	{ dir="/home/u/Projects/typst-preview.nvim", ft = "typst", opts = typst },
 	-- { "willothy/flatten.nvim", opts = {nest_if_no_args=true}, lazy = false, priority = 1001 },
 	-- { "zbirenbaum/copilot.lua", config = require("plugins.copilot") },
 	-- { "AndreM222/copilot-lualine" },
@@ -75,7 +76,19 @@ require("lazy").setup({
 	-- { "andweeb/presence.nvim", opts = presence },
 	{ "L3MON4D3/LuaSnip", config = req("plugins.luasnip") },
 	{ "Shatur/neovim-session-manager", config = req("plugins.session") },
-	{ "akinsho/bufferline.nvim", opts = {} },
+	{
+		"akinsho/bufferline.nvim",
+		opts = {
+			options = {
+				separator_style = { "", "" },
+				hover = {
+					enabled = true,
+					delay = 0,
+					reveal = { "close" },
+				},
+			},
+		},
+	},
 	{ "folke/which-key.nvim", config = req("plugins.which") },
 	{ "ggandor/leap.nvim", config = req("plugins.leap") },
 	{ "goolord/alpha-nvim", config = req("plugins.alpha") },
@@ -87,11 +100,7 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", opts = {} },
 	{ "nvim-lua/plenary.nvim", lazy = false },
 	{ "nvim-lualine/lualine.nvim", opts = req("plugins.lualine") },
-	{
-		"nvim-telescope/telescope.nvim",
-		config = req("plugins.telescope"),
-		dependencies = { "nvim-telescope/telescope-file-browser.nvim" },
-	},
+	{ "nvim-telescope/telescope.nvim", opts = {} },
 	{ "nvimtools/none-ls.nvim", config = req("plugins.none") },
 	{ "stevearc/dressing.nvim", opts = {} },
 	{ "windwp/nvim-autopairs", config = req("plugins.autopairs") },

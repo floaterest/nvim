@@ -1,7 +1,5 @@
 local which = require("which-key")
-local func = require("plenary.functional")
-
-local other = "<leader>p"
+local partial = require("plenary.functional").partial
 
 local function copy()
 	vim.fn.setreg("+", vim.fn.join(vim.fn.getbufline("%", 1, "$"), "\n"), "l")
@@ -22,29 +20,28 @@ end
 local default = {
 	{ "<c-c>", copy, desc = "Copy buffer" },
 	{ "<c-s>", vim.cmd.w, desc = "Save buffer" },
-	{ "<c-n>", "<cmd>Noice dismiss<cr>", desc = "Dismiss Noice" },
-	{ "H", vim.cmd.bp, desc = "Go to previous" },
-	{ "L", vim.cmd.bn, desc = "Go to next" },
+	{ "<c-n>", "<cmd>Noice dismiss<cr>", desc = "Dismiss Noice", mode = { "n", "i", "x" } },
+	{ "H", vim.cmd.bp, desc = "Previous buffer" },
+	{ "L", vim.cmd.bn, desc = "Next buffer" },
 	{ "Y", "y$", desc = "Yank until EOL" },
 
-	{ other, group = "other" },
-
+	{ "<leader>D", bd, desc = "Delete buffer #" },
 	{ "<leader>P", '"+P', desc = "System paste before", mode = { "n", "x" } },
 	{ "<leader>d", vim.cmd.bd, desc = "Delete buffer" },
 	{ "<leader>p", '"+p', desc = "System paste", mode = { "n", "x" } },
 	{ "<leader>q", vim.cmd.q, desc = "Quit" },
 	{ "<leader>y", '"+y', desc = "System yank", mode = "x" },
-	{ "<leader>D", bd, desc = "Delete buffer #" },
 
-	{ "<leader>t", group = "Tab" },
+	{ "<leader>t", group = "tab" },
+	{ "<leader>tt", "<cmd>tab sp<cr>", desc = "New tab" },
 	{ "<leader>tc", vim.cmd.tabc, desc = "Close tab" },
 	{ "<leader>to", vim.cmd.tabo, desc = "Close all other tabs" },
-	{ "<leader>tt", ":tab sp<cr>", desc = "Open current buffer in new tab" },
 
 	{ "<leader>w", group = "window" },
 	{ "<leader>w<", wincmd("<"), desc = "Decrease Width" },
 	{ "<leader>w=", wincmd("="), desc = "Equally high and wide" },
 	{ "<leader>w>", wincmd(">"), desc = "Increase Width" },
+	{ "<leader>wT", wincmd("T"), desc = "Breakout into new tab" },
 	{ "<leader>wh", wincmd("h"), desc = "Go to the left window" },
 	{ "<leader>wj", wincmd("j"), desc = "Go to the down window" },
 	{ "<leader>wk", wincmd("k"), desc = "Go to the up window" },
@@ -52,6 +49,8 @@ local default = {
 	{ "<leader>ws", wincmd("s"), desc = "Split window horizontally" },
 	{ "<leader>wv", wincmd("v"), desc = "Split window vertically" },
 	{ "<leader>wx", wincmd("x"), desc = "Swap current with next" },
+	{ "<leader>w|", wincmd("|"), desc = "Max out width" },
+	{ "<leader>w_", wincmd("_"), desc = "Max out height" },
 }
 
 local function format()
@@ -123,21 +122,51 @@ end
 local status, builtin = pcall(require, "telescope.builtin")
 if status then
 	which.add({
-		{ "<leader>b", builtin.buffers, desc = "Find buffer" },
 		{ "<leader>f", builtin.find_files, desc = "Find file" },
-		{ other .. "g", builtin.live_grep, desc = "Live grep" },
+		{ "<leader>F", group = "telescope" },
+		{ "<leader>Ff", builtin.find_files, desc = "Find file" },
+		{ "<leader>Fb", builtin.buffers, desc = "Buffers" },
+		{ "<leader>Fd", builtin.diagnostics, desc = "Diagnostics" },
+		{ "<leader>Ff", builtin.find_files, desc = "Files" },
+		{ "<leader>Fg", builtin.live_grep, desc = "Live grep" },
+		{ "<leader>Fh", builtin.highlights, desc = "Highlights" },
+		{ "<leader>Fk", builtin.keymaps, desc = "Keymaps" },
+		{ "<leader>Fm", builtin.marks, desc = "Marks" },
+		{ "<leader>Fo", builtin.vim_options, desc = "Vim options" },
+		{ "<leader>Fr", builtin.registers, desc = "Registers" },
+		{ "<leader>Fn", "<cmd>Telescope noice<cr>", desc = "Noice" },
 	})
 end
 
 local status, api = pcall(require, "nvim-tree.api")
 if status then
-	which.add({ other .. "t", api.tree.toggle, desc = "Toggle tree" })
+	which.add({ "<leader>T", api.tree.toggle, desc = "Toggle tree" })
 end
 
-local status, ses = pcall(require, "session_manager")
+local status, session = pcall(require, "session_manager")
 if status then
 	which.add({
-		{ "<leader>o", ses.load_current_dir_session, desc = "Open last session here" },
-		{ "<leader>s", ses.load_session, desc = "Select sessions" },
+		{ "<leader>s", session.load_session, desc = "Select sessions" },
+		{ "<leader>S", group = "Session" },
+		{ "<leader>Ss", session.load_session, desc = "Select sessions" },
+		{ "<leader>Sd", session.delete_session, desc = "Delete sessions" },
+	})
+end
+
+local status, buffer = pcall(require, "bufferline")
+if status then
+	which.add({
+		{ "<leader>b", buffer.pick, desc = "Select buffer" },
+		{ "<leader>B", group = "Buffer" },
+		{ "<leader>Bb", buffer.pick, desc = "Select buffer" },
+		{ "<leader>Bd", buffer.close_with_pick, desc = "Pick buffer to delete" },
+		{ "<leader>BD", buffer.close_others, desc = "Close other buffers" },
+	})
+end
+
+local status, noice = pcall(require, "noice")
+if status then
+	which.add({
+		{ "<leader>n", partial(noice.cmd, "all"), desc = "Noice" },
 	})
 end
