@@ -1,4 +1,4 @@
-require("autocmd")
-require("options")
-require("plugins")
-require("neovide")
+require('autocmd')
+require('options')
+require('plugins')
+require('neovide')

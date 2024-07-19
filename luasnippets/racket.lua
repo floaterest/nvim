@@ -1,7 +1,7 @@
-require("util.luasnip")
+require('util.luasnip')
 
 local autos = {
-	["\\ "] = "λ ",
+    ['\\ '] = 'λ ',
 }
 
 return {}, ifmtas(autos)

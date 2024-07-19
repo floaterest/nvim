@@ -1,8 +1,8 @@
-require("util.luasnip")
+require('util.luasnip')
 
 local snips = {
-	log = "console.log(<>)",
-	dbg = "console.debug(<>)",
+    log = 'console.log(<>)',
+    dbg = 'console.debug(<>)',
 }
 
 return ifmtas(snips)

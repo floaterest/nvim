@@ -1,15 +1,15 @@
-require("util.luasnip")
-local List = require("plenary.collections.py_list")
+require('util.luasnip')
+local List = require('plenary.collections.py_list')
 
 local snips = {
-	ts = '<script lang="ts">\n\t{}\n</script>',
-	sass = '<style lang="sass">\n\t{}\n</style>',
+    ts = '<script lang="ts">\n\t{}\n</script>',
+    sass = '<style lang="sass">\n\t{}\n</style>',
 }
 
 local svelte = {
-	each = "{#each <> as <>}\n\t<>\n{/each}",
-	["if"] = "{#if <>}\n\t<>\n{/if}",
-	["else"] = "{:else}\n",
+    each = '{#each <> as <>}\n\t<>\n{/each}',
+    ['if'] = '{#if <>}\n\t<>\n{/if}',
+    ['else'] = '{:else}\n',
 }
 
 return List:concat(ifmts(snips), ifmtas(svelte))
