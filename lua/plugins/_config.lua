@@ -20,6 +20,7 @@ return {
                 delay = 0,
                 reveal = { 'close' },
             },
+            diagnostics_indicator = false,
         },
     },
     gitsigns = { signcolumn = false, numhl = true },
