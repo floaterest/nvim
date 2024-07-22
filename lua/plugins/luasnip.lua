@@ -9,7 +9,6 @@ luasnip.config.set_config({
 
 luasnip.filetype_extend('svelte', { 'typescript' })
 luasnip.filetype_extend('markdown', { 'tex' })
-luasnip.filetype_extend('plaintex', { 'tex' })
 
 require('luasnip.loaders.from_lua').lazy_load()
 
@@ -19,7 +18,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 vim.api.nvim_create_user_command(
-    'LuaSnipEdit',
+    'Lu',
     require('luasnip.loaders').edit_snippet_files,
     {}
 )

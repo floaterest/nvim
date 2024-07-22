@@ -6,12 +6,6 @@ local function copy()
     print('Copied buffer to clipboard')
 end
 
-local function wincmd(key)
-    return function()
-        vim.cmd.wincmd(key)
-    end
-end
-
 local function bd()
     vim.cmd.bn()
     vim.cmd.bd('#')
@@ -19,6 +13,14 @@ end
 
 local default = {
     { '<c-c>', copy, desc = 'Copy buffer' },
+    {
+        '<c-p>',
+        '<cmd>TypstPreview<cr>',
+        cond = function()
+            return vim.bo.filetype=='typst'
+        end,
+        desc = 'Typst Preview',
+    },
     { '<c-s>', vim.cmd.w, desc = 'Save buffer' },
     {
         '<c-n>',
@@ -35,6 +37,7 @@ local default = {
     { '<leader>d', vim.cmd.bd, desc = 'Delete buffer' },
     { '<leader>p', '"+p', desc = 'System paste', mode = { 'n', 'x' } },
     { '<leader>q', vim.cmd.q, desc = 'Quit' },
+    { '<leader>Q', vim.cmd.qa, desc = 'Quit all' },
     { '<leader>y', '"+y', desc = 'System yank', mode = 'x' },
 
     { '<leader>t', group = 'tab' },
@@ -42,20 +45,7 @@ local default = {
     { '<leader>tc', vim.cmd.tabc, desc = 'Close tab' },
     { '<leader>to', vim.cmd.tabo, desc = 'Close all other tabs' },
 
-    { '<leader>w', group = 'window' },
-    { '<leader>w<', wincmd('<'), desc = 'Decrease Width' },
-    { '<leader>w=', wincmd('='), desc = 'Equally high and wide' },
-    { '<leader>w>', wincmd('>'), desc = 'Increase Width' },
-    { '<leader>wT', wincmd('T'), desc = 'Breakout into new tab' },
-    { '<leader>wh', wincmd('h'), desc = 'Go to the left window' },
-    { '<leader>wj', wincmd('j'), desc = 'Go to the down window' },
-    { '<leader>wk', wincmd('k'), desc = 'Go to the up window' },
-    { '<leader>wl', wincmd('l'), desc = 'Go to the right window' },
-    { '<leader>ws', wincmd('s'), desc = 'Split window horizontally' },
-    { '<leader>wv', wincmd('v'), desc = 'Split window vertically' },
-    { '<leader>wx', wincmd('x'), desc = 'Swap current with next' },
-    { '<leader>w|', wincmd('|'), desc = 'Max out width' },
-    { '<leader>w_', wincmd('_'), desc = 'Max out height' },
+    { '<leader>w', proxy = '<c-w>', group = 'window' },
 }
 
 local function format()

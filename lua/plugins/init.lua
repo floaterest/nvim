@@ -22,7 +22,6 @@ local function req(path)
 end
 
 local noice = require('lazy').setup({
-{'Jxstxs/conceal.nvim', opts={}},
     { 'floaterest/typst-preview.nvim', ft = 'typst', opts = config.typst },
     { 'L3MON4D3/LuaSnip', config = req('plugins.luasnip') },
     { 'Shatur/neovim-session-manager', config = config.session },
