@@ -32,7 +32,7 @@ local greek = {
     f = 'φ',
     z = 'ζ',
 
-    x = "ξ",
+    x = 'ξ',
     -- X = "Ξ",
     le = '⩽',
     i = '^(-1)',
@@ -138,8 +138,10 @@ local auto = List.new({
     s({ trig = 'yp ', wordTrig = false }, t('y\'\'')),
     s({ trig = 'ypp ', wordTrig = false }, t('y\'\'\'\'')),
     s({ trig = '\\o ', wordTrig = false }, t('ö')),
+    s('ss ', { t('#strike['), i(0), t(']') }),
+    s('u ', { t('$'), i(0), t('$') }),
     s(
-        { trig = 'c(%l) ', regTrig = true },
+        { trig = 'c([abcdfklopqstux]) ', regTrig = true },
         fmta('cal(<>)', { l(l.CAPTURE1:upper()) })
     ),
     -- s({ trig = "c(%l)(%l) ", regTrig = true }, fmta("cal(<>)(<>)", { l(l.CAPTURE1:upper()), l(l.CAPTURE2:upper()) })),
