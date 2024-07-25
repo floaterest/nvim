@@ -4,7 +4,6 @@ require('util.luasnip')
 local greek = {
     a = 'α',
     b = 'β',
-    c = 'χ',
     d = 'δ',
     D = 'Δ',
     h = 'η',
@@ -17,7 +16,7 @@ local greek = {
     n = 'ν',
     o = 'ω',
     O = 'Ω',
-    Phi = 'Φ',
+    -- Phi = 'Φ',
     p = 'π',
     P = 'Π',
     -- x = 'ψ',
@@ -32,8 +31,8 @@ local greek = {
     f = 'φ',
     z = 'ζ',
 
-    x = 'ξ',
-    -- X = "Ξ",
+    c = 'ξ',
+    C = "Ξ",
     le = '⩽',
     i = '^(-1)',
     no = 'nothing',
