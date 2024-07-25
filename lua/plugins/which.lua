@@ -17,7 +17,7 @@ local default = {
         '<c-p>',
         '<cmd>TypstPreview<cr>',
         cond = function()
-            return vim.bo.filetype=='typst'
+            return vim.bo.filetype == 'typst'
         end,
         desc = 'Typst Preview',
     },
