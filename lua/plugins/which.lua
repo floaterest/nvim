@@ -13,6 +13,7 @@ end
 
 local default = {
     { '<c-c>', copy, desc = 'Copy buffer' },
+    { '<c-h>', vim.cmd.noh, desc = 'Stop the highlighting' },
     {
         '<c-p>',
         '<cmd>TypstPreview<cr>',
