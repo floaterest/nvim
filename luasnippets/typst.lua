@@ -60,14 +60,14 @@ local subs = {
     im = '==>',
     mi = '<==',
     sq = '□',
-    partial = '∂',
 }
 
 local space = {
     joi = '⋈',
     int = '∫',
-    dot = '·',
+    -- dot = '·',
     lt = '<',
+    gt = '>',
     sp = 'space',
     ti = '×',
     psi = 'ψ',
@@ -136,8 +136,6 @@ local auto = List.new({
     s('ol ', fmta('overline(<>)', { i(0) })),
     s('ul ', fmta('underline(<>)', { i(0) })),
     s({ trig = '\\i ', wordTrig = false }, t('^(-1)')),
-    s({ trig = 'yp ', wordTrig = false }, t('y\'\'')),
-    s({ trig = 'ypp ', wordTrig = false }, t('y\'\'\'\'')),
     s({ trig = '\\o ', wordTrig = false }, t('ö')),
     s('ss ', { t('#strike['), i(0), t(']') }),
     s('u ', { t('$'), i(0), t('$') }),
