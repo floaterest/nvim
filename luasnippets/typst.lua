@@ -33,7 +33,7 @@ local greek = {
     z = 'ζ',
 
     c = 'ξ',
-    C = "Ξ",
+    C = 'Ξ',
     le = '⩽',
     i = '^(-1)',
     no = 'nothing',
@@ -60,6 +60,20 @@ local subs = {
     im = '==>',
     mi = '<==',
     sq = '□',
+}
+
+local slash = {
+    n = 'ₙ',
+    ['0'] = '₀',
+    ['1'] = '₁',
+    ['2'] = '₂',
+    ['3'] = '₃',
+    ['4'] = '₄',
+    ['5'] = '₅',
+    ['6'] = '₆',
+    ['7'] = '₇',
+    ['8'] = '₈',
+    ['in'] = '∈',
 }
 
 local space = {
@@ -148,6 +162,9 @@ local auto = List.new({
     kv_map(function(trig, name)
         return s(trig .. ' ', t(name))
     end, subs),
+    kv_map(function(trig, name)
+        return s({trig='\\' .. trig .. ' ',wordTrig=false}, t(name))
+    end, slash),
     kv_map(function(trig, name)
         return s(trig .. ' ', t(name .. ' '))
     end, space),
