@@ -72,6 +72,7 @@ local treesitter = {
     ['@markup.heading.3.latex'] = '@@markup.heading.1',
     ['@markup.heading.4.latex'] = '@@markup.heading.2',
     ['@markup.math'] = '@Special',
+    ['@markup.quote'] = '.',
     ['@markup.italic'] = '. . i',
     ['@markup.list'] = '@Delimiter',
     ['@markup.strong'] = '. . b',

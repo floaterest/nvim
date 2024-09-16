@@ -171,7 +171,7 @@ local auto = List.new({
     vim.tbl_map(function(name)
         return s(
             '#' .. name:sub(0, 3) .. ' ',
-            fmt('#{}[\n{}\n]', { t(name), i(0) })
+            fmt('#{}[{}]', { t(name), i(0) })
         )
     end, commands)
 )

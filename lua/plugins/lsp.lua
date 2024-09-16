@@ -20,7 +20,7 @@ local haskell = {
 }
 
 local servers = {
-    tsserver = {},
+    -- tsserver = {},
     pyright = {},
     svelte = {},
     typst_lsp = {},
