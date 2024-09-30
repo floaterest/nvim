@@ -4,13 +4,11 @@ local commands = {
     end,
     [{ 'FocusLost', 'BufLeave', 'InsertLeave' }] = function(args)
         -- modified file with no buftype
-        if
-            vim.fn.getbufinfo(args.buf)[1].changed
-            and vim.fn.expand('%') ~= ''
-            and vim.bo.bt == ''
-        then
-            vim.cmd('silent! w')
+        local info = vim.fn.getbufinfo(args.buf)[1]
+        if info.changed == 0 or info.name == "" then
+            return
         end
+        vim.cmd('silent! w')
     end,
     TextYankPost = function() -- highlight yanked text
         vim.highlight.on_yank({ timeout = 500, on_visual = false })

@@ -79,7 +79,7 @@ local slash = {
 local space = {
     joi = '⋈',
     int = '∫',
-    -- dot = '·',
+    dot = '·',
     lt = '<',
     gt = '>',
     sp = 'space',
@@ -152,7 +152,7 @@ local auto = List.new({
     s({ trig = '\\i ', wordTrig = false }, t('^(-1)')),
     s({ trig = '\\o ', wordTrig = false }, t('ö')),
     s('ss ', { t('#strike['), i(0), t(']') }),
-    s('u ', { t('$'), i(0), t('$') }),
+    s('u ', { t('$'), i(1), t('$'), i(0) }),
     s(
         { trig = 'c([abcdfklopqstux]) ', regTrig = true },
         fmta('cal(<>)', { l(l.CAPTURE1:upper()) })
