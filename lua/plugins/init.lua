@@ -41,6 +41,10 @@ local noice = require('lazy').setup({
     { 'nvimtools/none-ls.nvim', config = req('plugins.none') },
     { 'stevearc/dressing.nvim', opts = {} },
     { 'windwp/nvim-autopairs', config = req('plugins.autopairs') },
+    {'isovector/cornelis', dependencies = {
+        'neovimhaskell/nvim-hs.vim',
+        'kana/vim-textobj-user'
+    }},
     {
         'hrsh7th/nvim-cmp',
         config = require('plugins.cmp'),

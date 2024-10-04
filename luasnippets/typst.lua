@@ -94,6 +94,7 @@ local space = {
     tf = '∴',
     tff = '∴ &&',
     eq = '&=',
+    eqq = '&&=',
     -- logic
     vd = '⊢',
     vD = '⊨',
