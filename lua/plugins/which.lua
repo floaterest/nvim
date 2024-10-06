@@ -12,7 +12,7 @@ local function bd()
 end
 
 local default = {
-    { '<c-c>', copy, desc = 'Copy buffer' },
+    -- { '<c-c>', copy, desc = 'Copy buffer' },
     { '<c-h>', vim.cmd.noh, desc = 'Stop the highlighting' },
     {
         '<c-p>',
@@ -168,5 +168,30 @@ local status, noice = pcall(require, 'noice')
 if status then
     which.add({
         { '<leader>n', partial(noice.cmd, 'all'), desc = 'Noice' },
+    })
+end
+
+local status, agda = pcall(require, 'agda')
+if status then
+    local rewrite = require('agda.enums').Rewrite
+    which.add({
+        { '\\l', agda.load, desc = 'Load' },
+        {
+            '\\d',
+            function()
+                agda.infer(rewrite.SIMPLIFIED)
+            end,
+            desc = 'Deduce',
+        },
+        { '\\c', agda.case, desc = 'Split' },
+        { '\\r', agda.refine, desc = 'Refine' },
+        { '\\ ', agda.give, desc = 'Give' },
+        {
+            '\\,',
+            function()
+                agda.goal_type_context(rewrite.SIMPLIFIED)
+            end,
+            desc = 'Infer',
+        },
     })
 end

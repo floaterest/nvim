@@ -9,6 +9,7 @@ luasnip.config.set_config({
 
 luasnip.filetype_extend('svelte', { 'typescript' })
 luasnip.filetype_extend('markdown', { 'tex' })
+luasnip.filetype_extend('typst', { 'agda' })
 
 require('luasnip.loaders.from_lua').lazy_load()
 

@@ -11,7 +11,7 @@ local rust = {
 }
 
 local haskell = {
-    formattingProvider = "fourmolu",
+    formattingProvider = 'fourmolu',
     -- plugin = {
     -- 	["hls-hlint-plugin"] = { globalOn = true },
     -- 	["hls-fourmolu-plugin"] = { globalOn = true },
@@ -20,12 +20,11 @@ local haskell = {
 }
 
 local servers = {
-    -- tsserver = {},
     pyright = {},
     svelte = {},
-    typst_lsp = {},
-    racket_langserver = {},
-    -- clangd = {},
+    -- typst_lsp = {},
+    clangd = {},
+    agda_ls = {},
     hls = { haskell = haskell },
     rust_analyzer = { settings = rust },
 }

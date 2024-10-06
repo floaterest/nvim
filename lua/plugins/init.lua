@@ -41,10 +41,12 @@ local noice = require('lazy').setup({
     { 'nvimtools/none-ls.nvim', config = req('plugins.none') },
     { 'stevearc/dressing.nvim', opts = {} },
     { 'windwp/nvim-autopairs', config = req('plugins.autopairs') },
-    {'isovector/cornelis', dependencies = {
-        'neovimhaskell/nvim-hs.vim',
-        'kana/vim-textobj-user'
-    }},
+    {
+        'isti115/agda.nvim',
+        config = function()
+            vim.g.agda_keymap = 'emacs'
+        end,
+    },
     {
         'hrsh7th/nvim-cmp',
         config = require('plugins.cmp'),
