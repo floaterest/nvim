@@ -1,7 +1,7 @@
 vim.o.ai = true -- autoindent
 vim.o.ar = true -- reload file changes (autoread)
 vim.o.bs = 'indent,eol,start' -- allow backspace
-vim.o.cole = 2 -- conceal level
+vim.o.cole = 0 -- conceal level
 vim.o.cot = 'menuone,noinsert,noselect' -- complete option
 vim.o.cul = true -- highlight current line
 vim.o.et = true -- <tab> expands to spaces
