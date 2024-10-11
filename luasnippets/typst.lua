@@ -38,8 +38,6 @@ local greek = {
     i = '^(-1)',
     no = 'nothing',
     iff = '<==>',
-    st = '★',
-    semi = '⋉',
 }
 
 local subs = {
@@ -51,12 +49,7 @@ local subs = {
     pm = '±',
     mp = '∓',
     dc = '⋯',
-    fi = 'f^(-1)',
-    gi = 'g^(-1)',
-    pi = 'π^(-1)',
     nex = '∄',
-    eqd = '≐',
-    lra = '<->',
     im = '==>',
     mi = '<==',
     sq = '□',
@@ -114,8 +107,8 @@ local space = {
     sect = '∩',
     un = '∪',
     uq = '⊔',
-    le = '⩽',
-    ge = '⩾',
+    -- le = '≤',
+    -- ge = '≥',
     Un = 'union.big',
     Se = 'sect.big',
     -- typography
